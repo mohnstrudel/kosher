@@ -1,0 +1,79 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  admin:
+    form:
+      tab_main: 
+        title: "General"
+      model:
+        title: "Title"
+        body: "Text body"
+        description: "Description"
+        slug: "Slug"
+        category: "Category"
+        first_name: "First name"
+        second_name: "Last name"
+        email: "Email"
+        created: "Created"
+      tab_translation: "Other languages"
+      actions:
+        main: "Actions"
+        save: "Save"
+        back: "Back"
+        edit: "Edit"
+        delete: "Delete"
+      confirm: "Are you sure?"
+      created_ago: "ago"
+    logout: "Log out"
+    profile: "Edit profile"
+
+    navigation:
+      dashboard: "Dashboard"
+      posts:
+        main: "Posts"
+        all_posts: "All posts"
+        new_post: "Create new post"
+        post_categories: "Post categories"
+      pages:
+        main: "Pages"
+        all_pages: "All pages"
+        new_page: "Create new page"
+        page_categories: "Page categories"
+      users:
+        main: "Users"
+        all_users: "All users"
+        new_user: "Create new user"
+      settings:
+        main: "Settings"
+        general: "General settings"
+      right_sidebar:
+        language:
+          title: "Select language"
+          description: "Please select language"
+          english: "English"
+          russian: "Russian"
+  
+  controllers:
+    admin:
+      post:
+        new: "New"
