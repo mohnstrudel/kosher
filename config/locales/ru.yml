@@ -14,6 +14,9 @@ ru:
         second_name: "Фамилия"
         email: "Эл. почта"
         created: "Создано"
+        front_image: "Лицевое изображение"
+        back_image: "Изображение изнанки"
+        name: "Название"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -21,6 +24,8 @@ ru:
         back: "Назад"
         edit: "Редактировать"
         delete: "Удалить"
+        select_file: "Выбрать файл"
+        change: "Изменить"
       confirm: "Вы уверены?"
       created_ago: "назад"
     logout: "Выйти"
@@ -45,6 +50,7 @@ ru:
       settings:
         main: "Настройки"
         general: "Общие настройки"
+        cities: "Города"
       right_sidebar:
         language:
           title: "Выбрать язык"

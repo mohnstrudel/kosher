@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       namespace :settings do
         get '', to: 'dashboard#index', as: '/'
         resources :general_settings, except: :show
+        resources :cities, except: :show
       end
     	resources :pages, except: :show
       resources :posts, except: :show

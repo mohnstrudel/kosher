@@ -35,6 +35,9 @@ en:
         second_name: "Last name"
         email: "Email"
         created: "Created"
+        front_image: "Front image"
+        back_image: "Back image"
+        name: "Name"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -42,6 +45,8 @@ en:
         back: "Back"
         edit: "Edit"
         delete: "Delete"
+        select_file: "Select file"
+        change: "Change"
       confirm: "Are you sure?"
       created_ago: "ago"
     logout: "Log out"
@@ -66,6 +71,7 @@ en:
       settings:
         main: "Settings"
         general: "General settings"
+        cities: "Cities"
       right_sidebar:
         language:
           title: "Select language"
