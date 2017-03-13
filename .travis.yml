@@ -9,7 +9,7 @@ before_install:
 cache: bundler
 
 rvm:
- - 2.4.0p0
+ - 2.4.0
 
 env:
  - DB=pgsql
