@@ -9,7 +9,7 @@ before_install:
 cache: bundler
 
 rvm:
- - 2.3.1
+ - 2.4.0p0
 
 env:
  - DB=pgsql
@@ -19,7 +19,7 @@ services:
 
 test:
   adapter: postgresql
-  database: ycms_test
+  database: kosher_test
 
 # uncomment and edit the following line if your project needs to run something other than `rake`:
 # script: 
@@ -27,7 +27,7 @@ test:
 
 before_script:
  - cp config/database.yml.travis config/database.yml
- - psql -c 'create database ycms_test;' -U postgres
+ - psql -c 'create database kosher_test;' -U postgres
  - bundle update
  - bundle exec rake db:test:prepare
 
@@ -35,7 +35,7 @@ deploy:
   provider: heroku
   api_key:
     secure: "6c9068eb-a63a-44dd-a6ca-fa6b5b16e821"
-  app: yadadya-development-ycms
+  app: yadadya-development-kosher
 
 notifications:
   slack: yadadya:dw75tQmpnDHUXVCabdc2RABS
