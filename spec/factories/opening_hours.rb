@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :opening_hour do
-    title "MyString"
-    value "MyString"
-    general_setting nil
+    title Faker::Date.between(2.days.ago, Date.today)
+    value "#{Faker::Number.number(2)}:#{Faker::Number.number(2)} - #{Faker::Number.number(2)}:#{Faker::Number.number(2)}"
   end
 end

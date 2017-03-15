@@ -6,6 +6,8 @@
       =f.text_field :url, class: 'form-control'
       %span.help-block.m-b-none Site url (http://example.com)
   .hr-line-dashed
+
+
 -if object.respond_to?(:logo)
   .form-group
     %label.col-sm-2.control-label
@@ -28,6 +30,8 @@
         -if object.logo.file.exists?
           =image_tag object.logo.url(:mini_thumb)
   .hr-line-dashed
+
+
 -if object.respond_to?(:phones)
   .form-group
     %label.col-sm-2.control-label
@@ -38,6 +42,8 @@
       %span.help-block.m-b-none
         =link_to_add_fields t('admin.form.actions.add_phone'), f, :phones, 'admin/shared/form/general_settings/phone_fields', class: 'btn btn-default'
   .hr-line-dashed
+
+
 -if object.respond_to?(:language)
   .form-group
     %label.col-sm-2.control-label
@@ -45,6 +51,8 @@
     .col-sm-10
       =render partial: 'admin/shared/form/language_select', locals: { f: f, object: object }
   .hr-line-dashed
+
+
 -if object.respond_to?(:opening_hours)
   .form-group
     %label.col-sm-2.control-label
@@ -55,6 +63,8 @@
         =render partial: 'admin/shared/form/general_settings/opening_hours_fields', locals: { f: hours_builder }
       %span.help-block.m-b-none
         =link_to_add_fields t('admin.form.actions.add_hours'), f, :opening_hours, 'admin/shared/form/general_settings/opening_hours_fields', class: 'btn btn-default'
+
+
 -if object.respond_to?(:address)
   .form-group
     %label.col-sm-2.control-label

@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :phone do
-    value "MyString"
-    general_setting nil
+    value Faker::PhoneNumber.phone_number
   end
 end

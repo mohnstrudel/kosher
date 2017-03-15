@@ -29,6 +29,17 @@ require 'support/controller_macros'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+
+  config.after(:all) do
+    # Get rid of the linked images
+    if Rails.env.test? || Rails.env.cucumber?
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp/[^.]*"])
+      # FileUtils.rm_rf(Dir["#{temp_path}/[^.]*"])
+      # if you want to delete everything under the CarrierWave root that you set in an initializer,
+      # you can do this:
+      # FileUtils.rm_rf(CarrierWave::Uploader::Base.root)
+    end
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
