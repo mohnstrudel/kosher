@@ -1,4 +1,4 @@
 test:
   adapter: postgresql
-  database: ycms_test
+  database: kosher_test
   username: postgres

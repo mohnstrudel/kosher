@@ -9,9 +9,16 @@ class Admin::Settings::GeneralSettingsController < AdminController
 
   def new
     @general_setting = GeneralSetting.new
+    # Билдим для того, что бы было видно сразу одно поле и пользователь не должен
+    # кликать на "добавить телефон"
+    @general_setting.phones.build
   end
 
   def edit
+    # Тоже самое, что и с нью - если телефонов нет вообще, то показываем одно пустое поле
+    if @general_setting.phones.blank?
+      @general_setting.phones.build
+    end
   end
 
   def create
@@ -20,7 +27,7 @@ class Admin::Settings::GeneralSettingsController < AdminController
   end
 
   def destroy
-    destroy_helper(@general_setting, "admin_settings_general_setting_path")
+    destroy_helper(@general_setting, "admin_settings_general_settings_path")
   end
 
   def update
@@ -38,7 +45,8 @@ class Admin::Settings::GeneralSettingsController < AdminController
   end
 
   def general_setting_params
-    params.require(:general_setting).permit(:url, :description)
+    params.require(:general_setting).permit(:url, :description, :logo,
+      phones_attributes: [:id, :value, :_destroy, :general_setting_id ] )
   end
 
   def create_hash(params)

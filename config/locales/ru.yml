@@ -17,6 +17,10 @@ ru:
         front_image: "Лицевое изображение"
         back_image: "Изображение изнанки"
         name: "Название"
+        url: "Адрес в интернете"
+        logo: "Логотип"
+        language: "Выберите язык"
+        phones: "Телефон(ы)"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -26,6 +30,7 @@ ru:
         delete: "Удалить"
         select_file: "Выбрать файл"
         change: "Изменить"
+        add_phone: "Добавить телефон"
       confirm: "Вы уверены?"
       created_ago: "назад"
     logout: "Выйти"

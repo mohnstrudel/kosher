@@ -1,21 +1,25 @@
 -if object.respond_to?(:url)
   .form-group
-    %label.col-sm-2.control-label Url
+    %label.col-sm-2.control-label
+      =t('admin.form.model.url')
     .col-sm-10
       =f.text_field :url, class: 'form-control'
       %span.help-block.m-b-none Site url (http://example.com)
   .hr-line-dashed
 -if object.respond_to?(:logo)
   .form-group
-    %label.col-sm-2.control-label Logo
+    %label.col-sm-2.control-label
+      =t('admin.form.model.logo')
     .col-sm-8
       .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
         .form-control{"data-trigger" => "fileinput"}
           %i.glyphicon.glyphicon-file.fileinput-exists
           %span.fileinput-filename
         %span.input-group-addon.btn.btn-default.btn-file
-          %span.fileinput-new Select file
-          %span.fileinput-exists Change
+          %span.fileinput-new
+            =t('admin.form.actions.select_file')
+          %span.fileinput-exists
+            =t('admin.form.actions.change')
           =f.file_field :logo
           
         %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Remove
@@ -24,10 +28,20 @@
         -if object.logo.file.exists?
           =image_tag object.logo.url(:mini_thumb)
   .hr-line-dashed
+-if object.respond_to?(:phones)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.phones')
+    .col-sm-6
+      =f.fields_for :phones do |phone_builder|
+        =render partial: 'admin/shared/form/general_settings/phone_fields', locals: { f: phone_builder }
+      %span.help-block.m-b-none
+        =link_to_add_fields t('admin.form.actions.add_phone'), f, :phones, 'admin/shared/form/general_settings/phone_fields', class: 'btn btn-default'
+  .hr-line-dashed
 -if object.respond_to?(:language)
   .form-group
-    %label.col-sm-2.control-label Select languages
+    %label.col-sm-2.control-label
+      =t('admin.form.model.language')
     .col-sm-10
       =render partial: 'admin/shared/form/language_select', locals: { f: f, object: object }
-      %span.help-block.m-b-none Site url (http://example.com)
   .hr-line-dashed

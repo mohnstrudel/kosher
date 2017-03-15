@@ -38,6 +38,10 @@ en:
         front_image: "Front image"
         back_image: "Back image"
         name: "Name"
+        url: "URL"
+        logo: "Logo"
+        language: "Select language"
+        phones: "Phone(s)"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -47,6 +51,7 @@ en:
         delete: "Delete"
         select_file: "Select file"
         change: "Change"
+        add_phone: "Add phone"
       confirm: "Are you sure?"
       created_ago: "ago"
     logout: "Log out"
