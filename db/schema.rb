@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315103334) do
+ActiveRecord::Schema.define(version: 20170315145339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 20170315103334) do
     t.hstore   "language"
     t.text     "address"
     t.hstore   "opening_hours"
+  end
+
+  create_table "opening_hours", force: :cascade do |t|
+    t.string   "title"
+    t.string   "value"
+    t.integer  "general_setting_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["general_setting_id"], name: "index_opening_hours_on_general_setting_id", using: :btree
   end
 
   create_table "page_categories", force: :cascade do |t|
@@ -146,6 +155,7 @@ ActiveRecord::Schema.define(version: 20170315103334) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "opening_hours", "general_settings"
   add_foreign_key "pages", "page_categories"
   add_foreign_key "phones", "general_settings"
   add_foreign_key "posts", "post_categories"

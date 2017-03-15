@@ -21,6 +21,8 @@ ru:
         logo: "Логотип"
         language: "Выберите язык"
         phones: "Телефон(ы)"
+        address: "Адрес фирмы"
+        opening_hours: "Часы открытия"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -31,8 +33,13 @@ ru:
         select_file: "Выбрать файл"
         change: "Изменить"
         add_phone: "Добавить телефон"
+        add_hours: "Добавить часы открытия"
       confirm: "Вы уверены?"
       created_ago: "назад"
+      misc:
+        address_description: "Введите полный адрес компании для того, что бы Google Карты могли перевести данные в ширину и долготу."
+        opening_hours_title_placeholder: "Введите дни открытия, например 'ПН' или 'ПН-ПТ' или 'Выходные' и т.д."
+        opening_hours_value_placeholder: "Введите часы, например '10:00 - 19:00' или 'закрыто' или '24/7' и т.д."
     logout: "Выйти"
     profile: "Профиль"
 

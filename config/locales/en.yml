@@ -42,6 +42,8 @@ en:
         logo: "Logo"
         language: "Select language"
         phones: "Phone(s)"
+        address: "Company address"
+        opening_hours: "Opening hours"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -52,8 +54,13 @@ en:
         select_file: "Select file"
         change: "Change"
         add_phone: "Add phone"
+        add_hours: "Add opening hours"
       confirm: "Are you sure?"
       created_ago: "ago"
+      misc:
+        address_description: "Please enter your full address, so it can be translated via Google Maps into longitude and latitude"
+        opening_hours_title_placeholder: "Fill in the day(s), i.e. 'Mo' or 'Mo-Fr' or 'Weekends' etc."
+        opening_hours_value_placeholder: "Fill in the hours, i.e. '10:00 - 19:00' or 'closed' or '24/7' etc."
     logout: "Log out"
     profile: "Edit profile"
 

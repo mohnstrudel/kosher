@@ -45,3 +45,22 @@
     .col-sm-10
       =render partial: 'admin/shared/form/language_select', locals: { f: f, object: object }
   .hr-line-dashed
+-if object.respond_to?(:opening_hours)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.opening_hours')
+    .col-sm-10
+      =f.fields_for :opening_hours do |hours_builder|
+        / =f.fields_for :opening_hours, OpenStruct.new(object.opening_hours) do |fields_builder|
+        =render partial: 'admin/shared/form/general_settings/opening_hours_fields', locals: { f: hours_builder }
+      %span.help-block.m-b-none
+        =link_to_add_fields t('admin.form.actions.add_hours'), f, :opening_hours, 'admin/shared/form/general_settings/opening_hours_fields', class: 'btn btn-default'
+-if object.respond_to?(:address)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.address')
+    .col-sm-10
+      =f.text_area :address, class: 'form-control'
+      %span.help-block.m-b-none 
+        =t('admin.form.misc.address_description')
+  .hr-line-dashed

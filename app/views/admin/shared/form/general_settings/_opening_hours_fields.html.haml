@@ -1,0 +1,11 @@
+.col-md-12
+  .row.opening_hours_row
+    .col-xs-12.col-md-5
+      .form-group
+        =f.text_field :title, class: 'form-control', placeholder: t('admin.form.misc.opening_hours_title_placeholder')
+    .col-xs-12.col-md-7.pull-right
+      .input-group
+        =f.text_field :value, class: 'form-control', placeholder: t('admin.form.misc.opening_hours_value_placeholder')
+        %span.input-group-btn
+          =f.hidden_field :_destroy
+          =link_to t('admin.form.actions.delete'), "#", class: "remove_record btn btn-danger"

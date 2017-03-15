@@ -12,12 +12,17 @@ class Admin::Settings::GeneralSettingsController < AdminController
     # Билдим для того, что бы было видно сразу одно поле и пользователь не должен
     # кликать на "добавить телефон"
     @general_setting.phones.build
+    @general_setting.opening_hours.build
   end
 
   def edit
     # Тоже самое, что и с нью - если телефонов нет вообще, то показываем одно пустое поле
     if @general_setting.phones.blank?
       @general_setting.phones.build
+    end
+
+    if @general_setting.opening_hours.blank?
+      @general_setting.opening_hours.build
     end
   end
 
@@ -45,8 +50,9 @@ class Admin::Settings::GeneralSettingsController < AdminController
   end
 
   def general_setting_params
-    params.require(:general_setting).permit(:url, :description, :logo,
-      phones_attributes: [:id, :value, :_destroy, :general_setting_id ] )
+    params.require(:general_setting).permit(:url, :description, :logo, :address, :opening_hours,
+      phones_attributes: [:id, :value, :_destroy, :general_setting_id ],
+      opening_hours_attributes: [:id, :title, :value, :_destroy, :deneral_setting_id] )
   end
 
   def create_hash(params)
