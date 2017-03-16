@@ -1,27 +1,31 @@
 -if object.respond_to?(:first_name)
   .form-group
-    %label.col-lg-2.control-label First Name
+    %label.col-lg-2.control-label
+      =t('admin.form.model.first_name')
     .col-lg-10
       =f.text_field :first_name, class: "form-control"
   .hr-line-dashed
 
 -if object.respond_to?(:second_name)
   .form-group
-    %label.col-lg-2.control-label Last Name
+    %label.col-lg-2.control-label
+      =t('admin.form.model.last_name')
     .col-lg-10
       =f.text_field :second_name, class: "form-control"
   .hr-line-dashed
 
 -if object.respond_to?(:email)
   .form-group
-    %label.col-lg-2.control-label Email
+    %label.col-lg-2.control-label
+      =t('admin.form.model.email')
     .col-lg-10
       =f.text_field :email, class: "form-control"
   .hr-line-dashed
 
 -if object.respond_to?(:password)
   .form-group
-    %label.col-lg-2.control-label Password
+    %label.col-lg-2.control-label
+      =t('admin.form.model.password')
     .col-lg-10
       =f.password_field :password, class: "form-control"
   .hr-line-dashed

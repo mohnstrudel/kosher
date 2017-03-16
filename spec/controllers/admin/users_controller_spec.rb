@@ -6,7 +6,8 @@ RSpec.describe Admin::UsersController, type: :controller do
   login_superadmin
 
   before(:each) do
-    GeneralSetting.create(url: "something.com", language: { "ru" => "ru" } )
+    FactoryGirl.create(:general_setting)
+    # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" } )
   end
 
   context "GET methods" do

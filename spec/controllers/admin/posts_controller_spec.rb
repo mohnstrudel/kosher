@@ -9,7 +9,8 @@ RSpec.describe Admin::PostsController, type: :controller do
 	let (:invalid_post) { FactoryGirl.build(:post, title: nil) }
 
 	before(:each) do
-		GeneralSetting.create(url: "something.com", language: { "ru" => "ru" } )
+		FactoryGirl.create(:general_setting)
+		# GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
 	end
 	
 	it "has a valid factory" do

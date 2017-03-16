@@ -34,6 +34,7 @@ en:
         first_name: "First name"
         second_name: "Last name"
         email: "Email"
+        password: "Password"
         created: "Created"
         front_image: "Front image"
         back_image: "Back image"
@@ -58,7 +59,7 @@ en:
       confirm: "Are you sure?"
       created_ago: "ago"
       misc:
-        address_description: "Please enter your full address, so it can be translated via Google Maps into longitude and latitude"
+        address_description: "Please enter your full address, so it can be translated via Google Maps into longitude and latitude. Please care, that if your address is not detailed enough it may find not the address you are actually looking for."
         opening_hours_title_placeholder: "Fill in the day(s), i.e. 'Mo' or 'Mo-Fr' or 'Weekends' etc."
         opening_hours_value_placeholder: "Fill in the hours, i.e. '10:00 - 19:00' or 'closed' or '24/7' etc."
     logout: "Log out"

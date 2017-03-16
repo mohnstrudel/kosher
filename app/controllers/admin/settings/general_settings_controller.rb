@@ -50,9 +50,9 @@ class Admin::Settings::GeneralSettingsController < AdminController
   end
 
   def general_setting_params
-    params.require(:general_setting).permit(:url, :description, :logo, :address, :opening_hours,
-      phones_attributes: [:id, :value, :_destroy, :general_setting_id ],
-      opening_hours_attributes: [:id, :title, :value, :_destroy, :deneral_setting_id] )
+    params.require(:general_setting).permit(GeneralSetting.attribute_names.map(&:to_sym).push(
+      phones_attributes: [:id, :value, :_destroy, :general_setting_id ]).push(
+      opening_hours_attributes: [:id, :title, :value, :_destroy, :deneral_setting_id]) )
   end
 
   def create_hash(params)
