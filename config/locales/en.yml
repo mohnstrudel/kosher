@@ -85,6 +85,14 @@ en:
         main: "Settings"
         general: "General settings"
         cities: "Cities"
+      shops:
+        main: "Kosher shops"
+        all_shops: "All shops"
+        new_shop: "Create new shop"
+      restaurants:
+        main: "Kosher restaurants"
+        all_restaurants: "All restaurants"
+        new_restaurant: "Create new restaurant"
       right_sidebar:
         language:
           title: "Select language"

@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       resources :page_categories, except: :show
       resources :post_categories, except: :show
       resources :users, except: :show
+      resources :shops, except: :show
+      resources :restaurants, except: :show
     end
   # end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316083507) do
+ActiveRecord::Schema.define(version: 20170316151255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,11 @@ ActiveRecord::Schema.define(version: 20170316083507) do
     t.integer  "general_setting_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "shop_id"
+    t.integer  "restaurant_id"
     t.index ["general_setting_id"], name: "index_opening_hours_on_general_setting_id", using: :btree
+    t.index ["restaurant_id"], name: "index_opening_hours_on_restaurant_id", using: :btree
+    t.index ["shop_id"], name: "index_opening_hours_on_shop_id", using: :btree
   end
 
   create_table "page_categories", force: :cascade do |t|
@@ -109,7 +113,11 @@ ActiveRecord::Schema.define(version: 20170316083507) do
     t.integer  "general_setting_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "shop_id"
+    t.integer  "restaurant_id"
     t.index ["general_setting_id"], name: "index_phones_on_general_setting_id", using: :btree
+    t.index ["restaurant_id"], name: "index_phones_on_restaurant_id", using: :btree
+    t.index ["shop_id"], name: "index_phones_on_shop_id", using: :btree
   end
 
   create_table "post_categories", force: :cascade do |t|
@@ -138,6 +146,26 @@ ActiveRecord::Schema.define(version: 20170316083507) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   end
 
+  create_table "restaurants", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.string   "logo"
+    t.text     "address"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.string   "logo"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "address"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -159,7 +187,11 @@ ActiveRecord::Schema.define(version: 20170316083507) do
   end
 
   add_foreign_key "opening_hours", "general_settings"
+  add_foreign_key "opening_hours", "restaurants"
+  add_foreign_key "opening_hours", "shops"
   add_foreign_key "pages", "page_categories"
   add_foreign_key "phones", "general_settings"
+  add_foreign_key "phones", "restaurants"
+  add_foreign_key "phones", "shops"
   add_foreign_key "posts", "post_categories"
 end

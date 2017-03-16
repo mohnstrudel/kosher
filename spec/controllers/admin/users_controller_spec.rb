@@ -41,24 +41,24 @@ RSpec.describe Admin::UsersController, type: :controller do
       it "using valid params" do
         
         expect{
-          post :create, user: { email: "something@hello.com", password: "long12345678" }
+          post :create, params: { user: { email: "something@hello.com", password: "long12345678" } }
           }.to change(User, :count).by(1)
         # get user_path('1')
       end
 
       it "redirects to the edit page after saving" do
-        post :create, user: FactoryGirl.attributes_for(:user)
+        post :create, params: { user: FactoryGirl.attributes_for(:user) }
         user = User.last
         expect(response).to redirect_to(edit_admin_user_path(user.id))
       end
 
       context "it redirects to new" do
         it "if user has no valid mail" do
-          post :create, user: { email: "something", password: "long12345678" }
+          post :create, params: { user: { email: "something", password: "long12345678" } }
           expect(response).to render_template(:new)
         end
         it "if user has no valid password" do
-          post :create, user: { email: "something@mail.com", password: "short" }  
+          post :create, params: { user: { email: "something@mail.com", password: "short" } }
           expect(response).to render_template(:new)
         end
       end
@@ -77,6 +77,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
       before(:each) do
         put :update, id: existing_user.id, user: attributes
+        # put :update, id: existing_user.id, params: { user: FactoryGirl.attributes_for(:user, email: "updated_user@mail.com"), first_name: "UpdatedTommy" }
         existing_user.reload
       end
 

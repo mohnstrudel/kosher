@@ -64,6 +64,14 @@ ru:
         main: "Настройки"
         general: "Общие настройки"
         cities: "Города"
+      shops:
+        main: "Кошерные магазины"
+        all_shops: "Все магазины"
+        new_shop: "Создать магазин"
+      restaurants:
+        main: "Кошерные рестораны"
+        all_restaurants: "Все рестораны"
+        new_restaurant: "Создать ресторан"
       right_sidebar:
         language:
           title: "Выбрать язык"

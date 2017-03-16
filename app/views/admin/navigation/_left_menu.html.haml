@@ -72,3 +72,23 @@
             =t('admin.navigation.settings.cities')
       =nav_link "", :class => "special_link" do
         Kosher
+      =nav_link admin_shops_path do
+        %i.fa.fa-shopping-bag
+        %span.nav-label
+          =t('admin.navigation.shops.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_shops_path do
+            =t('admin.navigation.shops.all_shops')
+          =nav_link new_admin_shop_path do
+            =t('admin.navigation.pages.new_shop')
+      =nav_link admin_restaurants_path do
+        %i.fa.fa-cutlery
+        %span.nav-label
+          =t('admin.navigation.restaurants.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_restaurants_path do
+            =t('admin.navigation.restaurants.all_restaurants')
+          =nav_link new_admin_restaurant_path do
+            =t('admin.navigation.restaurants.new_restaurant')
