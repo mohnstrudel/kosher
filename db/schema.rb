@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316151255) do
+ActiveRecord::Schema.define(version: 20170317170454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,32 @@ ActiveRecord::Schema.define(version: 20170316151255) do
     t.string   "email"
     t.float    "long"
     t.float    "lat"
+  end
+
+  create_table "kosher_lone_labels", force: :cascade do |t|
+    t.string   "logo"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "kosher_ltwo_labels", force: :cascade do |t|
+    t.string   "logo"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "kosher_lone_label_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["kosher_lone_label_id"], name: "index_kosher_ltwo_labels_on_kosher_lone_label_id", using: :btree
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string   "logo"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "opening_hours", force: :cascade do |t|
@@ -166,6 +192,16 @@ ActiveRecord::Schema.define(version: 20170316151255) do
     t.text     "address"
   end
 
+  create_table "sublabels", force: :cascade do |t|
+    t.string   "logo"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "label_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["label_id"], name: "index_sublabels_on_label_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -186,6 +222,7 @@ ActiveRecord::Schema.define(version: 20170316151255) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "kosher_ltwo_labels", "kosher_lone_labels"
   add_foreign_key "opening_hours", "general_settings"
   add_foreign_key "opening_hours", "restaurants"
   add_foreign_key "opening_hours", "shops"
@@ -194,4 +231,5 @@ ActiveRecord::Schema.define(version: 20170316151255) do
   add_foreign_key "phones", "restaurants"
   add_foreign_key "phones", "shops"
   add_foreign_key "posts", "post_categories"
+  add_foreign_key "sublabels", "labels"
 end

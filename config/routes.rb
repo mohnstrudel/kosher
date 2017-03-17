@@ -34,6 +34,8 @@ Rails.application.routes.draw do
       resources :users, except: :show
       resources :shops, except: :show
       resources :restaurants, except: :show
+      resources :labels, except: :show
+      resources :sublabels, except: :show
     end
   # end
 

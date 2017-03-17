@@ -45,6 +45,7 @@ en:
         phones: "Phone(s)"
         address: "Company address"
         opening_hours: "Opening hours"
+        label: "Kosher level one label"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -93,6 +94,13 @@ en:
         main: "Kosher restaurants"
         all_restaurants: "All restaurants"
         new_restaurant: "Create new restaurant"
+      labels:
+        main: "Kosher labels"
+        all_labels: "All level 1 labels"
+        new_label: "Create new level 1 label"
+      sublabels:
+        all_sublabels: "All level 2 labels"
+        new_sublabel: "Create new level 2 label"
       right_sidebar:
         language:
           title: "Select language"

@@ -81,7 +81,7 @@
           =nav_link admin_shops_path do
             =t('admin.navigation.shops.all_shops')
           =nav_link new_admin_shop_path do
-            =t('admin.navigation.pages.new_shop')
+            =t('admin.navigation.shops.new_shop')
       =nav_link admin_restaurants_path do
         %i.fa.fa-cutlery
         %span.nav-label
@@ -92,3 +92,17 @@
             =t('admin.navigation.restaurants.all_restaurants')
           =nav_link new_admin_restaurant_path do
             =t('admin.navigation.restaurants.new_restaurant')
+      =nav_link "" do
+        %i.fa.fa-star
+        %span.nav-label
+          =t('admin.navigation.labels.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_labels_path do
+            =t('admin.navigation.labels.all_labels')
+          =nav_link new_admin_label_path do
+            =t('admin.navigation.labels.new_label')
+          =nav_link admin_sublabels_path do
+            =t('admin.navigation.sublabels.all_sublabels')
+          =nav_link new_admin_sublabel_path do
+            =t('admin.navigation.sublabels.new_sublabel')

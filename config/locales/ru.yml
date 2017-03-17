@@ -24,6 +24,7 @@ ru:
         phones: "Телефон(ы)"
         address: "Адрес фирмы"
         opening_hours: "Часы открытия"
+        label: "Знак кашрута первого уровня"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -72,6 +73,13 @@ ru:
         main: "Кошерные рестораны"
         all_restaurants: "Все рестораны"
         new_restaurant: "Создать ресторан"
+      labels:
+        main: "Знаки кашрута"
+        all_labels: "Все знаки первого уровня"
+        new_label: "Создать знак первого уровня"
+      sublabels:
+        all_sublabels: "Все знаки второго уровня"
+        new_sublabel: "Создать знак второго уровня"
       right_sidebar:
         language:
           title: "Выбрать язык"

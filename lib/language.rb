@@ -1,8 +1,12 @@
 module Language
   def self.get_remaining_locales
     current_locale = I18n.locale
-    selected_locales = GeneralSetting.first.language
-    remaining_locales = selected_locales.except(current_locale.to_s, "")
+    begin
+      selected_locales = GeneralSetting.first.language
+      remaining_locales = selected_locales.except(current_locale.to_s, "")
+    rescue ActiveRecord::RecordNotFound
+      GeneralSetting.create(url: "http://example.com", language: {"ru"=>"ru", "en" => "en"})
+    end
   end
 
   def self.remaining_included?(current_field_name, remaining_locale)

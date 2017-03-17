@@ -71,6 +71,9 @@
     =render partial: "admin/shared/form/city_fields", locals: { f: f, object: object }
     / City setting fields end
 
+    / Kosher label fields
+    =render partial: "admin/shared/form/sublabels/fields", locals: { f: f, object: object }
+
 
     .hr-line-dashed
     .form-group

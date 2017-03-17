@@ -1,0 +1,9 @@
+-if object.respond_to?(:label_id)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.label')
+    .col-lg-10
+      / =f.collection_select(:label_id, Label.all, :id, :title, {include_blank: false, :include_hidden => false, :selected => @sublabel.label_id}, { class: 'select2-single form-control select-info'})
+      =f.select :label_id, Label.all.map { |label| [ label.title, label.id ] }, {}, { class: "form-control m-b" }
+  .hr-line-dashed
+

@@ -2,6 +2,7 @@ class Admin::Settings::GeneralSettingsController < AdminController
   include CrudConcern
 
   before_action :find_general_setting, only: [:edit, :destroy, :update]
+  after_action :find_hooker
 
   def index
     @general_settings = GeneralSetting.all
@@ -44,6 +45,10 @@ class Admin::Settings::GeneralSettingsController < AdminController
 
 
   private
+
+  def find_hooker
+    return true
+  end
 
   def find_general_setting
     @general_setting = GeneralSetting.find(params[:id])
