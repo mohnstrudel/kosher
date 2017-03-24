@@ -102,9 +102,9 @@
             =t('admin.navigation.labels.all_labels')
           =nav_link new_admin_label_path do
             =t('admin.navigation.labels.new_label')
-          =nav_link admin_sublabels_path do
+          =nav_link admin_labels_path(sublevel: true) do
             =t('admin.navigation.sublabels.all_sublabels')
-          =nav_link new_admin_sublabel_path do
+          =nav_link new_admin_label_path(sublevel: true) do
             =t('admin.navigation.sublabels.new_sublabel')
 
       =nav_link "" do

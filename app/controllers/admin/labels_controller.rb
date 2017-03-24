@@ -6,7 +6,11 @@ class Admin::LabelsController < AdminController
   before_action :get_locales, only: [:edit, :create, :new]
 
   def index
-    @labels = Label.all
+    if params[:sublevel]
+      @labels = Label.subs
+    else
+      @labels = Label.top_level
+    end
   end
 
   def new
