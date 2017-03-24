@@ -87,6 +87,12 @@ ru:
         new_category: "Создать новую категорию"
         all_subcategories: "Все подкатегории"
         new_subcategory: "Создать новую подкатегорию"
+      manufacturers:
+        main: "Производители"
+        all_manufacturers: "Все производители"
+        new_manufacturer: "Создать производителя"
+        all_trademarks: "Все торговые марки"
+        new_trademark: "Создать торговую марку"
       right_sidebar:
         language:
           title: "Выбрать язык"

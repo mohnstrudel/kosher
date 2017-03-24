@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       resources :labels, except: :show
       resources :sublabels, except: :show
       resources :categories, except: :show
+      resources :manufacturers, except: :show
     end
   # end
 

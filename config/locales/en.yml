@@ -108,6 +108,12 @@ en:
         new_category: "Create new category"
         all_subcategories: "All subcategories"
         new_subcategory: "Create new subcategory"
+      manufacturers:
+        main: "Manufacturers"
+        all_manufacturers: "All manufacturers"
+        new_manufacturer: "Create new manufacturer"
+        all_trademarks: "All trademarks"
+        new_trademark: "Create new trademark"
       right_sidebar:
         language:
           title: "Select language"

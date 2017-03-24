@@ -121,3 +121,20 @@
             =t('admin.navigation.categories.all_subcategories')
           =nav_link new_admin_category_path(sublevel: true) do
             =t('admin.navigation.categories.new_subcategory')
+
+      =nav_link "" do
+        %i.fa.fa-building-o
+        %span.nav-label
+          =t('admin.navigation.manufacturers.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_manufacturers_path do
+            =t('admin.navigation.manufacturers.all_manufacturers')
+          =nav_link new_admin_manufacturer_path do
+            =t('admin.navigation.manufacturers.new_manufacturer')
+          =nav_link admin_manufacturers_path(sublevel: true)  do
+            =t('admin.navigation.manufacturers.all_trademarks')
+          =nav_link new_admin_manufacturer_path(sublevel: true) do
+            =t('admin.navigation.manufacturers.new_trademark')
+
+            
