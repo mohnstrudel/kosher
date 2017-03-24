@@ -137,4 +137,13 @@
           =nav_link new_admin_manufacturer_path(sublevel: true) do
             =t('admin.navigation.manufacturers.new_trademark')
 
-            
+      =nav_link "" do
+        %i.fa.fa-shopping-cart
+        %span.nav-label
+          =t('admin.navigation.products.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_products_path do
+            =t('admin.navigation.products.all_products')
+          =nav_link new_admin_product_path do
+            =t('admin.navigation.products.new_product')

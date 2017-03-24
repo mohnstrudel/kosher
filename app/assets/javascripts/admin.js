@@ -47,3 +47,4 @@
 // REMOVE require tree .
 //= require admin/settings/general_settings
 //= require admin/dashboard
+//= require admin/products

@@ -1,0 +1,21 @@
+-if object.respond_to?(:category_id)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.category_id')
+    .col-lg-10
+      / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
+      / =f.select :parent_id, object.class.name.constantize.top_level.map { |obj| [ obj.title, obj.id ] }, {}, { class: "form-control m-b" }
+      =f.collection_select(:category_id, Category.all, :id, :title, { include_blank: t('admin.form.actions.choose_category') }, class: 'form-control select2_categories')
+  .hr-line-dashed
+
+-if object.respond_to?(:manufacturer_id)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.manufacturer_id')
+    .col-lg-10
+      / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
+      / =f.select :parent_id, object.class.name.constantize.top_level.map { |obj| [ obj.title, obj.id ] }, {}, { class: "form-control m-b" }
+      =f.collection_select(:manufacturer_id, Manufacturer.all, :id, :title, { include_blank: t('admin.form.actions.choose_manufacturer') }, class: 'form-control select2_manufacturers')
+  .hr-line-dashed
+
+/ =f.grouped_collection_select :subcategory_id, Category.all, :subcategories, :name, :id, :name, { include_blank: 'Выбрать подкатегорию' }, class: 'form-control', id: 'subcategory-select'

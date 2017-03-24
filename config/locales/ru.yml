@@ -25,7 +25,10 @@ ru:
         address: "Адрес фирмы"
         opening_hours: "Часы открытия"
         label: "Знак кашрута первого уровня"
-        parent_id: "Выбрать родителя"
+        parent_id: "Выбрать родительскую сущность"
+        category_id: "Выбрать (под)категорию"
+        manufacturer_id: "Выбрать производителя/ТМ"
+        label_id: "Выбрать знак кашрута"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -37,6 +40,9 @@ ru:
         change: "Изменить"
         add_phone: "Добавить телефон"
         add_hours: "Добавить часы открытия"
+        choose_category: "Выбрать (под)категорию"
+        choose_manufacturer: "Выбрать производителя/ТМ"
+        choose_label: "Выбрать знак кашрута"
       confirm: "Вы уверены?"
       created_ago: "назад"
       misc:
@@ -93,6 +99,10 @@ ru:
         new_manufacturer: "Создать производителя"
         all_trademarks: "Все торговые марки"
         new_trademark: "Создать торговую марку"
+      products:
+        main: "Кошерные продукты"
+        all_products: "Все продукты"
+        new_product: "Создать новый продукт"
       right_sidebar:
         language:
           title: "Выбрать язык"

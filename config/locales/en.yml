@@ -46,7 +46,10 @@ en:
         address: "Company address"
         opening_hours: "Opening hours"
         label: "Kosher level one label"
-        parent_id: "Choose parent"
+        parent_id: "Choose parent entity"
+        category_id: "Choose sub/category"
+        manufacturer_id: "Manufacturer/TM"
+        label_id: "Kosher label"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -58,6 +61,9 @@ en:
         change: "Change"
         add_phone: "Add phone"
         add_hours: "Add opening hours"
+        choose_category: "Choose sub/category"
+        choose_manufacturer: "Choose manufacturer/trademark"
+        choose_label: "Choose kosher label 1/2"
       confirm: "Are you sure?"
       created_ago: "ago"
       misc:
@@ -114,6 +120,10 @@ en:
         new_manufacturer: "Create new manufacturer"
         all_trademarks: "All trademarks"
         new_trademark: "Create new trademark"
+      products:
+        main: "Kosher products"
+        all_products: "All products"
+        new_product: "Create new product"
       right_sidebar:
         language:
           title: "Select language"
