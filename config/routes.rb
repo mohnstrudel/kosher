@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       resources :restaurants, except: :show
       resources :labels, except: :show
       resources :sublabels, except: :show
+      resources :categories, except: :show
     end
   # end
 

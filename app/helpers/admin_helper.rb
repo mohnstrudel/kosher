@@ -19,9 +19,10 @@ module AdminHelper
   def nav_link(link_path, options={}, &block)
     class_name = current_page?(link_path) ? 'active' : ''
     additional_class = " #{options[:class]}"
+    sublevel = options[:sublevel]
 
     content_tag(:li, :class => "#{class_name}#{additional_class}") do
-      link_to link_path, &block
+      link_to link_path, sublevel: sublevel, &block
     end
   end
 

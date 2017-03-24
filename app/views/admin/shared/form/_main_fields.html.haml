@@ -16,6 +16,7 @@
       %a.close-link
         %i.fa.fa-times
   .ibox-content
+    =render partial: "admin/shared/form/categories/category_fields", locals: {f: f, object: object}
 
     -if object.respond_to?(:title)
       .form-group

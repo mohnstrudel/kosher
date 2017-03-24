@@ -106,3 +106,18 @@
             =t('admin.navigation.sublabels.all_sublabels')
           =nav_link new_admin_sublabel_path do
             =t('admin.navigation.sublabels.new_sublabel')
+
+      =nav_link "" do
+        %i.fa.fa-tags
+        %span.nav-label
+          =t('admin.navigation.categories.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_categories_path do
+            =t('admin.navigation.categories.all_categories')
+          =nav_link new_admin_category_path do
+            =t('admin.navigation.categories.new_category')
+          =nav_link admin_categories_path(sublevel: true)  do
+            =t('admin.navigation.categories.all_subcategories')
+          =nav_link new_admin_category_path(sublevel: true) do
+            =t('admin.navigation.categories.new_subcategory')

@@ -46,6 +46,7 @@ en:
         address: "Company address"
         opening_hours: "Opening hours"
         label: "Kosher level one label"
+        parent_id: "Choose parent"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -101,6 +102,12 @@ en:
       sublabels:
         all_sublabels: "All level 2 labels"
         new_sublabel: "Create new level 2 label"
+      categories:
+        main: "Product categories"
+        all_categories: "All categorues"
+        new_category: "Create new category"
+        all_subcategories: "All subcategories"
+        new_subcategory: "Create new subcategory"
       right_sidebar:
         language:
           title: "Select language"

@@ -25,6 +25,7 @@ ru:
         address: "Адрес фирмы"
         opening_hours: "Часы открытия"
         label: "Знак кашрута первого уровня"
+        parent_id: "Выбрать родителя"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -80,6 +81,12 @@ ru:
       sublabels:
         all_sublabels: "Все знаки второго уровня"
         new_sublabel: "Создать знак второго уровня"
+      categories:
+        main: "Категории продуктов"
+        all_categories: "Все категории"
+        new_category: "Создать новую категорию"
+        all_subcategories: "Все подкатегории"
+        new_subcategory: "Создать новую подкатегорию"
       right_sidebar:
         language:
           title: "Выбрать язык"
