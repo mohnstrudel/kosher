@@ -1,0 +1,17 @@
+-if object.respond_to?(:question)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.question')
+    .col-lg-10
+      / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
+      =f.text_field :question, class: "form-control" 
+  .hr-line-dashed
+-if object.respond_to?(:answer)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.answer')
+    .col-lg-10
+      / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
+      =f.text_area :answer, class: "form-control m-b" 
+  .hr-line-dashed
+

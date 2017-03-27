@@ -48,6 +48,18 @@
             =t('admin.navigation.pages.new_page')
           =nav_link admin_page_categories_path do
             =t('admin.navigation.pages.page_categories')
+
+      =nav_link "" do
+        %i.fa.fa-flask
+        %span.nav-label
+          =t('admin.navigation.services.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_faqs_path do
+            =t('admin.navigation.services.faq')
+          =nav_link new_admin_user_path do
+            =t('admin.navigation.services.photos')
+
       =nav_link "" do
         %i.fa.fa-users
         %span.nav-label

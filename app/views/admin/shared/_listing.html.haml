@@ -31,6 +31,9 @@
                 -if object.has_attribute? :title
                   %th
                     =t('admin.form.model.title')
+                -if object.has_attribute? :question
+                  %th
+                    =t('admin.form.model.question')
                 -if object.has_attribute? :name
                   %th
                     =t('admin.form.model.name')
@@ -61,6 +64,9 @@
                   -if obj.respond_to?(:title)
                     %td
                       =obj.title
+                  -if obj.respond_to?(:question)
+                    %td
+                      =obj.question
                   -if obj.respond_to?(:name)
                     %td
                       =obj.name

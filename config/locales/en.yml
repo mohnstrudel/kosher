@@ -50,6 +50,8 @@ en:
         category_id: "Choose sub/category"
         manufacturer_id: "Manufacturer/TM"
         label_id: "Kosher label"
+        question: "Question"
+        answer: "Answer"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -89,6 +91,10 @@ en:
         main: "Users"
         all_users: "All users"
         new_user: "Create new user"
+      services:
+        main: "Services"
+        faq: "FAQ"
+        photos: "Photogallery"
       settings:
         main: "Settings"
         general: "General settings"

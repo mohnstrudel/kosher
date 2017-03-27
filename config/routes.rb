@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       resources :categories, except: :show
       resources :manufacturers, except: :show
       resources :products, except: :show
+      resources :faqs, except: :show
     end
   # end
 

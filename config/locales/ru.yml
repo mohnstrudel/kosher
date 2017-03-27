@@ -29,6 +29,8 @@ ru:
         category_id: "Выбрать (под)категорию"
         manufacturer_id: "Выбрать производителя/ТМ"
         label_id: "Выбрать знак кашрута"
+        question: "Вопрос"
+        answer: "Ответ"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -68,6 +70,10 @@ ru:
         main: "Пользователи"
         all_users: "Все пользователи"
         new_user: "Создать пользователя"
+      services:
+        main: "Сервисы"
+        faq: "Вопросы-Ответы"
+        photos: "Фотогалерея"
       settings:
         main: "Настройки"
         general: "Общие настройки"

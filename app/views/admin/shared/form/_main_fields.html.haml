@@ -19,7 +19,10 @@
 
     =render partial: "admin/shared/form/products/product_fields", locals: { f: f, object: object }
 
-    =render partial: "admin/shared/form/sublevels/sublevel_fields", locals: {f: f, object: object}
+    =render partial: "admin/shared/form/sublevels/sublevel_fields", locals: { f: f, object: object }
+
+    / Fields for FAQ
+    =render partial: "admin/shared/form/faq/faq_fields", locals: { f: f, object: object }
 
     -if object.respond_to?(:title)
       .form-group
