@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       resources :manufacturers, except: :show
       resources :products, except: :show
       resources :faqs, except: :show
+      resources :pictures, except: :show
     end
   # end
 

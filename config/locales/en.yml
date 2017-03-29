@@ -52,6 +52,7 @@ en:
         label_id: "Kosher label"
         question: "Question"
         answer: "Answer"
+        image: "Thumbnail"
       tab_translation: "Other languages"
       actions:
         main: "Actions"

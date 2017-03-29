@@ -1,0 +1,22 @@
+-if object.respond_to?(:image)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.image')
+    .col-sm-8
+      .fileinput.fileinput-new.input-group{"data-provides" => "fileinput"}
+        .form-control{"data-trigger" => "fileinput"}
+          %i.glyphicon.glyphicon-file.fileinput-exists
+          %span.fileinput-filename
+        %span.input-group-addon.btn.btn-default.btn-file
+          %span.fileinput-new
+            =t('admin.form.actions.select_file')
+          %span.fileinput-exists
+            =t('admin.form.actions.change')
+          =f.file_field :image
+          
+        %a.input-group-addon.btn.btn-default.fileinput-exists{"data-dismiss" => "fileinput", :href => "#"} Remove
+    .col-sm-2
+      -unless object.image.file.nil?
+        -if object.image.file.exists?
+          =image_tag object.image.url(:mini_thumb)
+  .hr-line-dashed
