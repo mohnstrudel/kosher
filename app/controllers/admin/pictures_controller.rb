@@ -5,7 +5,7 @@ class Admin::PicturesController < AdminController
   before_action :get_locales, only: [:edit, :create, :new]
 
   def index
-      @pictures = Picture.all
+    @pictures = index_helper("Picture")
   end
 
   def new

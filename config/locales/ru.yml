@@ -1,4 +1,8 @@
 ru:
+  will_paginate:
+    previous_label: "&#8592; Предыдущая страница"
+    next_label: "Следующая страница &#8594;"
+    page_gap: "&hellip;"
   hello: "Привет, мир"
   admin:
     form:

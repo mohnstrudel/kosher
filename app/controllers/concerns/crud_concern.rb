@@ -3,11 +3,21 @@ module CrudConcern
   include Language
 
   included do
-    helper_method :create_helper, :update_helper, :destroy_helper, :get_locales
+    helper_method :create_helper, :update_helper, :destroy_helper, :get_locales, :index_helper
   end
 
   def get_locales
     @remaining_locales = Language.get_remaining_locales
+  end
+
+  def index_helper(object)
+    page_size = Rails.application.config.page_size
+
+    @objects = object.constantize.paginate(:page => params[:page], :per_page => page_size)
+
+    # @objects = object.constantize.offset(page_size * @page).limit(page_size)
+
+    # return @page, @objects
   end
 
   def create_helper(object, path)

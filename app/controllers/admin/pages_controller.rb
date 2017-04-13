@@ -5,7 +5,8 @@ class Admin::PagesController < AdminController
 	before_action :get_locales, only: [:edit, :create, :new]
 
 	def index
-		@pages = Page.all
+		# @pages = Page.all
+		@pages = index_helper("Page")
 	end
 
 	def new

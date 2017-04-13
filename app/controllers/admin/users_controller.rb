@@ -4,10 +4,11 @@ class Admin::UsersController < AdminController
 	before_action :find_user, only: [:edit, :update, :destroy]
 	before_action :get_locales, only: [:edit, :create, :new]
 
-	 wrap_parameters :user, include: [:first_name, :second_name, :email, :password, :password_confirmation]
+	wrap_parameters :user, include: [:first_name, :second_name, :email, :password, :password_confirmation]
 
 	def index
-		@users = User.all
+		# @users = User.all
+		@users = index_helper("User")
 	end
 
 	def new

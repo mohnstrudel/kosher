@@ -5,7 +5,8 @@ class Admin::ShopsController < AdminController
   before_action :get_locales, only: [:edit, :create, :new]
 
   def index
-    @shops = Shop.all
+    # @shops = Shop.all
+    @shops = index_helper("Shop")
   end
 
   def new

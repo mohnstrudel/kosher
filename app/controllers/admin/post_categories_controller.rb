@@ -5,7 +5,8 @@ class Admin::PostCategoriesController < AdminController
 	before_action :get_locales, only: [:edit, :create, :new]
 
 	def index
-		@post_categories = PostCategory.all
+		# @post_categories = PostCategory.all
+		@post_categories = index_helper("PostCategory")
 	end
 
 	def new

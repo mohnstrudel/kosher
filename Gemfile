@@ -57,6 +57,8 @@ gem 'friendly_id'
 
 gem 'faker'
 
+gem 'will_paginate'
+
 # Use CKEditor for html formatting
 gem 'bootsy' # Screw CKEditor, it's not working on production! 
 gem 'carrierwave' # Required for images upload using ckeditor and in general
@@ -71,6 +73,9 @@ group :development, :test do
   # i18n end
   
   gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'database_cleaner'
   # To test render_template
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
@@ -83,6 +88,14 @@ group :development do
   
   # Better error interface with this gem
   # gem "better_errors"
+
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+
+  gem 'capistrano-figaro-yml'
 
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'

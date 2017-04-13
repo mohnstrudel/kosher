@@ -1,0 +1,7 @@
+=will_paginate object
+/ .nav
+/   %ul.pager
+/     %li{class: "previous <%= @page == 0 ? 'disabled' : '' "}
+/       =link_to_if @page > 0, "&larr; Previous".html_safe, send("admin_#{object_name(object).pluralize}_path", page: @page - 1)
+/     %li{class: "next"}
+/       =link_to "Next &rarr;".html_safe, send("admin_#{object_name(object).pluralize}_path", page: @page + 1)

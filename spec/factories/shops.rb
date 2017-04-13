@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :shop do
-  	id Faker::Number.number(1)
+  	# id Faker::Number.number(10)
     title "#{Faker::Company.name} #{Faker::Company.suffix}"
     description Faker::Lorem.paragraph(10)
     url Faker::Internet.url

@@ -5,7 +5,7 @@ class Admin::PostsController < AdminController
 	before_action :get_locales, only: [:edit, :create, :new]
 
 	def index
-		@posts = Post.all
+		@posts = index_helper("Post")
 	end
 
 	def new

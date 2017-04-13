@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 	layout 'admin'
 
-  	before_action :authenticate_user!, :verify_is_superadmin
+  before_action :authenticate_user!, :verify_is_superadmin
 
 	before_action :set_locale
 	before_action :get_breadcrumbs

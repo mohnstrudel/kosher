@@ -5,7 +5,8 @@ class Admin::RestaurantsController < AdminController
   before_action :get_locales, only: [:edit, :create, :new]
 
   def index
-    @restaurants = Restaurant.all
+    # @restaurants = Restaurant.all
+    @restaurants = index_helper("Restaurant")
   end
 
   def new

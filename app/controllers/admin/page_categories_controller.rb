@@ -5,8 +5,8 @@ class Admin::PageCategoriesController < AdminController
 	before_action :get_locales, only: [:edit, :create, :new]
 
 	def index
-		@page_categories = PageCategory.all
-		
+		# @page_categories = PageCategory.all	
+		@page_categories = index_helper("PageCategory")
 	end
 
 	def new
