@@ -57,6 +57,8 @@ gem 'friendly_id'
 
 gem 'faker'
 
+gem 'figaro'
+
 gem 'will_paginate'
 
 # Use CKEditor for html formatting

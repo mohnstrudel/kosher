@@ -82,4 +82,4 @@ production:
   <<: *default
   database: kosher_production
   username: kosher
-  password: <%= ENV['KOSHER_DATABASE_PASSWORD'] %>
+  password: <%= Figaro.env.kosher_database_password %>
