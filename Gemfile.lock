@@ -109,6 +109,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    curb (0.9.3)
     database_cleaner (1.5.3)
     devise (4.2.1)
       bcrypt (~> 3.0)
@@ -336,6 +337,7 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails (~> 4.2)
+  curb
   database_cleaner
   devise
   factory_girl_rails

@@ -58,6 +58,7 @@ gem 'friendly_id'
 gem 'faker'
 
 gem 'figaro'
+gem 'curb'
 
 gem 'will_paginate'
 
