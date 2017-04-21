@@ -19,7 +19,7 @@ RSpec.feature "Widget management", :type => :feature do
     # click_button "Create Widget"
 
     # expect(page).to have_text("Widget was successfully created.")
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_no_xpath("//*[@class='pagination']//a[text()='2']")
   end
 

@@ -7,9 +7,11 @@ class Admin::CategoriesController < AdminController
 
   def index
     if params[:sublevel]
-      @categories = Category.subs
+      # Это эквивалентно с
+      # @categories = Category.subs
+      @categories = index_helper('Category', scope: 'subs')
     else
-      @categories = Category.top_level
+      @categories = index_helper('Category', scope: 'top_level')
     end
   end
 

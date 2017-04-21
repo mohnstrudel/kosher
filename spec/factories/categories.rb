@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :category do
-    title "MyString"
-    description "MyText"
-    logo "MyString"
-    parent_id 1
+    title { Faker::Lorem.word }
+    description { Faker::Lorem.paragraph(10) }
+    logo { Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/support/files/rails.jpg'))) }
+    # parent_id 1
+    id 1
   end
 end

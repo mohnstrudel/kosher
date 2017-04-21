@@ -10,14 +10,11 @@ module CrudConcern
     @remaining_locales = Language.get_remaining_locales
   end
 
-  def index_helper(object)
+  def index_helper(object, options = {})
+    scope = options[:scope] || 'all'
     page_size = Rails.application.config.page_size
 
-    @objects = object.constantize.paginate(:page => params[:page], :per_page => page_size)
-
-    # @objects = object.constantize.offset(page_size * @page).limit(page_size)
-
-    # return @page, @objects
+    @objects = object.constantize.send(scope).paginate(:page => params[:page], :per_page => page_size)
   end
 
   def create_helper(object, path)

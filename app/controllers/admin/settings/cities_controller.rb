@@ -4,7 +4,7 @@ class Admin::Settings::CitiesController < AdminController
   before_action :find_city, only: [:edit, :destroy, :update]
 
   def index
-    @cities = City.all
+    @cities = index_helper("City")
   end
 
   def new

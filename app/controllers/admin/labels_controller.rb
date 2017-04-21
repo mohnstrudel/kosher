@@ -7,9 +7,12 @@ class Admin::LabelsController < AdminController
 
   def index
     if params[:sublevel]
-      @labels = Label.subs
+      @labels = index_helper('Label', scope: 'subs')
     else
-      @labels = Label.top_level
+      # Это эквивалентно с
+      # @labels = Label.top_level
+      @labels = index_helper('Label', scope: 'top_level')
+      
     end
   end
 

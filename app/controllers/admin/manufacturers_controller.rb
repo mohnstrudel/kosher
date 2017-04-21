@@ -6,9 +6,11 @@ include CrudConcern
 
   def index
     if params[:sublevel]
-      @manufacturers = Manufacturer.subs
+      # Это эквивалентно с
+      # @manufacturers = Manufacturer.subs
+      @manufacturers = index_helper('Manufacturer', scope: 'subs')
     else
-      @manufacturers = Manufacturer.top_level
+      @manufacturers = index_helper('Manufacturer', scope: 'top_level')
     end
   end
 

@@ -5,7 +5,7 @@ class Admin::Settings::GeneralSettingsController < AdminController
   after_action :find_hooker
 
   def index
-    @general_settings = GeneralSetting.all
+    @general_settings = index_helper('GeneralSetting')
   end
 
   def new

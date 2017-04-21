@@ -6,7 +6,7 @@ class Admin::FaqsController < AdminController
   before_action :get_locales, only: [:edit, :create, :new]
 
   def index
-      @faqs = Faq.all
+    @faqs = index_helper('Faq')
   end
 
   def new
