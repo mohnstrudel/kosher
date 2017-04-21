@@ -47,17 +47,43 @@ module CrudConcern
   end
 
   def destroy_helper(object, path)
-    if object.destroy
-      respond_to do |format|
-        format.html {
-          redirect_to send(path)
-          flash[:primary] = "Well done"    
-        }
+    begin
+      if object.destroy
+        respond_to do |format|
+          format.html {
+            redirect_to send(path)
+            flash[:primary] = "Well done"    
+          }
+        end
+      else
+        render :index
+        flash[:danger] = "Something's not quite right"
       end
-    else
-      render :index
-      flash[:danger] = "Something's not quite right"
+    rescue ActiveRecord::InvalidForeignKey => e
+    # Flash and render, render API json error... whatever
+    # Possible error output:
+    # Can't delete! PG::ForeignKeyViolation: ERROR: update or delete on table "labels" violates 
+    # foreign key constraint "fk_rails_5a55c39b94" on table "products" DETAIL: Key (id)=(2) is 
+    # still referenced from table "products". : DELETE FROM "labels" WHERE "labels"."id" = $1
+
+      begin
+        redirect_to send(path)
+        # redirect_to send(path)
+        matched = /(?<=from table)(.*?)(?=\.)/.match(e.message)
+        array_of_record_ids = error_record_lookup(matched[0], object)
+        flash[:danger] = "Can't delete record because #{object.class.name.downcase} with id #{object.id} is referenced in table #{matched[0]}, records with id(s) - #{array_of_record_ids}"
+      rescue
+        redirect_to send(path)
+        flash[:danger] = "#{e.message}"
+      end
     end
+  end
+
+  def error_record_lookup(class_as_string, object_as_instance_variable)
+    # We receive class name as downcase string
+    # "products".singularize.capitalize.constantize
+    class_as_string.tr('^A-Za-z', '').singularize.capitalize.constantize.where("#{object_as_instance_variable.class.name.downcase}_id = ?", object_as_instance_variable.id).map{ |item| item.id}
+    # this returns an array of all records where intial record is mentioned
   end
 
 end

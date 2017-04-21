@@ -32,7 +32,7 @@ class Admin::CategoriesController < AdminController
   end
 
   def destroy
-    destroy_helper(@category, "admin_categorys_path")
+    destroy_helper(@category, "admin_categories_path")
   end
 
   private
