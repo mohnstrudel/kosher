@@ -24,7 +24,7 @@ module Ycms
 	end
 
 	config.languages = { en: "English", ru: "Русский" }
-  config.page_size = 2
+  config.page_size = 20
 
 	# Include files from lib path
     config.autoload_paths += %W(#{config.root}/lib)
