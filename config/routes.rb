@@ -49,13 +49,15 @@ Rails.application.routes.draw do
     # get 'categories', to: 'page_categories#index'
     # resources :pages, only: [:index, :show]
     resources :page_categories, only: [:index, :show] do
-      resources :pages
+      resources :pages, only: [:index, :show]
     	# Page.where.not(slug: nil).all.each do |page|
     	# 	get "/#{page.slug}", controller: "pages", action: "show", id: page.id
     	# end
     end
 
-
+    resources :categories, only: [:index, :show] do
+      resources :products, only: [:index, :show]
+    end
 
     constraints subdomain: 'api' do
       get 'categories', to: 'page_categories#index'
