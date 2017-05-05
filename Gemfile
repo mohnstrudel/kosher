@@ -35,6 +35,10 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Гем для того, что бы склонять русские название
+gem "petrovich"
+gem 'savon'
+
 # For translated fields
 gem 'globalize', github: 'globalize/globalize'
 gem 'activemodel-serializers-xml'

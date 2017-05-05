@@ -1,4 +1,6 @@
 class City < ApplicationRecord
+  has_many :shops
+  has_many :restaurants
 	mount_uploader :front_image, LogoUploader
 	mount_uploader :back_image, LogoUploader
 

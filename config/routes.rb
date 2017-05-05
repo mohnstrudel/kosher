@@ -55,8 +55,12 @@ Rails.application.routes.draw do
     	# end
     end
 
+
     resources :categories, only: [:index, :show] do
       resources :products, only: [:index, :show]
+    end
+    resources :cities, only: [:index, :show] do
+      resources :shops, only: [:index, :show]
     end
 
     constraints subdomain: 'api' do
@@ -66,6 +70,7 @@ Rails.application.routes.draw do
       # Page.where.not(slug: nil).all.each do |page|
       #   get "/#{page.slug}", controller: "pages", action: "show", id: page.id
       # end
+
     end
   end
 

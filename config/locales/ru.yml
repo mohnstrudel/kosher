@@ -1,4 +1,51 @@
 ru:
+  activerecord:
+    models:
+      user: 
+        one: Пользователь
+        other: Пользователи
+      shop:
+        one: Магазин
+        other: Магазины
+      post: 
+        one: Запись
+        other: Записи
+      page: 
+        one: Страница
+        other: Страницы
+      faq: 
+        one: Запись
+        other: Записи
+      picture: 
+        one: Изображение
+        other: Изображения
+      general_setting:
+        one: Настройка
+        other: Настройки
+      city: 
+        one: Город
+        other: Города
+      restaurant: 
+        one: Ресторан
+        other: Рестораны
+      label:
+        one: Знак
+        other: Знаки
+      category:
+        one: Категория
+        other: Категории
+      manufacturer:
+        one: Производитель
+        other: Производители
+      product:
+        one: Продукт
+        other: Продукты
+      post_category:
+        one: Категория
+        other: Категории
+      page_category:
+        one: Категория
+        other: Категории
   will_paginate:
     previous_label: "&#8592; Предыдущая страница"
     next_label: "Следующая страница &#8594;"
@@ -36,12 +83,18 @@ ru:
         question: "Вопрос"
         answer: "Ответ"
         image: "Превью"
+        barcode: "Штрихкод"
       tab_translation: "Переводы"
       actions:
         main: "Действия"
         save: "Сохранить"
         back: "Назад"
-        edit: "Редактировать"
+        edit: 
+          verb: "Редактировать"
+          noun: Редактирование
+        new:
+          verb: "Создать"
+          noun: "Создание"
         delete: "Удалить"
         select_file: "Выбрать файл"
         change: "Изменить"
@@ -50,9 +103,12 @@ ru:
         choose_category: "Выбрать (под)категорию"
         choose_manufacturer: "Выбрать производителя/ТМ"
         choose_label: "Выбрать знак кашрута"
+        search: Введите поисковый запрос
+        choose_city: Выберите город
       confirm: "Вы уверены?"
       created_ago: "назад"
       misc:
+        main: Администрирование
         address_description: "Введите полный адрес компании для того, что бы Google Карты могли перевести данные в ширину и долготу. Если вы укажете очень общий адрес, то, возможно, система сохранит не те координаты, которые вам нужны (например, 'Москва, Тверская 10')."
         opening_hours_title_placeholder: "Введите дни открытия, например 'ПН' или 'ПН-ПТ' или 'Выходные' и т.д."
         opening_hours_value_placeholder: "Введите часы, например '10:00 - 19:00' или 'закрыто' или '24/7' и т.д."

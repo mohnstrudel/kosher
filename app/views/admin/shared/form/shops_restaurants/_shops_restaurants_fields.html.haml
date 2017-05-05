@@ -1,0 +1,9 @@
+-if object.respond_to?(:city_id)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.city')
+    .col-lg-10
+      / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
+      / =f.select :parent_id, object.class.name.constantize.top_level.map { |obj| [ obj.title, obj.id ] }, {}, { class: "form-control m-b" }
+      =f.collection_select(:city_id, City.all, :id, :name, { include_blank: t('admin.form.actions.choose_city') }, class: 'form-control select2_categories')
+  .hr-line-dashed

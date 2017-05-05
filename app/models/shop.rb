@@ -1,5 +1,7 @@
 class Shop < ApplicationRecord
 
+  belongs_to :city
+  
 	mount_uploader :logo, LogoUploader
 
 	has_many :phones, dependent: :destroy

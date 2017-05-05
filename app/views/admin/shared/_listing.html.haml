@@ -20,7 +20,8 @@
         .row
           .col-sm-12.m-b-xs
             .pull-right
-              =link_to "Create new #{object_name(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary"
+              =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary"
+              
         .table-responsive
           %table.table.table-striped
             %thead
@@ -95,7 +96,7 @@
                     =t('admin.form.created_ago')
                   %td.text-right
                     .btn-group
-                      =link_to t('admin.form.actions.edit'), send("edit_admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), class: "btn-white btn btn-xs"
+                      =link_to t('admin.form.actions.edit.verb'), send("edit_admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), class: "btn-white btn btn-xs"
                       =link_to t('admin.form.actions.delete'), send("admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), method: :delete, data: {confirm: t('admin.form.confirm') }, class: "btn-white btn btn-xs"
         .row
           .col-sm-12.m-b-xs

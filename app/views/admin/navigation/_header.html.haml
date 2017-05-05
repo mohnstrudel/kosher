@@ -5,7 +5,7 @@
         %i.fa.fa-bars
       %form.navbar-form-custom{:action => "#", :method => "post", :role => "search"}
         .form-group
-          %input#top-search.form-control{:name => "top-search", :placeholder => "Search for something...", :type => "text"}/
+          %input#top-search.form-control{:name => "top-search", :placeholder => t('admin.form.actions.search'), :type => "text"}/
     %ul.nav.navbar-top-links.navbar-right
       %li
         =link_to destroy_user_session_path, method: :delete do

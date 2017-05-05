@@ -1,0 +1,2 @@
+module Front::CitiesHelper
+end

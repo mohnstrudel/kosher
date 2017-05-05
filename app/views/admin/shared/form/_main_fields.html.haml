@@ -24,6 +24,8 @@
     / Fields for FAQ
     =render partial: "admin/shared/form/faq/faq_fields", locals: { f: f, object: object }
 
+    =render partial: "admin/shared/form/shops_restaurants/shops_restaurants_fields", locals: { f: f, object: object }
+
     -if object.respond_to?(:title)
       .form-group
         %label.col-sm-2.control-label

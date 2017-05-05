@@ -20,6 +20,53 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      user:
+        one: User
+        other: Users
+      shop: 
+        one: Shop
+        other: Shops
+      post: 
+        one: Post
+        other: Posts
+      page:
+        one: Page
+        other: Pages
+      faq: 
+        one: FAQ
+        other: FAQs
+      picture: 
+        one: Picture
+        other: Pictures
+      general_setting: 
+        one: General Setting
+        other: General Settings
+      city: 
+        one: City
+        other: Cities
+      restaurant: 
+        one: Restaurant
+        other: Restaurants
+      label: 
+        one: Label
+        other: Labels
+      category: 
+        one: Category
+        other: Categories
+      manufacturer: 
+        one: Manufacturer
+        other: Manufacturers
+      product: 
+        one: Product
+        other: Products
+      post_category: 
+        one: Category
+        other: Categories
+      page_category: 
+        one: Category
+        other: Categories
   will_paginate:
     previous_label: "&#8592; Previous"
     next_label: "Next &#8594;"
@@ -57,23 +104,32 @@ en:
         question: "Question"
         answer: "Answer"
         image: "Thumbnail"
+        barcode: "Barcode"
       tab_translation: "Other languages"
       actions:
         main: "Actions"
         save: "Save"
         back: "Back"
-        edit: "Edit"
+        edit: 
+          verb: Edit
+          noun: Editing
+        new:
+          verb: New
+          noun: New
         delete: "Delete"
         select_file: "Select file"
         change: "Change"
         add_phone: "Add phone"
         add_hours: "Add opening hours"
-        choose_category: "Choose sub/category"
-        choose_manufacturer: "Choose manufacturer/trademark"
-        choose_label: "Choose kosher label 1/2"
+        choose_category: "Select sub/category"
+        choose_manufacturer: "Select manufacturer/trademark"
+        choose_label: "Select kosher label 1/2"
+        search: Search for something
+        choose_city: Select City
       confirm: "Are you sure?"
       created_ago: "ago"
       misc:
+        main: Administration
         address_description: "Please enter your full address, so it can be translated via Google Maps into longitude and latitude. Please care, that if your address is not detailed enough it may find not the address you are actually looking for."
         opening_hours_title_placeholder: "Fill in the day(s), i.e. 'Mo' or 'Mo-Fr' or 'Weekends' etc."
         opening_hours_value_placeholder: "Fill in the hours, i.e. '10:00 - 19:00' or 'closed' or '24/7' etc."

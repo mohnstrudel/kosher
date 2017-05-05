@@ -1,4 +1,27 @@
 module AdminHelper
+  
+  def create_link_text_helper(object)
+    model = object.model.model_name.human
+    if I18n.locale == :en
+      text = "Create new #{model.downcase}"
+      return text
+    elsif I18n.locale == :ru
+      try_gender = Morpher.new("#{model}")
+      gender = try_gender.singular('род')
+      if gender == "Мужской"
+        new_text = "Новый"
+      elsif gender == "Женский"
+        new_text = "Новая"
+      else
+        new_text = "Новое"
+      end
+      text = Morpher.new("#{new_text} #{model}")
+      # p = Petrovich(lastname: new_text, firstname:  model)
+      create_text = "Создать #{text.singular("в").downcase}"
+      return create_text
+    end
+  end
+
   def object_name(object)
     if object.is_a?(ActiveRecord::Relation)
       return object.model.name.underscore
@@ -33,9 +56,35 @@ module AdminHelper
   def breadcrumbs
     # Session breadcrumbs is defines in the admin_controller via a before_action filter
     bc = session[:breadcrumbs]
-    @content = content_tag("h2", bc.last)
+
+    begin
+      # Пробуем, является ли последний элемент названием модели
+      last_element = bc.last.singularize.constantize.model_name.human(count: 2)
+    rescue
+      last_element = bc.last
+    end
+
+    @content = content_tag("h2", last_element)
     @content << content_tag(:ol, class: "breadcrumb") do
         bc.collect do |crumb|
+
+          begin
+            # Пробуем, является ли crumb названием модели
+            crumb = crumb.singularize.constantize.model_name.human(count: 2)
+          rescue
+
+            crumb
+          end
+
+          case crumb
+          when "Admin"
+            crumb = t('admin.form.misc.main')
+          when "New"
+            curmb = t('admin.form.actions.new.noun')
+          when "Edit"
+            crumb = t('admin.form.actions.edit.noun')
+          end
+
           if crumb.equal? bc.last
             content_tag(:li, "<strong>#{crumb}</strong>".html_safe, class: "active")
           else
