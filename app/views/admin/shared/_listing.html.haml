@@ -3,8 +3,12 @@
     .row
       .col-sm-6
         .form-group
-          =select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :title), class: 'form-control')
+          =select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :title), class: 'form-control select2_search_categories', prompt: t('admin.form.actions.choose_category'))
       .col-sm-6
+        .form-group
+          =select_tag(:manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :title), class: 'form-control select2_search_manufacturers', prompt: t('admin.form.actions.choose_manufacturer'))
+    .row
+      .col-sm-12
         .input-group
           =text_field_tag :keywords, "", class: "input form-control", placeholder: "Search product"
           %span.input-group-btn

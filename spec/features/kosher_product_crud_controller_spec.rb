@@ -12,7 +12,8 @@ RSpec.feature "Kosher products controller", :type => :feature do
   end
 
   scenario "saves the title right" do
-    product = FactoryGirl.create(:product, title: "Vodka Moroshka")
+    category = FactoryGirl.create(:category)
+    product = FactoryGirl.create(:product, title: "Vodka Moroshka", category: category)
     visit admin_products_path
 
     # fill_in "Name", :with => "My Widget"

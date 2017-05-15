@@ -16,11 +16,22 @@ module CrudConcern
 
     scope = options[:scope] || 'all'
     page_size = Rails.application.config.page_size
-    if params[:category_id]
-      logger.debug "Params are:"
+
+    if !params[:category_id].blank?
+      logger.debug "Category id is not blank!"
       logger.debug params.inspect
       @objects = object.constantize.filtered_by_category(params[:category_id]).send(scope).paginate(:page => params[:page], :per_page => page_size)
+    elsif !params[:manufacturer_id].blank?
+    elsif !params[:keywords].blank?
+      @keywords = params[:keywords]
+      object_search_term = ObjectSearchTerm.new(@keywords)
+      @objects = object.constantize.where(
+          object_search_term.where_clause,
+          object_search_term.where_args).
+        order(object_search_term.order).
+        paginate(:page => params[:page], :per_page => page_size)
     else
+      logger.debug "Category id IS INDEED blank!"
       @objects = object.constantize.send(scope).paginate(:page => params[:page], :per_page => page_size)
     end
   end
