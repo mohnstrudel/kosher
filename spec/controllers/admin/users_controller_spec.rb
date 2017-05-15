@@ -29,7 +29,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
     describe "#edit" do
       it "renders edit template" do
-        get :edit, id: created_user.id
+        get :edit, params: { id: created_user.id }
         expect(response).to render_template(:edit)
       end
     end
@@ -76,7 +76,7 @@ RSpec.describe Admin::UsersController, type: :controller do
     describe "#update" do
 
       before(:each) do
-        put :update, id: existing_user.id, user: attributes
+        put :update, params: { id: existing_user.id, user: attributes }
         # put :update, id: existing_user.id, params: { user: FactoryGirl.attributes_for(:user, email: "updated_user@mail.com"), first_name: "UpdatedTommy" }
         existing_user.reload
       end

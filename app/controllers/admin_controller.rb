@@ -10,11 +10,18 @@ class AdminController < ApplicationController
 
 	def get_breadcrumbs
 		splitted_url = request.original_fullpath.split("/")
+		
 		# Remove first object
 		splitted_url.shift
+
+		# Удаляем возможные параметры 	
+		splitted_url[-1] = splitted_url.last.split("?")[0]
+		
 		result = splitted_url.map { |element| element.humanize.capitalize }
 		session[:breadcrumbs] = result
-		# debug
+		
+		logger.debug "Crumbs:"
+		logger.debug session[:breadcrumbs]
 	end
 
 	def set_locale

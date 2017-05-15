@@ -82,6 +82,7 @@ en:
         description: "Description"
         slug: "Slug"
         category: "Category"
+        manufacturer: Manufacturer/TM
         first_name: "First name"
         second_name: "Last name"
         email: "Email"
@@ -126,6 +127,8 @@ en:
         choose_label: "Select kosher label 1/2"
         search: Search for something
         choose_city: Select City
+      buttons:
+        search: Search
       confirm: "Are you sure?"
       created_ago: "ago"
       misc:

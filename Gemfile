@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Nifty gem for placeholder images
+gem 'placeholdit'
+
 # Гем для того, что бы склонять русские название
 gem "petrovich"
 gem 'savon'
@@ -46,8 +49,7 @@ gem 'active_model_serializers'
 gem 'globalize', github: 'globalize/globalize'
 gem 'activemodel-serializers-xml'
 gem 'globalize-accessors'
-# For translated fields, let's use simple form 
-gem 'simple_form'
+
 
 # Use Devise for handling users
 gem 'devise'

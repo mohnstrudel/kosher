@@ -11,27 +11,16 @@ module CrudConcern
   end
 
   def index_helper(object, options = {})
-    logger.debug "Params are:"
-    logger.debug params.inspect
-
+    cat_id = params[:category_id]
+    manu_id = params[:manufacturer_id]
+    keywords = params[:keywords]
     scope = options[:scope] || 'all'
+
     page_size = Rails.application.config.page_size
 
-    if !params[:category_id].blank?
-      logger.debug "Category id is not blank!"
-      logger.debug params.inspect
-      @objects = object.constantize.filtered_by_category(params[:category_id]).send(scope).paginate(:page => params[:page], :per_page => page_size)
-    elsif !params[:manufacturer_id].blank?
-    elsif !params[:keywords].blank?
-      @keywords = params[:keywords]
-      object_search_term = ObjectSearchTerm.new(@keywords)
-      @objects = object.constantize.where(
-          object_search_term.where_clause,
-          object_search_term.where_args).
-        order(object_search_term.order).
-        paginate(:page => params[:page], :per_page => page_size)
-    else
-      logger.debug "Category id IS INDEED blank!"
+    begin
+      @objects = object.constantize.includes(:category).includes(:manufacturer).search(keywords).manufacturer_scope(manu_id).category_scope(cat_id).send(scope).paginate(:page => params[:page], :per_page => page_size)
+    rescue NoMethodError => e
       @objects = object.constantize.send(scope).paginate(:page => params[:page], :per_page => page_size)
     end
   end

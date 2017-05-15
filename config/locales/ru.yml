@@ -61,6 +61,7 @@ ru:
         description: "Описание"
         slug: "ЧПУ"
         category: "Категория"
+        manufacturer: Производитель/ТМ
         first_name: "Имя"
         second_name: "Фамилия"
         email: "Эл. почта"
@@ -105,6 +106,8 @@ ru:
         choose_label: "Выбрать знак кашрута"
         search: Введите поисковый запрос
         choose_city: Выберите город
+      buttons:
+        search: Поиск
       confirm: "Вы уверены?"
       created_ago: "назад"
       misc:

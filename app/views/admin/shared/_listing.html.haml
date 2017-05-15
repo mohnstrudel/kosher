@@ -1,22 +1,20 @@
-=form_for :products, method: :get do |f|
-  .ibox-content.m-b-sm.border-bottom
-    .row
-      .col-sm-6
-        .form-group
-          =select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :title), class: 'form-control select2_search_categories', prompt: t('admin.form.actions.choose_category'))
-      .col-sm-6
-        .form-group
-          =select_tag(:manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :title), class: 'form-control select2_search_manufacturers', prompt: t('admin.form.actions.choose_manufacturer'))
-    .row
-      .col-sm-12
-        .input-group
-          =text_field_tag :keywords, "", class: "input form-control", placeholder: "Search product"
-          %span.input-group-btn
-            =submit_tag "Search", class: "btn btn-primary"
-            %i.fa.fa-search
-            Search
-
-
+-if object.has_attribute? :category_id
+  =form_for :products, method: :get do |f|
+    .ibox-content.m-b-sm.border-bottom
+      .row
+        .col-sm-6
+          .form-group
+            =select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :title, params[:category_id]), class: 'form-control select2_search_categories', prompt: t('admin.form.actions.choose_category'))
+        .col-sm-6
+          .form-group
+            =select_tag(:manufacturer_id, options_from_collection_for_select(Manufacturer.all, :id, :title, params[:manufacturer_id]), class: 'form-control select2_search_manufacturers', prompt: t('admin.form.actions.choose_manufacturer'))
+      .row
+        .col-sm-12
+          .input-group
+            =text_field_tag :keywords, params[:keywords], class: "input form-control", placeholder: t('admin.form.actions.search')
+            %span.input-group-btn
+              =submit_tag t('admin.form.buttons.search'), class: "btn btn-primary"
+            
 
 .row
   .col-lg-12
@@ -51,13 +49,19 @@
                   %th URL
                 -if object.has_attribute? :image
                   %th
-                    =t('admin.form.model.image')  
+                    =t('admin.form.model.image')
+                -if object.has_attribute? :logo
+                  %th
+                    =t('admin.form.model.logo')  
                 -if object.has_attribute? :title
                   %th
                     =t('admin.form.model.title')
                 -if object.has_attribute? :category_id
                   %th
                     =t('admin.form.model.category')
+                -if object.has_attribute? :manufacturer_id
+                  %th
+                    =t('admin.form.model.manufacturer')
                 -if object.has_attribute? :question
                   %th
                     =t('admin.form.model.question')
@@ -88,15 +92,21 @@
                   -if obj.respond_to?(:url)
                     %td
                       =obj.url
-                  -if obj.respond_to?(:image)
+                  -if obj.respond_to?(:image) 
                     %td
                       =image_tag obj.image.url(:mini_thumb)
+                  -if obj.respond_to?(:logo)
+                    %td
+                      =image_tag_or_default(obj, 'logo', version: :mini_thumb)
                   -if obj.respond_to?(:title)
                     %td
                       =obj.title
                   -if obj.respond_to?(:category_id)
                     %td
                       =obj.category.title
+                  -if obj.respond_to?(:manufacturer_id)
+                    %td
+                      =obj.manufacturer.try(:title)
                   -if obj.respond_to?(:question)
                     %td
                       =obj.question
