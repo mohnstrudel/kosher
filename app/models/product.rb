@@ -8,6 +8,8 @@ class Product < ApplicationRecord
   validates :title, presence: true
 
   before_save :default_label
+
+  scope :filtered_by_category, -> (id) { where(category_id: id) }
   
   def default_label
     self.label_id ||= self.category.label_id # note self.status = 'P' if self.status.nil? might be safer (per @frontendbeauty)

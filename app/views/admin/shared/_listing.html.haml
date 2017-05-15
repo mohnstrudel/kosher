@@ -1,3 +1,19 @@
+=form_for :products, method: :get do |f|
+  .ibox-content.m-b-sm.border-bottom
+    .row
+      .col-sm-6
+        .form-group
+          =select_tag(:category_id, options_from_collection_for_select(Category.all, :id, :title), class: 'form-control')
+      .col-sm-6
+        .input-group
+          =text_field_tag :keywords, "", class: "input form-control", placeholder: "Search product"
+          %span.input-group-btn
+            =submit_tag "Search", class: "btn btn-primary"
+            %i.fa.fa-search
+            Search
+
+
+
 .row
   .col-lg-12
     .ibox.float-e-margins
@@ -35,6 +51,9 @@
                 -if object.has_attribute? :title
                   %th
                     =t('admin.form.model.title')
+                -if object.has_attribute? :category_id
+                  %th
+                    =t('admin.form.model.category')
                 -if object.has_attribute? :question
                   %th
                     =t('admin.form.model.question')
@@ -71,6 +90,9 @@
                   -if obj.respond_to?(:title)
                     %td
                       =obj.title
+                  -if obj.respond_to?(:category_id)
+                    %td
+                      =obj.category.title
                   -if obj.respond_to?(:question)
                     %td
                       =obj.question

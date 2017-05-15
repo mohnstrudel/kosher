@@ -10,7 +10,7 @@ class Front::CitiesController < ApplicationController
   end
 
   def show
-    @city = City.find(params[:id]).
+    @city = City.find(params[:id])
     respond_to do |format|
       format.html
       format.json {

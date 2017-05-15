@@ -55,6 +55,13 @@ Rails.application.routes.draw do
     	# end
     end
 
+    resources :post_categories, only: [:index, :show] do
+      resources :posts, only: [:index, :show]
+      # Page.where.not(slug: nil).all.each do |page|
+      #   get "/#{page.slug}", controller: "pages", action: "show", id: page.id
+      # end
+    end
+
 
     resources :categories, only: [:index, :show] do
       resources :products, only: [:index, :show]

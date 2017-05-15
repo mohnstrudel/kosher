@@ -11,10 +11,18 @@ module CrudConcern
   end
 
   def index_helper(object, options = {})
+    logger.debug "Params are:"
+    logger.debug params.inspect
+
     scope = options[:scope] || 'all'
     page_size = Rails.application.config.page_size
-
-    @objects = object.constantize.send(scope).paginate(:page => params[:page], :per_page => page_size)
+    if params[:category_id]
+      logger.debug "Params are:"
+      logger.debug params.inspect
+      @objects = object.constantize.filtered_by_category(params[:category_id]).send(scope).paginate(:page => params[:page], :per_page => page_size)
+    else
+      @objects = object.constantize.send(scope).paginate(:page => params[:page], :per_page => page_size)
+    end
   end
 
   def create_helper(object, path)

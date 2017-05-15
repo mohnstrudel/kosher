@@ -39,6 +39,9 @@ gem 'jbuilder', '~> 2.5'
 gem "petrovich"
 gem 'savon'
 
+# For nice json api
+gem 'active_model_serializers'
+
 # For translated fields
 gem 'globalize', github: 'globalize/globalize'
 gem 'activemodel-serializers-xml'
