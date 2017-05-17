@@ -40,6 +40,12 @@ class Product < ApplicationRecord
   end
 
   def default_label
-    self.label_id ||= self.category.label_id # note self.status = 'P' if self.status.nil? might be safer (per @frontendbeauty)
+    begin
+      self.label_id ||= self.category.label_id # note self.status = 'P' if self.status.nil? might be safer (per @frontendbeauty)
+    rescue => e
+      self.label_id = nil
+      logger.debug "Rescued default_label method from product model"
+      logger.debug e.message
+    end
   end
 end

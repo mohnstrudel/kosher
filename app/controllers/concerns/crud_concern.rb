@@ -26,18 +26,23 @@ module CrudConcern
   end
 
   def create_helper(object, path)
-    if object.save
-      respond_to do |format|
-        format.html {
-          redirect_to send(path, object)
-          flash[:primary] = "Well done!"
-        }
+    begin
+      if object.save
+        respond_to do |format|
+          format.html {
+            redirect_to send(path, object)
+            flash[:primary] = "Well done!"
+          }
+        end
+      else
+        render :new
+        flash[:danger] = "Something not quite right"
       end
-    else
+      @remaining_locales = Language.get_remaining_locales
+    rescue => e
       render :new
-      flash[:danger] = "Something not quite right"
+      flash[:danger] = e.message
     end
-    @remaining_locales = Language.get_remaining_locales
   end
 
   def update_helper(object, path, params)
