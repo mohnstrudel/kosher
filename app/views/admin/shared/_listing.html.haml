@@ -38,10 +38,10 @@
         .row
           .col-sm-12.m-b-xs
             .pull-right
-              =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary"
+              =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary", id: "new_entry"
               
         .table-responsive
-          %table.table.table-striped
+          %table.table.table-striped#listing_table
             %thead
               %tr
                 %th
@@ -103,7 +103,7 @@
                       =obj.title
                   -if obj.respond_to?(:category_id)
                     %td
-                      =obj.category.title
+                      =obj.category.try(:title)
                   -if obj.respond_to?(:manufacturer_id)
                     %td
                       =obj.manufacturer.try(:title)
