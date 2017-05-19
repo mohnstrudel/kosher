@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     	# end
     end
 
+    resources :posts, only: [:index, :show]
     resources :post_categories, only: [:index, :show] do
       resources :posts, only: [:index, :show]
       # Page.where.not(slug: nil).all.each do |page|
@@ -62,12 +63,15 @@ Rails.application.routes.draw do
       # end
     end
 
+    resources :labels, only: [:index, :show]
 
+    resources :products, only: [:index, :show]
     resources :categories, only: [:index, :show] do
       resources :products, only: [:index, :show]
     end
     resources :cities, only: [:index, :show] do
       resources :shops, only: [:index, :show]
+      resources :restaurants, only: [:index, :show]
     end
 
     constraints subdomain: 'api' do

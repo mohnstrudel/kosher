@@ -11,6 +11,7 @@ RSpec.feature "Kosher products controller", :type => :feature do
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
+
   feature "testing the CRUD methods >" do
 
     scenario "create" do
@@ -78,6 +79,46 @@ RSpec.feature "Kosher products controller", :type => :feature do
       FactoryGirl.create(:product, description: "Mighty bash scorpion has lauched a hook")
       FactoryGirl.create(:product, title: "Sub Zero")
     }
+
+    scenario "finding all categories' children's products" do
+      category = FactoryGirl.create(:category, title: "Category")
+      subcategory = FactoryGirl.create(:category, title: "Sub Sub", parent_id: category.id)
+      FactoryGirl.create(:product, title: "Subcategory Product", category_id: subcategory.id)
+      
+      visit admin_products_path
+      # 5 потому что заранее создаем 3, плюс в данном сценарии 1 и дефолтно заголовки 
+      # занимают одну строку
+      expect(page.all('table#listing_table tr').count).to eq(5)
+
+      select "Category", from: "category_id"
+      find("input[type='submit']").click
+      
+      expect(page).to have_content("Subcategory Product")
+      expect(page).not_to have_content("Scorption")
+      expect(page.all('table#listing_table tr').count).to eq(2)
+    end
+
+    scenario "finding all manufacturer children's products" do
+      # Setup block begin
+      manufacturer = FactoryGirl.create(:manufacturer, title: "Manufacturer")
+      trademark = FactoryGirl.create(:manufacturer, title: "Trademark", parent_id: manufacturer.id)
+      FactoryGirl.create(:product, title: "TM Product", manufacturer_id: trademark.id)
+      FactoryGirl.create(:product, title: "Random product")
+      # Setup block end
+      
+      visit admin_products_path
+      # 6 потому что заранее создаем 3, плюс в данном сценарии 2 и дефолтно заголовки 
+      # занимают одну строку
+      expect(page.all('table#listing_table tr').count).to eq(6)
+
+      select "Manufacturer", from: "manufacturer_id"
+      find("input[type='submit']").click
+      
+      expect(page).to have_content("TM Product")
+      expect(page).not_to have_content("Random product")
+      expect(page.all('table#listing_table tr').count).to eq(2)
+
+    end
 
     scenario "finding two items out of three" do
       visit admin_products_path

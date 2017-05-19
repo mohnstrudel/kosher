@@ -14,6 +14,9 @@ class Product < ApplicationRecord
   def self.category_scope(id)
     if (id.nil? || id.empty?)
       all
+    elsif Category.has_children?(id)
+      collection_ids = Category.return_collection(id)
+      where(category_id: collection_ids)
     else
       where(category_id: id)
     end
@@ -22,6 +25,10 @@ class Product < ApplicationRecord
   def self.manufacturer_scope(id)
     if (id.nil? || id.empty?)
       all
+    elsif Manufacturer.has_children?(id)
+      # Get all ids - the manufacturer's and trademarks'
+      collection_ids = Manufacturer.return_collection(id)
+      where(manufacturer_id: collection_ids)
     else
       where(manufacturer_id: id)
     end

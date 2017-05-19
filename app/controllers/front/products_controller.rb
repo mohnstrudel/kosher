@@ -1,7 +1,11 @@
 class Front::ProductsController < FrontController
 
   def index
-    @products = Category.includes(:products).find(params[:category_id]).products
+    if params[:barcode].present?
+      @products = Product.where(barcode: params[:barcode])
+    else
+      @products = Category.includes(:products).find(params[:category_id]).products
+    end
 
     respond_to do |format|
       format.html
@@ -12,7 +16,9 @@ class Front::ProductsController < FrontController
   end
 
   def show
+    
     @product = Product.find(params[:id])
+    
     respond_to do |format|
       format.html
       format.json {

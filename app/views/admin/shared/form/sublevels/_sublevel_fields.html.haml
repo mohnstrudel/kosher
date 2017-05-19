@@ -1,4 +1,4 @@
--if params[:sublevel]
+-if (!object.try(:parent_id).nil? || params[:sublevel])
   -if object.respond_to?(:parent_id)
     .form-group
       %label.col-lg-2.control-label
