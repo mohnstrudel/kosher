@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       resources :products, except: :show
       resources :faqs, except: :show
       resources :pictures, except: :show
+      resources :recipes, except: :show
+      resources :recipe_categories, except: :show
     end
   # end
 

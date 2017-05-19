@@ -159,3 +159,16 @@
             =t('admin.navigation.products.all_products')
           =nav_link new_admin_product_path do
             =t('admin.navigation.products.new_product')
+
+      =nav_link "" do
+        %i.fa.fa-coffee
+        %span.nav-label
+          =t('admin.navigation.recipes.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_recipes_path do
+            =t('admin.navigation.recipes.all')
+          =nav_link new_admin_recipe_path do
+            =t('admin.navigation.recipes.new')
+          =nav_link admin_recipe_categories_path do
+            =t('admin.navigation.recipe_categories.all')

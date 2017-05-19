@@ -46,6 +46,12 @@ ru:
       page_category:
         one: Категория
         other: Категории
+      recipe:
+        one: Рецепт
+        other: Рецепты
+      recipe_category:
+        one: Категория
+        other: Категории
   will_paginate:
     previous_label: "&#8592; Предыдущая страница"
     next_label: "Следующая страница &#8594;"
@@ -85,6 +91,7 @@ ru:
         answer: "Ответ"
         image: "Превью"
         barcode: "Штрихкод"
+        recipe_category: Категория рецепта
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -104,8 +111,9 @@ ru:
         choose_category: "Выбрать (под)категорию"
         choose_manufacturer: "Выбрать производителя/ТМ"
         choose_label: "Выбрать знак кашрута"
-        search: Введите поисковый запрос
+        search: Введите поисковый запрос (поддерживается - название товара и его описане)
         choose_city: Выберите город
+        choose_recipe_category: Выбрать категорию
       buttons:
         search: Поиск
       confirm: "Вы уверены?"
@@ -173,6 +181,12 @@ ru:
         main: "Кошерные продукты"
         all_products: "Все продукты"
         new_product: "Создать новый продукт"
+      recipes:
+        main: Рецепты
+        all: Все рецепты
+        new: Создать новый рецепт
+      recipe_categories:
+        all: Категории рецептов
       right_sidebar:
         language:
           title: "Выбрать язык"

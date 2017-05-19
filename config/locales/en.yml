@@ -67,6 +67,12 @@ en:
       page_category: 
         one: Category
         other: Categories
+      recipe:
+        one: Recipe
+        other: Recipes
+      recipe_category:
+        one: Category
+        other: Categories
   will_paginate:
     previous_label: "&#8592; Previous"
     next_label: "Next &#8594;"
@@ -106,6 +112,7 @@ en:
         answer: "Answer"
         image: "Thumbnail"
         barcode: "Barcode"
+        recipe_category: Recipe category
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -125,8 +132,9 @@ en:
         choose_category: "Select sub/category"
         choose_manufacturer: "Select manufacturer/trademark"
         choose_label: "Select kosher label 1/2"
-        search: Search for something
+        search: Search for something (currently supports only title and description)
         choose_city: Select City
+        choose_recipe_category: Select Category
       buttons:
         search: Search
       confirm: "Are you sure?"
@@ -194,6 +202,13 @@ en:
         main: "Kosher products"
         all_products: "All products"
         new_product: "Create new product"
+      recipes:
+        main: Recipes
+        all: All recipes
+        new: New recipe
+      recipes_categories:
+        all: Recipe categories
+
       right_sidebar:
         language:
           title: "Select language"
