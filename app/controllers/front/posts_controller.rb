@@ -3,23 +3,37 @@ class Front::PostsController < ApplicationController
   before_action :find_post, only: [:show]
 
   def show
+    @status = 200
+    begin
+      category = PostCategory.find(params[:post_category_id])
+      @post = Post.where(post_category_id: category.id).find(params[:id])
+    rescue => e
+      @post = e.message
+      @status = 400
+    end
     respond_to do |format|
       format.html
       format.json {
-        render json: @post, status: 200
+        render json: @post, status: @status
       }
     end
   end
 
   def index
+    @status = 200
     # @post_category = PageCategory.includes(:posts).find params[:post_category_id]
-    # @posts = PostCategory.includes(:posts).find(params[:post_category_id]).posts
-    @posts = Post.all
+    begin
+      @posts = PostCategory.includes(:posts).find(params[:post_category_id]).posts
+    rescue => e
+      @posts = e
+      @status = 400
+    end
+    # @posts = Post.all
 
     respond_to do |format|
       format.html
       format.json {
-        render json: @posts, status: 200
+        render json: @posts, status: @status
       }
     end
   end
@@ -27,6 +41,6 @@ class Front::PostsController < ApplicationController
   private
 
   def find_post
-    @post = Page.find(params[:id])
+    # @post = Page.find(params[:id])
   end
 end

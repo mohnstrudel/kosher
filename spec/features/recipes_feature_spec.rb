@@ -20,9 +20,11 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
     end
     
     scenario 'create' do
+      FactoryGirl.create(:recipe_category, title: 'Awesome Cat')
       visit admin_recipes_path
       click_link('new_entry')
-      
+
+      select "Awesome Cat", from: 'recipe_recipe_category_id'
       fill_in 'recipe_title', with: "Grizzly Bears Ltd."
       
       expect { find("input[type='submit']").click }.to change(Recipe, :count).by(1)

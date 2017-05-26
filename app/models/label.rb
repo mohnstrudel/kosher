@@ -17,6 +17,26 @@ class Label < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
+  def self.has_children?(id)
+    if find(id).sub_labels.empty?
+      return false
+    else
+      return true
+    end
+  end
+
+  def self.return_collection(id)
+    # Мы получаем айди родителя
+    # возвращаем в массиве айди всех детей
+    parent = find(id)
+
+    children_ids = parent.sub_labels.map { |item| item.id }
+
+    # На первом месте всегда айди родителя, потом идут айди детей
+    # Пример - [1, 4, 7, 10]
+    return [parent.id, children_ids].flatten!
+  end
+
   # def children
   #   self.class.subs.where(parent_id: id)
   # end

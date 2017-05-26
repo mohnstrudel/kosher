@@ -22,6 +22,17 @@ class Product < ApplicationRecord
     end
   end
 
+  def self.label_scope(label_id)
+    if (label_id.nil? || label_id.empty?)
+      all
+    elsif Label.has_children?(label_id)
+      collection_ids = Label.return_collection(label_id)
+      where(label_id: collection_ids)
+    else
+      where(label_id: label_id)
+    end
+  end
+
   def self.manufacturer_scope(id)
     if (id.nil? || id.empty?)
       all

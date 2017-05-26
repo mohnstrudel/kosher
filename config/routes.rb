@@ -71,20 +71,34 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :show] do
       resources :products, only: [:index, :show]
     end
+
+    resources :shops, only: [:index, :show]
+    resources :restaurants, only: [:index, :show]
     resources :cities, only: [:index, :show] do
       resources :shops, only: [:index, :show]
       resources :restaurants, only: [:index, :show]
     end
 
-    constraints subdomain: 'api' do
-      get 'categories', to: 'page_categories#index'
-      # resources :page_categories, only: [:index, :show]
-      resources :pages, only: [:index, :show]
-      # Page.where.not(slug: nil).all.each do |page|
-      #   get "/#{page.slug}", controller: "pages", action: "show", id: page.id
-      # end
-
+    resources :recipes, only: [:index, :show]
+    resources :recipe_categories, only: [:index, :show] do
+      resources :recipes, only: [:index, :show]
     end
+
+    resources :faqs, only: [:index]
+
+    get '/about', to: 'general_settings#list'
+
+    # constraints subdomain: :api do
+      scope module: :api do
+        namespace :v1, defaults: { format: :json } do
+          resources :shops, only: [:index, :show]
+          resources :cities, only: [:index, :show] do
+            resources :shops, only: [:index, :show]
+            resources :restaurants, only: [:index, :show]
+          end
+        end
+      end
+    # end
   end
 
   # match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: [:get]

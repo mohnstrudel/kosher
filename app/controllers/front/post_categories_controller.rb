@@ -10,11 +10,11 @@ class Front::PostCategoriesController < ApplicationController
   end
 
   def show
-    @posts = PostCategory.includes(:posts).find(params[:id]).posts
+    @post_category = PostCategory.includes(:posts).find(params[:id])
     respond_to do |format|
       format.html
       format.json {
-        render json: @posts, status: 200
+        render json: @post_category, status: 200
       }
     end
   end
