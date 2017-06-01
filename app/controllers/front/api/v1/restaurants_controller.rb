@@ -5,11 +5,11 @@ module Front
       include ApiConcern
 
       def index
-        index_helper('restaurants')
+        index_helper('restaurants', 'cities')
       end
 
       def show
-        show_helper('restaurant')
+        show_helper('restaurant', 'cities')
       end
     end
   end

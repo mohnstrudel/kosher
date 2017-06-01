@@ -92,9 +92,31 @@ Rails.application.routes.draw do
       scope module: :api do
         namespace :v1, defaults: { format: :json } do
           resources :shops, only: [:index, :show]
+          resources :restaurants, only: [:index, :show]
           resources :cities, only: [:index, :show] do
             resources :shops, only: [:index, :show]
             resources :restaurants, only: [:index, :show]
+          end
+
+          resources :posts, only: [:index, :show]
+          resources :post_categories, only: [:index, :show] do
+            resources :posts, only: [:index, :show]
+          end
+
+          resources :labels, only: [:index, :show]
+
+          resources :recipes, only: [:index, :show]
+          resources :recipe_categories, only: [:index, :show] do
+            resources :recipes, only: [:index, :show]
+          end
+
+          resources :faqs, only: [:index]
+
+          get '/about', to: 'general_settings#list'
+
+          resources :products, only: [:index, :show]
+          resources :categories, only: [:index, :show] do
+            resources :products, only: [:index, :show]
           end
         end
       end
