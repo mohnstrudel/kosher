@@ -3,11 +3,15 @@ class ProductSerializer < ActiveModel::Serializer
 
   def category
     cat = object.category
-    {
-      id: cat.id,
-      title: cat.title,
-      logo: cat.logo,
-      description: cat.description
-    }
+    if cat
+      {
+        id: cat.id,
+        title: cat.title,
+        logo: cat.logo,
+        description: cat.description
+      }
+    else
+      return nil
+    end
   end
 end

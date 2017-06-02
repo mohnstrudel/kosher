@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
 
   has_many :products
+  # has_one :label
   # This is called a self referential relation. This is where records in a 
   # table may point to other records in the same table.
   has_many :sub_categories, class_name: "Category", foreign_key: :parent_id

@@ -1,5 +1,5 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :logo, :subcategories
+  attributes :id, :title, :description, :logo, :subcategories, :parent_id, :label_id
 
   def subcategories
     my_hash = Hash.new
