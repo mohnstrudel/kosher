@@ -15,6 +15,8 @@ class Category < ApplicationRecord
 
   validates :title, presence: true
 
+  has_many :manufacturers, through: :products
+
   mount_uploader :logo, LogoUploader
 
   def self.has_children?(id)

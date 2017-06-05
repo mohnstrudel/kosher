@@ -118,6 +118,8 @@ Rails.application.routes.draw do
           resources :categories, only: [:index, :show] do
             resources :products, only: [:index, :show]
           end
+
+          resources :manufacturers, only: [:index, :show]
         end
       end
     # end
