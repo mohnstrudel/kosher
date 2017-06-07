@@ -35,7 +35,28 @@ module ApiConcern
 
     else
       main_object = object.camelize.singularize.constantize
-      if main_object.method_defined?(:phones) && main_object.method_defined?(:opening_hours)
+
+      # Тут специально кейс для товаров и поиска по штрихкоду
+      if params[:barcode].present?
+        @objects = main_object.where(barcode: params[:barcode])
+
+      # Тут специально кейс для товаров и фильтрации по производителю, знаку кашрута и категориям
+      elsif (params[:category].present? || params[:manufacturer].present? || params[:label].present?)
+        
+        cat_id = params[:category]
+        manu_id = params[:manufacturer]
+        label_id = params[:label]
+
+        begin
+          @objects = main_object.includes(:category).includes(:manufacturer).includes(:label).category_scope(cat_id).manufacturer_scope(manu_id).label_scope(label_id)
+        rescue => e
+          @objects = e.message
+          @status = 400
+        end
+
+      
+      # Тут кейс для ресторанов, настроек и магазинов
+      elsif main_object.method_defined?(:phones) && main_object.method_defined?(:opening_hours)
         @objects = main_object.includes(:phones).includes(:opening_hours)
       else
         @objects = main_object.all

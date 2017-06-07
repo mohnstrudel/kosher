@@ -35,7 +35,7 @@ class Admin::PostsController < AdminController
 	end
 
 	def post_params
-		params.require(:post).permit(:title, :body, :post_category_id, :slug, *Post.globalize_attribute_names)
+		params.require(:post).permit((Post.attribute_names.map(&:to_sym).push(Post.globalize_attribute_names).push(:title, :description, :bootsy_image_gallery_id)).flatten)
 	end
 
 end

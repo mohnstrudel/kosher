@@ -128,19 +128,71 @@ describe "Products API" do
 
   context "find products using filters" do
     it "> finds product for given barcode" do
-      # todo
+      product = FactoryGirl.create(:product, barcode: 555666)
+      FactoryGirl.create_list(:product, 6)
+
+      get "/v1/products?barcode=555666"
+
+      json = JSON.parse(response.body)
+
+      expect(json['data'].length).to eq(1)
+      expect(json['data'][0]['attributes']['barcode']).to eq(555666)
+
     end
 
     it "> finds products for given manufacturer" do
-      # todo
+      manufacturer = FactoryGirl.create(:manufacturer)
+      product = FactoryGirl.create(:product, manufacturer_id: manufacturer.id)
+      FactoryGirl.create_list(:product, 3)
+
+      get "/v1/products?manufacturer=#{manufacturer.id}"
+
+      json = JSON.parse(response.body)
+
+      expect(json['data'].length).to eq(1)
+      expect(json['data'][0]['attributes']['manufacturer']['id']).to eq(manufacturer.id)
     end
 
     it "> finds products for given label" do
-      # todo
+      label = FactoryGirl.create(:label)
+      product = FactoryGirl.create(:product, label_id: label.id)
+      FactoryGirl.create_list(:product, 4)
+
+      get "/v1/products?label=#{label.id}"
+
+      json = JSON.parse(response.body)
+
+      expect(json['data'].length).to eq(1)
+      expect(json['data'][0]['attributes']['label']['id']).to eq(label.id)
     end
 
     it "> finds products for given category" do
-      # todo
+      category = FactoryGirl.create(:category)
+      product = FactoryGirl.create(:product, category_id: category.id)
+      FactoryGirl.create_list(:product, 3)
+
+      get "/v1/products?category=#{category.id}"
+
+      json = JSON.parse(response.body)
+
+      expect(json['data'].length).to eq(1)
+      expect(json['data'][0]['attributes']['category']['id']).to eq(category.id)
+    end
+
+    it "> finds products for all three params given" do
+      category = FactoryGirl.create(:category)
+      label = FactoryGirl.create(:label)
+      manufacturer = FactoryGirl.create(:manufacturer)
+
+      product = FactoryGirl.create(:product, category_id: category.id, manufacturer_id: manufacturer.id, label_id: label.id)
+      FactoryGirl.create(:product, category_id: category.id, manufacturer_id: manufacturer.id)
+      FactoryGirl.create_list(:product, 2)
+      get "/v1/products?category=#{category.id}&manufacturer=#{manufacturer.id}&label=#{label.id}"
+
+      json = JSON.parse(response.body)
+
+      expect(json['data'].length).to eq(1)
+      expect(json['data'][0]['attributes']['category']['id']).to eq(category.id)
     end
 
   end

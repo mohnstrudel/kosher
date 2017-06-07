@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  
+  mount_uploader :logo, LogoUploader
+
   include Bootsy::Container
   belongs_to :post_category
 

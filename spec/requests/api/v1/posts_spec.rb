@@ -26,6 +26,18 @@ describe 'Posts API' do
       expect(response).to be_success
       expect(json['data']['id'].to_i).to eq(post.id)
     end
+
+    it "shows specific values for a post" do
+      post = FactoryGirl.create(:post)
+
+      get "/v1/posts/#{post.id}"
+
+      json = JSON.parse(response.body)
+
+      attrs = json['data']['attributes']
+      expect(attrs['logo']['url']).not_to be nil
+      expect(attrs['logo']['url']).to eq("/uploads/post/logo/1/rails.jpg")
+    end
   end
 
   context "displaying posts from current category" do
