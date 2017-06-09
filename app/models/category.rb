@@ -16,6 +16,7 @@ class Category < ApplicationRecord
   validates :title, presence: true
 
   has_many :manufacturers, through: :products
+  has_many :labels, through: :products
 
   mount_uploader :logo, LogoUploader
 

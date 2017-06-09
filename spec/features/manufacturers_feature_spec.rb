@@ -27,5 +27,13 @@ RSpec.feature "Manufacturers feature spec >", :type => :feature do
       
       # visit admin_manufacturers_path
     end
+
+    scenario "creating a trademark from index page leads to correct new page (containing parent select field)" do
+      visit admin_manufacturers_path(sublevel: true)
+
+      click_link('new_entry')
+
+      expect(page).to have_css('#manufacturer_parent_id')
+    end
   end
 end

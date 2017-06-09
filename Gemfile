@@ -43,7 +43,7 @@ gem "petrovich"
 gem 'savon'
 
 # For nice json api
-gem 'active_model_serializers'
+gem 'active_model_serializers', require: true
 
 # For translated fields
 gem 'globalize', github: 'globalize/globalize'

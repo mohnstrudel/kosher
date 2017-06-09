@@ -69,5 +69,33 @@ describe "Manufacturers API" do
       attrs = json['data']['attributes']
       expect(attrs.keys).to contain_exactly("description", 'logo', 'parent-id', 'title', 'categories')
     end
+
+    it "has iOS appropriate categories structure" do
+      get "/v1/manufacturers/#{@manufacturer.id}"
+
+      json = JSON.parse(response.body)
+
+      categories = json['data']['attributes']['categories'][0]
+      expect(categories.keys).to contain_exactly("id", 'type', 'parent-id', 'label-id', 'attributes')
+    end
+
+    it "has iOS appropriate category attributes" do
+      get "/v1/manufacturers/#{@manufacturer.id}"
+
+      json = JSON.parse(response.body)
+
+      attrs = json['data']['attributes']['categories'][0]['attributes']
+      expect(attrs.keys).to contain_exactly("title", 'description', 'logo')
+    end
+
+    it "has no duplicate categories" do
+      product_2 = FactoryGirl.create(:product, category_id: @category.id, manufacturer_id: @manufacturer.id)
+
+      get "/v1/manufacturers/#{@manufacturer.id}"
+
+      json = JSON.parse(response.body)
+
+      expect(json['data']['attributes']['categories'].length).to eq(1)
+    end
   end
 end

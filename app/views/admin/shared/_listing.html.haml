@@ -38,7 +38,10 @@
         .row
           .col-sm-12.m-b-xs
             .pull-right
-              =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary", id: "new_entry"
+              -if params[:sublevel]
+                =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path",sublevel: true), class: "btn btn-w-m btn-primary", id: "new_entry"
+              -else
+                =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary", id: "new_entry"
               
         .table-responsive
           %table.table.table-striped#listing_table

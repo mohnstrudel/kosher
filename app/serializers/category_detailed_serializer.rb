@@ -1,5 +1,5 @@
 class CategoryDetailedSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :logo, :subcategories, :parent_id, :label_id, :manufacturers
+  attributes :id, :title, :description, :logo, :subcategories, :parent_id, :label_id, :manufacturers, :labels
 
   def subcategories
     my_hash = Hash.new
@@ -14,13 +14,26 @@ class CategoryDetailedSerializer < ActiveModel::Serializer
   end
 
   def manufacturers
-    object.manufacturers.map do |manufacturer|
+    object.manufacturers.uniq.map do |manufacturer|
       {
         id: manufacturer.id,
-        title: manufacturer.title,
-        description: manufacturer.description,
-        parent_id: manufacturer.parent_id,
-        logo: manufacturer.logo
+        type: manufacturer.class.name.downcase,
+        attributes: {
+          title: manufacturer.title,
+          description: manufacturer.description,
+          logo: manufacturer.logo  
+        },
+        parent_id: manufacturer.parent_id
+        
+      }
+    end
+  end
+
+  def labels
+    object.labels.map do |label|
+      {
+        id: label.id,
+        title: label.title
       }
     end
   end
