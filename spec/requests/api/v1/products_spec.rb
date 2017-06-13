@@ -34,7 +34,10 @@ describe "Products API" do
     describe "shows specific data for certain product" do
 
       before(:each) do
-        @product = FactoryGirl.create(:product, title: "Rspec Product", description: "Rspec description")
+        @category = FactoryGirl.create(:category, title: "Symbios")
+        @manufacturer = FactoryGirl.create(:manufacturer, title: "Supersonic")
+        @label = FactoryGirl.create(:label, title: "Ho Sho M")
+        @product = FactoryGirl.create(:product, title: "Rspec Product", description: "Rspec description", category: @category, manufacturer: @manufacturer, label: @label)
       end
       it "has the right title" do
         get "/v1/products/#{@product.id}"
@@ -54,9 +57,9 @@ describe "Products API" do
         get "/v1/products/#{@product.id}"
         json = JSON.parse(response.body)
 
-        expect(json['data']['attributes']['manufacturer']).to eq(nil)
-        expect(json['data']['attributes']['category']).to eq(nil)
-        expect(json['data']['attributes']['label']).to eq(nil)
+        expect(json['data']['attributes']['manufacturer']['title']).to eq("Supersonic")
+        expect(json['data']['attributes']['category']['title']).to eq("Symbios")
+        expect(json['data']['attributes']['label']['title']).to eq("Ho Sho M")
       end
     end
   end
@@ -109,7 +112,7 @@ describe "Products API" do
         json = JSON.parse(response.body)
 
         expect(json['data']['attributes']['subcategories'].length).to eq(1)
-        expect(json['data']['attributes']['subcategories'][0]['title']).to eq("subcat")
+        expect(json['data']['attributes']['subcategories'][0]['attributes']['title']).to eq("subcat")
       end
 
       it "> subcategory has the right parent category" do

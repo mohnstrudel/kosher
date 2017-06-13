@@ -5,7 +5,8 @@
     .col-lg-10
       / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
       / =f.select :parent_id, object.class.name.constantize.top_level.map { |obj| [ obj.title, obj.id ] }, {}, { class: "form-control m-b" }
-      =f.collection_select(:category_id, Category.all, :id, :title, { include_blank: t('admin.form.actions.choose_category') }, class: 'form-control select2_categories')
+      / =f.collection_select(:category_id, Category.all, :id, :title, { include_blank: t('admin.form.actions.choose_category') }, class: 'form-control select2_categories')
+      =f.grouped_collection_select :category_id, Category.top_level, :sub_categories, :title, :id, :title, { include_blank: t('admin.form.actions.choose_category') }, class: 'form-control select2_categories'
   .hr-line-dashed
 
 -if object.respond_to?(:manufacturer_id)
@@ -15,7 +16,8 @@
     .col-lg-10
       / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
       / =f.select :parent_id, object.class.name.constantize.top_level.map { |obj| [ obj.title, obj.id ] }, {}, { class: "form-control m-b" }
-      =f.collection_select(:manufacturer_id, Manufacturer.all, :id, :title, { include_blank: t('admin.form.actions.choose_manufacturer') }, class: 'form-control select2_manufacturers')
+      / =f.collection_select(:manufacturer_id, Manufacturer.all, :id, :title, { include_blank: t('admin.form.actions.choose_manufacturer') }, class: 'form-control select2_manufacturers')
+      =f.grouped_collection_select :manufacturer_id, Manufacturer.top_level, :trademarks, :title, :id, :title, { include_blank: t('admin.form.actions.choose_manufacturer') }, class: 'form-control select2_manufacturers'
   .hr-line-dashed
 
 -if object.respond_to?(:label_id)
@@ -25,7 +27,8 @@
     .col-lg-10
       / =f.collection_select(:parent_id, object.class.name.constantize.all, :id, :title, {include_blank: true, :include_hidden => true, :selected => nil}, { class: 'form-control m-b'})
       / =f.select :parent_id, object.class.name.constantize.top_level.map { |obj| [ obj.title, obj.id ] }, {}, { class: "form-control m-b" }
-      =f.collection_select(:label_id, Label.all, :id, :title, { include_blank: t('admin.form.actions.choose_label') }, class: 'form-control select2_labels')
+      / =f.collection_select(:label_id, Label.all, :id, :title, { include_blank: t('admin.form.actions.choose_label') }, class: 'form-control select2_labels')
+      =f.grouped_collection_select :label_id, Label.top_level, :sub_labels, :title, :id, :title, { include_blank: t('admin.form.actions.choose_label') }, class: 'form-control select2_labels'
   .hr-line-dashed
 
 -if object.respond_to?(:barcode)

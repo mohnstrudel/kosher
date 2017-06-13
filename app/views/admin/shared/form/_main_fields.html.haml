@@ -92,3 +92,6 @@
       .col-sm-4.col-sm-offset-2
         =link_to t('admin.form.actions.back'), send("admin_#{local_assigns[:namespace]}#{object_name(object).pluralize}_path"), class: 'btn btn-white'
         =f.submit t('admin.form.actions.save'), class: 'btn btn-primary'
+    .ibox-footer
+      %span.pull-right
+        =t('admin.form.misc.required')

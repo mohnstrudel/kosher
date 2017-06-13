@@ -9,10 +9,10 @@ class ManufacturerDetailedSerializer < ActiveModel::Serializer
         attributes: {
           title: category.title,
           description: category.description,
-          logo: category.logo
-        },
-        parent_id: category.parent_id,
-        label_id: category.label_id
+          logo: category.logo,
+          parent_id: category.parent_id,
+          label_id: category.label_id
+        }
       }
     end
   end

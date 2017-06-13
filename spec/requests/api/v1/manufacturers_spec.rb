@@ -76,7 +76,7 @@ describe "Manufacturers API" do
       json = JSON.parse(response.body)
 
       categories = json['data']['attributes']['categories'][0]
-      expect(categories.keys).to contain_exactly("id", 'type', 'parent-id', 'label-id', 'attributes')
+      expect(categories.keys).to contain_exactly("id", 'type', 'attributes')
     end
 
     it "has iOS appropriate category attributes" do
@@ -85,7 +85,7 @@ describe "Manufacturers API" do
       json = JSON.parse(response.body)
 
       attrs = json['data']['attributes']['categories'][0]['attributes']
-      expect(attrs.keys).to contain_exactly("title", 'description', 'logo')
+      expect(attrs.keys).to contain_exactly("title", 'description', 'logo','parent-id', 'label-id')
     end
 
     it "has no duplicate categories" do

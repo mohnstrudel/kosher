@@ -5,7 +5,8 @@ class Product < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
-  validates :title, presence: true
+  validates :title, :manufacturer, :label, :category, presence: true
+  # Можно заменить на validates :title, :manufacturer_id, :label_id, :category_id
 
   before_save :default_label
 

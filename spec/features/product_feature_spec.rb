@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Kosher products controller", :type => :feature do
+RSpec.feature "Products controller", :type => :feature do
 
   before(:each) {
     login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
@@ -26,12 +26,14 @@ RSpec.feature "Kosher products controller", :type => :feature do
     end
 
     scenario "update" do
-      product = FactoryGirl.create(:product, title: "Kenshi")
+      product = FactoryGirl.create(:product)
+      product.update(title: "Kenshi")
       visit admin_products_path
       expect(page).to have_content("Kenshi")
 
       visit edit_admin_product_path(product)
       fill_in 'product_title', with: "Sonya Blade"
+      # save_and_open_page
       find("input[type='submit']").click
 
       visit admin_products_path
@@ -61,8 +63,11 @@ RSpec.feature "Kosher products controller", :type => :feature do
 
   scenario "visiting edit path" do
     FactoryGirl.create(:category, title: "First", id: 45)
-    category = FactoryGirl.create(:category, title: "Death Water", id: 166)
+    parent_category = FactoryGirl.create(:category)
+    category = FactoryGirl.create(:category, title: "Death Water", id: 166, parent_id: parent_category.id)
     product = FactoryGirl.create(:product, description: "Figaro left the house", category_id: category.id)
+
+
     
     visit edit_admin_product_path(product)
 

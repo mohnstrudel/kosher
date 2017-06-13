@@ -27,12 +27,13 @@ describe "Categories API" do
       label = FactoryGirl.create(:label, title: "Bash Azam")
 
       product = FactoryGirl.create(:product, label_id: label.id, category_id: @category.id)
+      # Так как мы создаем выше ещё один продукт, то лейблов будет два
 
       get "/v1/categories/#{@category.id}"
 
       json = JSON.parse(response.body)
       attrs = json['data']['attributes']
-      expect(attrs['labels'].length).to eq(1)
+      expect(attrs['labels'].length).to eq(2)
       expect(attrs['labels'][0]['title']).to eq("Bash Azam")
     end
 

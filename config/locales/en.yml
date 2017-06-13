@@ -83,7 +83,7 @@ en:
       tab_main: 
         title: "General"
       model:
-        title: "Title"
+        title: "Title (*)"
         body: "Text body"
         description: "Description"
         slug: "Slug"
@@ -105,9 +105,9 @@ en:
         opening_hours: "Opening hours"
         label: "Kosher level one label"
         parent_id: "Choose parent entity"
-        category_id: "Choose sub/category"
-        manufacturer_id: "Manufacturer/TM"
-        label_id: "Kosher label"
+        category_id: "Choose sub/category (*)"
+        manufacturer_id: "Manufacturer/TM (*)"
+        label_id: "Kosher label (*)"
         question: "Question"
         answer: "Answer"
         image: "Thumbnail"
@@ -144,6 +144,7 @@ en:
         address_description: "Please enter your full address, so it can be translated via Google Maps into longitude and latitude. Please care, that if your address is not detailed enough it may find not the address you are actually looking for."
         opening_hours_title_placeholder: "Fill in the day(s), i.e. 'Mo' or 'Mo-Fr' or 'Weekends' etc."
         opening_hours_value_placeholder: "Fill in the hours, i.e. '10:00 - 19:00' or 'closed' or '24/7' etc."
+        required: "* - fields are required"
     logout: "Log out"
     profile: "Edit profile"
 
