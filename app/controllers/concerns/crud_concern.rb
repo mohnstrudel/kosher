@@ -14,12 +14,13 @@ module CrudConcern
     cat_id = params[:category_id]
     manu_id = params[:manufacturer_id]
     keywords = params[:keywords]
+    show = params[:incomplete]
     scope = options[:scope] || 'all'
 
     page_size = Rails.application.config.page_size
 
     begin
-      @objects = object.constantize.includes(:category).includes(:manufacturer).search(keywords).manufacturer_scope(manu_id).category_scope(cat_id).send(scope).paginate(:page => params[:page], :per_page => page_size)
+      @objects = object.constantize.includes(:category).includes(:manufacturer).search(keywords).incomplete(show).manufacturer_scope(manu_id).category_scope(cat_id).send(scope).paginate(:page => params[:page], :per_page => page_size)
     rescue NoMethodError => e
       @objects = object.constantize.send(scope).paginate(:page => params[:page], :per_page => page_size)
     end

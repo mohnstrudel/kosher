@@ -116,6 +116,7 @@ ru:
         choose_recipe_category: Выбрать категорию
       buttons:
         search: Поиск
+        only_incomplete: Найти только незаполненные товары
       confirm: "Вы уверены?"
       created_ago: "назад"
       misc:

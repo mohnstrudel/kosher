@@ -14,6 +14,21 @@
             =text_field_tag :keywords, params[:keywords], class: "input form-control", placeholder: t('admin.form.actions.search')
             %span.input-group-btn
               =submit_tag t('admin.form.buttons.search'), class: "btn btn-primary"
+      .row
+        .col-sm-12
+          .form-group
+      .row
+        .col-sm-12
+          .form-group
+            .i-checks
+              %label
+                =check_box_tag :incomplete, true, params[:incomplete], class: ""
+                %i
+                =t('admin.form.buttons.only_incomplete')
+
+            
+
+
             
 
 .row
@@ -103,7 +118,7 @@
                       =image_tag_or_default(obj, 'logo', version: :mini_thumb)
                   -if obj.respond_to?(:title)
                     %td
-                      =obj.title
+                      =link_to obj.title, send("edit_admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj)
                   -if obj.respond_to?(:category_id)
                     %td
                       =obj.category.try(:title)

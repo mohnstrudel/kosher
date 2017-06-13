@@ -48,3 +48,13 @@
 //= require admin/settings/general_settings
 //= require admin/dashboard
 //= require admin/products
+
+// iCHECKBOX
+//= require admin/plugins/icheck/icheck.min
+
+$(document).ready(function () {
+    $('.i-checks').iCheck({
+        checkboxClass: 'icheckbox_square-green',
+        radioClass: 'iradio_square-green',
+    });
+});

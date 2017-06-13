@@ -11,7 +11,17 @@ class Product < ApplicationRecord
   before_save :default_label
 
   # scope :filtered_by_category, -> (id) { where(category_id: id) }
+
+  # scope :incomplete, -> { where(manufacturer: nil).or(where(label: nil)).or(where(category: nil)).or(where(title: nil)) }
   
+  def self.incomplete(show)
+    if show
+      where(manufacturer: nil).or(where(label: nil)).or(where(category: nil)).or(where(title: nil))
+    else
+      all
+    end
+  end
+
   def self.category_scope(id)
     if (id.nil? || id.empty?)
       all

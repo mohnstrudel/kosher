@@ -137,6 +137,7 @@ en:
         choose_recipe_category: Select Category
       buttons:
         search: Search
+        only_incomplete: Find only incomplete products
       confirm: "Are you sure?"
       created_ago: "ago"
       misc:

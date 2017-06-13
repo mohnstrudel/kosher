@@ -155,6 +155,34 @@ RSpec.feature "Products controller", :type => :feature do
   end
 
   feature "filtering the" do
+
+    scenario "incomplete products" do
+      product_1 = FactoryGirl.create(:product, title: "Mo bi Dabius")
+      product_2 = FactoryGirl.build(:product, title: "Bin Suparman", manufacturer_id: nil)
+      product_2.save(validate: false)
+
+      visit admin_products_path
+
+      find(:css, "#incomplete").set(true)
+      find("input[type='submit']").click
+      expect(page.all('table#listing_table tr').count).to eq(2)
+      expect(page).to have_content("Bin Suparman")
+      expect(page).not_to have_content("Mo bi Dabius")
+    end
+
+    scenario "incomplete products with false checkbox" do
+      product_1 = FactoryGirl.create(:product, title: "Hurra Di Hussa")
+      product_2 = FactoryGirl.build(:product, title: "Bin Suparman", manufacturer_id: nil)
+      product_2.save(validate: false)
+
+      visit admin_products_path
+
+      find(:css, "#incomplete").set(false)
+      find("input[type='submit']").click
+      expect(page.all('table#listing_table tr').count).to eq(3)
+      expect(page).to have_content("Bin Suparman")
+      expect(page).to have_content("Hurra Di Hussa")
+    end
     
     scenario "manufacturers created, one result for right manufacturer" do
       mf = FactoryGirl.create(:manufacturer, title: "Cringy Meat Ltd.", id: 777)
@@ -215,4 +243,5 @@ RSpec.feature "Products controller", :type => :feature do
       expect(page.all('table#listing_table tr').count).to eq(2)
     end
   end
+
 end
