@@ -6,9 +6,12 @@ class CategoryDetailedSerializer < ActiveModel::Serializer
     object.sub_categories.map do |subcategory| 
       {
         id: subcategory.id,
-        title: subcategory.title,
-        description: subcategory.description,
-        logo: subcategory.logo
+        attributes: {
+          title: subcategory.title,
+          description: subcategory.description,
+          logo: subcategory.logo.path
+        }
+        
       }
     end    
   end

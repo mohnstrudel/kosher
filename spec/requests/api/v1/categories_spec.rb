@@ -13,6 +13,7 @@ describe "Categories API" do
       @category = FactoryGirl.create(:category)
       @manufacturer = FactoryGirl.create(:manufacturer)
       @product = FactoryGirl.create(:product, category_id: @category.id, manufacturer_id: @manufacturer.id)
+      @subcategory = FactoryGirl.create(:category, parent_id: @category.id)
     end
     it "shows a list of labels belonging to this particular category" do
       get "/v1/categories/#{@category.id}"
@@ -50,6 +51,24 @@ describe "Categories API" do
       json = JSON.parse(response.body)
 
       attrs = json['data']['attributes']['manufacturers'][0]['attributes']
+      expect(attrs.keys).to contain_exactly("title", 'description', 'logo')
+    end
+
+    it "has iOS appropriate subcategories structure" do
+      get "/v1/categories/#{@category.id}"
+
+      json = JSON.parse(response.body)
+
+      subcategory = json['data']['attributes']['subcategories'][0]
+      expect(subcategory.keys).to contain_exactly('id', 'attributes')
+    end
+
+    it "has iOS appropriate subcategories attributes" do
+      get "/v1/categories/#{@category.id}"
+
+      json = JSON.parse(response.body)
+
+      attrs = json['data']['attributes']['subcategories'][0]['attributes']
       expect(attrs.keys).to contain_exactly("title", 'description', 'logo')
     end
 
