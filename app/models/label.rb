@@ -3,6 +3,7 @@ class Label < ApplicationRecord
   # This is called a self referential relation. This is where records in a 
   # table may point to other records in the same table.
   has_many :sub_labels, class_name: "Label", foreign_key: :parent_id, dependent: :destroy
+  has_many :categories, through: :products
 
   # before_destroy :destroy_children, if: :has_children?
 

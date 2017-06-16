@@ -13,7 +13,7 @@ RSpec.describe Post, type: :model do
       post = FactoryGirl.build(:post)
       post.save
 
-      expect(post.logo.url).to eq("/uploads/post/logo/1/rails.jpg")
+      expect(post.logo.url).to eq("/uploads/test/post/logo/1/rails.jpg")
     end
   end
 end

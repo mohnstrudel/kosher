@@ -36,7 +36,7 @@ describe 'Posts API' do
 
       attrs = json['data']['attributes']
       expect(attrs['logo']['url']).not_to be nil
-      expect(attrs['logo']['url']).to eq("/uploads/post/logo/1/rails.jpg")
+      expect(attrs['logo']['url']).to eq("/uploads/test/post/logo/1/rails.jpg")
     end
   end
 

@@ -34,7 +34,8 @@ describe "Categories API" do
       json = JSON.parse(response.body)
       attrs = json['data']['attributes']
       expect(attrs['labels'].length).to eq(2)
-      expect(attrs['labels'][0]['title']).to eq("Bash Azam")
+      
+      expect(attrs['labels']).to include(include("title" => "Bash Azam"))
     end
 
     it "has iOS appropriate manufacturers structure" do
