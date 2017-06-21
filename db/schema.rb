@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607122847) do
+ActiveRecord::Schema.define(version: 20170621144413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 20170607122847) do
     t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "barcode"
+    t.bigint "barcode"
     t.index "lower((description)::text) varchar_pattern_ops", name: "products_lower_description"
     t.index "lower((title)::text) varchar_pattern_ops", name: "products_lower_title"
     t.index ["category_id"], name: "index_products_on_category_id"
