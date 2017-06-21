@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Let's get the errors
+gem 'rollbar'
+
 # Nifty gem for placeholder images
 gem 'placeholdit'
 

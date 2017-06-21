@@ -23,6 +23,10 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
+set :rollbar_token, 'a99ef1d76aa44281ba7307e23b84b80a'
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }
+
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
@@ -36,6 +40,8 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 
 # Link the dirs, so uploaded assets won't be deleted after each deployment
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
+
+
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
