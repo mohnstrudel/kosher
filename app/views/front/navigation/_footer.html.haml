@@ -1,0 +1,44 @@
+%footer.g-footer
+  .g-wrapper
+    .g-footer__left
+      %nav.g-menu.g-menu_light
+        %a.g-menu__item{:href => "#"} О департаменте
+        %a.g-menu__item{:href => "#"} Новости
+        %a.g-menu__item{:href => "#"} Фотогалерея
+        %a.g-menu__item{:href => "#"} FAQ
+        %a.g-menu__item{:href => "#"} Контакты
+      .g-social
+        %form.g-social__left.g-form.g-subscribe{:action => "subscribe"}
+          %h4.g-subscribe__title Получайте новости от нас
+          .g-input.g-input_subscribe
+            %input.g-input__field.g-input__field_subscribe.g-subscribe__input.js-input{:name => "email", :placeholder => "Ваш e-mail", :type => "text"}/
+            %span.g-input__error
+              Поле некорректно заполнено
+          %button.g-subscribe__submit{:type => "submit"}
+        %a.g-social__right.g-social-link{:href => "#"}
+          %span.g-social-link__text Мы в Facebook
+          %i.g-social-link__icon.g-social-link__icon_fb
+        %a.g-social__right.g-social-link.g-social-link_construction{:href => "#"}
+          %span.g-social-link__text Создание сайта
+          %i.g-social-link__icon.g-social-link__icon_ya
+        %a.g-construction{:href => "#"}
+          %p.g-construction__title Создание сайта —
+          %i.g-icon-logo
+      .g-copy
+        ©   «Кошер-Россия»
+    .g-footer__center.g-contacts
+      %a.g-contacts__phone{:href => "tel:74956312500"} +7 (495) 631-25-00
+      %a.g-contacts__phone{:href => "tel:74959260784"} +7 (495) 926-07-84
+      %p.g-contacts__adress
+        127018, Москва, ул. Образцова, 19а
+      %a.g-contacts__email{:href => "mailto:office@kosher.ru"} office@kosher.Ru
+      .g-app-block
+        %a.g-app-block__link{:href => "#"}
+          =image_tag 'icons/app-store.svg', class: 'g-app-block__img'
+        %a.g-app-block__link{:href => "#"}
+          =image_tag 'icons/g-play.svg', class: 'g-app-block__img'
+    .g-footer__right
+      %a.g-construction{:href => "#"}
+        %p.g-construction__title Создание сайта —
+        %i.g-icon-logo
+        

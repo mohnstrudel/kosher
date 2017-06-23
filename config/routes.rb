@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   # end
 
   scope module: :front do
-    root "static_pages#root"
+    root "static_pages#home"
     # get 'categories', to: 'page_categories#index'
     # resources :pages, only: [:index, :show]
     resources :page_categories, only: [:index, :show] do

@@ -1,0 +1,43 @@
+#search-popup.g-popup
+  %form.g-popup__content.g-popup__content_search
+    %input.g-popup__search-input{:name => "search", :type => "text"}/
+    %button.g-popup__search-submit{:type => "submit"}
+#subscribe-popup.g-popup
+  .g-popup__content.g-popup__content_small
+    %a.g-popup__close.js-close-popup
+    .g-popup__wrapper
+      %p.g-popup__text
+        Спасибо
+        %br>/
+        Вы подписаны!
+      %button.g-btn.g-btn_blue.g-btn_ok.js-close-popup OK
+#call-success-popup.g-popup
+  .g-popup__content.g-popup__content_small
+    %a.g-popup__close.js-close-popup
+    .g-popup__wrapper
+      %p.g-popup__text
+        Спасибо
+        %br>/
+        Мы с вами свяжемся!
+      %button.g-btn.g-btn_blue.g-btn_ok.js-close-popup OK
+#call-popup.g-popup
+  .g-popup__content
+    %a.g-popup__close.js-close-popup
+    .g-popup__wrapper
+      %h2.g-popup__title Обратный звонок
+      %img.g-popup__img.g-popup__img_transform{:src => "img/icons/phone.svg"}/
+      %form.g-form{:action => "call"}
+        .g-input
+          %label.g-input__label.g-input__label_required Ваше имя
+          %input.g-input__field.js-input{:name => "name", :placeholder => "Введите имя", :type => "text"}/
+          %span.g-input__error
+            Поле некорректно заполнено
+        .g-input
+          %label.g-input__label.g-input__label_required Ваш телефон
+          %input.g-input__field.js-input.js-input-phone{:name => "phone", :placeholder => "Введите телефон", :type => "text"}/
+          %span.g-input__error
+            Поле некорректно заполнено
+        .g-input
+          %label.g-input__label Комментарий
+          %textarea.g-input__field.g-input__field_textarea.js-input{"data-input-type" => "message", :name => "message"}
+        %input.g-btn.g-btn_blue.g-form__submit{:type => "submit", :value => "Отправить"}/

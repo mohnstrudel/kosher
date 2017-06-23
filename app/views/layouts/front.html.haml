@@ -1,13 +1,25 @@
 !!!
 %html
-%head
-  %title Y.CMS - Front
-  = stylesheet_link_tag    'front', media: 'all', 'data-turbolinks-track' => true
-  = csrf_meta_tags
+  %head
+    %title Департамент Кашрута
+    = csrf_meta_tags
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Rubik:300,400,500,900&subset=cyrillic", :rel => "stylesheet"}/
+    %link{:href => "/favicon.ico", :media => "screen", :rel => "shortcut icon", :type => "image/x-icon"}/
+    %link{:href => "/favicon.ico", :rel => "icon", :type => "image/x-icon"}/
+    = stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track' => true
 
-%body
-  -flash.each do |name, msg|
-    =content_tag(:div, msg, class: "alert alert-#{name}")
-  =yield
 
-= javascript_include_tag 'front', 'data-turbolinks-track' => true
+
+  %body{class: "#{controller_name} #{action_name} g-body"}
+    -flash.each do |name, msg|
+      =content_tag(:div, msg, class: "alert alert-#{name}")
+    .g-content
+      =render partial: 'front/navigation/header'
+      =yield
+      =render partial: 'front/navigation/footer'
+      =render partial: 'front/navigation/footer_popups'
+
+  = javascript_include_tag 'front', 'data-turbolinks-track' => true

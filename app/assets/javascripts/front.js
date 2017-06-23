@@ -1,4 +1,8 @@
-//= require jquery
+//= require jquery3
 //= require jquery_ujs
+//= require_tree ../../../vendor/assets/javascripts/front/.
+
+
+//= require_self
+//= require_tree ../../../app/assets/javascripts/front/.
 //= require turbolinks
-//= require_tree .

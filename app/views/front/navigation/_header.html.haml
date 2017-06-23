@@ -1,0 +1,60 @@
+%header.g-header
+  #menu.g-mobile-menu
+    %a.g-mobile.g-mobile-menu__close.js-hide-menu{:href => "javascript:void(0)"}
+    .g-header__row.g-header__row_top
+      .g-wrapper
+        %nav.g-menu
+          %a.g-menu__item{:href => "#"} О департаменте
+          %a.g-menu__item{:href => "#"} Новости
+          %a.g-menu__item{:href => "#"} Фотогалерея
+          %a.g-menu__item{:href => "#"} FAQ
+          %a.g-menu__item{:href => "#"} Контакты
+        %form.g-header-search.g-mobile-hide
+          %input.g-header-search__input{:name => "search", :placeholder => "Введите фразу для поиска и нажмите клавишу «Enter»", :type => "text"}/
+        %nav.g-menu.g-menu_lower.g-mobile-hide
+          %a.g-menu__item{:href => "#"} rus
+          %a.g-menu__item{:href => "#"} eng
+    .g-header__row.g-header__row_center
+      .g-wrapper
+        .g-header__logo-block.g-mobile-hide
+          =link_to root_path, class: 'g-logo' do
+            =image_tag 'logo/logo.svg', class: 'g-logo__img'
+        .g-header__description.g-mobile-hide
+          %span.g-header__description-text
+            Департамент кашрута
+            %br/
+            при главном Раввинате
+            %br/
+            России
+        .g-header__icon-links
+          .g-text-icon
+            %i.g-text-icon__img.g-text-icon__img_members
+            %span.g-text-icon__text Потребителям
+          .g-text-icon
+            %i.g-text-icon__img.g-text-icon__img_trade
+            %span.g-text-icon__text Торговым сетям
+          .g-text-icon
+            %i.g-text-icon__img.g-text-icon__img_manufacturers
+            %span.g-text-icon__text Производителям
+        .g-header__phones.g-mobile-hide
+          %a.g-header__phone{:href => "tel:74956312500"} +7 (495) 631-25-00
+          %a.g-header__phone{:href => "tel:74959260784"} +7 (495) 926-07-84
+          %a.g-header__call.js-call-btn{:href => "javascript:void(0)"} Обратный звонок
+    .g-header__row.g-header__row_bottom
+      .g-wrapper
+        %nav.g-menu.g-menu_light
+          %a.g-menu__item{:href => "#"} Кошерные продукты
+          %a.g-menu__item{:href => "#"} Кошерные магазины
+          %a.g-menu__item{:href => "#"} Кошерные рестораны
+          %a.g-menu__item{:href => "#"} Кошерные рецепты
+          %a.g-menu__item{:href => "/signs.html"} Знаки кошерности
+          %a.g-menu__item{:href => "#"} Наши партнеры
+  .g-mobile-header.g-mobile
+    %nav.g-mobile-links.g-mobile-links_left
+      %a.g-mobile-links__item.g-mobile-links__item_menu.js-menu-btn{:href => "javascript:void(0)"}
+    %a.g-logo{:href => "/"}
+      %img.g-logo__img.g-logo__img_small{:src => "img/logo_small.svg"}/
+      %img.g-logo__img{:src => "img/logo.svg"}/
+    %nav.g-mobile-links.g-mobile-links_right
+      %a.g-mobile-links__item.g-mobile-links__item_call.js-call-btn{:href => "javascript:void(0)"}
+      %a.g-mobile-links__item.g-mobile-links__item_search.js-search-btn{:href => "javascript:void(0)"}

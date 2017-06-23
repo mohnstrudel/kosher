@@ -1,18 +1,7 @@
 class ShopSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :url, :logo, :address, :city, :phones, :opening_hours
 
-  def logo
-    logo = object.logo
-    return {
-      url: logo.path,
-      versions: logo.versions.each do |version|
-        {
-          title: version[0],
-          url: version[1].path
-        }
-      end
-    }
-  end
+  attributes :id, :title, :description, :url, :logo, :address, :city, :phones, :opening_hours
+  
 
   def city
     city = object.city
