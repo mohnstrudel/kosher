@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Front::StaticPagesController, type: :controller do
 
-  describe "GET #root" do
+  describe "GET #home" do
     it "returns http success" do
-      get :root
+      get :home
       expect(response).to have_http_status(:success)
     end
   end

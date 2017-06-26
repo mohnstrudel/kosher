@@ -25,7 +25,7 @@
     %a.g-popup__close.js-close-popup
     .g-popup__wrapper
       %h2.g-popup__title Обратный звонок
-      %img.g-popup__img.g-popup__img_transform{:src => "img/icons/phone.svg"}/
+      =image_tag 'icons/phone.svg', class: 'g-popup__img g-popup__img_transform'
       %form.g-form{:action => "call"}
         .g-input
           %label.g-input__label.g-input__label_required Ваше имя

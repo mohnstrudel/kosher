@@ -53,8 +53,8 @@
     %nav.g-mobile-links.g-mobile-links_left
       %a.g-mobile-links__item.g-mobile-links__item_menu.js-menu-btn{:href => "javascript:void(0)"}
     %a.g-logo{:href => "/"}
-      %img.g-logo__img.g-logo__img_small{:src => "img/logo_small.svg"}/
-      %img.g-logo__img{:src => "img/logo.svg"}/
+      =image_tag 'logo/logo_small.svg', class: 'g-logo__img g-logo__img_small'
+      =image_tag 'logo/logo.svg', class: 'g-logo__img'
     %nav.g-mobile-links.g-mobile-links_right
       %a.g-mobile-links__item.g-mobile-links__item_call.js-call-btn{:href => "javascript:void(0)"}
       %a.g-mobile-links__item.g-mobile-links__item_search.js-search-btn{:href => "javascript:void(0)"}
