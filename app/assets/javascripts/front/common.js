@@ -103,7 +103,7 @@
             setErrorInput($(this), false);
         });
         $(document).on("submit", ".g-form", function(e){
-            e.preventDefault();
+            // e.preventDefault();
             var $inputs = $(this).find(".js-input"),
                 error = false;
             $inputs.each(function(){
@@ -223,11 +223,11 @@
                     $wrapper.removeAttr("style")
                 return false;
             });
-            $("#filters").on("submit", function(e){
-                e.preventDefault();
-                
-                return false;
-            });
+            // $("#filters").on("submit", function(e){
+            //     e.preventDefault();
+            //     console.log("Pressed submit!"); 
+            //     return false;
+            // });
             
         } else if($("body").hasClass(pages_array.photos)){
             var GammaSettings = {

@@ -18,6 +18,7 @@
       =content_tag(:div, msg, class: "alert alert-#{name}")
     .g-content
       =render partial: 'front/navigation/header'
+      =render partial: 'front/navigation/breadcrumbs'
       =yield
       =render partial: 'front/navigation/footer'
       =render partial: 'front/navigation/footer_popups'

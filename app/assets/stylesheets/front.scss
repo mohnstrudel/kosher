@@ -7,7 +7,8 @@
 
 
 *= require_self
-*= require_tree ../../../app/assets/stylesheets/front/.
 *= require_tree ../../../vendor/assets/stylesheets/front/.
+*= require_tree ../../../app/assets/stylesheets/front/.
+
 
 */
