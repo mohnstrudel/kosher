@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :pictures, except: :show
       resources :recipes, except: :show
       resources :recipe_categories, except: :show
+      post 'bulk_delete', to: 'bulk_actions#bulk_delete'
     end
   # end
 

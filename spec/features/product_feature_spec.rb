@@ -96,7 +96,7 @@ RSpec.feature "Products controller", :type => :feature do
       expect(page.all('table#listing_table tr').count).to eq(5)
 
       select "Category", from: "category_id"
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
       
       expect(page).to have_content("Subcategory Product")
       expect(page).not_to have_content("Scorption")
@@ -117,7 +117,7 @@ RSpec.feature "Products controller", :type => :feature do
       expect(page.all('table#listing_table tr').count).to eq(6)
 
       select "Manufacturer", from: "manufacturer_id"
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
       
       expect(page).to have_content("TM Product")
       expect(page).not_to have_content("Random product")
@@ -129,7 +129,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       fill_in 'keywords', with: 'scorp'
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
 
       expect(page.all('table#listing_table tr').count).to eq(3)
 
@@ -139,7 +139,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       fill_in 'keywords', with: 'kenshi'
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
 
       expect(page.all('table#listing_table tr').count).to eq(1)
     end
@@ -148,7 +148,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       fill_in 'keywords', with: 'zero'
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
 
       expect(page.all('table#listing_table tr').count).to eq(2)
     end
@@ -164,7 +164,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       find(:css, "#incomplete").set(true)
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
       expect(page.all('table#listing_table tr').count).to eq(2)
       expect(page).to have_content("Bin Suparman")
       expect(page).not_to have_content("Mo bi Dabius")
@@ -178,7 +178,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       find(:css, "#incomplete").set(false)
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
       expect(page.all('table#listing_table tr').count).to eq(3)
       expect(page).to have_content("Bin Suparman")
       expect(page).to have_content("Hurra Di Hussa")
@@ -192,7 +192,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       select "Cringy Meat Ltd.", from: "manufacturer_id"
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
       
       expect(page).to have_content("Some serious meat")
       expect(page).not_to have_content("Not on menu")
@@ -209,7 +209,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       select mf_2.title, from: "manufacturer_id"
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
 
       expect(page).not_to have_content("Scorpion")
       expect(page.all('table#listing_table tr').count).to eq(1)
@@ -223,7 +223,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       select "Wrong Cat", from: "category_id"
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
       expect(page).not_to have_content("Scorpion")
       expect(page.all('table#listing_table tr').count).to eq(1)
     end
@@ -236,7 +236,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
 
       select "Right Cat", from: "category_id"
-      find("input[type='submit']").click
+      find("input[type='submit'][id='search']").click
 
       expect(page).to have_content("Scorpion")
       expect(page).not_to have_content("Sub Zero")
@@ -244,4 +244,22 @@ RSpec.feature "Products controller", :type => :feature do
     end
   end
 
+  feature "bulk delete >" do
+    scenario "reduce product amount by 2" do
+      product_1 = FactoryGirl.create(:product, title: "Grizzly Bears Ltd.")
+      product_2 = FactoryGirl.create(:product, title: "Shitty Dizzy")
+      product_3 = FactoryGirl.create(:product)
+      visit admin_products_path
+      
+      find(:css, "input[type=checkbox][value='#{product_2.id}']").set(true)
+      find(:css, "input[type=checkbox][value='#{product_3.id}']").set(true)
+
+      expect { 
+        find("#bulk-delete", visible: false).click
+        }.to change(Product, :count).by(-2)
+      # save_and_open_page
+      expect(page).not_to have_content("Shitty Dizzy")
+      expect(page).to have_content("Grizzly Bears Ltd.")
+    end
+  end
 end

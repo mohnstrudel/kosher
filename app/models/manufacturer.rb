@@ -2,7 +2,7 @@ class Manufacturer < ApplicationRecord
   has_many :products
   # This is called a self referential relation. This is where records in a 
   # table may point to other records in the same table.
-  has_many :trademarks, class_name: "Manufacturer", foreign_key: :parent_id
+  has_many :trademarks, class_name: "Manufacturer", foreign_key: :parent_id, dependent: :destroy
 
   # This is a scope to load the top level categories and eager-load their 
   # lawyers, subcategories, and the subcategories' lawyers too.

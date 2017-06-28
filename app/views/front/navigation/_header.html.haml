@@ -43,7 +43,7 @@
     .g-header__row.g-header__row_bottom
       .g-wrapper
         %nav.g-menu.g-menu_light
-          %a.g-menu__item{:href => "#"} Кошерные продукты
+          =link_to 'Кошерные продукты', products_path, class: 'g-menu__item'
           %a.g-menu__item{:href => "#"} Кошерные магазины
           %a.g-menu__item{:href => "#"} Кошерные рестораны
           %a.g-menu__item{:href => "#"} Кошерные рецепты

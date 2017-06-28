@@ -13,7 +13,6 @@
               %option{:value => "any"} Любая категория
               -Category.top_level.each_with_index do |category, index|
                 %option{:value => index+1}=category.title
-        =text_field_tag :hello
         .g-input.g-input_select
           %label.g-input__label Подкатегория
           .g-input__field.g-input__field_select-wrapper

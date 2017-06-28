@@ -48,4 +48,23 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
       expect(page).not_to have_content("Holly Molly")
     end
   end
+
+  feature "bulk delete >" do
+    scenario "reduce recipe amount by 2" do
+      recipe_1 = FactoryGirl.create(:recipe, title: "Grizzly Bears Ltd.")
+      recipe_2 = FactoryGirl.create(:recipe, title: "Shitty Dizzy")
+      recipe_3 = FactoryGirl.create(:recipe)
+      visit admin_recipes_path
+      
+      find(:css, "input[type=checkbox][value='#{recipe_2.id}']").set(true)
+      find(:css, "input[type=checkbox][value='#{recipe_3.id}']").set(true)
+
+      expect { 
+        find("#bulk-delete", visible: false).click
+        }.to change(Recipe, :count).by(-2)
+      # save_and_open_page
+      expect(page).not_to have_content("Shitty Dizzy")
+      expect(page).to have_content("Grizzly Bears Ltd.")
+    end
+  end
 end

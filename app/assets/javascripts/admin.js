@@ -44,10 +44,9 @@
 
 // REMOVED turbolinks
 //= require bootsy
-// REMOVE require tree .
-//= require admin/settings/general_settings
-//= require admin/dashboard
-//= require admin/products
+
+
+//= require_tree ../../../app/assets/javascripts/admin/.
 
 // iCHECKBOX
 //= require admin/plugins/icheck/icheck.min
@@ -55,6 +54,6 @@
 $(document).ready(function () {
     $('.i-checks').iCheck({
         checkboxClass: 'icheckbox_square-green',
-        radioClass: 'iradio_square-green',
+        radioClass: 'iradio_square-green'
     });
 });

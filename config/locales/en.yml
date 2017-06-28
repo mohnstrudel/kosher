@@ -79,6 +79,11 @@ en:
     page_gap: "&hellip;"
   hello: "Hello world"
   admin:
+    flash:
+      success:
+        delete: Successfully deleted selected items.
+      fail:
+        delete: Deleting failed.
     form:
       tab_main: 
         title: "General"
@@ -135,10 +140,13 @@ en:
         search: Search for something (currently supports only title and description)
         choose_city: Select City
         choose_recipe_category: Select Category
+        bulk_destroy: Delete selected
       buttons:
         search: Search
         only_incomplete: Find only incomplete products
-      confirm: "Are you sure?"
+      confirm: 
+        main: Are you sure?
+        bulk_delete: This will delete all selected items. Proceed? Please note, that if you delete a parent item (for example a category), all child elements will be deleted as well (for example, all subcategories).
       created_ago: "ago"
       misc:
         main: Administration

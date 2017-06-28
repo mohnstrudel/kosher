@@ -4,7 +4,7 @@ class Category < ApplicationRecord
   # has_one :label
   # This is called a self referential relation. This is where records in a 
   # table may point to other records in the same table.
-  has_many :sub_categories, class_name: "Category", foreign_key: :parent_id
+  has_many :sub_categories, class_name: "Category", foreign_key: :parent_id, dependent: :destroy
 
   # This is a scope to load the top level categories and eager-load their 
   # lawyers, subcategories, and the subcategories' lawyers too.
