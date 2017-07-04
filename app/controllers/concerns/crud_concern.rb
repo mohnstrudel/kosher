@@ -87,8 +87,8 @@ module CrudConcern
         array_of_record_ids = error_record_lookup(matched[0], object)
         flash[:danger] = "Can't delete record because #{object.class.name.downcase} with id #{object.id} is referenced in table #{matched[0]}, records with id(s) - #{array_of_record_ids}"
       rescue
-        redirect_to send(path)
-        flash[:danger] = "#{e.message}"
+        # redirect_to send(path)
+        flash[:danger] = "Эта родительская сущность. Так как у нее присутствуют дочерние записи, её нельзя удалить на данный момент. Сначала нужно удалить дочерние записи. Полный текст ошибки: #{e.message}"
       end
     end
   end

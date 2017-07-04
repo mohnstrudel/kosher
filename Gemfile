@@ -44,6 +44,7 @@ gem 'placeholdit'
 # Гем для того, что бы склонять русские название
 gem "petrovich"
 gem 'savon'
+gem 'translit'
 
 # For nice json api
 gem 'active_model_serializers', require: true

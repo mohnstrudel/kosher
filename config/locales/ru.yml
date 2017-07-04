@@ -66,6 +66,8 @@ ru:
     form:
       tab_main: 
         title: "Основное"
+      hints:
+        published_at: Если не будет указана дата, то данное значение станет равно дате создания записи.
       model:
         title: "Заголовок (*)"
         body: "Текст"
@@ -97,6 +99,7 @@ ru:
         image: "Превью"
         barcode: "Штрихкод"
         recipe_category: Категория рецепта
+        published_at: Дата публикации
       tab_translation: "Переводы"
       actions:
         main: "Действия"

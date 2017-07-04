@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     	# end
     end
 
-    resources :posts, only: [:index, :show]
+    resources :posts, only: [:index, :show], path: '/news'
     resources :post_categories, only: [:index, :show] do
       resources :posts, only: [:index, :show]
       # Page.where.not(slug: nil).all.each do |page|

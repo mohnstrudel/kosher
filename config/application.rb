@@ -27,7 +27,10 @@ module Ycms
   config.page_size = 20
 
 	# Include files from lib path
-    config.autoload_paths += %W(#{config.root}/lib)
+  config.autoload_paths += %W(#{config.root}/lib)
+
+  config.time_zone = 'Moscow' 
+  config.active_record.default_timezone = :local
 
   end
 end

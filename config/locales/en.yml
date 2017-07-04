@@ -87,6 +87,8 @@ en:
     form:
       tab_main: 
         title: "General"
+      hints:
+        published_at: If no value provided will be the same as date of creating the record.
       model:
         title: "Title (*)"
         body: "Text body"
@@ -118,6 +120,7 @@ en:
         image: "Thumbnail"
         barcode: "Barcode"
         recipe_category: Recipe category
+        published_at: Published on
       tab_translation: "Other languages"
       actions:
         main: "Actions"

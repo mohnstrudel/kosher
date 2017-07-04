@@ -65,14 +65,15 @@
                 %tr
                   %th
                   -if object.has_attribute? :url
-                    %th URL
+                    %th
+                      URL
                   -if object.has_attribute? :image
                     %th
                       =t('admin.form.model.image')
                   -if object.has_attribute? :logo
                     %th
                       =t('admin.form.model.logo')  
-                  -if object.has_attribute? :title
+                  -if object.has_attribute? :title or object.translated? :title
                     %th
                       =t('admin.form.model.title')
                   -if object.has_attribute? :category_id
@@ -90,7 +91,7 @@
                   -if object.has_attribute? :first_name
                     %th
                       =t('admin.form.model.first_name')
-                  -if object.has_attribute? :body
+                  -if object.has_attribute? :body or object.translated? :body
                     %th
                       =t('admin.form.model.body')
                   -if object.has_attribute? :slug
@@ -138,7 +139,7 @@
                     -if obj.respond_to?(:body)
                       %td
                         %small
-                          =obj.body
+                          =truncate(obj.body, length: 100)
                     -if obj.respond_to?(:slug)
                       %td
                         =url_for_page(obj)

@@ -42,6 +42,9 @@
 // TOASTER
 //= require_tree ../../../vendor/assets/javascripts/admin/plugins/toastr/.
 
+// Datapicker
+//= require_tree ../../../vendor/assets/javascripts/admin/plugins/datapicker/.
+
 // REMOVED turbolinks
 //= require bootsy
 

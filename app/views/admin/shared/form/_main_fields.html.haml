@@ -74,6 +74,9 @@
           =f.select :post_category_id, PostCategory.all.map { |post_category| [ post_category.title, post_category.id ] }, {}, { class: "form-control m-b" }
       .hr-line-dashed
 
+    / Posts part begin (only unique to posts fields)
+    =render partial: "admin/shared/form/posts/post_fields", locals: { f: f, object: object }
+
     / User part begin (only unique to user fields)
     =render partial: "admin/shared/form/user_fields", locals: { f: f, object: object }
     / User part end
