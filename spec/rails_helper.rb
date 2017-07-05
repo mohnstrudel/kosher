@@ -36,6 +36,7 @@ RSpec.configure do |config|
     # Get rid of the linked images
     if Rails.env.test? || Rails.env.cucumber?
       FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/test/**/[^.]*"])
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/tmp/**/[^.]*"])
       # FileUtils.rm_rf(Dir["#{temp_path}/[^.]*"])
       # if you want to delete everything under the CarrierWave root that you set in an initializer,
       # you can do this:

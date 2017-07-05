@@ -3,6 +3,10 @@ require "rails_helper"
 RSpec.feature "Products controller", :type => :feature do
 
   before(:each) {
+    @page_size = Rails.application.config.page_size
+  }
+
+  before(:each) {
     login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
   }
 
@@ -114,7 +118,11 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
       # 6 потому что заранее создаем 3, плюс в данном сценарии 2 и дефолтно заголовки 
       # занимают одну строку
-      expect(page.all('table#listing_table tr').count).to eq(6)
+      if @page_size > (4)
+        expect(page.all('table#listing_table tr').count).to eq(6)
+      else
+        expect(page.all('table#listing_table tr').count).to eq(@page_size+1)
+      end
 
       select "Manufacturer", from: "manufacturer_id"
       find("input[type='submit'][id='search']").click

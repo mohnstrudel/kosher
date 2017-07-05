@@ -1,4 +1,8 @@
 class Post < ApplicationRecord
+
+  attribute :title
+  attribute :body
+  
   mount_uploader :logo, LogoUploader
 
   after_save :set_published_date
@@ -29,7 +33,7 @@ class Post < ApplicationRecord
     if self.slug.blank?
       begin
         slugged = Translit.convert(self.title, :english).downcase
-        slugged = slugged.split(" ").join("-")
+        slugged = slugged.split(" ").join("-").delete(".")
         self.slug = slugged
       rescue NoMethodError => e
         self.slug = nil
