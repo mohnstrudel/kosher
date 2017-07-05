@@ -40,37 +40,10 @@
             =image_tag post.logo, class: 'g-blog__img'
             %h3.g-blog__title=post.title
             %p.g-blog__more=truncate(post.body, length: 200)
-            %p.g-blog__date 31 декабря 2016
+            %p.g-blog__date=published_date(post)
     .g-blog-read
       %a.g-btn.g-btn_gray.g-mobile{:href => "#"} загрузить еще
       =link_to "все новости", posts_path, class: "g-btn g-btn_gray"
 
-%section.g-section.g-section_partners
-  .g-wrapper.g-slider.g-slider_partners
-    #partners-slider.g-partners
-      .g-partners__item
-        =image_tag 'static/partners/eop.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/aqua_nova.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/morosha.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/mars.jpg', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/everest.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/pervak.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/eop.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/aqua_nova.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/morosha.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/mars.jpg', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/everest.png', class: 'g-partners__img'
-      .g-partners__item
-        =image_tag 'static/partners/pervak.png', class: 'g-partners__img'
 
 

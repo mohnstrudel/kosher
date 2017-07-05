@@ -27,8 +27,13 @@ class Post < ApplicationRecord
 
   def set_slug
     if self.slug.blank?
-      # set slug
-      self.slug = Translit.convert(self.title)
+      begin
+        slugged = Translit.convert(self.title, :english).downcase
+        slugged = slugged.split(" ").join("-")
+        self.slug = slugged
+      rescue NoMethodError => e
+        self.slug = nil
+      end
     end
   end
 end

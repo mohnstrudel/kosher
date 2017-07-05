@@ -1,0 +1,19 @@
+-if @posts.present?
+  %section.g-section
+    .g-wrapper
+      %h2.g-title.g-title_big
+        Новости
+      %ul.g-news#posts
+        =render @posts
+        
+      
+      =render partial: "pager", locals: { keywords: @keywords, page: @page }
+
+-else
+  %section.g-section.g-empty
+    .g-wrapper
+      %h2.g-title.g-title_big
+        Новости
+      =image_tag 'icons/news.svg', class: "g-empty__icon g-empty__icon_news"
+      %h2.g-empty__text.g-empty__text_news Новости отсутствуют
+

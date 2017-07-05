@@ -45,6 +45,7 @@ gem 'placeholdit'
 gem "petrovich"
 gem 'savon'
 gem 'translit'
+gem 'russian'
 
 # For nice json api
 gem 'active_model_serializers', require: true

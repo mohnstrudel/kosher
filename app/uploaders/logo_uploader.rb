@@ -47,6 +47,10 @@ class LogoUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [64, 64]
   end
 
+  version :news_thumb do
+    process resize_to_fill: [345, 252]
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   # def extension_white_list

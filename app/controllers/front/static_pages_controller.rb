@@ -1,6 +1,6 @@
 class Front::StaticPagesController < FrontController
   def home
   	@page_categories = PageCategory.all
-    @posts = Post.last(9)
+    @posts = Post.order(published_at: :desc).last(9)
   end
 end

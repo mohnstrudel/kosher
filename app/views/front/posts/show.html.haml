@@ -1,0 +1,11 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      =@post.title
+    .g-tm
+      .g-tm__left
+        .g-tm__logo.js-sticky
+          =image_tag @post.logo, class: "g-tm__logo-img"
+      .g-tm__right
+        .g-tm__desc
+          =@post.body.html_safe

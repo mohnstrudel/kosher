@@ -20,7 +20,8 @@
       =render partial: 'front/navigation/header'
       =render partial: 'front/navigation/breadcrumbs'
       =yield
+      =render partial: 'front/shared/partners'
       =render partial: 'front/navigation/footer'
       =render partial: 'front/navigation/footer_popups'
 
-  = javascript_include_tag 'front', 'data-turbolinks-track' => true
+  = javascript_include_tag 'front'

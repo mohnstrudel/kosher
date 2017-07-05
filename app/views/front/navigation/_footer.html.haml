@@ -3,7 +3,7 @@
     .g-footer__left
       %nav.g-menu.g-menu_light
         %a.g-menu__item{:href => "#"} О департаменте
-        %a.g-menu__item{:href => "#"} Новости
+        =link_to "Новости", posts_path, class: "g-menu__item"
         %a.g-menu__item{:href => "#"} Фотогалерея
         %a.g-menu__item{:href => "#"} FAQ
         %a.g-menu__item{:href => "#"} Контакты
