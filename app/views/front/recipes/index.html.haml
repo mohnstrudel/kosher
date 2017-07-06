@@ -1,0 +1,29 @@
+-if @recipes.present?
+  %section.g-section
+    .g-wrapper
+      %h2.g-title.g-title_big
+        Рецепты
+      .g-recipes
+        -@recipes.each do |recipe|
+          %a.g-recipes__item{:href => "#{recipe_category_recipe_path(params[:recipe_category_id],recipe)}"}
+            .g-recipes__img-wrapper
+              =image_tag recipe.logo, class: 'g-recipes__img'
+            .g-recipes__text
+              %h3.g-recipes__name=recipe.title
+              %p.g-recipes__meta=recipe.description
+          %a.g-btn.g-btn_gray{:href => "#{recipe_category_recipe_path(params[:recipe_category_id], recipe)}"} Подробнее
+       
+      .g-pagination.g-pagination_recipes
+        %a.g-pagination__item.g-pagination__item_left{:href => "#"}
+        %a.g-pagination__item.g-pagination__item_active{:href => "#"} 1
+        %a.g-pagination__item{:href => "#"} 2
+        %a.g-pagination__item{:href => "#"} 3
+        %a.g-pagination__item.g-pagination__item_right{:href => "#"}
+-else
+  %section.g-section.g-empty
+    .g-wrapper
+      %h2.g-title.g-title_big
+        Рецепты
+      =image_tag 'icons/recipe.svg', class: "g-empty__icon"
+      %h2.g-empty__text Рецепты отсутствуют
+

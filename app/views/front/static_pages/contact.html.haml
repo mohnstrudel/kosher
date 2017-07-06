@@ -1,0 +1,57 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      Контакты
+    .g-contact
+      .g-contact__sidebar-left.g-dep-info
+        %h3.g-dep-info__title Департамент кашрута
+        .g-dep-info__text-block
+          %h4.g-dep-info__text-title Адрес
+          %p.g-dep-info__text-par=@settings.address
+          %a.g-link{:href => "javascript:void(0)"} Департамент кашрута на карте
+        .g-dep-info__text-block.g-dep-info__text-block_phones
+          -@settings.phones.each do |phone|
+            %p.g-dep-info__text-par=phone.value
+        .g-dep-info__text-block.g-dep-info__text-block_schedule
+          %h4.g-dep-info__text-title График работы
+          -@settings.opening_hours.each do |op_hour|
+            %p.g-dep-info__text-par="#{op_hour.title} #{op_hour.value}"
+        .g-dep-info__text-block
+          %h4.g-dep-info__text-title E-mail
+          %a.g-link{:href => "#{@settings.email}"}=@settings.email
+      %form.g-contact__sidebar-right.g-form{:action => "contact"}
+        .g-input
+          %label.g-input__label.g-input__label_required Ваше имя
+          %input.g-input__field.js-input{:name => "name", :type => "text"}/
+          %span.g-input__error
+            Поле некорректно заполнено
+        .g-input
+          %label.g-input__label.g-input__label_required Название организации
+          %input.g-input__field.js-input{:name => "company", :type => "text"}/
+          %span.g-input__error
+            Поле некорректно заполнено
+        .g-input
+          %label.g-input__label.g-input__label_required Контактный телефон
+          %input.g-input__field.js-input.js-input-phone{:name => "phone", :type => "text"}/
+          %span.g-input__error
+            Поле некорректно заполнено
+        .g-input.g-input_select
+          %label.g-input__label Тема письма
+          .g-input__field.g-input__field_select-wrapper
+            %select.g-input__field.g-input__field_select.js-input{:name => "question"}
+              %option Общие вопросы
+              %option Вопрос первый
+              %option Вопрос второй и даже в 2 строчки
+              %option Вопрос третий
+              %option Вопрос четвёртый
+              %option Вопрос пятый
+        .g-input
+          %label.g-input__label.g-input__label_required Ваш E-mail
+          %input.g-input__field.js-input{:name => "email", :type => "text"}/
+          %span.g-input__error
+            Поле некорректно заполнено
+        .g-input
+          %label.g-input__label Сообщение
+          %textarea.g-input__field.g-input__field_textarea.js-input{"data-input-type" => "message", :name => "message"}
+        %input.g-btn.g-btn_blue.g-form__submit{:type => "submit", :value => "Отправить"}/
+      #g-map.g-map

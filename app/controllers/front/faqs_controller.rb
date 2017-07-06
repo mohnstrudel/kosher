@@ -1,4 +1,4 @@
-class Front::FaqsController < ApplicationController
+class Front::FaqsController < FrontController
 
   before_action :find_faq, only: [:show]
 
@@ -7,6 +7,7 @@ class Front::FaqsController < ApplicationController
   end
 
   def index
+    @faqs = Faq.all
 
   end
 

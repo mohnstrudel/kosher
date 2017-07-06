@@ -1,0 +1,17 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      -if params[:shops]
+        Кошерные магазины
+      -elsif params[:restaurants]
+        Кошерные рестораны
+    %ul.g-cities
+      -@cities.each do |city|
+        %li.g-cities__item
+          -if params[:shops]
+            =link_to city_shops_path(city), class: "g-cities__link", style: "background-image: url(#{asset_path(city.front_image)})" do
+              %span.g-cities__title=city.name
+          -elsif params[:restaurants]
+            =link_to city_restaurants_path(city), class: "g-cities__link", style: "background-image: url(#{asset_path(city.front_image)})" do
+              %span.g-cities__title=city.name
+      

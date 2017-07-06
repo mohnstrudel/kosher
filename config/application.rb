@@ -23,8 +23,10 @@ module Ycms
 	  g.fixture_replacement :factory_girl, :dir => "spec/factories"
 	end
 
+  config.i18n.default_locale = :ru
+
 	config.languages = { en: "English", ru: "Русский" }
-  config.page_size = 4
+  config.page_size = 20
 
 	# Include files from lib path
   config.autoload_paths += %W(#{config.root}/lib)

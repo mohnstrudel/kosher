@@ -1,0 +1,10 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      FAQ
+    %ul.g-faq
+      -@faqs.each do |faq|
+        %li.g-faq__item
+          %a.g-faq__toggle{:href => "javascript:void(0)"}
+          %h3.g-faq__title=faq.question
+          %p.g-faq__answer=faq.answer

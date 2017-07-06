@@ -1,4 +1,5 @@
 %section.g-section.g-section_breadcrumbs
   .g-wrapper.g-breadcrumbs
     =link_to 'Главная', root_path, class: 'g-breadcrumbs__item'
-    %span.g-breadcrumbs__item.g-breadcrumbs__item_current=get_breadcrumbs
+    -get_breadcrumbs.each do |crumb|
+      %span.g-breadcrumbs__item{class: "#{get_breadcrumbs.last == crumb ? 'g-breadcrumbs__item_current' : ''}"}=crumb

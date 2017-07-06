@@ -1,0 +1,16 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      =@recipe.title
+    .g-recipe
+      .g-recipe__img-wrapper
+        =image_tag @recipe.logo, class: 'g-recipe__img'
+      .g-recipe__text-block
+        %h3.g-recipe__title Ингредиенты:
+        %ul.g-text-block__ul.g-text-block__ul_recipe
+          %li.g-text-block__li Мясо
+          %li.g-text-block__li Соль
+          %li.g-text-block__li Перец по вкусу
+        %h3.g-recipe__title Способ приготовления:
+        %p.g-recipe__text
+          =@recipe.description

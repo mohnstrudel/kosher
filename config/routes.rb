@@ -49,6 +49,14 @@ Rails.application.routes.draw do
 
   scope module: :front do
     root "static_pages#home"
+
+    get '/about', to: 'static_pages#about'
+    get '/gallery', to: 'pictures#index'
+    get '/faq', to: 'faqs#index'
+    get '/contact', to: 'static_pages#contact'
+    get '/manufacturers', to: 'static_pages#for_manufacturers'
+    get '/consumers', to: 'static_pages#for_consumers'
+    get '/trade-networks', to: 'static_pages#for_trade_networks'
     # get 'categories', to: 'page_categories#index'
     # resources :pages, only: [:index, :show]
     resources :page_categories, only: [:index, :show] do
@@ -73,8 +81,6 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :show]
     end
 
-    resources :shops, only: [:index, :show]
-    resources :restaurants, only: [:index, :show]
     resources :cities, only: [:index, :show] do
       resources :shops, only: [:index, :show]
       resources :restaurants, only: [:index, :show]
@@ -85,9 +91,7 @@ Rails.application.routes.draw do
       resources :recipes, only: [:index, :show]
     end
 
-    resources :faqs, only: [:index]
 
-    get '/about', to: 'general_settings#list'
 
     # constraints subdomain: :api do
       scope module: :api do

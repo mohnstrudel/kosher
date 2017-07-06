@@ -66,9 +66,9 @@
     $(document).ready(function(){
         var pages_array = {
             main: "home",
-            faq: "faq",
+            faq: "faqs",
             contact: "contact",
-            photos: "photos",
+            photos: "pictures",
             products: "products"
         };
         

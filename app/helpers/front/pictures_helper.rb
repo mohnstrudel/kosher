@@ -1,0 +1,2 @@
+module Front::PicturesHelper
+end

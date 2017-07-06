@@ -10,6 +10,7 @@
     %link{:href => "/favicon.ico", :media => "screen", :rel => "shortcut icon", :type => "image/x-icon"}/
     %link{:href => "/favicon.ico", :rel => "icon", :type => "image/x-icon"}/
     = stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag "https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css", :rel => "stylesheet"
 
 
 
@@ -18,10 +19,12 @@
       =content_tag(:div, msg, class: "alert alert-#{name}")
     .g-content
       =render partial: 'front/navigation/header'
-      =render partial: 'front/navigation/breadcrumbs'
+      -unless controller_name == "static_pages" && action_name == "home"
+        =render partial: 'front/navigation/breadcrumbs'
       =yield
       =render partial: 'front/shared/partners'
       =render partial: 'front/navigation/footer'
       =render partial: 'front/navigation/footer_popups'
 
+  = javascript_include_tag "https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js"
   = javascript_include_tag 'front'

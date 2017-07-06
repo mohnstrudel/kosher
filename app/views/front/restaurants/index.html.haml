@@ -1,0 +1,31 @@
+-if @restaurants.present?
+  %section.g-section
+    .g-wrapper
+      %h2.g-title.g-title_big
+        Кошерные рестораны
+      %ul.g-restaurants
+        -@restaurants.each do |restaurant|
+          %li.g-restaurants__item
+            .g-restaurants__left
+              =image_tag restaurant.logo, class: "g-restaurants__logo"
+            .g-restaurants__right
+              %h2.g-restaurants__title=restaurant.title
+              %p.g-restaurants__description=restaurant.description
+              %p.g-restaurants__adress
+                =restaurant.address
+                %br/
+                -restaurant.phones.each do |phone|
+                  =phone.value
+                  %br/
+                %span.g-restaurants__adress_time
+                  =restaurant.opening_hours.map { |oh| "#{oh.title}: #{oh.value}"}.join("; ")
+                =link_to restaurant.url, restaurant.url, target: "_blank", class: "g-restaurants__link"
+      =render partial: 'front/navigation/pager', locals: {path: "city_restaurants_path", page: @page}
+
+-else
+  %section.g-section.g-empty
+    .g-wrapper
+      %h2.g-title.g-title_big
+        Кошерные рестораны
+      =image_tag 'icons/shop.svg', class: "g-empty__icon"
+      %h2.g-empty__text Рестораны отсутствуют

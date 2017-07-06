@@ -1,4 +1,4 @@
-class Front::CitiesController < ApplicationController
+class Front::CitiesController < FrontController
   def index
     @cities = City.all
     respond_to do |format|

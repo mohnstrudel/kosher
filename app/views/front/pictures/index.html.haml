@@ -1,0 +1,19 @@
+%section.g-section.g-empty
+  .g-wrapper
+    %h2.g-title.g-title_big
+      Фотогалерея
+    #gamma-container.g-photos.gamma-container.gamma-loading
+      %ul.gamma-gallery
+        -@pictures.each do |picture|
+          %li
+            %div{"data-alt" => picture.title, "data-description" => "<h3>#{picture.description}</h3>", "data-max-height" => "1350", "data-max-width" => "1800"}
+              %div{"data-min-width" => "1300", "data-src" => "#{asset_path(picture.image)}"}
+              %div{"data-min-width" => "1000", "data-src" => "#{asset_path(picture.image)}"}
+              %div{"data-min-width" => "700", "data-src" => "#{asset_path(picture.image.medium_thumb)}"}
+              %div{"data-min-width" => "300", "data-src" => "#{asset_path(picture.image.medium_thumb)}"}
+              %div{"data-min-width" => "200", "data-src" => "#{asset_path(picture.image.small_thumb)}"}
+              %div{"data-min-width" => "140", "data-src" => "#{asset_path(picture.image.small_thumb)}"}
+              %div{"data-src" => "#{asset_path(picture.image)}"}
+              %noscript
+                %img{:alt => "img03", :src => "#{asset_path(picture.image)}"}/
+    =render partial: 'front/navigation/pager', locals: {path: "gallery_path", page: @page, class: "g-pagination_gallery"}

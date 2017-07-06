@@ -1,4 +1,4 @@
-class Front::RecipeCategoriesController < ApplicationController
+class Front::RecipeCategoriesController < FrontController
   def index
     @recipe_categories = RecipeCategory.all
     respond_to do |format|
