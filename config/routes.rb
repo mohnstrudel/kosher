@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :pictures, except: :show
       resources :recipes, except: :show
       resources :recipe_categories, except: :show
+      resources :requests, except: :show
       post 'bulk_delete', to: 'bulk_actions#bulk_delete'
     end
   # end
@@ -57,8 +58,11 @@ Rails.application.routes.draw do
     get '/manufacturers', to: 'static_pages#for_manufacturers'
     get '/consumers', to: 'static_pages#for_consumers'
     get '/trade-networks', to: 'static_pages#for_trade_networks'
+    get '/partners', to: 'manufacturers#index'
     # get 'categories', to: 'page_categories#index'
     # resources :pages, only: [:index, :show]
+
+    resources :requests, only: [:create]
     resources :page_categories, only: [:index, :show] do
       resources :pages, only: [:index, :show]
     	# Page.where.not(slug: nil).all.each do |page|

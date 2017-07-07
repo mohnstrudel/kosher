@@ -100,6 +100,11 @@ ru:
         barcode: "Штрихкод"
         recipe_category: Категория рецепта
         published_at: Дата публикации
+        type: Тип обращения
+        subject: Заголовок
+        phone: Телефон
+        message: Сообщение
+        company_name: Наименование компании
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -155,6 +160,7 @@ ru:
         main: "Пользователи"
         all_users: "Все пользователи"
         new_user: "Создать пользователя"
+        requests: 'Заявки'
       services:
         main: "Сервисы"
         faq: "Вопросы-Ответы"

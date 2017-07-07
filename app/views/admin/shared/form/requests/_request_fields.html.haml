@@ -1,0 +1,39 @@
+-if object.respond_to?(:type)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.type')
+    .col-sm-10
+      =f.text_field :type, class: 'form-control'
+  .hr-line-dashed
+
+-if object.respond_to?(:subject)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.subject')
+    .col-sm-10
+      =f.text_field :subject, class: 'form-control'
+  .hr-line-dashed
+
+-if object.respond_to?(:company_name)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.company_name')
+    .col-sm-10
+      =f.text_field :company_name, class: 'form-control'
+  .hr-line-dashed
+
+-if object.respond_to?(:phone)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.phone')
+    .col-sm-10
+      =f.text_field :phone, class: 'form-control'
+  .hr-line-dashed
+
+-if object.respond_to?(:message)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.message')
+    .col-sm-10
+      =f.text_area :message, class: 'form-control', rows: 8
+  .hr-line-dashed

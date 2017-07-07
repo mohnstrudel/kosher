@@ -1,0 +1,10 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      Знаки кошерности
+    %ul.g-signs
+      -@labels.each do |label|
+        %li.g-signs__item
+          .g-signs__img-wrapper
+            =image_tag label.logo, class: 'g-signs__img'
+            %p.g-signs__text=label.description

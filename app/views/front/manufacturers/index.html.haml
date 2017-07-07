@@ -1,0 +1,16 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      Партнёры
+    %ul.g-partners-wrapper
+      -@manufacturers.each do |manuf|
+        %li.g-partners-wrapper__item
+          .g-partners-wrapper__left
+            =image_tag manuf.logo, class: 'g-partners-wrapper__logo'
+          .g-partners-wrapper__right
+            %h2.g-partners-wrapper__title=manuf.title
+            %p.g-partners-wrapper__description=manuf.description.html_safe
+            %p.g-partners-wrapper__adress
+              =link_to manuf.url, manuf.url, class: 'g-partners-wrapper__link', target: "_blank"
+      
+    =render partial: 'front/navigation/pager', locals: {path: "partners_path", page: @page, class: "g-pagination_partners"}

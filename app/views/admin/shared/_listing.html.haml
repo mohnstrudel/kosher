@@ -100,6 +100,12 @@
                   -if object.has_attribute? :email
                     %th
                       =t('admin.form.model.email')
+                  -if object.has_attribute? :type
+                    %th
+                      =t('admin.form.model.type')
+                  -if object.has_attribute? :subject
+                    %th
+                      =t('admin.form.model.subject')
                   %th
                     =t('admin.form.model.created')
                   %th.text-right
@@ -146,6 +152,12 @@
                     -if obj.respond_to?(:email)
                       %td
                         =obj.email
+                    -if obj.respond_to?(:type)
+                      %td
+                        =obj.type
+                    -if obj.respond_to?(:subject)
+                      %td
+                        =obj.subject
                     %td
                       =time_ago_in_words(obj.created_at)
                       =t('admin.form.created_ago')

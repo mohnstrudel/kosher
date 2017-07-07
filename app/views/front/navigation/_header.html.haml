@@ -50,8 +50,8 @@
           =link_to 'Кошерные магазины', cities_path(shops: true), class: 'g-menu__item'
           =link_to 'Кошерные рестораны', cities_path(restaurants: true), class: 'g-menu__item'
           =link_to 'Кошерные рецепты', recipe_categories_path, class: 'g-menu__item'
-          %a.g-menu__item{:href => "/signs.html"} Знаки кошерности
-          %a.g-menu__item{:href => "#"} Наши партнеры
+          =link_to 'Знаки кошерности', labels_path, class: 'g-menu__item'
+          =link_to 'Наши партнеры', partners_path, class: 'g-menu__item'
   .g-mobile-header.g-mobile
     %nav.g-mobile-links.g-mobile-links_left
       %a.g-mobile-links__item.g-mobile-links__item_menu.js-menu-btn{:href => "javascript:void(0)"}

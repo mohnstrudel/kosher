@@ -121,6 +121,11 @@ en:
         barcode: "Barcode"
         recipe_category: Recipe category
         published_at: Published on
+        type: Type
+        subject: Subject
+        phone: Phone
+        message: Message
+        company_name: Company name
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -176,6 +181,7 @@ en:
         main: "Users"
         all_users: "All users"
         new_user: "Create new user"
+        requests: Requests
       services:
         main: "Services"
         faq: "FAQ"
@@ -219,7 +225,7 @@ en:
         main: Recipes
         all: All recipes
         new: New recipe
-      recipes_categories:
+      recipe_categories:
         all: Recipe categories
 
       right_sidebar:

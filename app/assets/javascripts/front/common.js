@@ -154,7 +154,7 @@
                     $("#contact-popup").fadeIn(300);
                 }
             }
-            return false;
+            // return false;
         });
         
         if($("body").hasClass(pages_array.contact)){

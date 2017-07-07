@@ -19,39 +19,39 @@
         .g-dep-info__text-block
           %h4.g-dep-info__text-title E-mail
           %a.g-link{:href => "#{@settings.email}"}=@settings.email
-      %form.g-contact__sidebar-right.g-form{:action => "contact"}
+      =form_for Request.new, format: 'js', html: {class: 'g-contact__sidebar-right g-form'}, remote: true do |f|
         .g-input
           %label.g-input__label.g-input__label_required Ваше имя
-          %input.g-input__field.js-input{:name => "name", :type => "text"}/
+          =f.text_field :name, class: 'g-input__field js-input'
           %span.g-input__error
-            Поле некорректно заполнено
+            Поле заполнено некорректно
         .g-input
           %label.g-input__label.g-input__label_required Название организации
-          %input.g-input__field.js-input{:name => "company", :type => "text"}/
+          =f.text_field :company_name, class: 'g-input__field js-input'
           %span.g-input__error
-            Поле некорректно заполнено
+            Поле заполнено некорректно
         .g-input
           %label.g-input__label.g-input__label_required Контактный телефон
-          %input.g-input__field.js-input.js-input-phone{:name => "phone", :type => "text"}/
+          =f.text_field :phone, class: 'g-input__field js-input js-input-phone'
           %span.g-input__error
-            Поле некорректно заполнено
+            Поле заполнено некорректно
         .g-input.g-input_select
           %label.g-input__label Тема письма
           .g-input__field.g-input__field_select-wrapper
             %select.g-input__field.g-input__field_select.js-input{:name => "question"}
               %option Общие вопросы
-              %option Вопрос первый
-              %option Вопрос второй и даже в 2 строчки
-              %option Вопрос третий
-              %option Вопрос четвёртый
-              %option Вопрос пятый
+              %option Сотрудничество
+              %option Коммерческое предложение
+              %option Замечания/пожелания
         .g-input
           %label.g-input__label.g-input__label_required Ваш E-mail
-          %input.g-input__field.js-input{:name => "email", :type => "text"}/
+          =f.text_field :email, class: 'g-input__field js-input'
           %span.g-input__error
-            Поле некорректно заполнено
+            Поле заполнено некорректно 
         .g-input
           %label.g-input__label Сообщение
-          %textarea.g-input__field.g-input__field_textarea.js-input{"data-input-type" => "message", :name => "message"}
-        %input.g-btn.g-btn_blue.g-form__submit{:type => "submit", :value => "Отправить"}/
+          =f.text_area :message, class: 'g-input__field g-input__field_textarea js-input', data: {"input-type" => "message"}
+
+        =f.submit "Отправить", class: 'g-btn g-btn_blue g-form__submit'
+        #request-errors
       #g-map.g-map

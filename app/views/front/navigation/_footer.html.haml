@@ -2,11 +2,12 @@
   .g-wrapper
     .g-footer__left
       %nav.g-menu.g-menu_light
-        %a.g-menu__item{:href => "#"} О департаменте
+        =link_to 'О департаменте', about_path, class: 'g-menu__item'
         =link_to "Новости", posts_path, class: "g-menu__item"
-        %a.g-menu__item{:href => "#"} Фотогалерея
-        %a.g-menu__item{:href => "#"} FAQ
-        %a.g-menu__item{:href => "#"} Контакты
+        =link_to "Фотогалерея", gallery_path, class: 'g-menu__item'
+        =link_to "FAQ", faq_path, class: 'g-menu__item'
+        =link_to "Контакты", contact_path, class: 'g-menu__item'
+      
       .g-social
         %form.g-social__left.g-form.g-subscribe{:action => "subscribe"}
           %h4.g-subscribe__title Получайте новости от нас
@@ -21,7 +22,7 @@
         %a.g-social__right.g-social-link.g-social-link_construction{:href => "#"}
           %span.g-social-link__text Создание сайта
           %i.g-social-link__icon.g-social-link__icon_ya
-        %a.g-construction{:href => "#"}
+        %a.g-construction{:href => "http://yadadya.com"}
           %p.g-construction__title Создание сайта —
           %i.g-icon-logo
       .g-copy
@@ -38,7 +39,7 @@
         %a.g-app-block__link{:href => "#"}
           =image_tag 'icons/g-play.svg', class: 'g-app-block__img'
     .g-footer__right
-      %a.g-construction{:href => "#"}
+      %a.g-construction{:href => "http://yadadya.com"}
         %p.g-construction__title Создание сайта —
         %i.g-icon-logo
         

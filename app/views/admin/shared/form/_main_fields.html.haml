@@ -75,6 +75,9 @@
       .hr-line-dashed
 
     / Posts part begin (only unique to posts fields)
+    =render partial: 'admin/shared/form/requests/request_fields', locals: { f: f, object: object }
+
+    / Posts part begin (only unique to posts fields)
     =render partial: "admin/shared/form/posts/post_fields", locals: { f: f, object: object }
 
     / User part begin (only unique to user fields)
