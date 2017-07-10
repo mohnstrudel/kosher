@@ -1,6 +1,6 @@
 class FrontController < ApplicationController
   layout 'front' 
-
+  before_action :load_settings
   before_action :force_blank_request_format_to_html
 
   rescue_from ActionView::MissingTemplate do |exception|
@@ -11,6 +11,10 @@ class FrontController < ApplicationController
   end
 
   private
+
+  def load_settings
+    @settings = GeneralSetting.first
+  end
 
   def force_blank_request_format_to_html
     if request[:format].blank? 

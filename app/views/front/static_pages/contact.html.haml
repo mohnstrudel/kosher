@@ -1,3 +1,8 @@
+/ Скрытые поля для карты - долгота и ширина
+%input{:name => "long", :type => "hidden", :value => @long, id: "long_id"}/
+%input{:name => "lat", :type => "hidden", :value => @lat, id: "lat_id"}/
+%input{:name => "lat", :type => "hidden", :value => @title, id: "name_id"}/
+
 %section.g-section
   .g-wrapper
     %h2.g-title.g-title_big
@@ -19,7 +24,8 @@
         .g-dep-info__text-block
           %h4.g-dep-info__text-title E-mail
           %a.g-link{:href => "#{@settings.email}"}=@settings.email
-      =form_for Request.new, format: 'js', html: {class: 'g-contact__sidebar-right g-form'}, remote: true do |f|
+      =form_for ContactRequest.new, format: 'js', html: {class: 'g-contact__sidebar-right g-form'}, remote: true do |f|
+        =f.hidden_field :type, value: "ContactRequest"
         .g-input
           %label.g-input__label.g-input__label_required Ваше имя
           =f.text_field :name, class: 'g-input__field js-input'

@@ -159,13 +159,57 @@
         
         if($("body").hasClass(pages_array.contact)){
             mapboxgl.accessToken = 'pk.eyJ1Ijoic2NobmliYmEiLCJhIjoiMWEwYWI4YTA3YTAwYjVhYTY1YWZiZGFiZDk1Zjk5NGUifQ.ueMMb8kMdWxrP5N4iqx67Q';
+            var long = $('#long_id').val(); 
+            var lat = $('#lat_id').val();
+            var name = $('#name_id').val();
             var map = new mapboxgl.Map({
                 container: 'g-map',
                 style: 'mapbox://styles/schnibba/ciw9f6qp500542qmkzdjjqd8o',
-                center: [37.608156, 55.789286],
-                zoom: 7.5,
+                center: [long, lat],
+                zoom: 12,
                 hash: false,
                 interactive: false
+            });
+
+            // var nav = new mapboxgl.NavigationControl();
+            
+            map.on('load', function () {
+              // map.addControl(nav, 'top-left');
+              map.dragPan.enable();
+              map.addSource("points", {
+                  "type": "geojson",
+                  "data": {
+                      "type": "FeatureCollection",
+                      "features": [{
+                          "type": "Feature",
+                          "geometry": {
+                              "type": "Point",
+                              "coordinates": [long, lat]
+                          },
+                          properties: {
+                              "title": name,
+                              "icon": "star",
+                              "marker-color": "#3ca0d3",
+                              "size": "large"
+
+                          }
+                      }
+                      ]
+                  }
+              });
+
+              map.addLayer({
+                  "id": "points",
+                  "type": "symbol",
+                  "source": "points",
+                  "layout": {
+                      "icon-image": "{icon}-15",
+                      "text-field": "{title}",
+                      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                      "text-offset": [0, 0.6],
+                      "text-anchor": "top"
+                  }
+              });
             });
             $(".g-input__field_select").select2();
         } else if($("body").hasClass(pages_array.products)){
@@ -231,23 +275,23 @@
             
         } else if($("body").hasClass(pages_array.photos)){
             var GammaSettings = {
-						viewport : [ {
-							width : 1100,
-							columns : 7
-						}, {
-							width : 900,
-							columns : 4
-						}, {
-							width : 500,
-							columns : 3
-						}, { 
-							width : 320,
-							columns : 2
-						}, { 
-							width : 0,
-							columns : 2
-						} ]
-				};
+            viewport : [ {
+              width : 1100,
+              columns : 7
+            }, {
+              width : 900,
+              columns : 4
+            }, {
+              width : 500,
+              columns : 3
+            }, { 
+              width : 320,
+              columns : 2
+            }, { 
+              width : 0,
+              columns : 2
+            } ]
+        };
             Gamma.init( GammaSettings);
             $("body").on("click", ".gamma-single-view", function(e){
                 console.log($(this));
@@ -312,8 +356,8 @@
             updateSticky();
         }
         var rem;
-	    var isTablet = window.matchMedia("(max-width: 1024px)");
-	    var isMobile = window.matchMedia("(max-width: 650px)");
+      var isTablet = window.matchMedia("(max-width: 1024px)");
+      var isMobile = window.matchMedia("(max-width: 650px)");
         
         var $sticky = $(".js-sticky");
         if($sticky.length != 0)
@@ -372,27 +416,27 @@
         function reset() {
             if(mainSlider){
                 mainSliderSlide = mainSlider.getCurrentSlide();
-				mainSlider.destroySlider();
-			}
+        mainSlider.destroySlider();
+      }
             if(partnersSlider){
                 partnersSliderSlide = partnersSlider.getCurrentSlide();
-				partnersSlider.destroySlider();
-			}
+        partnersSlider.destroySlider();
+      }
         }
         function run() {
             rem = parseFloat(getComputedStyle($("html")[0]).fontSize);
-			if (isMobile.matches) {
-				mobile();
-			} else if (isTablet.matches) {
-				tablet();
-			} else {
-				desktop();
-			}
+      if (isMobile.matches) {
+        mobile();
+      } else if (isTablet.matches) {
+        tablet();
+      } else {
+        desktop();
+      }
         }
         run();
         $(window).on('resize', function () {
-			reset();
-			run();
-		});
+      reset();
+      run();
+    });
     })
 })(jQuery)

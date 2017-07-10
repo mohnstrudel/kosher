@@ -1,4 +1,6 @@
 class Front::RequestsController < FrontController
+  before_action :set_type
+
 
   def create
     @request = Request.new(request_params)
@@ -6,8 +8,9 @@ class Front::RequestsController < FrontController
     respond_to do |format|
       if @request.save
         format.js
-        
+        format.html
       else
+        format.html { render :new}
         format.js { render partial: 'fail' }
         
       end
@@ -16,7 +19,23 @@ class Front::RequestsController < FrontController
 
   private
 
+  def set_request
+    @request = type_class.find(params[:id])
+  end
+
+  def set_type
+     @type = type
+  end
+
+  def type
+      Request.types.include?(params[:type]) ? params[:type] : "Request"
+  end
+
+  def type_class 
+      type.constantize 
+  end
+
   def request_params
-    params.require(:request).permit(Request.attribute_names.map(&:to_sym))
+    params.require(type.underscore.to_sym).permit(Request.attribute_names.map(&:to_sym))
   end
 end

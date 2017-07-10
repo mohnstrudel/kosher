@@ -74,3 +74,13 @@
       %span.help-block.m-b-none 
         =t('admin.form.misc.address_description')
   .hr-line-dashed
+
+-if object.respond_to?(:facebook)
+  .form-group
+    %label.col-sm-2.control-label
+      =t('admin.form.model.facebook')
+    .col-sm-10
+      =f.text_field :facebook, class: 'form-control'
+      %span.help-block.m-b-none 
+        =t('admin.form.misc.facebook_description')
+  .hr-line-dashed

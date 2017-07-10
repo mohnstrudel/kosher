@@ -126,6 +126,7 @@ en:
         phone: Phone
         message: Message
         company_name: Company name
+        facebook: Facebook
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -162,6 +163,7 @@ en:
         opening_hours_title_placeholder: "Fill in the day(s), i.e. 'Mo' or 'Mo-Fr' or 'Weekends' etc."
         opening_hours_value_placeholder: "Fill in the hours, i.e. '10:00 - 19:00' or 'closed' or '24/7' etc."
         required: "* - fields are required"
+        facebook_description: Full url to your facebook account, i.e. https://facebook.com/your_company_name
     logout: "Log out"
     profile: "Edit profile"
 

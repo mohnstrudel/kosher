@@ -44,6 +44,9 @@ Rails.application.routes.draw do
       resources :recipes, except: :show
       resources :recipe_categories, except: :show
       resources :requests, except: :show
+      
+      
+
       post 'bulk_delete', to: 'bulk_actions#bulk_delete'
     end
   # end
@@ -63,6 +66,12 @@ Rails.application.routes.draw do
     # resources :pages, only: [:index, :show]
 
     resources :requests, only: [:create]
+    # Тут крутой неймспейсинг запросов
+    resources :contact_requests, only: [:new, :create], controller: 'requests', type: 'ContactRequest'
+    resources :call_me_back_requests, only: [:new, :create], controller: 'requests', type: 'CallMeBackRequest'
+    # Неймспейсинг закрыт
+
+
     resources :page_categories, only: [:index, :show] do
       resources :pages, only: [:index, :show]
     	# Page.where.not(slug: nil).all.each do |page|
