@@ -15,8 +15,8 @@
             =f.text_field :email, class: 'g-input__field g-input__field_subscribe g-subscribe__input js-input', placeholder: "Ваш e-mail"
             %span.g-input__error
               Поле заполнено некорректно
-          =f.submit "", class: 'g-subscribe__submit'
-        %a.g-social__right.g-social-link{:href => @settings.facebook}
+          =f.submit "", id: 'subscriber_form_submit', class: 'g-subscribe__submit'
+        %a.g-social__right.g-social-link{:href => @settings.try(:facebook)}
           %span.g-social-link__text Мы в Facebook
           %i.g-social-link__icon.g-social-link__icon_fb
         %a.g-social__right.g-social-link.g-social-link_construction{:href => "#"}
@@ -28,13 +28,14 @@
       .g-copy
         ©   «Кошер-Россия»
     .g-footer__center.g-contacts
-      -@settings.phones.each do |phone|
-        %a.g-contacts__phone{:href => phone.value}=phone.value
+      -if @settings.try(:phones).present?
+        -@settings.phones.each do |phone|
+          %a.g-contacts__phone{:href => phone.value}=phone.value
       
       %p.g-contacts__adress
-        =@settings.address
+        =@settings.try(:address)
         
-      %a.g-contacts__email{:href => "mailto:#{@settings.email}"}=@settings.email
+      %a.g-contacts__email{:href => "mailto:#{@settings.try(:email)}"}=@settings.try(:email)
       .g-app-block
         %a.g-app-block__link{:href => "#"}
           =image_tag 'icons/app-store.svg', class: 'g-app-block__img'

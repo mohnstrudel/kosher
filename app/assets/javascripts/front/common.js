@@ -183,20 +183,6 @@
             if($(e.target).hasClass("gamma-single-view"))
                 $(this).find(".gamma-btn-close").click();
             });
-        } else if($("body").hasClass(pages_array.faq)){
-            $(".g-faq__toggle").each(function(){
-                $(this).height($(this).innerHeight());
-            }).on("click", function(){
-                $(this).parent().toggleClass("g-faq__item_open");
-            });
-            var rtime;
-            var timeout = false;
-            var delta = 200;
-            $(window).resize(function() {
-                $(".g-faq__toggle").each(function(){
-                    $(this).removeAttr("style").height($(this).innerHeight());
-                });
-            });
         }
         function stickyBlock(block, holder, boundaries, checkRequired, onSet, onUnset) {
             var isFixed = false;

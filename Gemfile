@@ -89,8 +89,8 @@ group :development, :test do
   gem 'i18n-tasks'
   # i18n end
   
-  gem 'rspec-rails'
-  gem 'capybara'
+  
+  
   gem 'launchy'
   gem 'database_cleaner'
   # To test render_template
@@ -98,6 +98,13 @@ group :development, :test do
   gem 'factory_girl_rails'
   
   gem 'pry'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper' # <- New!
 end
 
 group :development do
