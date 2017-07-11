@@ -9,13 +9,13 @@
         =link_to "Контакты", contact_path, class: 'g-menu__item'
       
       .g-social
-        %form.g-social__left.g-form.g-subscribe{:action => "subscribe"}
+        =form_for Subscriber.new, format: 'js', class: 'g-social__left g-form g-subscribe', remote: true do |f|
           %h4.g-subscribe__title Получайте новости от нас
           .g-input.g-input_subscribe
-            %input.g-input__field.g-input__field_subscribe.g-subscribe__input.js-input{:name => "email", :placeholder => "Ваш e-mail", :type => "text"}/
+            =f.text_field :email, class: 'g-input__field g-input__field_subscribe g-subscribe__input js-input', placeholder: "Ваш e-mail"
             %span.g-input__error
-              Поле некорректно заполнено
-          %button.g-subscribe__submit{:type => "submit"}
+              Поле заполнено некорректно
+          =f.submit "", class: 'g-subscribe__submit'
         %a.g-social__right.g-social-link{:href => @settings.facebook}
           %span.g-social-link__text Мы в Facebook
           %i.g-social-link__icon.g-social-link__icon_fb

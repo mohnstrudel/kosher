@@ -184,6 +184,7 @@ en:
         all_users: "All users"
         new_user: "Create new user"
         requests: Requests
+        subscribers: Subscribers
       services:
         main: "Services"
         faq: "FAQ"

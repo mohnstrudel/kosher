@@ -163,6 +163,7 @@ ru:
         all_users: "Все пользователи"
         new_user: "Создать пользователя"
         requests: 'Заявки'
+        subscribers: Подписчики
       services:
         main: "Сервисы"
         faq: "Вопросы-Ответы"

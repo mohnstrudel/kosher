@@ -23,7 +23,7 @@
             %p.g-dep-info__text-par="#{op_hour.title} #{op_hour.value}"
         .g-dep-info__text-block
           %h4.g-dep-info__text-title E-mail
-          %a.g-link{:href => "#{@settings.email}"}=@settings.email
+          %a.g-link{:href => "mailto:#{@settings.email}"}=@settings.email
       =form_for ContactRequest.new, format: 'js', html: {class: 'g-contact__sidebar-right g-form'}, remote: true do |f|
         =f.hidden_field :type, value: "ContactRequest"
         .g-input
@@ -44,7 +44,7 @@
         .g-input.g-input_select
           %label.g-input__label Тема письма
           .g-input__field.g-input__field_select-wrapper
-            %select.g-input__field.g-input__field_select.js-input{:name => "question"}
+            %select.g-input__field.g-input__field_select.js-input{:name => "contact_request[subject]"}
               %option Общие вопросы
               %option Сотрудничество
               %option Коммерческое предложение

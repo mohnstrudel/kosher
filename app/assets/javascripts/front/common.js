@@ -63,7 +63,7 @@
         return re.test(email);
     }
 
-    $(document).ready(function(){
+    $(document).on('turbolinks:load', function(){
         var pages_array = {
             main: "home",
             faq: "faqs",
@@ -142,7 +142,8 @@
                        $(this).find("option:first-child").attr("selected", true);
                        $(this).select2();
                    }else
-                       $(this).val("");
+                        var test = "hello";
+                       // $(this).val("");
                 });
                 if($(this).attr("action") == "subscribe")
                     $("#subscribe-popup").fadeIn(300);
@@ -157,123 +158,7 @@
             // return false;
         });
         
-        if($("body").hasClass(pages_array.contact)){
-            mapboxgl.accessToken = 'pk.eyJ1Ijoic2NobmliYmEiLCJhIjoiMWEwYWI4YTA3YTAwYjVhYTY1YWZiZGFiZDk1Zjk5NGUifQ.ueMMb8kMdWxrP5N4iqx67Q';
-            var long = $('#long_id').val(); 
-            var lat = $('#lat_id').val();
-            var name = $('#name_id').val();
-            var map = new mapboxgl.Map({
-                container: 'g-map',
-                style: 'mapbox://styles/schnibba/ciw9f6qp500542qmkzdjjqd8o',
-                center: [long, lat],
-                zoom: 12,
-                hash: false,
-                interactive: false
-            });
-
-            // var nav = new mapboxgl.NavigationControl();
-            
-            map.on('load', function () {
-              // map.addControl(nav, 'top-left');
-              map.dragPan.enable();
-              map.addSource("points", {
-                  "type": "geojson",
-                  "data": {
-                      "type": "FeatureCollection",
-                      "features": [{
-                          "type": "Feature",
-                          "geometry": {
-                              "type": "Point",
-                              "coordinates": [long, lat]
-                          },
-                          properties: {
-                              "title": name,
-                              "icon": "star",
-                              "marker-color": "#3ca0d3",
-                              "size": "large"
-
-                          }
-                      }
-                      ]
-                  }
-              });
-
-              map.addLayer({
-                  "id": "points",
-                  "type": "symbol",
-                  "source": "points",
-                  "layout": {
-                      "icon-image": "{icon}-15",
-                      "text-field": "{title}",
-                      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                      "text-offset": [0, 0.6],
-                      "text-anchor": "top"
-                  }
-              });
-            });
-            $(".g-input__field_select").select2();
-        } else if($("body").hasClass(pages_array.products)){
-            $("#category-select, #select-manufacturer").select2();
-            var data_any = [{id: "any", text: "Любая подкатегория"}],
-                data_categories = [];
-            $("#select-subcategory optgroup").each(function(index){
-                var category = {
-                    id: $(this).data("id"),
-                    name: $(this).attr("label"),
-                    subcat: []
-                };
-                category.subcat.push(data_any[0]);
-                $(this).find("option").each(function(index){
-                    category.subcat.push(
-                    {
-                        id: $(this).val(),
-                        text: $(this).text()
-                    }
-                    );
-                });
-                data_categories.push(category);
-            });
-            $("#select-subcategory").html("");
-            $("#select-subcategory").select2({ data: data_any});
-            $("#category-select").on("change", function(){
-                var val = $(this).val();
-                $("#select-subcategory").select2('destroy');
-                $("#select-subcategory").html("");
-                if(val == "any")
-                    $("#select-subcategory").select2({ data: data_any});
-                else
-                    data_categories.forEach(function(element, index, array){
-                        if(element.id == val){
-                            $("#select-subcategory").select2({ data: data_categories[index].subcat});
-                            return false;
-                        }
-                            
-                    });
-                
-            });
-            $("#filter-toggle").on("click", function(e){
-                e.preventDefault();
-                var $filters = $("#filters"),
-                    $wrapper = $("#products-wrapper");
-                    $("#filters").addClass("g-products__sidebar_visible")
-                    $wrapper.height($filters.outerHeight());                
-                return false;
-            });
-            $("#filters-hide").on("click", function(e){
-                e.preventDefault();
-                var $filters = $("#filters"),
-                    $wrapper = $("#products-wrapper");
-                    $("#filters").removeClass("g-products__sidebar_visible")
-                    $wrapper.removeAttr("style")
-                return false;
-            });
-            // $("#filters").on("submit", function(e){
-            //     e.preventDefault();
-            //     console.log("Pressed submit!"); 
-            //     return false;
-            // });
-            
-        } else if($("body").hasClass(pages_array.photos)){
+        if($("body").hasClass(pages_array.photos)){
             var GammaSettings = {
             viewport : [ {
               width : 1100,

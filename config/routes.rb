@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       resources :recipes, except: :show
       resources :recipe_categories, except: :show
       resources :requests, except: :show
+      resources :subscribers, except: :show
       
       
 
@@ -65,6 +66,7 @@ Rails.application.routes.draw do
     # get 'categories', to: 'page_categories#index'
     # resources :pages, only: [:index, :show]
 
+    resources :subscribers, only: [:create]
     resources :requests, only: [:create]
     # Тут крутой неймспейсинг запросов
     resources :contact_requests, only: [:new, :create], controller: 'requests', type: 'ContactRequest'

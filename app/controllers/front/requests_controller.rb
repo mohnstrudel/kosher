@@ -8,9 +8,8 @@ class Front::RequestsController < FrontController
     respond_to do |format|
       if @request.save
         format.js
-        format.html
+        
       else
-        format.html { render :new}
         format.js { render partial: 'fail' }
         
       end

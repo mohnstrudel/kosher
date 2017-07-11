@@ -5,6 +5,9 @@ for (item of errors_array) {
   var field_name = item.substring(item.lastIndexOf(":")+1, item.lastIndexOf("="));
   $input = $('form').find("input[name='contact_request[" + field_name + "]']");
   $input.parents(".g-input").toggleClass("g-input_error", true);
+
+  $input_callmeback = $('form').find("input[name='call_me_back_request[" + field_name + "]']");
+  $input_callmeback.parents(".g-input").toggleClass("g-input_error", true);
 }
 // $input = $('form').find("input[name='request[name]']");
 // $input.parents(".g-input").toggleClass("g-input_error", true);

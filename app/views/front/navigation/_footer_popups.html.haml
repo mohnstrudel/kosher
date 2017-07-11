@@ -26,18 +26,20 @@
     .g-popup__wrapper
       %h2.g-popup__title Обратный звонок
       =image_tag 'icons/phone.svg', class: 'g-popup__img g-popup__img_transform'
-      %form.g-form{:action => "call"}
+      =form_for CallMeBackRequest.new, format: 'js', class: 'g-form', remote: true do |f|
+        =f.hidden_field :type, value: "CallMeBackRequest"
+        =f.hidden_field :subject, value: "Звонок"
         .g-input
           %label.g-input__label.g-input__label_required Ваше имя
-          %input.g-input__field.js-input{:name => "name", :placeholder => "Введите имя", :type => "text"}/
+          =f.text_field :name, class: "g-input__field js-input", placeholder: "Введите имя"
           %span.g-input__error
             Поле некорректно заполнено
         .g-input
           %label.g-input__label.g-input__label_required Ваш телефон
-          %input.g-input__field.js-input.js-input-phone{:name => "phone", :placeholder => "Введите телефон", :type => "text"}/
+          =f.text_field :phone, class: "g-input__field js-input js-input-phone", placeholder: "Введите телефон"
           %span.g-input__error
             Поле некорректно заполнено
         .g-input
           %label.g-input__label Комментарий
-          %textarea.g-input__field.g-input__field_textarea.js-input{"data-input-type" => "message", :name => "message"}
-        %input.g-btn.g-btn_blue.g-form__submit{:type => "submit", :value => "Отправить"}/
+          =f.text_area :message, class: "g-input__field g-input__field_textarea js-input", data: {"input-type" => "message"}
+        =f.submit "Отправить", class: "g-btn g-btn_blue g-form__submit"
