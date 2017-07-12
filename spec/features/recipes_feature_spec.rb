@@ -31,14 +31,11 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
     end
 
     scenario 'edit' do
-      FactoryGirl.create(:recipe, title: "Holly Molly")
+      recipe = FactoryGirl.create(:recipe, title: "Holly Molly")
       visit admin_recipes_path
       expect(page).to have_content("Holly Molly")
 
-      within "table" do
-        click_link("Edit", :match => :first)
-        # find('a[href="/admin/recipes/1/edit"]').click
-      end
+      click_link "edit_list_item_#{recipe.id}"
 
       fill_in "recipe_title", with: "Shitty Dizzy"
       find("input[type='submit']").click

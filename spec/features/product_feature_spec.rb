@@ -46,9 +46,9 @@ RSpec.feature "Products controller", :type => :feature do
     end
 
     scenario "delete" do
-      FactoryGirl.create(:product)
+      product = FactoryGirl.create(:product)
       visit admin_products_path
-      expect { click_link 'Delete' }.to change(Product, :count).by(-1)
+      expect { click_link "delete_list_item_#{product.id}" }.to change(Product, :count).by(-1)
     end
   end
 

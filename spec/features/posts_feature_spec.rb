@@ -21,9 +21,7 @@ RSpec.feature "Posts feature spec >", :type => :feature do
       fill_in 'post_title', with: "Grizzly Bears Ltd."
       
       expect { 
-        within find('#tab-2') do
-          find("input[type='submit']").click 
-        end
+        click_button 'shared_form_submit_button'
         }.to change(Post, :count).by(1)
     end
   end

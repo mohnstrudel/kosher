@@ -163,8 +163,8 @@
                       =t('admin.form.created_ago')
                     %td.text-right
                       .btn-group
-                        =link_to t('admin.form.actions.edit.verb'), send("edit_admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), class: "btn-white btn btn-xs"
-                        =link_to t('admin.form.actions.delete'), send("admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), method: :delete, data: {confirm: t('admin.form.confirm.main') }, class: "btn-white btn btn-xs"
+                        =link_to t('admin.form.actions.edit.verb'), send("edit_admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), class: "btn-white btn btn-xs", id: "edit_list_item_#{obj.id}"
+                        =link_to t('admin.form.actions.delete'), send("admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), method: :delete, data: {confirm: t('admin.form.confirm.main') }, class: "btn-white btn btn-xs", id: "delete_list_item_#{obj.id}"
           .row
             .col-sm-12.m-b-xs
               .pull-left

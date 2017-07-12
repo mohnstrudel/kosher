@@ -27,8 +27,8 @@ describe "Shops API" do
       json = JSON.parse(response.body)
 
       expect(response).to be_success
-
-      expect(json['data']['id']).to eq("1")
+      
+      expect(json['data']['id'].to_i).to eq(shop.id)
     end
   end
 end
