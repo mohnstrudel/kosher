@@ -1,4 +1,4 @@
-//= require jquery3
+//= require jquery
 //= require admin/bootstrap.min
 //= require_tree ../../../vendor/assets/javascripts/admin/plugins/metisMenu/.
 //= require_tree ../../../vendor/assets/javascripts/admin/plugins/slimscroll/.
@@ -30,7 +30,7 @@
 
 
 // Jquery UI
-//= require jquery_ujs
+//= require rails-ujs
 //= require_tree ../../../vendor/assets/javascripts/admin/plugins/jquery-ui/.
 
 // GRITTER

@@ -24,6 +24,7 @@ module Ycms
 	end
 
   config.i18n.default_locale = :ru
+  config.i18n.fallbacks = [:en]
 
 	config.languages = { en: "English", ru: "Русский" }
   config.page_size = 20

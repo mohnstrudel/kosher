@@ -33,17 +33,18 @@ class GalleryUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process resize_to_fit: [50, 50]
   # end
-  version :mini_thumb do
+  version :mini_thumb, :if => :not_svg? do
     process resize_to_fill: [64, 64]
   end
 
-  version :small_thumb do
+  version :small_thumb, :if => :not_svg? do
     process resize_to_fill: [256, 256]
   end
 
-  version :medium_thumb do
+  version :medium_thumb, :if => :not_svg? do
     process resize_to_fill: [512, 512]
   end
+
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
@@ -56,5 +57,15 @@ class GalleryUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  def not_svg?(new_file)
+    if new_file.extension == 'svg'
+      return false
+    else
+      return true
+    end
+  end
 
 end

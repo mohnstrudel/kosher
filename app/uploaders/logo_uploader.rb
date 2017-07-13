@@ -43,11 +43,11 @@ class LogoUploader < CarrierWave::Uploader::Base
   #   process :resize_to_fit => [50, 50]
   # end
 
-  version :mini_thumb do
+  version :mini_thumb, :if => :not_svg? do
     process resize_to_fill: [64, 64]
   end
 
-  version :news_thumb do
+  version :news_thumb, :if => :not_svg? do
     process resize_to_fill: [345, 252]
   end
 
@@ -62,5 +62,15 @@ class LogoUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  def not_svg?(new_file)
+    if new_file.extension == 'svg'
+      return false
+    else
+      return true
+    end
+  end
 
 end

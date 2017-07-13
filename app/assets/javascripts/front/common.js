@@ -64,6 +64,7 @@
     }
 
     $(document).on('turbolinks:load', function(){
+        
         var pages_array = {
             main: "home",
             faq: "faqs",
@@ -102,88 +103,9 @@
         $(".js-input").on("focus", function(){
             setErrorInput($(this), false);
         });
-        $(document).on("submit", ".g-form", function(e){
-            // e.preventDefault();
-            var $inputs = $(this).find(".js-input"),
-                error = false;
-            $inputs.each(function(){
-                switch($(this).attr("name")) {
-                    case "name":
-                        if($(this).val() == ""){
-                            error = true;
-                            setErrorInput($(this), true);
-                        }
-                        break;
-                    case "company":
-                        if($(this).val() == ""){
-                            error = true;
-                            setErrorInput($(this), true);
-                        }
-                        break;
-                    case "email":
-                        if(!validateEmail($(this).val())){
-                            error = true;
-                            setErrorInput($(this), true);
-                        }
-                        break;
-                    case "phone":
-                        if(!$(this).inputmask("isComplete")){
-                            error = true;
-                            setErrorInput($(this), true);
-                        }
-                    default:
-                        break;
-                };
-            });
-            if(!error){
-                $inputs.each(function(){
-                   if($(this).hasClass("g-input__field_select")){
-                       $(this).select2("destroy");
-                       $(this).find("option:first-child").attr("selected", true);
-                       $(this).select2();
-                   }else
-                        var test = "hello";
-                       // $(this).val("");
-                });
-                if($(this).attr("action") == "subscribe")
-                    $("#subscribe-popup").fadeIn(300);
-                else if($(this).attr("action") == "call")
-                    $("#call-popup").fadeOut(200,function(){
-                        $("#call-success-popup").fadeIn(300);
-                    });
-                else if($(this).attr("action") == "contact"){
-                    $("#contact-popup").fadeIn(300);
-                }
-            }
-            // return false;
-        });
+
         
-        if($("body").hasClass(pages_array.photos)){
-            var GammaSettings = {
-            viewport : [ {
-              width : 1100,
-              columns : 7
-            }, {
-              width : 900,
-              columns : 4
-            }, {
-              width : 500,
-              columns : 3
-            }, { 
-              width : 320,
-              columns : 2
-            }, { 
-              width : 0,
-              columns : 2
-            } ]
-        };
-            Gamma.init( GammaSettings);
-            $("body").on("click", ".gamma-single-view", function(e){
-                console.log($(this));
-            if($(e.target).hasClass("gamma-single-view"))
-                $(this).find(".gamma-btn-close").click();
-            });
-        }
+
         function stickyBlock(block, holder, boundaries, checkRequired, onSet, onUnset) {
             var isFixed = false;
             function updateSticky() {

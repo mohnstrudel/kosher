@@ -28,7 +28,10 @@
     .col-sm-2
       -unless object.logo.try(:file).nil?
         -if object.logo.file.exists?
-          =image_tag object.logo.url(:mini_thumb)
+          -if object.logo.url(:mini_thumb).present?
+            =image_tag object.logo.url(:mini_thumb)
+          -else
+            =image_tag object.logo.url
   .hr-line-dashed
 
 

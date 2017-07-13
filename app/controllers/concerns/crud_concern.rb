@@ -55,6 +55,8 @@ module CrudConcern
         }
       end
     else
+      logger.debug "Encountered errors:"
+      logger.debug object.errors.full_messages
       render :edit
       flash[:danger] = "Something's not quite right"
     end

@@ -1,14 +1,7 @@
 class Front::CategoriesController < FrontController
 
   def index
-    @categories = Category.all
-
-    respond_to do |format|
-      format.html
-      format.json {
-        render json: @categories, status: 200
-      }
-    end
+    @categories = Category.top_level
   end
 
   def show
