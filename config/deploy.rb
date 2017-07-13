@@ -34,12 +34,21 @@ set :rollbar_role, Proc.new { :app }
 # set :log_level,     :debug
 # set :keep_releases, 5
 
+set :nvm_type, :user # or :system, depends on your nvm setup
+set :nvm_node, 'v7.10.0'
+set :nvm_map_bins, %w{node npm yarn}
+
+set :yarn_target_path, -> { release_path.join('client') } #
+set :yarn_flags, '--production --silent --no-progress'    # default
+set :yarn_roles, :all                                     # default
+set :yarn_env_variables, {}
+
 ## Linked Files & Directories (Default None):
 # set :linked_files, %w{config/database.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Link the dirs, so uploaded assets won't be deleted after each deployment
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads node_modules client/node_modules}
 
 
 
