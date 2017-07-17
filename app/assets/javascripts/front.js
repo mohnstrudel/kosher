@@ -1,4 +1,4 @@
-//= require jquery/dist/jquery
+//= require jquery3
 //= require rails-ujs
 
 
@@ -6,14 +6,13 @@
 
 //= require front/second/jquery.bxslider
 
-//= require inputmask/dist/jquery.inputmask.bundle
-//= require inputmask/dist/inputmask/phone-codes/phone
-//= require inputmask/dist/inputmask/phone-codes/phone-be
-//= require inputmask/dist/inputmask/phone-codes/phone-ru
+//= require front/second/inputmask
+//= require front/second/jquery.inputmask
 
 //= require front/second/jquery.masonry.min
 
 //= require front/second/js-url.min
+//= require front/second/select2
 
 //= require_tree ../../../vendor/assets/javascripts/front/third/.
 

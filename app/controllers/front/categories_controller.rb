@@ -7,11 +7,7 @@ class Front::CategoriesController < FrontController
   def show
     # @products = Category.includes(:products).find(params[:id]).products
     @category = Category.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json {
-        render json: @category, status: 200
-      }
-    end
+    @manufacturers = @category.manufacturers
+    @category_id = params[:id].to_i
   end
 end

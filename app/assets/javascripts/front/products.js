@@ -1,6 +1,8 @@
 $(document).on("turbolinks:load", function() {
-  if($("body").hasClass("products")){
+  if($("body").hasClass("products") || $("body").hasClass("suppliers")){
     $("#category-select, #select-manufacturer").select2();
+    
+    
     var data_any = [{id: "any", text: "Любая подкатегория"}],
         data_categories = [];
     $("#select-subcategory optgroup").each(function(index){

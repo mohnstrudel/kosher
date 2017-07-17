@@ -1,0 +1,13 @@
+%ul.g-products-wrapper
+  -@suppliers.each do |supplier|
+    %li.g-products-wrapper__item
+      .g-products-wrapper__left
+        -if supplier.logo.present?
+          =image_tag supplier.logo.url, class: "g-products-wrapper__logo"
+        -else 
+          =placeholdit_image_tag "94x94", text: "No image", class: 'g-products-wrapper__logo'
+      .g-products-wrapper__right
+        %h2.g-products-wrapper__title=supplier.title
+        %p.g-products-wrapper__description
+          =supplier.description
+        %a.g-btn.g-btn_gray{:href => "#"} Подробнее

@@ -54,6 +54,9 @@ gem 'activemodel-serializers-xml'
 gem 'globalize-accessors'
 
 
+# Switching back to custom jQuery again after failing builds
+gem 'jquery-rails'
+
 # Use Devise for handling users
 gem 'devise'
 
