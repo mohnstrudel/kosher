@@ -14,6 +14,7 @@ class Manufacturer < ApplicationRecord
   validates :title, presence: true
 
   has_many :categories, through: :products
+  has_many :labels, through: :products
 
   mount_uploader :logo, LogoUploader
 
@@ -23,6 +24,38 @@ class Manufacturer < ApplicationRecord
     else
       return true
     end
+  end
+
+  def self.by_filter(category = nil, subcategory = nil, manufacturer = nil, sign = nil)
+
+    subcategory = nil if subcategory == 'any'
+    category = nil if category == 'any'
+    if category && subcategory
+      category = subcategory
+    elsif !category && subcategory
+      category = subcategory
+    end
+
+    if !category && !subcategory && !manufacturer && !sign
+      return all
+    end
+
+    return Manufacturer.find(manufacturer).trademarks if !category && !subcategory && manufacturer && !sign
+      
+
+    params = Hash(category: category, manufacturer: manufacturer, label: sign)
+
+    @products = Product.where(nil)
+    params.each do |key, value|
+      @products = @products.where(key => value) if value.present?
+    end
+    p "Inspecting products:"
+    puts @products.inspect
+
+    p "By category and parent params:"
+    p params
+    
+    return @products.map { |product| product.manufacturer }
   end
 
   def self.return_collection(id)

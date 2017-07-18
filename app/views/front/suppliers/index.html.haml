@@ -5,7 +5,7 @@
     #products-wrapper.g-products
       %a#filter-toggle.g-products__filter-btn{:href => "javascript:void(0)"} Фильтры
       
-      =form_for :suppliers, method: :get , html: { class: "g-products__sidebar g-products__filters-block g-form", id: "filters"}, remote: true do |f|
+      =form_for :supplier, method: :get, html: { class: "g-products__sidebar g-products__filters-block g-form", id: "filters" } do |f|
         .g-input.g-input_select
           %label.g-input__label Категория
           .g-input__field.g-input__field_select-wrapper
@@ -17,7 +17,7 @@
           %label.g-input__label Подкатегория
           .g-input__field.g-input__field_select-wrapper
             %select#select-subcategory.g-input__field.g-input__field_select.js-input{:name => "category_id"}
-              -Category.top_level.each_with_index do |category, category_index|
+              -Category.includes(:sub_categories).top_level.each_with_index do |category, category_index|
                 %optgroup{"data-id" => category.id, :label => category.title}
                   -category.sub_categories.each do |subcategory|
                     %option{:value => subcategory.id}=subcategory.title

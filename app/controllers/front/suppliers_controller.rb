@@ -2,14 +2,18 @@ class Front::SuppliersController < FrontController
   def index
     category_id = params[:upper_category]
     subcategory_id = params[:category_id]
+    manufacturer_id = params[:manufacturer_id]
+    sign_id = params[:sign]
 
-    @suppliers = Manufacturer.where(nil)
-    filtering_params(params).each do |key, value|
-      @suppliers = @suppliers.public_send(key, value) if value.present?
-    end
+    
+    @suppliers = Manufacturer.by_filter(category_id, subcategory_id, manufacturer_id, sign_id)
+
+    p "Inspecting suppliers"
+    puts @suppliers.inspect
+    puts @suppliers.empty?
 
     respond_to do |format|
-      format.js
+      format.js 
       format.html
     end
   end
