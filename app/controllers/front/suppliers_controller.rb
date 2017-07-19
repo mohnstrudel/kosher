@@ -5,23 +5,12 @@ class Front::SuppliersController < FrontController
     manufacturer_id = params[:manufacturer_id]
     sign_id = params[:sign]
 
-    
-    @suppliers = Manufacturer.by_filter(category_id, subcategory_id, manufacturer_id, sign_id)
-
-    p "Inspecting suppliers"
-    puts @suppliers.inspect
-    puts @suppliers.empty?
-
-    respond_to do |format|
-      format.js 
-      format.html
-    end
+    @suppliers = Manufacturer.by_filter(category_id, subcategory_id, manufacturer_id, sign_id).uniq.compact
   end
 
-  private
-
-  # A list of the param names that can be used for filtering the Product list
-  def filtering_params(params)
-    params.slice(:category_id)
+  def show
+    @supplier = Manufacturer.find(params[:id])
   end
+
+
 end

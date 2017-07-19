@@ -1,0 +1,32 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      =@product.title
+    .g-product-desc
+      .g-product-pic
+        =image_tag @product.logo, class: 'g-product-pic__img'
+      %ul.g-product-list
+        -if @product.manufacturer.parent_id.present?
+          %li.g-product-list__item
+            %p.g-product-list__title Производитель
+            %p.g-product-list__text
+              =image_tag @product.manufacturer.parent.logo, class: 'g-product-list__icon'
+              =@product.manufacturer.parent.title
+          %li.g-product-list__item
+            %p.g-product-list__title Торговая марка
+            %p.g-product-list__text
+              =image_tag @product.manufacturer.logo, class: 'g-product-list__icon'
+              =@product.manufacturer.title
+        -else
+          %li.g-product-list__item
+            %p.g-product-list__title Производитель
+            %p.g-product-list__text
+              =image_tag @product.manufacturer.logo, class: 'g-product-list__icon'
+              =@product.manufacturer.title
+        %li.g-product-list__item
+          %p.g-product-list__title Знак кошерности
+          %p.g-product-list__text
+            =image_tag @product.label.logo, class: 'g-product-list__icon'
+            =@product.label.title
+      .g-product-alert
+        Наличие знака кашрута на упаковках обязательно!

@@ -11,6 +11,6 @@
           %h2.g-products-wrapper__title=supplier.title
           %p.g-products-wrapper__description
             =supplier.description
-          %a.g-btn.g-btn_gray{:href => "#"} Подробнее
+          =link_to 'Подробнее', supplier_path(supplier), class: 'g-btn g-btn_gray'
 -else
-  %h2 Пусто
+  %h2 По вашему запросу ничего не найдено

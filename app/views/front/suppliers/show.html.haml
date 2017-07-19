@@ -1,0 +1,20 @@
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      =@supplier.title
+    .g-tm
+      .g-tm__left
+        .g-tm__logo.js-sticky
+          =image_tag @supplier.logo, class: 'g-tm__logo-img'
+      .g-tm__right
+        .g-tm__desc
+          =@supplier.description.html_safe
+        .g-tm__products
+          %h2.g-tm__products-title Продукция:
+          %ul.g-tm__products-list.g-tm-products
+            -@supplier.products.each do |product|
+              %li.g-tm-products__item
+                =link_to product.title, supplier_product_path(@supplier, product)
+          %a.g-btn.g-btn_blue.g-tm-products__button Смотреть галерею
+        .g-product-alert
+          Наличие знака кашрута на упаковках обязательно!

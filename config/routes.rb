@@ -93,7 +93,9 @@ Rails.application.routes.draw do
 
     resources :products, only: [:index, :show]
     resources :categories, only: [:index, :show]
-    resources :suppliers, only: [:index, :show]
+    resources :suppliers, only: [:index, :show] do
+      resources :products, only: :show
+    end
 
     resources :cities, only: [:index, :show] do
       resources :shops, only: [:index, :show]

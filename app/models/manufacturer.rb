@@ -18,12 +18,19 @@ class Manufacturer < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
+  # extend FriendlyId
+  # friendly_id :title, use: [:finders, :slugged]
+
   def self.has_children?(id)
     if find(id).trademarks.empty?
       return false
     else
       return true
     end
+  end
+
+  def parent
+    Manufacturer.find(self.parent_id)
   end
 
   def self.by_filter(category = nil, subcategory = nil, manufacturer = nil, sign = nil)
@@ -40,8 +47,15 @@ class Manufacturer < ApplicationRecord
       return all
     end
 
-    return Manufacturer.find(manufacturer).trademarks if !category && !subcategory && manufacturer && !sign
-      
+    return Manufacturer.find(manufacturer).trademarks if !category && !subcategory && manufacturer.present? && !sign
+    
+    if category.present?
+      category = Category.return_collection(category)
+    end
+
+    if manufacturer.present?
+      manufacturer = Manufacturer.return_collection(manufacturer)
+    end
 
     params = Hash(category: category, manufacturer: manufacturer, label: sign)
 
@@ -49,11 +63,6 @@ class Manufacturer < ApplicationRecord
     params.each do |key, value|
       @products = @products.where(key => value) if value.present?
     end
-    p "Inspecting products:"
-    puts @products.inspect
-
-    p "By category and parent params:"
-    p params
     
     return @products.map { |product| product.manufacturer }
   end

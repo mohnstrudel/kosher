@@ -12,7 +12,7 @@
             %select#category-select.g-input__field.g-input__field_select.js-input{:name => "upper_category"}
               %option{:value => "any"} Любая категория
               -Category.top_level.each_with_index do |category, index|
-                %option{:value => category.id, selected: "#{(category.id == @category_id) ? 'selected' : false}"}=category.title
+                %option{:value => category.id}=category.title
         .g-input.g-input_select
           %label.g-input__label Подкатегория
           .g-input__field.g-input__field_select-wrapper

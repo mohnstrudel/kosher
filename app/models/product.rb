@@ -10,6 +10,9 @@ class Product < ApplicationRecord
 
   before_save :default_label
 
+  # extend FriendlyId
+  # friendly_id :title, use: [:finders, :slugged]
+
   # scope :filtered_by_category, -> (id) { where(category_id: id) }
 
   # scope :incomplete, -> { where(manufacturer: nil).or(where(label: nil)).or(where(category: nil)).or(where(title: nil)) }

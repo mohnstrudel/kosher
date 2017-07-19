@@ -17,7 +17,12 @@ module Front::BreadcrumbsHelper
 
       if is_number?(element)
         # Имя модели вот тут - path[index-1]
-        found_object = path[index-1].singularize.camelcase.constantize.find(element.to_i)
+        begin
+          found_object = path[index-1].singularize.camelcase.constantize.find(element.to_i)
+        rescue NameError=>e
+          logger.debug e
+          found_object = Manufacturer.find(element.to_i)
+        end
         begin
           breadcrumbs << found_object.name
         rescue NoMethodError=>e

@@ -16,5 +16,6 @@ class Front::ProductsController < FrontController
   end
 
   def show
+    @product = Manufacturer.includes(:products).find(params[:supplier_id]).products.find(params[:id])
   end
 end
