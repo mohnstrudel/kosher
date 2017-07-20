@@ -44,4 +44,22 @@ RSpec.feature "Front products feature spec >", :type => :feature do
       expect(page).to have_content("Moroshka")
     end
   end
+
+  feature "friendly id" do
+    scenario "should be correct for product" do
+      product = FactoryGirl.create(:product, title: "Мороша сладкая")
+
+      visit product_path(product)
+      expect(page).to have_current_path('/products/morosha-sladkaya')
+    end
+
+    scenario "should be correct for manufacturer and product" do
+      manuf = FactoryGirl.create(:manufacturer, title: "Саб Зиро")
+      product = FactoryGirl.create(:product, title: "Мороша горькая", manufacturer: manuf)
+
+      visit supplier_product_path(manuf, product)
+
+      expect(page).to have_current_path('/suppliers/sab-ziro/products/morosha-gorkaya')
+    end
+  end
 end

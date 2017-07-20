@@ -27,4 +27,13 @@ RSpec.feature "Front manufacturers feature spec >", :type => :feature do
       expect(page).to have_content("Lunatik Ship forwarding")
     end
   end
+
+  feature "friendly id" do
+    scenario "chould be correct for supplier_path" do
+      manuf = FactoryGirl.create(:manufacturer, title: "Скорпушечка")
+      visit supplier_path(manuf)
+
+      expect(page).to have_current_path('/suppliers/skorpushechka')
+    end
+  end
 end

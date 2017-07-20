@@ -18,8 +18,8 @@ class Manufacturer < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
-  # extend FriendlyId
-  # friendly_id :title, use: [:finders, :slugged]
+  extend FriendlyId
+  friendly_id :title, use: [:finders, :slugged]
 
   def self.has_children?(id)
     if find(id).trademarks.empty?

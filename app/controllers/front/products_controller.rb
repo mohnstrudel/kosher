@@ -16,6 +16,11 @@ class Front::ProductsController < FrontController
   end
 
   def show
-    @product = Manufacturer.includes(:products).find(params[:supplier_id]).products.find(params[:id])
+    begin
+      @product = Manufacturer.includes(:products).find(params[:supplier_id]).products.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => error
+      logger.debug error
+      @product = Product.find(params[:id])
+    end
   end
 end

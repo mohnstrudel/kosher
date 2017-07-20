@@ -10,8 +10,8 @@ class Product < ApplicationRecord
 
   before_save :default_label
 
-  # extend FriendlyId
-  # friendly_id :title, use: [:finders, :slugged]
+  extend FriendlyId
+  friendly_id :title, use: [:finders, :slugged]
 
   # scope :filtered_by_category, -> (id) { where(category_id: id) }
 

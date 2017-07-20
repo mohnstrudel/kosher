@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711124504) do
+ActiveRecord::Schema.define(version: 20170720092734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 20170711124504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "url"
+    t.string "slug"
+    t.index ["slug"], name: "index_manufacturers_on_slug", unique: true
   end
 
   create_table "opening_hours", id: :serial, force: :cascade do |t|
@@ -213,11 +215,13 @@ ActiveRecord::Schema.define(version: 20170711124504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "barcode"
+    t.string "slug"
     t.index "lower((description)::text) varchar_pattern_ops", name: "products_lower_description"
     t.index "lower((title)::text) varchar_pattern_ops", name: "products_lower_title"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["label_id"], name: "index_products_on_label_id"
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "recipe_categories", force: :cascade do |t|
