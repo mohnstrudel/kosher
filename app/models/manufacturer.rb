@@ -18,6 +18,8 @@ class Manufacturer < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
+  after_save :set_slug
+
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]
 
@@ -77,6 +79,18 @@ class Manufacturer < ApplicationRecord
     # На первом месте всегда айди родителя, потом идут айди детей
     # Пример - [1, 4, 7, 10]
     return [parent.id, children_ids].flatten!
+  end
+
+  def set_slug
+    if self.slug.blank?
+      begin
+        slugged = Translit.convert(self.title, :english).downcase
+        slugged = slugged.split(" ").join("-").delete(".")
+        self.slug = slugged
+      rescue NoMethodError => e
+        self.slug = nil
+      end
+    end
   end
 
 end

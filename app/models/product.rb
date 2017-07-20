@@ -10,6 +10,8 @@ class Product < ApplicationRecord
 
   before_save :default_label
 
+  after_save :set_slug
+
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]
 
@@ -78,6 +80,18 @@ class Product < ApplicationRecord
       self.label_id = nil
       logger.debug "Rescued default_label method from product model"
       logger.debug e.message
+    end
+  end
+
+  def set_slug
+    if self.slug.blank?
+      begin
+        slugged = Translit.convert(self.title, :english).downcase
+        slugged = slugged.split(" ").join("-").delete(".")
+        self.slug = slugged
+      rescue NoMethodError => e
+        self.slug = nil
+      end
     end
   end
 end

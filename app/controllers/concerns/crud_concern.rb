@@ -36,13 +36,13 @@ module CrudConcern
           }
         end
       else
-        render :new
         flash[:danger] = "Something not quite right"
+        render :new
       end
       @remaining_locales = Language.get_remaining_locales
     rescue => e
-      render :new
       flash[:danger] = e.message
+      render :new
     end
   end
 
@@ -57,8 +57,8 @@ module CrudConcern
     else
       logger.debug "Encountered errors:"
       logger.debug object.errors.full_messages
-      render :edit
       flash[:danger] = "Something's not quite right"
+      render :edit
     end
   end
 
@@ -72,8 +72,8 @@ module CrudConcern
           }
         end
       else
-        render :index
         flash[:danger] = "Something's not quite right"
+        render :index
       end
     rescue ActiveRecord::InvalidForeignKey => e
     # Flash and render, render API json error... whatever
