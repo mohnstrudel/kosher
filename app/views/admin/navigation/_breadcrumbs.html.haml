@@ -1,5 +1,6 @@
 .row.wrapper.border-bottom.white-bg.page-heading
   .col-lg-10
     / Calling a helper (admin_helper.rb) method (which relies on session[:breadcrumbs])
-    =breadcrumbs
+    -if current_user
+      =breadcrumbs
   .col-lg-2

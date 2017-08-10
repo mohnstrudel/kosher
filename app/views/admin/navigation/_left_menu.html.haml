@@ -7,17 +7,19 @@
             %span.clear
               %span.block.m-t-xs
                 %strong.font-bold
-                  ="#{current_user.first_name} #{current_user.second_name}"
+                  -if current_user
+                    ="#{current_user.first_name} #{current_user.second_name}"
               %span.text-muted.text-xs.block
                 Art Director
                 %b.caret
           %ul.dropdown-menu.animated.fadeInRight.m-t-xs
-            %li
-              =link_to edit_admin_user_path(current_user.id) do
-                =t('admin.profile')
-            %li
-              =link_to destroy_user_session_path do
-                =t('admin.logout')
+            -if current_user
+              %li
+                =link_to edit_admin_user_path(current_user.id) do
+                  =t('admin.profile')
+              %li
+                =link_to destroy_user_session_path do
+                  =t('admin.logout')
         .logo-element
           IN+
       =nav_link admin_path do
