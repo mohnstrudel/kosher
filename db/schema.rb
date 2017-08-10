@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720092734) do
+ActiveRecord::Schema.define(version: 20170810114636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "barcodes", force: :cascade do |t|
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bootsy_image_galleries", id: :serial, force: :cascade do |t|
     t.string "bootsy_resource_type"
@@ -205,6 +211,15 @@ ActiveRecord::Schema.define(version: 20170720092734) do
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
 
+  create_table "product_barcodes", force: :cascade do |t|
+    t.bigint "barcode_id"
+    t.bigint "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["barcode_id"], name: "index_product_barcodes_on_barcode_id"
+    t.index ["product_id"], name: "index_product_barcodes_on_product_id"
+  end
+
   create_table "products", id: :serial, force: :cascade do |t|
     t.integer "category_id"
     t.integer "label_id"
@@ -314,6 +329,8 @@ ActiveRecord::Schema.define(version: 20170720092734) do
   add_foreign_key "phones", "restaurants"
   add_foreign_key "phones", "shops"
   add_foreign_key "posts", "post_categories"
+  add_foreign_key "product_barcodes", "barcodes"
+  add_foreign_key "product_barcodes", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "labels"
   add_foreign_key "products", "manufacturers"

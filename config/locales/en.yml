@@ -145,6 +145,7 @@ en:
         select_file: "Select file"
         change: "Change"
         add_phone: "Add phone"
+        add_barcode: Add barcode
         add_hours: "Add opening hours"
         choose_category: "Select sub/category"
         choose_manufacturer: "Select manufacturer/trademark"

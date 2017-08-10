@@ -24,10 +24,21 @@ RSpec.describe Product, type: :model do
     expect(product).not_to be_valid
   end
 
-  it "saves a real barcode (big number)" do
-    product = FactoryGirl.build(:product, barcode: 4605490000217)
-    expect{
+  context "barcodes" do
+    it "saves a real barcode (big number)" do
+      product = FactoryGirl.build(:product, barcode: 4605490000217)
+      expect{
+        product.save
+        }.to change(Product, :count).by(1)
+    end
+
+    it "saves multiple barcodes" do
+      product = FactoryGirl.build(:product)
+      product.barcodes.build
+      product.barcodes.build
+      
       product.save
-      }.to change(Product, :count).by(1)
+      expect(product.barcodes.count).to eq(2)
+    end
   end
 end

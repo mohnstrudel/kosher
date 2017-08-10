@@ -12,6 +12,11 @@ class Product < ApplicationRecord
 
   after_save :set_slug
 
+  has_many :product_barcodes, dependent: :destroy
+  has_many :barcodes, through: :product_barcodes
+
+  accepts_nested_attributes_for :barcodes, allow_destroy: true
+
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]
 

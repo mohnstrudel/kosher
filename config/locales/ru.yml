@@ -121,6 +121,7 @@ ru:
         select_file: "Выбрать файл"
         change: "Изменить"
         add_phone: "Добавить телефон"
+        add_barcode:  Добавить штрихкод
         add_hours: "Добавить часы открытия"
         choose_category: "Выбрать (под)категорию"
         choose_manufacturer: "Выбрать производителя/ТМ"

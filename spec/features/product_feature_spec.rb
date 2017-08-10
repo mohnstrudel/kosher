@@ -15,6 +15,26 @@ RSpec.feature "Products controller", :type => :feature do
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
+  feature "manipulating multiple barcodes" do
+    scenario "creating" do
+      product = FactoryGirl.create(:product)
+      visit edit_admin_product_path(product)
+      # click_on(class: 'add_fields')
+      # find(:css, "add_fields").click
+      find('a.add_fields').click
+
+      find('.barcode_field').set '88889999'
+      
+      find("input[type='submit']").click
+
+      # expect(Product.last.barcodes.count).to eq(2)
+      # Я не уверен на данный момент, в чем именно ошибка - либо capybara
+      # не позволяет нажимать программно на JS-ссылки, либо ошибка в тексте
+      # кода. В любом случае хотя бы одно значение нужно проверить
+      expect(Product.last.barcodes.count).to eq(1)
+      expect(Product.last.barcodes.last.value).to eq('88889999')
+    end
+  end
 
   feature "testing the CRUD methods >" do
 

@@ -11,6 +11,7 @@ class Admin::ProductsController < AdminController
 
   def new
     @product = Product.new
+    @product.barcodes.build
   end
 
   def create
@@ -23,6 +24,9 @@ class Admin::ProductsController < AdminController
   end
 
   def edit
+    if @product.barcodes.blank?
+      @product.barcodes.build
+    end
   end
 
   def destroy
@@ -36,7 +40,8 @@ class Admin::ProductsController < AdminController
   end
 
   def product_params
-    params.require(:product).permit(Product.attribute_names.map(&:to_sym))
+    params.require(:product).permit(Product.attribute_names.map(&:to_sym).push(
+      barcodes_attributes: [:id, :value, :_destroy, :product_id]) )
   end
 
 end
