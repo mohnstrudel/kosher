@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :recipe_categories, except: :show
       resources :requests, except: :show
       resources :subscribers, except: :show
+      resources :ingredients, except: :show
       
       
 

@@ -49,6 +49,9 @@ ru:
       recipe:
         one: Рецепт
         other: Рецепты
+      ingredient:
+        one: Ингредиент
+        other: Ингредиенты
       recipe_category:
         one: Категория
         other: Категории
@@ -106,6 +109,7 @@ ru:
         message: Сообщение
         company_name: Наименование компании
         facebook: Фейсбук
+        ingredients: Ингредиенты
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -130,6 +134,7 @@ ru:
         choose_city: Выберите город
         choose_recipe_category: Выбрать категорию
         bulk_destroy: Удалить выбранные
+        choose_ingredient: Выбрать ингредиент(ы)
       buttons:
         search: Поиск
         only_incomplete: Найти только незаполненные товары
@@ -208,6 +213,9 @@ ru:
         main: Рецепты
         all: Все рецепты
         new: Создать новый рецепт
+      ingredients:
+        new: Новый ингредиент
+        all: Все ингредиенты
       recipe_categories:
         all: Категории рецептов
       right_sidebar:

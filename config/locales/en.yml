@@ -73,6 +73,9 @@ en:
       recipe:
         one: Recipe
         other: Recipes
+      ingredient:
+        one: Ingredient
+        other: Ingredients
       recipe_category:
         one: Category
         other: Categories
@@ -130,6 +133,7 @@ en:
         message: Message
         company_name: Company name
         facebook: Facebook
+        ingredients: Ingredients
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -154,6 +158,7 @@ en:
         choose_city: Select City
         choose_recipe_category: Select Category
         bulk_destroy: Delete selected
+        choose_ingredient: Select ingredient(s)
       buttons:
         search: Search
         only_incomplete: Find only incomplete products
@@ -232,6 +237,9 @@ en:
         main: Recipes
         all: All recipes
         new: New recipe
+      ingredients:
+        new: New ingredient
+        all: All ingredients
       recipe_categories:
         all: Recipe categories
 

@@ -6,19 +6,24 @@ module AdminHelper
       text = "Create new #{model.downcase}"
       return text
     elsif I18n.locale == :ru
-      try_gender = Morpher.new("#{model}")
-      gender = try_gender.singular('род')
-      if gender == "Мужской"
-        new_text = "Новый"
-      elsif gender == "Женский"
-        new_text = "Новая"
-      else
-        new_text = "Новое"
+      begin
+        try_gender = Morpher.new("#{model}")
+        gender = try_gender.singular('род')
+        if gender == "Мужской"
+          new_text = "Новый"
+        elsif gender == "Женский"
+          new_text = "Новая"
+        else
+          new_text = "Новое"
+        end
+        text = Morpher.new("#{new_text} #{model}")
+        # p = Petrovich(lastname: new_text, firstname:  model)
+        create_text = "Создать #{text.singular("в").downcase}"
+        return create_text
+      rescue => e
+        logger.info "Error while translating text: #{e.message}"
+        return "Создать новую запись"
       end
-      text = Morpher.new("#{new_text} #{model}")
-      # p = Petrovich(lastname: new_text, firstname:  model)
-      create_text = "Создать #{text.singular("в").downcase}"
-      return create_text
     end
   end
 

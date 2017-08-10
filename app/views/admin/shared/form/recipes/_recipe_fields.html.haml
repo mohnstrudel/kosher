@@ -7,3 +7,11 @@
       / =f.select :parent_id, object.class.name.constantize.top_level.map { |obj| [ obj.title, obj.id ] }, {}, { class: "form-control m-b" }
       =f.collection_select(:recipe_category_id, RecipeCategory.all, :id, :title, { include_blank: t('admin.form.actions.choose_recipe_category') }, class: 'form-control select2_categories')
   .hr-line-dashed
+
+-if object.respond_to?(:ingredients)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.ingredients')
+    .col-lg-10
+      =f.collection_select(:ingredient_ids, Ingredient.all, :id, :title, { include_blank: t('admin.form.actions.choose_ingredient') }, multiple: true , class: 'form-control select2_ingredients')
+  .hr-line-dashed

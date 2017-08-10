@@ -1,0 +1,1 @@
+$(".select2_ingredients").select2();

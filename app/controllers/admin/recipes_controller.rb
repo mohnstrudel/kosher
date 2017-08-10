@@ -37,7 +37,8 @@ class Admin::RecipesController < AdminController
   end
 
   def recipe_params
-    params.require(:recipe).permit(Recipe.attribute_names.map(&:to_sym))
+    params.require(:recipe).permit(Recipe.attribute_names.map(&:to_sym).push(
+      ingredient_ids: []))
   end
 
 end
