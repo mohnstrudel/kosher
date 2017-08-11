@@ -8,8 +8,8 @@
       .g-recipe__text-block
         %h3.g-recipe__title Ингредиенты:
         %ul.g-text-block__ul.g-text-block__ul_recipe
-          -@recipe.ingredients.each do |ingredient|
-            %li.g-text-block__li=ingredient.title
+          -@recipe.recipe_ingredients.includes(:ingredient).each do |recipe_ingredient|
+            %li.g-text-block__li="#{recipe_ingredient.ingredient.title} - #{recipe_ingredient.amount}"
         %h3.g-recipe__title Способ приготовления:
         %p.g-recipe__text
           =@recipe.description.html_safe

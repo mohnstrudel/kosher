@@ -1,0 +1,11 @@
+.col-md-12
+  .row.ingredient_row
+    .col-xs-12.col-md-5
+      .form-group
+        =f.collection_select(:ingredient_id, Ingredient.all, :id, :title, { include_blank: t('admin.form.actions.choose_ingredient') }, class: 'form-control select2_ingredients')
+    .col-xs-12.col-md-7.pull-right
+      .input-group
+        =f.text_field :amount, class: 'form-control ingredient_field', placeholder: t('admin.form.placeholders.ingredients.amount')
+        %span.input-group-btn
+          =f.hidden_field :_destroy
+          =link_to t('admin.form.actions.delete'), "#", class: "remove_record btn btn-danger"

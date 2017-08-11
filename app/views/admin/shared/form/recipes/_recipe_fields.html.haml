@@ -13,5 +13,9 @@
     %label.col-lg-2.control-label
       =t('admin.form.model.ingredients')
     .col-lg-10
-      =f.collection_select(:ingredient_ids, Ingredient.all, :id, :title, { include_blank: t('admin.form.actions.choose_ingredient') }, multiple: true , class: 'form-control select2_ingredients')
+      =f.fields_for :recipe_ingredients do |ingredient_builder|
+        =render partial: 'admin/shared/form/recipes/ingredient_fields', locals: { f: ingredient_builder }
+      %span.help-block.m-b-none
+        =link_to_add_fields t('admin.form.actions.add_ingredient'), f, :recipe_ingredients, 'admin/shared/form/recipes/ingredient_fields', class: 'btn btn-default'
+      / =f.collection_select(:ingredient_ids, Ingredient.all, :id, :title, { include_blank: t('admin.form.actions.choose_ingredient') }, multiple: true , class: 'form-control select2_ingredients')
   .hr-line-dashed

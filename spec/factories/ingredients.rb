@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :ingredient do
-    title "MyString"
-    recipe nil
+    title { Faker::Lorem.word }
   end
 end

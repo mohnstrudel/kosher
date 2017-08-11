@@ -11,6 +11,21 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
+  feature "recipe ingredients >" do
+    scenario 'when editing' do
+      recipe = FactoryGirl.create(:recipe)
+      FactoryGirl.create(:ingredient, title: 'Dooge')
+      visit edit_admin_recipe_path(recipe)
+
+      select 'Dooge', from: 'recipe_recipe_ingredients_attributes_0_ingredient_id'
+      fill_in 'recipe_recipe_ingredients_attributes_0_amount', with: '500ml'
+
+      find("input[type='submit']").click
+
+      expect(recipe.ingredients.count).to eq(1)
+    end
+  end
+
   feature "crud methods >" do
     
     scenario 'index' do

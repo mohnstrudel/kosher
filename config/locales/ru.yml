@@ -67,6 +67,9 @@ ru:
       fail:
         delete: Не удалось удалить выбранные записи.
     form:
+      placeholders:
+        ingredients:
+          amount: Кол-во, например 'две чайные ложки' или '500 грамм'
       tab_main: 
         title: "Основное"
       hints:

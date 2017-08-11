@@ -12,6 +12,7 @@ class Admin::RecipesController < AdminController
 
   def new
     @recipe = Recipe.new
+    @recipe.recipe_ingredients.build
   end
 
   def create
@@ -24,6 +25,9 @@ class Admin::RecipesController < AdminController
   end
 
   def edit
+    if @recipe.recipe_ingredients.blank?
+      @recipe.recipe_ingredients.build
+    end
   end
 
   def destroy
@@ -38,7 +42,7 @@ class Admin::RecipesController < AdminController
 
   def recipe_params
     params.require(:recipe).permit(Recipe.attribute_names.map(&:to_sym).push(
-      ingredient_ids: []))
+      recipe_ingredients_attributes: [:id, :amount, :recipe_id, :ingredient_id, :_destroy]))
   end
 
 end

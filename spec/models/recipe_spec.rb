@@ -18,4 +18,18 @@ RSpec.describe Recipe, type: :model do
       expect(recipe).to be_valid
     end
   end
+
+  context "ingredients" do
+    it "saves multiple ingredients" do
+      recipe = FactoryGirl.build(:recipe)
+      ingredient = FactoryGirl.create(:ingredient)
+      ingredient_2 = FactoryGirl.create(:ingredient)
+
+      recipe.recipe_ingredients.build(ingredient_id: ingredient.id, amount: "500 hello")
+      recipe.recipe_ingredients.build(ingredient_id: ingredient_2.id, amount: "23 souls")
+      
+      recipe.save
+      expect(recipe.ingredients.count).to eq(2)
+    end
+  end
 end

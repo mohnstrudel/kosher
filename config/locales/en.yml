@@ -91,6 +91,9 @@ en:
       fail:
         delete: Deleting failed.
     form:
+      placeholders:
+        ingredients:
+          amount: Amount, i.e. 'two cups' or '500 grams'
       tab_main: 
         title: "General"
       hints:
