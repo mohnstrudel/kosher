@@ -82,6 +82,10 @@ gem 'bootsy' # Screw CKEditor, it's not working on production!
 gem 'carrierwave' # Required for images upload using ckeditor and in general
 gem 'mini_magick' # Required for image processing
 
+# Рассылка писем
+gem 'gibbon'
+gem 'delayed_job_active_record'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

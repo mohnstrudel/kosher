@@ -1,45 +1,75 @@
 class Mailchimp
 
-  require 'curb'
-
-  attr_accessor :api_key, :region
-
-  def initialize
-    # Populate this values
-    self.api_key = "c15e30d585d1439efb7999d98286b1a5-us8"
-    self.region = "us8"
-  end
-
-  def create_list
-    http = Curl.post("https://#{region}.api.mailchimp.com/3.0/lists") do |http|
-      http.headers['user'] = "anystring:#{api_key}"
-      http.headers['header'] = 'content-type: application/json'
-      http.headers['data'] = {"name" => "Kosher List",
-        "contact" => {
-          "company" => "MailChimp",
-          "address1" => "675 Ponce De Leon Ave NE",
-          "address2" => "Suite 5000",
-          "city" => "Atlanta",
-          "state" => "GA",
-          "zip" => "30308",
-          "country" => "US",
-          "phone" => ""
-          },
-        "permission_reminder" => "You'\''re receiving this email because you signed up for updates about Freddie'\''s newest hats.",
-        "campaign_defaults" => {
-          "from_name" => "Freddie",
-          "from_email" => "freddie@freddiehats.com",
-          "subject" => "",
-          "language" => "en"
-          },
-        "email_type_option" => true}
+  def initialize(params=nil)
+    # @gibbon = Gibbon::Request.new(api_key: Figaro.env.mailchimp_api_key)
+    if params
+      @title = params[:title]
+      @body = params[:body]
+      @email = params[:email]
+      @template_id = params[:template_id]
     end
   end
 
-  def fetch_lists
-    http = Curl.get("https://#{region}.api.mailchimp.com/3.0/lists") do |http|
-      http.headers['user'] = "anystring:#{api_key}"
+  def get_user_templates
+    # Возвращает массив структуры
+    # [{:id=>30983, :type=>"user", :name=>"Tell A Story", :drag_and_drop=>true, :responsive=>true, :category=>"", :date_created=>"2017-08-15T17:05:22+00:00", 
+    # :created_by=>"Anton Kostin", :active=>true, :thumbnail=>"http://gallery.mailchimp.com/ed88701ad0942e43ad9dd59f3/template-screens/30983_screen.1.png", 
+    # :share_url=>"", :_links=>[{:rel=>"self", :href=>"https://us16.api.mailchimp.com/3.0/templates/30983", :method=>"GET", :targetSchema=>"https://us16.api.mailchimp.com/schema/3.0/Definitions/Templates/Response.json"}, 
+    # {:rel=>"parent", :href=>"https://us16.api.mailchimp.com/3.0/templates", :method=>"GET", :targetSchema=>"https://us16.api.mailchimp.com/schema/3.0/Definitions/Templates/CollectionResponse.json", :schema=>"https://us16.api.mailchimp.com/schema/3.0/CollectionLinks/Templates.json"}, {:rel=>"delete", :href=>"https://us16.api.mailchimp.com/3.0/templates/30983", :method=>"DELETE"}, {:rel=>"default-content", :href=>"https://us16.api.mailchimp.com/3.0/templates/30983/default-content", :method=>"GET", :targetSchema=>"https://us16.api.mailchimp.com/schema/3.0/Definitions/Templates/Default-Content/Response.json", :schema=>"https://us16.api.mailchimp.com/schema/3.0/CollectionLinks/Templates.json"}]}]
+    Gibbon::Request.templates.retrieve(params: {"type": "user"}).body[:templates]
+  end
+
+  def subscribe
+    Gibbon::Request.lists(Figaro.env.mailchimp_list_id).members.create(body: {email_address: @email, status: "subscribed"})
+  end
+
+  def unsubscribe
+    email = Digest::MD5.hexdigest(@email)
+    Gibbon::Request.lists(Figaro.env.mailchimp_list_id).members(email).update(body: { status: "unsubscribed" })
+  end
+
+  def deliver_campaign
+    campaign_id = create_campaign
+    body = {
+      template: {
+      id: @template_id.to_i
+        # sections: {
+        #   "name-of-mc-edit-area": "Content here"
+        # }
+      }
+    }
+    # Gibbon::Request.campaigns(campaign_id).content.upsert(body: { html: @body })
+    Gibbon::Request.campaigns(campaign_id).content.upsert(body: body)
+    begin
+      Gibbon::Request.campaigns(campaign_id).actions.send.create
+    rescue Gibbon::MailChimpError => e
+      puts "Houston, we have a problem: #{e.message} - #{e.raw_body}"
     end
   end
 
+  def create_campaign
+    recipients = {
+      list_id: Figaro.env.mailchimp_list_id
+    }
+    settings = {
+      subject_line: @title,
+      title: @title,
+      from_name: "Anton Kosherstin",
+      reply_to: "anton@yadadya.com"
+    }
+
+    body = {
+      type: "regular",
+      recipients: recipients,
+      settings: settings
+      # html: @body
+    }
+
+    begin
+      response = Gibbon::Request.campaigns.create(body: body)
+      return response.body[:id]
+    rescue Gibbon::MailChimpError => e
+      puts "Houston, we have a problem: #{e.message} - #{e.raw_body}"
+    end
+  end
 end

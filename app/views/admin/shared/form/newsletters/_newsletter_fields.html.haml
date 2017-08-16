@@ -1,0 +1,6 @@
+-if object.respond_to?(:template_id)
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.template')
+    .col-lg-10
+      =f.select(:template_id, @templates.collect.map { |item| [ item[:name], item[:id] ] }, {include_blank: true}, { class: 'form-control m-b'})

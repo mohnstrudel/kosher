@@ -15,6 +15,8 @@ class Admin::SubscribersController < AdminController
 
   def create
     @subscriber = Subscriber.new(subscriber_params)
+    chimp = Mailchimp.new(@subscriber)
+    chimp.delay.subscribe
     create_helper(@subscriber, "edit_admin_subscriber_path")
   end
 
@@ -26,6 +28,8 @@ class Admin::SubscribersController < AdminController
   end
 
   def destroy
+    chimp = Mailchimp.new(@subscriber)
+    chimp.delay.unsubscribe
     destroy_helper(@subscriber, "admin_subscribers_path")
   end
 

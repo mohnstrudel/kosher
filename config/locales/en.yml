@@ -137,6 +137,7 @@ en:
         company_name: Company name
         facebook: Facebook
         ingredients: Ingredients
+        template: Select newsletter template
       tab_translation: "Other languages"
       actions:
         main: "Actions"
@@ -201,6 +202,7 @@ en:
         main: "Services"
         faq: "FAQ"
         photos: "Photogallery"
+        newsletters: Newsletters
       settings:
         main: "Settings"
         general: "General settings"

@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :requests, except: :show
       resources :subscribers, except: :show
       resources :ingredients, except: :show
+      resources :newsletters, except: :show
       
       
 

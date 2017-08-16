@@ -113,6 +113,7 @@ ru:
         company_name: Наименование компании
         facebook: Фейсбук
         ingredients: Ингредиенты
+        template: Выбрать шаблон рассылки
       tab_translation: "Переводы"
       actions:
         main: "Действия"
@@ -177,6 +178,7 @@ ru:
         main: "Сервисы"
         faq: "Вопросы-Ответы"
         photos: "Фотогалерея"
+        newsletters: Рассылка
       settings:
         main: "Настройки"
         general: "Общие настройки"
