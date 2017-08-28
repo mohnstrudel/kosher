@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62" height="94" viewBox="0 0 62 94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ededed;
+      }
+
+      .cls-2, .cls-6 {
+        fill: #d1d1d1;
+      }
+
+      .cls-2, .cls-5 {
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        fill: #00b4b4;
+      }
+
+      .cls-4 {
+        fill: #00adad;
+      }
+
+      .cls-5 {
+        fill: #f1c40f;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" width="50" height="94" rx="6" ry="6"/>
+  <path class="cls-2" d="M22,7h6a1.425,1.425,0,0,1,1.286,1.239h0A1.061,1.061,0,0,1,28,9H22c-0.592,0-.571-0.168-0.571-0.761h0C21.429,7.645,21.408,7,22,7Z"/>
+  <path class="cls-2" d="M28,9H22a1,1,0,0,1,0-2h6A1,1,0,0,1,28,9ZM16,9a1,1,0,1,1,1-1A1,1,0,0,1,16,9Z"/>
+  <rect class="cls-3" x="5" y="15" width="40" height="63"/>
+  <rect class="cls-4" x="5" y="75" width="40" height="3"/>
+  <path class="cls-5" d="M56.51,66H50V60h6V41H38v5L27.537,38.308,38,30v5H56s6,0.108,6,6l0,19.462C62,66,56.51,66,56.51,66Z"/>
+  <circle class="cls-6" cx="24" cy="86" r="4"/>
+</svg>
