@@ -27,18 +27,17 @@
             %br/
             России
         .g-header__icon-links
-          .g-text-icon
-            =link_to consumers_path do
-              %i.g-text-icon__img.g-text-icon__img_members
-              %span.g-text-icon__text Потребителям
-          .g-text-icon
-            =link_to trade_networks_path do
-              %i.g-text-icon__img.g-text-icon__img_trade
-              %span.g-text-icon__text Торговым сетям
-          .g-text-icon
-            =link_to manufacturers_path do
-              %i.g-text-icon__img.g-text-icon__img_manufacturers
-              %span.g-text-icon__text Производителям
+          =link_to consumers_path, class: 'g-text-icon' do
+            %i.g-text-icon__img.g-text-icon__img_members
+            %span.g-text-icon__text Потребителям
+          
+          =link_to trade_networks_path, class: 'g-text-icon' do
+            %i.g-text-icon__img.g-text-icon__img_trade
+            %span.g-text-icon__text Торговым сетям
+          
+          =link_to manufacturers_path, class: 'g-text-icon' do
+            %i.g-text-icon__img.g-text-icon__img_manufacturers
+            %span.g-text-icon__text Производителям
         .g-header__phones.g-mobile-hide
           %a.g-header__phone{:href => "tel:74956312500"} +7 (495) 631-25-00
           %a.g-header__phone{:href => "tel:74959260784"} +7 (495) 926-07-84

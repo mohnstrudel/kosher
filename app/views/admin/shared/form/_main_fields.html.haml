@@ -30,6 +30,7 @@
 
     =render partial: "admin/shared/form/newsletters/newsletter_fields", locals: { f: f, object: object }
 
+
     -if object.respond_to?(:title)
       .form-group
         %label.col-sm-2.control-label
@@ -93,6 +94,8 @@
     / Gallery fields being
     =render partial: "admin/shared/form/gallery/gallery_fields", locals: { f: f, object: object }
     / Gallery fields end
+
+    =render partial: "admin/shared/form/partners/partner_fields", locals: { f: f, object: object }
 
 
     .hr-line-dashed

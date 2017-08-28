@@ -55,7 +55,7 @@ gem 'globalize-accessors'
 
 
 # Switching back to custom jQuery again after failing builds
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 # Use Devise for handling users
 gem 'devise'
@@ -85,6 +85,9 @@ gem 'mini_magick' # Required for image processing
 # Рассылка писем
 gem 'gibbon'
 gem 'delayed_job_active_record'
+
+# что бы юзать yarn
+gem 'webpacker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

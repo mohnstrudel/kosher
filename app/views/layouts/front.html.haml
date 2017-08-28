@@ -15,7 +15,7 @@
 
 
 
-  %body{class: "#{controller_name} #{action_name} g-body"}
+  %body{class: "#{controller_name} #{action_name} g-body", "data-no-turbolink" => "true"}
     -flash.each do |name, msg|
       =content_tag(:div, msg, class: "alert alert-#{name}")
     .g-content

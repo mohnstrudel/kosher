@@ -91,6 +91,7 @@ ru:
         name: "Название"
         url: "Адрес в интернете"
         logo: "Логотип"
+        logo_grey: "Логотип в серых тонах"
         language: "Выберите язык"
         phones: "Телефон(ы)"
         address: "Адрес фирмы"
@@ -229,6 +230,10 @@ ru:
           description: "Пожалуйста, выберите язык"
           english: "Английский"
           russian: "Русский"
+      partners:
+        main: Партнеры
+        new: Новый партнер
+        all: Все партнеры
 
   datetime:
     distance_in_words:

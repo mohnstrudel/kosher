@@ -184,3 +184,14 @@
             =t('admin.navigation.ingredients.all')
           =nav_link new_admin_ingredient_path do
             =t('admin.navigation.ingredients.new')
+
+      =nav_link "" do
+        %i.fa.fa-grav
+        %span.nav-label
+          =t('admin.navigation.partners.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_partners_path do
+            =t('admin.navigation.partners.all')
+          =nav_link new_admin_partner_path do
+            =t('admin.navigation.partners.new')

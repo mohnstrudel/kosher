@@ -7,9 +7,9 @@
         =link_to "Фотогалерея", gallery_path, class: 'g-menu__item'
         =link_to "FAQ", faq_path, class: 'g-menu__item'
         =link_to "Контакты", contact_path, class: 'g-menu__item'
-      
       .g-social
-        =form_for Subscriber.new, format: 'js', class: 'g-social__left g-form g-subscribe', remote: true do |f|
+        =form_for Subscriber.new, format: 'js', html: {class: 'g-social__left g-form g-subscribe'}, remote: true do |f|
+        
           %h4.g-subscribe__title Получайте новости от нас
           .g-input.g-input_subscribe
             =f.text_field :email, class: 'g-input__field g-input__field_subscribe g-subscribe__input js-input', placeholder: "Ваш e-mail"
@@ -45,4 +45,3 @@
       %a.g-construction{:href => "http://yadadya.com"}
         %p.g-construction__title Создание сайта —
         %i.g-icon-logo
-        

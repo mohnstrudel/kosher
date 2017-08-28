@@ -1,3 +1,4 @@
+
 /**
  * gamma.js v1.0.0
  * http://www.codrops.com
@@ -144,6 +145,7 @@ function isHidden() {
 }
 
 var Gamma = (function() {
+	console.log('Gamma gallery initialized!');
 
 	var $window = $( window ),
 		$body = $( 'body' ),
@@ -388,6 +390,7 @@ var Gamma = (function() {
 			_setMasonry();
 
 			var $items = $items || Gamma.items.hide();
+			console.log("Items amount is: " + $items.length);
 
 			// replace each div element with an image element with the right source
 			$items.each( function() {
@@ -407,11 +410,16 @@ var Gamma = (function() {
 				} );
 
 				$( '<div/>' ).addClass( 'gamma-description' ).html( description ).insertAfter( $picEl );
+				
+				// Hardcore debugging
+				console.log("Source is: " + source);
 
+				// Debug end
 				$( '<img/>' ).attr( {
 					alt : $picEl.data( 'alt' ),
 					title : $picEl.data( 'title' ),
 					src : source.src
+					// src: $picEl.data('src')
 				} ).insertAfter( $picEl );
 
 				$picEl.remove();
@@ -641,7 +649,7 @@ var Gamma = (function() {
 						l = Gamma.svImage.position().left,
 						t = Gamma.svImage.position().top;
 
-					Gamma.svImage = $( '<img/>' ).load( function() {
+					Gamma.svImage = $( '<img/>' ).on('load', function() {
 
 						var $img = $( this );
 
@@ -869,7 +877,7 @@ var Gamma = (function() {
 			var loadingtimeout = setTimeout( function() { Gamma.singleview.addClass( 'gamma-loading' );	}, Gamma.settings.svImageTransitionSpeedFade + 250 );
 			
 			// preload the new image
-			Gamma.svImage = $( '<img/>' ).load( function() {
+			Gamma.svImage = $( '<img/>' ).on('load', function() {
 
 				var $img = $( this );
 

@@ -115,6 +115,7 @@ en:
         name: "Name"
         url: "URL"
         logo: "Logo"
+        logo_grey: Grey logo
         language: "Select language"
         phones: "Phone(s)"
         address: "Company address"
@@ -247,6 +248,11 @@ en:
         all: All ingredients
       recipe_categories:
         all: Recipe categories
+
+      partners:
+        main: Partners
+        all: All partners
+        new: New partner
 
       right_sidebar:
         language:

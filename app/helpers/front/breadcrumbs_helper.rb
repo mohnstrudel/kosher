@@ -11,8 +11,26 @@ module Front::BreadcrumbsHelper
 
         breadcrumbs << item
       rescue NameError=>e
-        logger.debug e.message
-        logger.debug "For element: #{element}"
+        if e.message =~ /uninitialized constant/
+          # Генерируем кастомные проверки для хлебных крошек
+          logger.debug "Custom breadcrumbs generation for #{element}"
+          case element
+          when 'news'
+            breadcrumbs << "Новости"
+          when 'about'
+            breadcrumbs << "О Департаменте"
+          when 'gallery'
+            breadcrumbs << 'Фотогалерея'
+          when 'trade-networks'
+            breadcrumbs << 'Торговым сетям'
+          when 'consumers'
+            breadcrumbs << 'Потребителям'
+          when 'suppliers'
+            breadcrumbs << 'Кошерные Продукты'
+          end
+        else
+          logger.debug "Error for element: #{element}. Error message: #{e.message}"
+        end
       end
 
       if is_number?(element)

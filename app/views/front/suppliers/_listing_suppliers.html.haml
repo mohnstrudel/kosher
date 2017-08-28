@@ -10,7 +10,7 @@
         .g-products-wrapper__right
           %h2.g-products-wrapper__title=supplier.title
           %p.g-products-wrapper__description
-            =supplier.description
+            =supplier.description.html_safe
           =link_to 'Подробнее', supplier_path(supplier), class: 'g-btn g-btn_gray'
 -else
   %h2 По вашему запросу ничего не найдено
