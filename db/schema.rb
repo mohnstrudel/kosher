@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828153143) do
+ActiveRecord::Schema.define(version: 20170829161304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20170828153143) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_cities_on_slug", unique: true
   end
 
   create_table "ckeditor_assets", id: :serial, force: :cascade do |t|
@@ -277,6 +279,8 @@ ActiveRecord::Schema.define(version: 20170828153143) do
     t.string "logo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_recipe_categories_on_slug", unique: true
   end
 
   create_table "recipe_ingredients", force: :cascade do |t|

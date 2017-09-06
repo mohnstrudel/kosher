@@ -26,7 +26,18 @@ class Product < ApplicationRecord
   
   def self.incomplete(show)
     if show
+      
       where(manufacturer: nil).or(where(label: nil)).or(where(category: nil)).or(where(title: nil))
+      
+      # where("product.manufacturer = ? OR product.label = ? OR product.category = ? OR product.title = ?", nil, nil, nil, nil)
+    else
+      all
+    end
+  end
+
+  def self.without_barcode(show)
+    if show
+      left_joins(:barcodes).where(barcodes: {id: nil})
     else
       all
     end

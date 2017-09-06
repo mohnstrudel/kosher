@@ -18,13 +18,20 @@
         .col-sm-12
           .form-group
       .row
-        .col-sm-12
+        .col-sm-6
           .form-group
             .i-checks
               %label
                 =check_box_tag :incomplete, true, params[:incomplete], class: ""
                 %i
                 =t('admin.form.buttons.only_incomplete')
+        .col-sm-6
+          .form-group
+            .i-checks
+              %label
+                =check_box_tag :without_barcode, true, params[:without_barcode], class: ""
+                %i
+                =t('admin.form.buttons.without_barcode')
 
             
 

@@ -9,7 +9,7 @@
             =image_tag manuf.logo, class: 'g-partners-wrapper__logo'
           .g-partners-wrapper__right
             %h2.g-partners-wrapper__title=manuf.title
-            %p.g-partners-wrapper__description=manuf.description.html_safe
+            %p.g-partners-wrapper__description=manuf.description.try(:html_safe)
             %p.g-partners-wrapper__adress
               =link_to manuf.url, manuf.url, class: 'g-partners-wrapper__link', target: "_blank"
       

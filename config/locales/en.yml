@@ -167,6 +167,7 @@ en:
       buttons:
         search: Search
         only_incomplete: Find only incomplete products
+        without_barcode: Find products without barcode(s)
       confirm: 
         main: Are you sure?
         bulk_delete: This will delete all selected items. Proceed? Please note, that if you delete a parent item (for example a category), all child elements will be deleted as well (for example, all subcategories).
