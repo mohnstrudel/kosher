@@ -48,17 +48,22 @@ module CrudConcern
   end
 
   def update_helper(object, path, params)
-    if object.update(params)
-      respond_to do |format|
-        format.html {
-          redirect_to send(path, object)
-          flash[:primary] = "Well done!"
-        }
+    begin
+      if object.update(params)
+        respond_to do |format|
+          format.html {
+            redirect_to send(path, object)
+            flash[:primary] = "Well done!"
+          }
+        end
+      else
+        logger.debug "Encountered errors:"
+        logger.debug object.errors.full_messages
+        flash[:danger] = "Something's not quite right"
+        render :edit
       end
-    else
-      logger.debug "Encountered errors:"
-      logger.debug object.errors.full_messages
-      flash[:danger] = "Something's not quite right"
+    rescue=>e
+      flash[:danger] = "Encountered errors: #{e.message}"
       render :edit
     end
   end

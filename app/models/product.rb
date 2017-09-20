@@ -102,10 +102,10 @@ class Product < ApplicationRecord
   def set_slug
     if self.slug.blank?
       begin
-        slugged = Translit.convert(self.title, :english).downcase
-        slugged = slugged.split(" ").join("-").delete(".")
+        slugged = self.title.parameterize
         self.slug = slugged
-      rescue NoMethodError => e
+      rescue => e
+        p "Error while saving slug for #{self.inspect}. Error message: #{e.messages}"
         self.slug = nil
       end
     end
