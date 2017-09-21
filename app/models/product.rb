@@ -105,7 +105,7 @@ class Product < ApplicationRecord
         slugged = self.title.parameterize
         self.slug = slugged
       rescue => e
-        p "Error while saving slug for #{self.inspect}. Error message: #{e.messages}"
+        p "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
         self.slug = nil
       end
     end

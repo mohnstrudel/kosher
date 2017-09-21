@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Front manufacturers feature spec >", :type => :feature do
+
+  before(:each) do
+    FactoryGirl.create(:general_setting)
+  end
   
   before(:each) do
     @page_size = Rails.application.config.page_size

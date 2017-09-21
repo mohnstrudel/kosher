@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'devise'
 require_relative 'support/controller_macros'
 require_relative 'support/wait_for_ajax'
+require_relative 'support/matchers/show_rails_errors'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'pry'
@@ -27,6 +28,7 @@ require 'pry'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -71,6 +73,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
+    # DatabaseCleaner.strategy = :truncation
   end
   config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation

@@ -41,4 +41,13 @@ RSpec.describe Product, type: :model do
       expect(product.barcodes.count).to eq(2)
     end
   end
+
+  context "slug" do
+    it "saves a proper slug" do
+      product = FactoryGirl.build(:product, title: "Морошка Сладкая")
+      product.save
+
+      expect(product.slug).to eq("moroshka-sladkaya")
+    end
+  end
 end

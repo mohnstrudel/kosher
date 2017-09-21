@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Newsletter feature spec >", :type => :feature, js: true do
   
+  before(:each) do
+    FactoryGirl.create(:general_setting)
+  end
 
   before(:each) do
     # Delayed::Worker.delay_jobs = false

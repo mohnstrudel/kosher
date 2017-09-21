@@ -52,6 +52,40 @@ describe 'Recipes API' do
     end
   end
 
+  context "displaying plain recipe" do
+    it "shows correct amount of ingredients" do
+      recipe = FactoryGirl.create(:recipe)
+      ingredients = FactoryGirl.create_list(:ingredient, 3)
+      # build up relationship
+      recipe.recipe_ingredients.create(ingredient_id: ingredients[0].id)
+      recipe.recipe_ingredients.create(ingredient_id: ingredients[1].id)
+      recipe.recipe_ingredients.create(ingredient_id: ingredients[2].id)
+
+      # expect(recipe.ingredients.count).to eq(3)
+      get "/v1/recipes/#{recipe.id}"
+
+      json = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(json['data']['attributes']['ingredients'].count).to eq(3)
+    end
+
+    it "has correct values for ingredients" do
+      recipe = FactoryGirl.create(:recipe)
+      ingredent_1 = FactoryGirl.create(:ingredient, title: 'Тар-Тар')
+
+      recipe.recipe_ingredients.create(ingredient_id: ingredent_1.id, amount: "Пятьсот столовых ложек")
+
+      get "/v1/recipes/#{recipe.id}"
+
+      json = JSON.parse(response.body)
+
+      expect(response).to be_success
+      expect(json['data']['attributes']['ingredients'][0]['title']).to eq('Тар-Тар')
+      expect(json['data']['attributes']['ingredients'][0]['amount']).to eq('Пятьсот столовых ложек')
+    end
+  end
+
   context "displaying recipes from current recipe category" do
     before(:each) {
       @category = FactoryGirl.create(:recipe_category)

@@ -14,7 +14,7 @@ class Front::SuppliersController < FrontController
       params_array << Category.find(subcategory_id).title
     end
     if manufacturer_id.present? && manufacturer_id != 'any'
-      params_array << Manufacturer.find(manufacturer_id).name
+      params_array << Manufacturer.find(manufacturer_id).title
     end
     if sign_id.present?
       params_array << Label.find(sign_id).title

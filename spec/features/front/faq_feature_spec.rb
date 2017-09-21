@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "FAQ front feature spec >", :type => :feature do
 
+  before(:each) do
+    FactoryGirl.create(:general_setting)
+  end
+
   feature "simple page operations" do
     scenario "successfull page opening" do
       visit '/faq'

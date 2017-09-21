@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Front suppliers feature spec >", :type => :feature do
   
   before(:each) do
-    
+    FactoryGirl.create(:general_setting)
   end
 
   before(:each) do

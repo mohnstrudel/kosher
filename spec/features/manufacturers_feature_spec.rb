@@ -28,10 +28,9 @@ RSpec.feature "Manufacturers feature spec >", :type => :feature do
       # page.find("#new_entry").click
       click_link('new_entry')
       
-      fill_in 'manufacturer_title', with: "Grizzly Bears Ltd."
+      fill_in 'manufacturer_title', with: "Angry Grizzly Bears Ltd."
       
       expect { find("input[type='submit']").click }.to change(Manufacturer, :count).by(1)
-      
       # visit admin_manufacturers_path
     end
 
