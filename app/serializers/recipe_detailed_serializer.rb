@@ -1,10 +1,10 @@
-class RecipeSerializer < ActiveModel::Serializer
+class RecipeDetailedSerializer < ActiveModel::Serializer
   attributes :id, :title, :logo, :description, :category, :ingredients
 
   def ingredients
-    object.recipe_ingredients.map do |recipe_ingredient|
+    Recipe.includes(:ingredients).includes(:recipe_ingredients).find(object.id).recipe_ingredients.map do |recipe_ingredient|
       {
-        title: Ingredient.find(recipe_ingredient.ingredient_id).title,
+        title: recipe_ingredient.ingredient.title,
         amount: recipe_ingredient.amount
       }
     end

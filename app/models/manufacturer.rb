@@ -82,13 +82,15 @@ class Manufacturer < ApplicationRecord
   end
 
   def set_slug
-    if self.slug.blank?
-      begin
-        slugged = Translit.convert(self.title, :english).downcase
-        slugged = slugged.split(" ").join("-").delete(".")
-        self.slug = slugged
-      rescue NoMethodError => e
-        self.slug = nil
+    unless self.nil?
+      if self.slug.blank?
+        begin
+          slugged = self.title.parameterize
+          self.slug = slugged
+        rescue => e
+          p "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
+          self.slug = nil
+        end
       end
     end
   end

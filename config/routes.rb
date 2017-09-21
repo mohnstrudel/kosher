@@ -144,6 +144,8 @@ Rails.application.routes.draw do
           end
 
           resources :manufacturers, only: [:index, :show]
+
+          resources :subscribers, only: [:index, :create, :show]
         end
       end
     # end

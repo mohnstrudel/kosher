@@ -21,6 +21,7 @@ module ApiConcern
       parent_id_param = parent_object.singularize.underscore
       parent_id_param = "#{parent_id_param}_id"
 
+      
       begin
         if child_model.method_defined?(:phones) && child_model.method_defined?(:opening_hours)
           @objects = main_object.includes(child_model_plural.to_sym).find(params[parent_id_param.to_sym]).send(child_model_plural).includes(:phones).includes(:opening_hours)
@@ -35,7 +36,6 @@ module ApiConcern
 
     else
       main_object = object.camelize.singularize.constantize
-
       # Тут специально кейс для товаров и поиска по штрихкоду
       if params[:barcode].present?
         @objects = main_object.where(barcode: params[:barcode])

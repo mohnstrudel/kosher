@@ -39,7 +39,7 @@ RSpec.feature "Call Me Back contact front feature spec >", :type => :feature, js
   end
 
   feature 'valid form' do
-    scenario "with name and phone§" do
+    scenario "with name and phone" do
       visit '/'
       execute_script '$("#call-popup").fadeIn(300)'
 
@@ -49,6 +49,7 @@ RSpec.feature "Call Me Back contact front feature spec >", :type => :feature, js
       within '#new_call_me_back_request' do
         expect{
           find("input[type='submit']").click
+          sleep(inspection_time=1)
           wait_for_ajax
         }.to change(Request, :count).by(1)
       end

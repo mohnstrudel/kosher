@@ -100,13 +100,15 @@ class Product < ApplicationRecord
   end
 
   def set_slug
-    if self.slug.blank?
-      begin
-        slugged = self.title.parameterize
-        self.slug = slugged
-      rescue => e
-        p "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
-        self.slug = nil
+    unless self.nil?
+      if self.slug.blank?
+        begin
+          slugged = self.title.parameterize
+          self.slug = slugged
+        rescue => e
+          p "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
+          self.slug = nil
+        end
       end
     end
   end
