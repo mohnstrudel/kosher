@@ -11,7 +11,7 @@ module Front
           if params[:recipe_category_id].present?
             @recipes = RecipeCategory.includes(:recipes).find(params[:recipe_category_id]).recipes
           else
-            @recipes = Recipe.all
+            @recipes = Recipe.includes(:recipe_category).all
           end
         rescue=>e
           @recipes = e.message

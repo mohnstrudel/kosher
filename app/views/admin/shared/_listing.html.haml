@@ -177,7 +177,6 @@
               .pull-left
                 #bulk-actions
                   = submit_tag t('admin.form.actions.bulk_destroy'), class: "btn btn-xs btn-danger", id: "bulk-delete", data: {confirm: t('admin.form.confirm.bulk_delete')}
-
         .row
           .col-sm-12.m-b-xs
             =render partial: "admin/shared/form/listing/pager", locals: { object: object }
