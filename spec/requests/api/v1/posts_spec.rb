@@ -1,9 +1,20 @@
 require 'rails_helper'
 
 describe 'Posts API' do
+
   context "displaying only posts" do
+    it "should not work without a post category" do
+      FactoryGirl.create_list(:post, 2)
+      
+      # expect(get '/v1/posts').not_to be_success
+      expect {
+        get '/v1/posts'
+        }.to raise_error(NoMethodError)
+    end
+
     it "lists all posts" do
-      FactoryGirl.create_list(:post, 6)
+      category = FactoryGirl.create(:post_category)
+      FactoryGirl.create_list(:post, 6, post_category: category)
 
       get '/v1/posts'
 
@@ -17,7 +28,7 @@ describe 'Posts API' do
     end
 
     it "shows a post" do
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.create(:post, post_category: FactoryGirl.create(:post_category))
 
       get "/v1/posts/#{post.id}"
 
@@ -28,7 +39,7 @@ describe 'Posts API' do
     end
 
     it "shows specific values for a post" do
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.create(:post, post_category: FactoryGirl.create(:post_category))
 
       get "/v1/posts/#{post.id}"
 
