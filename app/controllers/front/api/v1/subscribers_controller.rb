@@ -2,6 +2,8 @@ module Front
   module Api::V1
     class SubscribersController < ApiController
 
+      skip_before_action :verify_authenticity_token, if: :json_request?
+
       include ApiConcern
 
       # GET /v1/events
@@ -14,10 +16,10 @@ module Front
       end
 
       def create
-        @subscriber = Subscriber.new(subscriber_params)
+        # @subscriber = Subscriber.new(subscriber_params)
 
         respond_to do |format|
-          if @subscriber.save
+          if Subscriber.create!(subscriber_params)
             format.json { render json: @subscriber, status: :created}
           else
             format.json { render json: @subscriber.errors, status: :unprocessable_entity}
@@ -29,7 +31,13 @@ module Front
       private
 
       def subscriber_params
-        require(:subscriber).permit(:email)
+        params.require(:subscriber).permit(:email)
+      end
+
+      protected
+
+      def json_request?
+        request.format.json?
       end
     end
   end

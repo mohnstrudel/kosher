@@ -35,7 +35,7 @@ Rails.application.configure do
   config.active_support.deprecation = :log
 
   # Указываем данный параметр, что бы для апи субдомен работал на локалке
-  config.action_dispatch.tld_length = 0
+  config.action_dispatch.tld_length = 1
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load

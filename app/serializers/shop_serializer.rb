@@ -4,15 +4,7 @@ class ShopSerializer < ActiveModel::Serializer
   
 
   def city
-    city = object.city
-    if city
-      {
-        id: city.id,
-        name: city.name
-      }
-    else
-      return nil
-    end
+    CitySimpleSerializer.new(object.city, root: false)
   end
 
   def phones

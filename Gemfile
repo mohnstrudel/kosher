@@ -89,6 +89,9 @@ gem 'delayed_job_active_record'
 # что бы юзать yarn
 gem 'webpacker'
 
+# Что бы как-то нагрузку смягчить
+gem 'rack-attack'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

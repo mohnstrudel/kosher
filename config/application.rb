@@ -12,6 +12,8 @@ module Ycms
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.middleware.use Rack::Attack
+    
     config.generators do |g|
 	  g.test_framework :rspec,
 	    :fixtures => true,
