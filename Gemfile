@@ -92,6 +92,14 @@ gem 'webpacker'
 # Что бы как-то нагрузку смягчить
 gem 'rack-attack'
 
+gem 'newrelic_rpm'
+
+group :benchmark do
+  gem 'rails-perftest'
+  gem 'ruby-prof'
+  gem 'test-unit'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
