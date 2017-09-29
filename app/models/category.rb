@@ -20,6 +20,10 @@ class Category < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
+  def find_children
+    self.sub_categories.present?
+  end
+
   def self.has_children?(id)
     if find(id).sub_categories.empty?
       return false

@@ -16,10 +16,10 @@ module Front
       end
 
       def create
-        # @subscriber = Subscriber.new(subscriber_params)
+        @subscriber = Subscriber.new(subscriber_params)
 
         respond_to do |format|
-          if Subscriber.create!(subscriber_params)
+          if @subscriber.save
             format.json { render json: @subscriber, status: :created}
           else
             format.json { render json: @subscriber.errors, status: :unprocessable_entity}

@@ -81,8 +81,8 @@ test:
 production:
   <<: *default
   database: kosher_production
-  username: kosher
-  password: <%= Figaro.env.kosher_database_password %>
+  # username: kosher
+  # password: <%= Figaro.env.kosher_database_password %>
 
 benchmark:
   <<: *default

@@ -16,19 +16,43 @@ class CategoryDetailedSerializer < ActiveModel::Serializer
     end    
   end
 
+  
   def manufacturers
-    object.manufacturers.uniq.map do |manufacturer|
-      {
-        id: manufacturer.id,
-        type: manufacturer.class.name.downcase,
-        attributes: {
-          title: manufacturer.title,
-          description: manufacturer.description,
-          logo: manufacturer.logo  
-        },
-        parent_id: manufacturer.parent_id
-        
-      }
+    if object.find_children
+      manufs = []
+      object.sub_categories.each do |subcat|
+        subcat.manufacturers.each do |manufacturer|
+          manufs << manufacturer
+        end
+      end
+
+      manufs.uniq.map do |manufacturer|
+        {
+          id: manufacturer.id,
+          type: manufacturer.class.name.downcase,
+          attributes: {
+            title: manufacturer.title,
+            description: manufacturer.description,
+            logo: manufacturer.logo  
+          },
+          parent_id: manufacturer.parent_id 
+        }
+      end
+    else
+      object.manufacturers.uniq.map do |manufacturer|
+        {
+          id: manufacturer.id,
+          type: manufacturer.class.name.downcase,
+          attributes: {
+            title: manufacturer.title,
+            description: manufacturer.description,
+            logo: manufacturer.logo  
+          },
+          parent_id: manufacturer.parent_id
+          
+        }
+      end
+      
     end
   end
 

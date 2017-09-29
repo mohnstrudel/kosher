@@ -6,5 +6,6 @@ FactoryGirl.define do
     url Faker::Internet.url
     phones { Array.new(6) { FactoryGirl.build(:phone) } }
     opening_hours { Array.new(4) { FactoryGirl.build(:opening_hour) } }
+    city {FactoryGirl.build(:city)}
   end
 end
