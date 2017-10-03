@@ -1,3 +1,5 @@
+require 'memory_profiler'
+
 class Category < ApplicationRecord
 
   has_many :products

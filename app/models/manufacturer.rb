@@ -23,6 +23,10 @@ class Manufacturer < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]
 
+  def find_children
+    self.trademarks.present?
+  end
+
   def self.has_children?(id)
     if find(id).trademarks.empty?
       return false

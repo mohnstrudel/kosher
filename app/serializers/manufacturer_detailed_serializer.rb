@@ -2,18 +2,42 @@ class ManufacturerDetailedSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :logo, :parent_id, :categories
 
   def categories
-    object.categories.uniq.map do |category|
-      {
-        id: category.id,
-        type: category.class.name.downcase,
-        attributes: {
-          title: category.title,
-          description: category.description,
-          logo: category.logo,
-          parent_id: category.parent_id,
-          label_id: category.label_id
+    if object.find_children
+      categories = Array.new
+
+      object.trademarks.each do |trademark|
+        trademark.categories.each do |category|
+          categories << category
+        end
+      end
+
+      categories.uniq.map do |category|
+        {
+          id: category.id,
+          type: category.class.name.downcase,
+          attributes: {
+            title: category.title,
+            description: category.description,
+            logo: category.logo,
+            parent_id: category.parent_id,
+            label_id: category.label_id
+          }
         }
-      }
+      end
+    else
+      object.categories.uniq.map do |category|
+        {
+          id: category.id,
+          type: category.class.name.downcase,
+          attributes: {
+            title: category.title,
+            description: category.description,
+            logo: category.logo,
+            parent_id: category.parent_id,
+            label_id: category.label_id
+          }
+        }
+      end
     end
   end
 end

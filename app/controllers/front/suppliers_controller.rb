@@ -27,6 +27,7 @@ class Front::SuppliersController < FrontController
         @filter_items << pa
       end
     end
+
   end
 
   def show

@@ -57,11 +57,28 @@ class CategoryDetailedSerializer < ActiveModel::Serializer
   end
 
   def labels
-    object.labels.map do |label|
-      {
-        id: label.id,
-        title: label.title
-      }
+    if object.find_children
+      labels = Array.new
+      
+      object.sub_categories.each do |subcat|
+        subcat.labels.each do |label|
+          labels << label
+        end
+      end
+
+      labels.uniq.map do |label|
+        {
+          id: label.id,
+          title: label.title
+        }
+      end
+    else
+      object.labels.uniq.map do |label|
+        {
+          id: label.id,
+          title: label.title
+        }
+      end
     end
   end
 end

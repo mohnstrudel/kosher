@@ -41,61 +41,94 @@ describe "Manufacturers API" do
     before(:each) do
       @category = FactoryGirl.create(:category)
       @manufacturer = FactoryGirl.create(:manufacturer)
-      @product = FactoryGirl.create(:product, category_id: @category.id, manufacturer_id: @manufacturer.id)
+      @trademark = FactoryGirl.create(:manufacturer, parent_id: @manufacturer.id)
+      @product = FactoryGirl.create(:product, category: @category, manufacturer: @trademark)
     end
+
+    describe "parent object" do
     
-    it "has proper id" do
-      get "/v1/manufacturers/#{@manufacturer.id}"
+      it "has proper id" do
+        get "/v1/manufacturers/#{@manufacturer.id}"
 
-      json = JSON.parse(response.body)
+        json = JSON.parse(response.body)
 
-      expect(json['data']['id'].to_i).to eq(@manufacturer.id)
+        expect(json['data']['id'].to_i).to eq(@manufacturer.id)
+      end
+
+      it "has categories listed" do
+        get "/v1/manufacturers/#{@manufacturer.id}"
+
+        json = JSON.parse(response.body)
+
+        expect(json['data']['attributes']['categories'].length).to eq(1)
+        expect(json['data']['attributes']['categories'][0]['id'].to_i).to eq(@category.id)
+      end
+
+      it "has only the whitelisted attributes" do
+        get "/v1/manufacturers/#{@manufacturer.id}"
+
+        json = JSON.parse(response.body)
+
+        attrs = json['data']['attributes']
+        expect(attrs.keys).to contain_exactly("description", 'logo', 'parent-id', 'title', 'categories')
+      end
+
+      it "has iOS appropriate categories structure" do
+        get "/v1/manufacturers/#{@manufacturer.id}"
+
+        json = JSON.parse(response.body)
+
+        categories = json['data']['attributes']['categories'][0]
+        expect(categories.keys).to contain_exactly("id", 'type', 'attributes')
+      end
+
+      it "has iOS appropriate category attributes" do
+        get "/v1/manufacturers/#{@manufacturer.id}"
+
+        json = JSON.parse(response.body)
+
+        attrs = json['data']['attributes']['categories'][0]['attributes']
+        expect(attrs.keys).to contain_exactly("title", 'description', 'logo','parent-id', 'label-id')
+      end
+
+      it "has no duplicate categories" do
+        product_2 = FactoryGirl.create(:product, category_id: @category.id, manufacturer_id: @manufacturer.id)
+
+        get "/v1/manufacturers/#{@manufacturer.id}"
+
+        json = JSON.parse(response.body)
+
+        expect(json['data']['attributes']['categories'].length).to eq(1)
+      end
+
+      it "has all categories from its children" do
+        trademark_2 = FactoryGirl.create(:manufacturer, parent_id: @manufacturer.id)
+        product_2 = FactoryGirl.create(:product, category: FactoryGirl.create(:category), manufacturer_id: @trademark.id)
+        product_3 = FactoryGirl.create(:product, category: FactoryGirl.create(:category), manufacturer_id: trademark_2.id)
+
+        get "/v1/manufacturers/#{@manufacturer.id}"
+
+        json = JSON.parse(response.body)
+
+        # один продукт связывает сверху и два мы сейчас создали, итого должно быть 3
+        expect(json['data']['attributes']['categories'].length).to eq(3)
+      end
     end
 
-    it "has categories listed" do
-      get "/v1/manufacturers/#{@manufacturer.id}"
+    describe "child object" do
+      it "has its own category" do
+        trademark_2 = FactoryGirl.create(:manufacturer, parent_id: @manufacturer.id)
+        product_2 = FactoryGirl.create(:product, category: FactoryGirl.create(:category), manufacturer_id: trademark_2.id)
 
-      json = JSON.parse(response.body)
+        get "/v1/manufacturers/#{trademark_2.id}"
 
-      expect(json['data']['attributes']['categories'].length).to eq(1)
-      expect(json['data']['attributes']['categories'][0]['id'].to_i).to eq(@category.id)
+        json = JSON.parse(response.body)
+
+        # итого у родителя 2 категории, но мы в гостях у ребенка, там должна быть только одна категория
+        expect(json['data']['attributes']['categories'].length).to eq(1)
+      end
     end
 
-    it "has only the whitelisted attributes" do
-      get "/v1/manufacturers/#{@manufacturer.id}"
 
-      json = JSON.parse(response.body)
-
-      attrs = json['data']['attributes']
-      expect(attrs.keys).to contain_exactly("description", 'logo', 'parent-id', 'title', 'categories')
-    end
-
-    it "has iOS appropriate categories structure" do
-      get "/v1/manufacturers/#{@manufacturer.id}"
-
-      json = JSON.parse(response.body)
-
-      categories = json['data']['attributes']['categories'][0]
-      expect(categories.keys).to contain_exactly("id", 'type', 'attributes')
-    end
-
-    it "has iOS appropriate category attributes" do
-      get "/v1/manufacturers/#{@manufacturer.id}"
-
-      json = JSON.parse(response.body)
-
-      attrs = json['data']['attributes']['categories'][0]['attributes']
-      expect(attrs.keys).to contain_exactly("title", 'description', 'logo','parent-id', 'label-id')
-    end
-
-    it "has no duplicate categories" do
-      product_2 = FactoryGirl.create(:product, category_id: @category.id, manufacturer_id: @manufacturer.id)
-
-      get "/v1/manufacturers/#{@manufacturer.id}"
-
-      json = JSON.parse(response.body)
-
-      expect(json['data']['attributes']['categories'].length).to eq(1)
-    end
   end
 end
