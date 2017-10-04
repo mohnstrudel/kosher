@@ -70,7 +70,8 @@ describe "Manufacturers API" do
         json = JSON.parse(response.body)
 
         attrs = json['data']['attributes']
-        expect(attrs.keys).to contain_exactly("description", 'logo', 'parent-id', 'title', 'categories')
+        # Labels добавили 03/10/2017
+        expect(attrs.keys).to contain_exactly("description", 'logo', 'parent-id', 'title', 'categories', 'labels')
       end
 
       it "has iOS appropriate categories structure" do
@@ -128,6 +129,41 @@ describe "Manufacturers API" do
         expect(json['data']['attributes']['categories'].length).to eq(1)
       end
     end
+
+  context "labels" do
+    describe "parent object" do
+      it "has unique labels from its trademarks" do
+        manufacturer = FactoryGirl.create(:manufacturer)
+        trademark_1 = FactoryGirl.create(:manufacturer, parent_id: manufacturer.id)
+        trademark_2 = FactoryGirl.create(:manufacturer, parent_id: manufacturer.id)
+
+        label = FactoryGirl.create(:label)
+        product_1 = FactoryGirl.create(:product, manufacturer: trademark_1, label: label)
+        product_2 = FactoryGirl.create(:product, manufacturer: trademark_1)
+        product_3 = FactoryGirl.create(:product, manufacturer: trademark_2)
+        product_4 = FactoryGirl.create(:product, manufacturer: trademark_2, label: label)
+        # Итого у нас 4 продукта, но только 3 уникальных лейбла
+
+        get "/v1/manufacturers/#{manufacturer.id}"
+        json = JSON.parse(response.body)
+        expect(json['data']['attributes']['labels'].length).to eq(3)
+      end
+    end
+
+    describe "child object" do
+      it "has labels" do
+        manufacturer = FactoryGirl.create(:manufacturer)
+        trademark = FactoryGirl.create(:manufacturer, parent_id: manufacturer.id)
+
+        product_1 = FactoryGirl.create(:product, manufacturer: trademark)
+        product_2 = FactoryGirl.create(:product, manufacturer: trademark)
+
+        get "/v1/manufacturers/#{trademark.id}"
+        json = JSON.parse(response.body)
+        expect(json['data']['attributes']['labels'].length).to eq(2)
+      end
+    end
+  end
 
 
   end
