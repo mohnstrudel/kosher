@@ -8,10 +8,10 @@ class Front::SuppliersController < FrontController
     sign_id = params[:sign]
 
     if @category_id.present? && @category_id != 'any'
-      params_array << Category.find(@category_id).title
+      params_array << Category.friendly.find(@category_id).title
     end
     if subcategory_id.present? && subcategory_id != 'any'
-      params_array << Category.find(subcategory_id).title
+      params_array << Category.friendly.find(subcategory_id).title
     end
     if manufacturer_id.present? && manufacturer_id != 'any'
       params_array << Manufacturer.find(manufacturer_id).title

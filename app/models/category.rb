@@ -22,6 +22,34 @@ class Category < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def parent_manufacturers
+    return nil if self.parent_id != nil
+    manufacturers = Array.new
+    
+    Category.find(self.id).sub_categories.includes(:manufacturers).map { |subcategory| manufacturers << subcategory.manufacturers.to_a  }
+
+    return manufacturers.flatten.uniq
+  end
+
+  def parent_labels
+    return nil if self.parent_id != nil
+    labels = Array.new
+
+    Category.find(self.id).sub_categories.includes(:labels).map { |subcategory| labels << subcategory.labels }
+
+    return labels.flatten.uniq
+  end
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
+  end
+
   def find_children
     self.sub_categories.present?
   end
@@ -37,7 +65,7 @@ class Category < ApplicationRecord
   def self.return_collection(id)
     # Мы получаем айди родителя
     # возвращаем в массиве айди всех детей
-    parent = find(id)
+    parent = friendly.find(id)
 
     children_ids = parent.sub_categories.map { |item| item.id }
 

@@ -64,6 +64,7 @@ RSpec.feature "Call Me Back contact front feature spec >", :type => :feature, js
 
       within '#new_call_me_back_request' do
         find("input[type='submit']").click
+        sleep(inspection_time=1)
         wait_for_ajax
       end
       

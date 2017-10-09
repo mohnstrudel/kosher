@@ -70,7 +70,7 @@ describe "Manufacturers API" do
         json = JSON.parse(response.body)
 
         attrs = json['data']['attributes']
-        # Labels добавили 03/10/2017
+        # Labels добавили 03/10/2017В
         expect(attrs.keys).to contain_exactly("description", 'logo', 'parent-id', 'title', 'categories', 'labels')
       end
 

@@ -14,7 +14,7 @@
           %ul.g-tm__products-list.g-tm-products
             -@supplier.products.each do |product|
               %li.g-tm-products__item
-                =link_to product.title, supplier_product_path(@supplier, product)
+                =link_to product.title, category_supplier_product_path(params[:category_id], @supplier, product)
           %a.g-btn.g-btn_blue.g-tm-products__button Смотреть галерею
         .g-product-alert.g-product-alert_tm
           Наличие знака кашрута на упаковках обязательно!

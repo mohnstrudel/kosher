@@ -5,7 +5,7 @@ class Front::CategoriesController < FrontController
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
     @manufacturers = @category.manufacturers
     @category_id = params[:id].to_i
     

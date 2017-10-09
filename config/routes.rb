@@ -95,9 +95,10 @@ Rails.application.routes.draw do
     resources :labels, only: [:index, :show]
 
     resources :products, only: [:index, :show]
-    resources :categories, only: [:index, :show]
-    resources :suppliers, only: [:index, :show] do
-      resources :products, only: :show
+    resources :categories, only: [:index, :show] do
+      resources :suppliers, only: [:index, :show] do
+        resources :products, only: :show
+      end
     end
 
     resources :cities, only: [:index, :show] do
@@ -146,6 +147,9 @@ Rails.application.routes.draw do
           resources :manufacturers, only: [:index, :show]
 
           resources :subscribers, only: [:index, :create, :show]
+
+          get 'filters/categories', to: 'filters#categories'
+          get 'filters/manufacturers', to: 'filters#manufacturers'
         end
       end
     # end

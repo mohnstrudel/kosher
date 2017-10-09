@@ -23,6 +23,22 @@ class Manufacturer < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]
 
+  def parent_categories
+    return nil if self.parent_id != nil
+    categories = Array.new
+    Manufacturer.find(self.id).trademarks.includes(:categories).map {|trademark| categories << trademark.categories.to_a }
+
+    return categories.flatten.uniq
+  end
+
+  def parent_labels
+    return nil if self.parent_id != nil
+    labels = Array.new
+    Manufacturer.find(self.id).trademarks.includes(:labels).map {|trademark| labels << trademark.labels.to_a }
+
+    return labels.flatten.uniq
+  end
+
   def find_children
     self.trademarks.present?
   end

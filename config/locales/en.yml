@@ -77,8 +77,8 @@ en:
         one: Ingredient
         other: Ingredients
       recipe_category:
-        one: Category
-        other: Categories
+        one: Recipe category
+        other: Recipe categories
   will_paginate:
     previous_label: "&#8592; Previous"
     next_label: "Next &#8594;"

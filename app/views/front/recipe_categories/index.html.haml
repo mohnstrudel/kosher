@@ -7,4 +7,4 @@
         %a.g-recipes-category__item{:href => "#{recipe_category_recipes_path(category)}"}
           .g-recipes-category__img-wrapper
             =image_tag category.logo, class: 'g-recipes-category__img'
-          %span.g-recipes-category__name=category.title
+          %span.g-recipes-category__name=category.title.html_safe
