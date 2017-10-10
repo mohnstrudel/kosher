@@ -8,4 +8,14 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
 
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
+
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:finders, :slugged]
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
+  end
 end

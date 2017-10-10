@@ -1,7 +1,8 @@
 !!!
 %html
   %head
-    %title=GeneralSetting.first.title
+    -unless Rails.env.test? 
+      = metamagic site: @settings.title, title: [:site, :title, get_meta_from_breadcrumbs(@breadcrumbs).join(" — ")], separator: " — "
     = csrf_meta_tags
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/

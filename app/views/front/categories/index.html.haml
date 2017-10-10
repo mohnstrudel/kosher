@@ -5,7 +5,7 @@
     %ul.g-product-types
       -@categories.each do |category|
         %li.g-product-types__item
-          =link_to category_suppliers_path(category), class: "g-product-types__link" do
+          =link_to suppliers_path(category: category), class: "g-product-types__link" do
             -if category.logo.present?
               =image_tag category.logo.url, class: 'g-product-types__img g-product-types__img_big'
             %span.g-product-types__title=category.title

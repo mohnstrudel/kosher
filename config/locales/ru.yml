@@ -56,8 +56,8 @@ ru:
         one: Ингредиент
         other: Ингредиенты
       recipe_category:
-        one: Категория рецептов
-        other: Категории рецептов
+        one: Рецепт
+        other: Рецепты
   will_paginate:
     previous_label: "&#8592; Предыдущая страница"
     next_label: "Следующая страница &#8594;"

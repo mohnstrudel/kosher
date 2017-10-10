@@ -2,9 +2,9 @@ class Front::SuppliersController < FrontController
   def index
     params_array = Array.new
     @filter_items = Array.new
-    @category_id = params[:upper_category]
-    subcategory_id = params[:category_id]
-    manufacturer_id = params[:manufacturer_id]
+    @category_id = params[:category]
+    subcategory_id = params[:subcategory]
+    manufacturer_id = params[:manufacturer]
     sign_id = params[:sign]
 
     if @category_id.present? && @category_id != 'any'

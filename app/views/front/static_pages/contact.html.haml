@@ -22,7 +22,10 @@
           %h4.g-dep-info__text-title График работы
           -if @settings.try(:opening_hours).present?
             -@settings.opening_hours.each do |op_hour|
-              %p.g-dep-info__text-par.g-dep-info__time="#{op_hour.title} #{op_hour.value}"
+              %p.g-dep-info__text-par.g-dep-info__time
+                %span.g-dep-info__time-day=op_hour.title
+                %span.g-dep-info__time-range=op_hour.value
+
         .g-dep-info__text-block
           %h4.g-dep-info__text-title E-mail
           %a.g-link.g-dep-info__email{:href => "mailto:#{@settings.try(:email)}"}=@settings.try(:email)
@@ -62,103 +65,4 @@
 
         =f.submit "Отправить", id: 'contact_form_submit', class: 'g-btn g-btn_blue g-form__submit'
         #request-errors
-      #g-map.g-map
-
-
-%section.g-section
-  .g-wrapper
-    %h2.g-title.g-title_big
-      Контакты
-    .g-contact
-      .g-contact__sidebar-left.g-dep-info
-        %h3.g-dep-info__title Департамент кашрута
-        .g-dep-info__text-block
-          %h4.g-dep-info__text-title Адрес
-          %p.g-dep-info__text-par 127018, Москва, улица Образцова, 19а
-          %a.g-link{:href => "javascript:void(0)"} Департамент кашрута на карте
-        .g-dep-info__text-block.g-dep-info__text-block_phones
-          %p.g-dep-info__text-par +7 (495) 631-25-00
-          %p.g-dep-info__text-par +7 (495) 926-07-84
-        .g-dep-info__text-block.g-dep-info__text-block_schedule
-          %h4.g-dep-info__text-title График работы
-          %p.g-dep-info__text-par.g-dep-info__time
-            %span.g-dep-info__time-day Пн — чт
-            %span.g-dep-info__time-range с 09:30 до 18:00
-          %p.g-dep-info__text-par.g-dep-info__time
-            %span.g-dep-info__time-day Пт
-            %span.g-dep-info__time-range с 09:30 до 13:00
-          %p.g-dep-info__text-par.g-dep-info__time
-            %span.g-dep-info__time-day Сб, вс
-            %span.g-dep-info__time-range выходной
-        .g-dep-info__text-block
-          %h4.g-dep-info__text-title E-mail
-          %a.g-link.g-dep-info__email{:href => "mailto:office@kosher.ru"} office@kosher.ru
-      %form.g-contact__sidebar-right.g-form{:action => "contact"}
-        .g-input
-          %label.g-input__label.g-input__label_required Ваше имя
-          %input.g-input__field.js-input{:name => "name", :type => "text"}/
-          %span.g-input__error
-            Поле некорректно заполнено
-        .g-input
-          %label.g-input__label.g-input__label_required Название организации
-          %input.g-input__field.js-input{:name => "company", :type => "text"}/
-          %span.g-input__error
-            Поле некорректно заполнено
-        .g-input
-          %label.g-input__label.g-input__label_required Контактный телефон
-          %input.g-input__field.js-input.js-input-phone{:name => "phone", :type => "text"}/
-          %span.g-input__error
-            Поле некорректно заполнено
-        .g-input.g-input_select
-          %label.g-input__label Тема письма
-          .g-input__field.g-input__field_select-wrapper
-            %select.g-input__field.g-input__field_select.js-input{:name => "question"}
-              %option Общие вопросы
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос первый
-              %option Вопрос второй и даже в 2 строчки
-              %option Вопрос третий
-              %option Вопрос четвёртый
-              %option Вопрос пятый
-        .g-input
-          %label.g-input__label.g-input__label_required Ваш E-mail
-          %input.g-input__field.js-input{:name => "email", :type => "text"}/
-          %span.g-input__error
-            Поле некорректно заполнено
-        .g-input
-          %label.g-input__label Сообщение
-          %textarea.g-input__field.g-input__field_textarea.js-input{"data-input-type" => "message", :name => "message"}
-        %input.g-btn.g-btn_blue.g-form__submit{:type => "submit", :value => "Отправить"}/
       #g-map.g-map

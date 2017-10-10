@@ -27,30 +27,39 @@ class FrontController < ApplicationController
     breadcrumbs = Array.new
     path = url_for.split("/")
     path.shift(3)
-    puts "path is: #{path} and its length is: #{path.length}. While url is: #{url_for}"
     path.each_with_index do |element, index|
-      p "Index is: #{index}"
       begin
         url = path.first(index+1).join("/")
         url = "/#{url}"
         if index.even?
-          # "/categories/alkogolnye-napitki/suppliers/moroshka-sladkaya/products/vodka-ryabchik"
-          # categories == even
-          item_model_name = element.singularize.camelcase.constantize.model_name
-          @previous_item = item_model_name.human(count: 'other', locale: :en)
-          item = item_model_name.human(count: 'other')
-          # Здесь мы получаем из "posts" -> "posts_path" и ищем для него его раут (/news в данном случае)
-          
-          # Сохраняем хэш в массиве
-          breadcrumbs << { title: item, url: url}
-
-        elsif index.odd?
-          puts "Previous item is: #{@previous_item}"
-          item = @previous_item.singularize.constantize.friendly.find(element)
-          if item.try(:title)
+          if path.include?("suppliers") && index == 2
+            item = Product.friendly.find(element)
+            breadcrumbs << { title: item.title, url: url }
+          elsif path.include?("recipe_categories") && index == 2
+            item = Recipe.friendly.find(element)
             breadcrumbs << { title: item.title, url: url }
           else
+            # "/categories/alkogolnye-napitki/suppliers/moroshka-sladkaya/products/vodka-ryabchik"
+            # categories == even
+            item_model_name = element.gsub(/\s(.)/) {|e| $1.upcase}.singularize.camelcase.constantize.model_name
+            @previous_item = item_model_name.human(count: 'other', locale: :en)
+            item = item_model_name.human(count: 'other')
+            
+            # Сохраняем хэш в массиве
+            breadcrumbs << { title: item, url: url}
+          end
+
+        elsif index.odd?
+          if path.include?("restaurants") or path.include?("shops")
+            item = City.friendly.find(element)
             breadcrumbs << { title: item.name, url: url }
+          else
+            item = @previous_item.gsub(/\s(.)/) {|e| $1.upcase}.singularize.constantize.friendly.find(element)
+            if item.try(:title)
+              breadcrumbs << { title: item.title, url: url }
+            else
+              breadcrumbs << { title: item.name, url: url }
+            end
           end
         end
       rescue NameError=>e
@@ -75,6 +84,8 @@ class FrontController < ApplicationController
             @previous_item = "Manufacturer"
           when 'partners'
             breadcrumbs << { title: 'Партнеры', url: url }
+          when 'contact'
+            breadcrumbs << { title: 'Обратная связь', url: url }
           end
         else
           logger.debug "Error for element: #{element}. Error message: #{e.message}"

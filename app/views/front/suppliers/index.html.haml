@@ -10,25 +10,27 @@
         .g-input.g-input_select
           %label.g-input__label Категория
           .g-input__field.g-input__field_select-wrapper
-            %select#category-select.g-input__field.g-input__field_select.js-input{:name => "upper_category"}
+            
+            %select#category-select.g-input__field.g-input__field_select.js-input{:name => "category"}
               %option{:value => "any"} Любая категория
               -Category.top_level.each_with_index do |category, index|
-                %option{:value => category.id}=category.title
+                %option{:value => category.friendly_id}=category.title
         .g-input.g-input_select
           %label.g-input__label Подкатегория
           .g-input__field.g-input__field_select-wrapper
-            %select#select-subcategory.g-input__field.g-input__field_select.js-input{:name => "category_id"}
+            %select#select-subcategory.g-input__field.g-input__field_select.js-input{:name => "subcategory"}
               -Category.includes(:sub_categories).top_level.each_with_index do |category, category_index|
-                %optgroup{"data-id" => category.id, :label => category.title}
+                %optgroup{"data-id" => category.friendly_id, :label => category.title}
                   -category.sub_categories.each do |subcategory|
-                    %option{:value => subcategory.id}=subcategory.title
+                    %option{:value => subcategory.friendly_id}=subcategory.title
+
         .g-input.g-input_select
           %label.g-input__label Производитель
           .g-input__field.g-input__field_select-wrapper
-            %select#select-manufacturer.g-input__field.g-input__field_select.js-input{:name => "manufacturer_id"}
+            %select#select-manufacturer.g-input__field.g-input__field_select.js-input{:name => "manufacturer"}
               %option{:value => ""} Любой
               -Manufacturer.top_level.each_with_index do |manufacturer, index|
-                %option{:value => manufacturer.id}=manufacturer.title
+                %option{:value => manufacturer.friendly_id}=manufacturer.title
               
         .g-input.g-input_check-list
           %label.g-input__label Знак кошерности

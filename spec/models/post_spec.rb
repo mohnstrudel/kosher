@@ -30,7 +30,7 @@ RSpec.describe Post, type: :model do
 
     it "creates an appropriate title transliteration" do
       post = FactoryGirl.create(:post, title: "тестикочевский")
-      expect(post.slug).to eq("testikochewskij")
+      expect(post.slug).to eq("testikochevskiy")
     end
   end
 end

@@ -18,7 +18,14 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :barcodes, allow_destroy: true
 
   extend FriendlyId
-  friendly_id :title, use: [:finders, :slugged]
+  friendly_id :slug_candidates, use: [:finders, :slugged]
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
+  end
 
   # scope :filtered_by_category, -> (id) { where(category_id: id) }
 
@@ -106,7 +113,7 @@ class Product < ApplicationRecord
           slugged = self.title.parameterize
           self.slug = slugged
         rescue => e
-          p "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
+          logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
           self.slug = nil
         end
       end

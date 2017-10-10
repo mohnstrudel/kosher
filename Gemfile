@@ -94,6 +94,8 @@ gem 'rack-attack'
 
 gem 'newrelic_rpm'
 
+gem 'metamagic'
+
 group :benchmark do
   gem 'rails-perftest'
   gem 'ruby-prof'

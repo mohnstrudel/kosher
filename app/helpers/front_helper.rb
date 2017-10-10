@@ -17,4 +17,6 @@ module FrontHelper
       return placeholdit_image_tag "345x252", text: "No image", class: options[:class]
     end
   end
+
+
 end

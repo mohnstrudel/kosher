@@ -1,30 +1,10 @@
--if @shops.present?
-  %section.g-section
-    .g-wrapper
-      %h2.g-title.g-title_big
-        Кошерные магазины
-      %ul.g-restaurants
-        -@shops.each do |shop|
-          %li.g-restaurants__item
-            .g-restaurants__left
-              =image_tag shop.logo, class: "g-restaurants__logo"
-            .g-restaurants__right
-              %h2.g-restaurants__title=shop.title
-              %p.g-restaurants__description=truncate(shop.description, length: 400)
-              %p.g-restaurants__adress
-                =shop.address
-                %br/
-                -shop.phones.each do |phone|
-                  =phone.value
-                  %br/
-                %span.g-restaurants__adress_time
-                  =shop.opening_hours.map { |oh| "#{oh.title}: #{oh.value}"}.join("; ")
-                =link_to shop.url, shop.url, target: "_blank", class: "g-restaurants__link"
-      =render partial: 'front/navigation/pager', locals: {path: "city_shops_path", page: @page}
--else
-  %section.g-section.g-empty
-    .g-wrapper
-      %h2.g-title.g-title_big
-        Кошерные магазины
-      =image_tag 'icons/shop.svg', class: "g-empty__icon"
-      %h2.g-empty__text Магазины отсутствуют
+%section.g-section
+  .g-wrapper
+    %h2.g-title.g-title_big
+      Кошерные магазины
+    %ul.g-cities
+      -@cities.each do |city|
+        %li.g-cities__item
+          =link_to shop_cities_path(city), class: "g-cities__link", style: "background-image: url(#{asset_path(city.front_image)})" do
+            %span.g-cities__title=city.name
+      

@@ -95,20 +95,34 @@ Rails.application.routes.draw do
     resources :labels, only: [:index, :show]
 
     resources :products, only: [:index, :show]
-    resources :categories, only: [:index, :show] do
-      resources :suppliers, only: [:index, :show] do
-        resources :products, only: :show
-      end
+    # Данный блок для очень крутых урлов
+    # resources :categories, only: [:index, :show] do
+    #   resources :suppliers, only: [:index, :show], path: "" do
+    #     resources :products, only: :show, path: ""
+    #   end
+    # end
+    resources :categories, only: [:index, :show]
+    resources :suppliers, only: [:index, :show] do
+      resources :products, only: :show, path: ""
     end
 
-    resources :cities, only: [:index, :show] do
-      resources :shops, only: [:index, :show]
-      resources :restaurants, only: [:index, :show]
+    # Old!
+    # resources :cities, only: [:index, :show] do
+    #   resources :shops, only: [:index, :show]
+    #   resources :restaurants, only: [:index, :show]
+    # end
+
+    resources :shops, only: [:index, :show] do
+      resources :cities, only: [:index, :show], path: "/"
+    end
+
+    resources :restaurants, only: [:index, :show] do
+      resources :cities, only: [:index, :show], path: "/"
     end
 
     resources :recipes, only: [:index, :show]
     resources :recipe_categories, only: [:index, :show] do
-      resources :recipes, only: [:index, :show]
+      resources :recipes, only: [:index, :show], path: "/"
     end
 
 

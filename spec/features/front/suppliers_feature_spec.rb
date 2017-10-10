@@ -30,7 +30,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
       product = FactoryGirl.create(:product, category: category, manufacturer: manuf)
       FactoryGirl.create_list(:manufacturer, 2)
 
-      visit suppliers_path(upper_category: category.id)
+      visit suppliers_path(category: category.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 1)
     end
@@ -45,7 +45,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
       product = FactoryGirl.create(:product, category: category, manufacturer: manuf_2)
       FactoryGirl.create_list(:manufacturer, 2)
 
-      visit suppliers_path(category_id: subcat.id)
+      visit suppliers_path(subcategory: subcat.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 1)
       
@@ -70,7 +70,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
       FactoryGirl.create(:product, manufacturer: tm_2, category: subcat)
       FactoryGirl.create(:product, manufacturer: tm_2_1, category: subcat)
 
-      visit suppliers_path(upper_category: category.id, category_id: subcat.id, manufacturer_id: manuf.id)
+      visit suppliers_path(category: category.id, subcategory: subcat.id, manufacturer: manuf.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 2)
       
@@ -91,7 +91,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
       FactoryGirl.create(:product, manufacturer: tm_1)
       FactoryGirl.create(:product, manufacturer: tm_2)
 
-      visit suppliers_path(manufacturer_id: manuf.id)
+      visit suppliers_path(manufacturer: manuf.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 1)
       
@@ -122,7 +122,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
 
       FactoryGirl.create(:product, manufacturer: tm_3, category: subcat_2)
 
-      visit suppliers_path(upper_category: category.id, category_id: subcat.id)
+      visit suppliers_path(category: category.id, subcategory: subcat.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 3)
       
@@ -146,7 +146,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
       product = FactoryGirl.create(:product, category: category, manufacturer: manuf, label: sublabel)
       FactoryGirl.create_list(:manufacturer, 3)
 
-      visit suppliers_path(upper_category: category.id, sign: sublabel.id)
+      visit suppliers_path(category: category.id, sign: sublabel.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 1)
 
@@ -171,7 +171,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
       product = FactoryGirl.create(:product, category: subcategory, manufacturer: tm_2, label: sublabel)
       FactoryGirl.create_list(:manufacturer, 3)
 
-      visit suppliers_path(upper_category: category.id, category_id: subcategory.id, sign: sublabel.id)
+      visit suppliers_path(category: category.id, subcategory: subcategory.id, sign: sublabel.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 2)
 
@@ -198,7 +198,7 @@ RSpec.feature "Front suppliers feature spec >", :type => :feature do
       product = FactoryGirl.create(:product, category: subcategory, manufacturer: tm_2, label: sublabel)
       FactoryGirl.create_list(:manufacturer, 3)
 
-      visit suppliers_path(upper_category: category.id, category_id: subcategory.id, manufacturer_id: tm_1.id, sign: sublabel.id)
+      visit suppliers_path(category: category.id, subcategory: subcategory.id, manufacturer: tm_1.id, sign: sublabel.id)
 
       expect(find('ul.g-products-wrapper')).to have_selector('li', count: 1)
 

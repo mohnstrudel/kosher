@@ -11,6 +11,7 @@
           %h2.g-products-wrapper__title=supplier.title
           %p.g-products-wrapper__description
             =supplier.description.html_safe
-          =link_to 'Подробнее', category_supplier_path(params[:category_id], supplier), class: 'g-btn g-btn_gray'
+          / =link_to 'Подробнее', category_supplier_path(params[:category_id], supplier), class: 'g-btn g-btn_gray'
+          =link_to 'Подробнее', supplier_path(supplier), class: 'g-btn g-btn_gray'
 -else
   %h2 По вашему запросу ничего не найдено

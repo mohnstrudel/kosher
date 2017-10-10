@@ -4,11 +4,11 @@
     .g-header__row.g-header__row_top
       .g-wrapper
         %nav.g-menu
-          =link_to 'О департаменте', about_path, class: 'g-menu__item'
-          =link_to 'Новости', posts_path, class: 'g-menu__item'
-          =link_to 'Фотогалерея', gallery_path, class: 'g-menu__item'
-          =link_to 'FAQ', faq_path, class: 'g-menu__item'
-          =link_to 'Контакты', contact_path, class: 'g-menu__item'
+          =upper_nav_link 'О департаменте', about_path
+          =upper_nav_link 'Новости', posts_path
+          =upper_nav_link 'Фотогалерея', gallery_path
+          =upper_nav_link 'FAQ', faq_path
+          =upper_nav_link 'Контакты', contact_path
         %form.g-header-search.g-mobile-hide
           %input.g-header-search__input{:name => "search", :placeholder => "Введите фразу для поиска и нажмите клавишу «Enter»", :type => "text"}/
         %nav.g-menu.g-menu_lower.g-mobile-hide
@@ -45,12 +45,12 @@
     .g-header__row.g-header__row_bottom
       .g-wrapper
         %nav.g-menu.g-menu_light
-          =link_to 'Кошерные продукты', categories_path, class: 'g-menu__item'
-          =link_to 'Кошерные магазины', cities_path(shops: true), class: 'g-menu__item'
-          =link_to 'Кошерные рестораны', cities_path(restaurants: true), class: 'g-menu__item'
-          =link_to 'Кошерные рецепты', recipe_categories_path, class: 'g-menu__item'
-          =link_to 'Знаки кошерности', labels_path, class: 'g-menu__item'
-          =link_to 'Наши партнеры', partners_path, class: 'g-menu__item'
+          =lower_nav_link('Кошерные продукты', categories_path, {:product => true})
+          =lower_nav_link 'Кошерные магазины', shops_path
+          =lower_nav_link 'Кошерные рестораны', restaurants_path
+          =lower_nav_link 'Кошерные рецепты', recipe_categories_path
+          =lower_nav_link 'Знаки кошерности', labels_path
+          =lower_nav_link 'Наши партнеры', partners_path
   .g-mobile-header.g-mobile
     %nav.g-mobile-links.g-mobile-links_left
       %a.g-mobile-links__item.g-mobile-links__item_menu.js-menu-btn{:href => "javascript:void(0)"}

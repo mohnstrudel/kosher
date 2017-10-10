@@ -63,7 +63,7 @@ RSpec.feature "Front products feature spec >", :type => :feature do
 
       visit supplier_product_path(manuf, product)
 
-      expect(page).to have_current_path('/suppliers/sab-ziro/products/morosha-gorkaya')
+      expect(page).to have_current_path('/suppliers/sab-ziro/morosha-gorkaya')
     end
   end
 end

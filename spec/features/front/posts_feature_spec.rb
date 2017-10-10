@@ -36,8 +36,8 @@ RSpec.feature "Front posts feature spec >", :type => :feature do
 
       visit posts_path
       
-      # Нужно иметь только три pagination-item'а, т.е. две стрелки и цирфу "1"
-      expect(page).to have_css(".g-pagination__item", :count => 3)
+      # Если айтемов меньше, чем @page_size, то пагинацию мы не показываем!
+      expect(page).not_to have_css(".g-pagination__item")
       # expect(page).not_to have_css "a[href~='/news?page=2']"
     end
 

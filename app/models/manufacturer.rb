@@ -21,7 +21,14 @@ class Manufacturer < ApplicationRecord
   after_save :set_slug
 
   extend FriendlyId
-  friendly_id :title, use: [:finders, :slugged]
+  friendly_id :slug_candidates, use: [:finders, :slugged]
+
+  def slug_candidates
+    [
+      :name,
+      [:name, :id]
+    ]
+  end
 
   def parent_categories
     return nil if self.parent_id != nil
@@ -108,7 +115,7 @@ class Manufacturer < ApplicationRecord
           slugged = self.title.parameterize
           self.slug = slugged
         rescue => e
-          p "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
+          logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
           self.slug = nil
         end
       end

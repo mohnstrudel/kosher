@@ -2,11 +2,11 @@
   .g-wrapper
     .g-footer__left
       %nav.g-menu.g-menu_light
-        =link_to 'О департаменте', about_path, class: 'g-menu__item'
-        =link_to "Новости", posts_path, class: "g-menu__item"
-        =link_to "Фотогалерея", gallery_path, class: 'g-menu__item'
-        =link_to "FAQ", faq_path, class: 'g-menu__item'
-        =link_to "Контакты", contact_path, class: 'g-menu__item'
+        =footer_nav_link 'О департаменте', about_path
+        =footer_nav_link "Новости", posts_path
+        =footer_nav_link "Фотогалерея", gallery_path
+        =footer_nav_link "FAQ", faq_path
+        =footer_nav_link "Контакты", contact_path
       .g-social
         =form_for Subscriber.new, format: 'js', html: {class: 'g-social__left g-form g-subscribe'}, remote: true do |f|
         
