@@ -37,7 +37,7 @@ include CrudConcern
   private
 
   def find_manufacturer
-    @manufacturer = Manufacturer.find(params[:id])
+    @manufacturer = Manufacturer.friendly.find(params[:id])
   end
 
   def manufacturer_params

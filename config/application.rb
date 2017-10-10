@@ -37,5 +37,8 @@ module Ycms
   config.time_zone = 'Moscow' 
   config.active_record.default_timezone = :local
 
+  config.hashids = Hashids.new("this is my salt")
+
+
   end
 end

@@ -195,6 +195,7 @@ GEM
       haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    hashids (1.0.4)
     heapy (0.1.3)
     highline (1.7.8)
     html2haml (2.2.0)
@@ -449,6 +450,7 @@ DEPENDENCIES
   globalize!
   globalize-accessors
   haml-rails
+  hashids
   i18n-tasks
   jbuilder (~> 2.5)
   launchy

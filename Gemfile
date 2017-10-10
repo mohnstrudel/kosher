@@ -96,6 +96,8 @@ gem 'newrelic_rpm'
 
 gem 'metamagic'
 
+gem 'hashids'
+
 group :benchmark do
   gem 'rails-perftest'
   gem 'ruby-prof'
