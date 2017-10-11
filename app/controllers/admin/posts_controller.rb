@@ -5,7 +5,7 @@ class Admin::PostsController < AdminController
 	before_action :get_locales, only: [:edit, :create, :new]
 
 	def index
-		@posts = index_helper("Post")
+		@posts = index_helper("Post").order(published_at: :desc)
 	end
 
 	def new
@@ -31,7 +31,7 @@ class Admin::PostsController < AdminController
 	private
 
 	def find_post
-		@post = Post.find(params[:id])
+		@post = Post.friendly.find(params[:id])
 	end
 
 	def post_params

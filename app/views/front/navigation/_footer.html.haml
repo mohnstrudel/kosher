@@ -30,7 +30,7 @@
     .g-footer__center.g-contacts
       -if @settings.try(:phones).present?
         -@settings.phones.each do |phone|
-          %a.g-contacts__phone{:href => phone.value}=phone.value
+          %a.g-contacts__phone{:href => "tel:#{phone.value}"}=phone.value
       
       %p.g-contacts__adress
         =@settings.try(:address)

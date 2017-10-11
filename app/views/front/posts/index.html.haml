@@ -7,7 +7,7 @@
         =render @posts
         
       
-      =render partial: "pager", locals: { keywords: @keywords, page: @page }
+      =render partial: 'front/navigation/pager', locals: {path: "posts_path", page: @page, class: "g-pagination_posts"}
 
 -else
   %section.g-section.g-empty

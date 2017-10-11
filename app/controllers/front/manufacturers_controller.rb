@@ -1,13 +1,14 @@
 class Front::ManufacturersController < FrontController
   def index
-    item_amount = Manufacturer.all.count
+    objects = Manufacturer.top_level
+    item_amount = objects.count
     page_size = Rails.application.config.page_size
     @page = (params[:page] || 1).to_i
     @pages_total = item_amount / page_size
     if item_amount%page_size != 0
       @pages_total += 1
     end
-    @manufacturers = Manufacturer.all
+    @manufacturers = objects
   end
 
   def show

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="84" height="63" viewBox="0 0 84 63">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ededed;
+      }
+
+      .cls-1, .cls-3, .cls-4, .cls-5, .cls-6 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #dbdbdb;
+      }
+
+      .cls-3 {
+        fill: #cbcbcb;
+      }
+
+      .cls-4 {
+        fill: #33c3c3;
+      }
+
+      .cls-5 {
+        fill: #00b4b4;
+      }
+
+      .cls-6 {
+        fill: #099;
+      }
+    </style>
+  </defs>
+  <path id="Rounded_Rectangle_1" data-name="Rounded Rectangle 1" class="cls-1" d="M5,15H79V63H5V15H5Z"/>
+  <rect id="Rounded_Rectangle_1-2" data-name="Rounded Rectangle 1" class="cls-2" x="3" y="61" width="78" height="2"/>
+  <rect class="cls-2" x="13" y="30" width="29" height="21"/>
+  <path class="cls-3" d="M13,34H42v1H13V34Zm0-2H42v1H13V32Zm0-2H42v1H13V30Z"/>
+  <rect class="cls-2" x="51" y="30" width="20" height="33"/>
+  <path class="cls-1" d="M55,61V48H67V61H55Zm0-27H67V45H55V34Z"/>
+  <path class="cls-4" d="M22.824,0L13,15H0L14,0h8.824Z"/>
+  <path class="cls-5" d="M31,0L25,15H12L22,0h9Z"/>
+  <path class="cls-4" d="M39,0L37,15H24L30,0h9Z"/>
+  <path class="cls-4" d="M45,0l2,15H60L54,0H45Z"/>
+  <path class="cls-5" d="M46,0l2,15H36L38,0h8Z"/>
+  <path class="cls-6" d="M6,21a6,6,0,0,1-6-6H12A6,6,0,0,1,6,21Z"/>
+  <path class="cls-6" d="M18,21a6,6,0,0,1-6-6H24A6,6,0,0,1,18,21Z"/>
+  <path class="cls-6" d="M30,21a6,6,0,0,1-6-6H36A6,6,0,0,1,30,21Z"/>
+  <path class="cls-6" d="M78,21a6,6,0,0,0,6-6H72A6,6,0,0,0,78,21Z"/>
+  <path class="cls-6" d="M66,21a6,6,0,0,0,6-6H60A6,6,0,0,0,66,21Z"/>
+  <path class="cls-6" d="M54,21a6,6,0,0,0,6-6H48A6,6,0,0,0,54,21Z"/>
+  <path class="cls-6" d="M42,21a6,6,0,0,1-6-6H48A6,6,0,0,1,42,21Z"/>
+  <path class="cls-4" d="M61.176,0L71,15H84L70,0H61.176Z"/>
+  <path class="cls-5" d="M53,0l6,15H72L62,0H53Z"/>
+</svg>

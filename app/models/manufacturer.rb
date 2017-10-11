@@ -18,7 +18,7 @@ class Manufacturer < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
-  after_save :set_slug
+  before_validation :set_slug
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
@@ -117,6 +117,7 @@ class Manufacturer < ApplicationRecord
           slugged = "#{slugged}-#{hash}"
         end
         self.slug = slugged
+        save!
       rescue => e
         logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
         self.slug = nil
