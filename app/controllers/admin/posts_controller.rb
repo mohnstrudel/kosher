@@ -13,6 +13,7 @@ class Admin::PostsController < AdminController
 		if @post.seo.blank?
 			@post.build_seo
 		end
+		@tags = @post.seo.keywords || ""
 	end
 
 	def create
@@ -28,9 +29,8 @@ class Admin::PostsController < AdminController
 	def edit
 		if @post.seo.blank?
 			@post.build_seo
-		else
-			@tags = @post.seo.keywords
 		end
+		@tags = @post.seo.keywords || ""
 	end
 
 	def destroy
