@@ -18,7 +18,7 @@ class Manufacturer < ApplicationRecord
 
   mount_uploader :logo, LogoUploader
 
-  before_validation :set_slug
+  after_save :set_slug
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]

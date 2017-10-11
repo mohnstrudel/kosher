@@ -49,10 +49,16 @@
 //= require bootsy
 
 
-//= require_tree ../../../app/assets/javascripts/admin/.
+//= require bootstrap-tagsinput
 
 // iCHECKBOX
 //= require admin/plugins/icheck/icheck.min
+
+//= require_tree ../../../app/assets/javascripts/admin/.
+
+
+
+
 
 $(document).ready(function () {
     $('.i-checks').iCheck({

@@ -20,6 +20,10 @@
             %li
               %a{"data-toggle" => "tab", :href => "#tab-2"}
                 =t('admin.form.tab_translation')
+          -if object.respond_to?(:seo)
+            %li
+              %a{"data-toggle" => "tab", :href => "#tab-3"}
+                SEO
         .tab-content
           #tab-1.tab-pane.active
             .panel-body
@@ -31,5 +35,9 @@
           -if object.class.model_name.name.constantize.translates?
             #tab-2.tab-pane
               .panel-body
-                =render partial: "admin/shared/form/translation_fields.html.haml", locals: { f: f, object: object }
+                =render partial: "admin/shared/form/translation_fields", locals: { f: f, object: object }
+          -if object.respond_to?(:seo)
+            #tab-3.tab-pane
+              .panel-body
+                =render partial: "admin/shared/form/seo/seo_fields", locals: { f: f, object: object }
     

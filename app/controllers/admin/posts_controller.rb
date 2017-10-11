@@ -10,6 +10,9 @@ class Admin::PostsController < AdminController
 
 	def new
 		@post = Post.new
+		if @post.seo.blank?
+			@post.build_seo
+		end
 	end
 
 	def create
@@ -18,10 +21,16 @@ class Admin::PostsController < AdminController
 	end
 
 	def update
+		# debug
 		update_helper(@post, "edit_admin_post_path", post_params)
 	end
 
 	def edit
+		if @post.seo.blank?
+			@post.build_seo
+		else
+			@tags = @post.seo.keywords
+		end
 	end
 
 	def destroy
@@ -35,7 +44,7 @@ class Admin::PostsController < AdminController
 	end
 
 	def post_params
-		params.require(:post).permit((Post.attribute_names.map(&:to_sym).push(Post.globalize_attribute_names).push(:title, :body, :bootsy_image_gallery_id)).flatten)
+		params.require(:post).permit((Post.attribute_names.map(&:to_sym).push(seo_attributes: [:id, :title, :description, :image, keywords: []]).push(Post.globalize_attribute_names).push(:title, :body, :bootsy_image_gallery_id)).flatten)
 	end
 
 end

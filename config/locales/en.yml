@@ -96,8 +96,12 @@ en:
           amount: Amount, i.e. 'two cups' or '500 grams'
       tab_main: 
         title: "General"
+        seo: SEO Settings
       hints:
         published_at: If no value provided will be the same as date of creating the record.
+        seo: 
+          tab_title: This values will override the standard values of given object. I.e. field 'description' on this tab will override field 'description' from first tab.
+          keywords: Hit either comma or enter after you finished one keyword to proceed with the next.
       model:
         title: "Title (*)"
         body: "Text body"
@@ -139,6 +143,11 @@ en:
         facebook: Facebook
         ingredients: Ingredients
         template: Select newsletter template
+        seo:
+          title: SEO Title
+          description: SEO Description
+          image: SEO Image
+          keywords: SEO Keywords
       tab_translation: "Other languages"
       actions:
         main: "Actions"

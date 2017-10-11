@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009165816) do
+ActiveRecord::Schema.define(version: 20171011161232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -331,6 +331,25 @@ ActiveRecord::Schema.define(version: 20171009165816) do
     t.index ["city_id"], name: "index_restaurants_on_city_id"
   end
 
+  create_table "seos", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "keywords", default: [], array: true
+    t.bigint "post_id"
+    t.bigint "manufacturer_id"
+    t.bigint "product_id"
+    t.bigint "restaurant_id"
+    t.bigint "shop_id"
+    t.index ["manufacturer_id"], name: "index_seos_on_manufacturer_id"
+    t.index ["post_id"], name: "index_seos_on_post_id"
+    t.index ["product_id"], name: "index_seos_on_product_id"
+    t.index ["restaurant_id"], name: "index_seos_on_restaurant_id"
+    t.index ["shop_id"], name: "index_seos_on_shop_id"
+  end
+
   create_table "shops", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -388,5 +407,10 @@ ActiveRecord::Schema.define(version: 20171009165816) do
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "recipe_categories"
   add_foreign_key "restaurants", "cities"
+  add_foreign_key "seos", "manufacturers"
+  add_foreign_key "seos", "posts"
+  add_foreign_key "seos", "products"
+  add_foreign_key "seos", "restaurants"
+  add_foreign_key "seos", "shops"
   add_foreign_key "shops", "cities"
 end

@@ -8,6 +8,9 @@ class Post < ApplicationRecord
   after_save :set_published_date
   after_save :set_slug
 
+  has_one :seo
+  accepts_nested_attributes_for :seo, allow_destroy: true
+
   include Bootsy::Container
   belongs_to :post_category
 

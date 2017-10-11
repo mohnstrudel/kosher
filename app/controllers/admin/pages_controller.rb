@@ -36,7 +36,7 @@ class Admin::PagesController < AdminController
 	end
 
 	def page_params
-		params.require(:page).permit(:title, :body, :page_category_id, :slug)
+		params.require(:page).permit(:title, :body, :page_category_id, :slug, seo_attributes: [:id, :title])
 	end
 
 end

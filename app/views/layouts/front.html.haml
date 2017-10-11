@@ -2,7 +2,9 @@
 %html
   %head
     -unless Rails.env.test? 
-      = metamagic site: @settings.title, title: [:site, :title, get_meta_from_breadcrumbs(@breadcrumbs).join(" — ")], separator: " — "
+      = metamagic site: @settings.title, title: [:site, :title, get_meta_from_breadcrumbs(@breadcrumbs).join(" — ")], separator: " — ", description: [:description, @settings.description], keywords: [:keywords, "kosher", "кошерная еда", "кашрут"]
+    -if current_page?(root_path)
+      =metamagic og: {image: "#{request.protocol}#{request.host_with_port}#{@settings.logo}", title: @settings.title, description: @settings.description, url: "#{request.protocol}#{request.host_with_port}", type: "website"}
     = csrf_meta_tags
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
