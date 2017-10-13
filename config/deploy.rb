@@ -27,6 +27,8 @@ set :rollbar_token, 'a99ef1d76aa44281ba7307e23b84b80a'
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
 
+set :whenever_command, "bundle exec whenever"
+
 ## Defaults:
 # set :scm,           :git
 # set :branch,        :master
@@ -91,10 +93,20 @@ namespace :deploy do
     end
   end
 
+  desc "Update crontab with whenever"
+  task :update_cron do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :exec, "whenever --update-crontab #{fetch(:application)}"
+      end
+    end
+  end
+
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
+  after :finishing,     :update_cron
 end
 
 # ps aux | grep puma    # Get puma pid

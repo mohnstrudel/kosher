@@ -18,6 +18,7 @@ require 'capistrano/figaro_yml'
 require 'rollbar/capistrano3'
 require 'capistrano/yarn'
 
+require "whenever/capistrano"
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
