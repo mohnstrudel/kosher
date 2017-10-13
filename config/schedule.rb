@@ -1,4 +1,4 @@
-env :GEM_PATH, ENV['GEM_PATH']
+set :bundle_command, "/home/deploy/.rvm/gems/ruby-2.4.1/bin/bundle"
 
 every 1.day, at: '5:00 am' do
   rake "-s sitemap:refresh"
