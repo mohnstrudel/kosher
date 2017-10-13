@@ -27,7 +27,8 @@ set :rollbar_token, 'a99ef1d76aa44281ba7307e23b84b80a'
 set :rollbar_env, Proc.new { fetch :stage }
 set :rollbar_role, Proc.new { :app }
 
-set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
+# Таск в namespace:deploy (update_cron) делает тоже самое!!
+# set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 set :sitemap_roles, :web # default
 

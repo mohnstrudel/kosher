@@ -1,0 +1,7 @@
+%section.g-section.g-empty
+  .g-wrapper
+    %h2.g-title.g-title_big
+      404
+    =image_tag 'icons/shop.svg', class: "g-empty__icon"
+    %h2.g-empty__text
+      ="К сожалению, запрашиваемая страница недоступна. Вы можете пройти на #{link_to 'главную', root_path}".html_safe

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :users, 
         controllers: {
           sessions: 'front/users/sessions',
@@ -57,6 +56,11 @@ Rails.application.routes.draw do
 
   scope module: :front do
     root "static_pages#home"
+
+    get '/robots.:format' => 'errors#robots'
+
+    match "/404", :to => "errors#not_found", :via => :all
+    match "/500", :to => "errors#internal_server_error", :via => :all
 
     get '/about', to: 'static_pages#about'
     get '/gallery', to: 'pictures#index'

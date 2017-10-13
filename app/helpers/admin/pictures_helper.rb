@@ -6,7 +6,13 @@ module Admin::PicturesHelper
     if object.send(image_field_title).try(:url).nil?
       return placeholdit_image_tag "50x50", text: 'Нет картинки', class: options[:class]
     else
-      return image_tag(object.send(image_field_title).url(version), class: options[:class])
+      begin
+        tag = image_tag(object.send(image_field_title).url.send(version), class: options[:class])
+      rescue NoMethodError
+        tag = image_tag(object.send(image_field_title).url, class: options[:class])
+      end
+
+      return tag
     end
   end
 end

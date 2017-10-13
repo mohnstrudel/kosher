@@ -44,8 +44,8 @@ RSpec.describe Product, type: :model do
 
   context "slug" do
     it "saves a proper slug" do
-      product = FactoryGirl.build(:product, title: "Морошка Сладкая Уникальная")
-      product.save
+      product = FactoryGirl.create(:product, title: "Морошка Сладкая Уникальная")
+      # product.save
 
       expect(product.slug).to eq("moroshka-sladkaya-unikalnaya")
     end

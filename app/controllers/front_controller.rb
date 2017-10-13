@@ -68,6 +68,8 @@ class FrontController < ApplicationController
           # Генерируем кастомные проверки для хлебных крошек
           logger.debug "Custom breadcrumbs generation for #{element}"
           case element
+          when '404'
+            breadcrumbs << { title: "404", url: "/"}
           when 'news'
             breadcrumbs << { title: "Новости", url: '/news' }
             @previous_item = "Post"
@@ -86,6 +88,15 @@ class FrontController < ApplicationController
             breadcrumbs << { title: 'Партнеры', url: url }
           when 'contact'
             breadcrumbs << { title: 'Обратная связь', url: url }
+          end
+        elsif e.message =~ /wrong constant name/
+          case element
+          when '404'
+            breadcrumbs << { title: "404", url: "/"}
+          when '500'
+            breadcrumbs << { title: "500", url: "/"}
+          else
+            lobber.debug "Wrong constant name for element: >#{element}<. Full error message: #{e.message}."
           end
         else
           logger.debug "Error for element: #{element}. Error message: #{e.message}"

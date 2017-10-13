@@ -36,7 +36,10 @@ RSpec.feature "Recipe categories feature spec >", :type => :feature do
       
       fill_in 'recipe_category_title', with: "Grizzly Bears Ltd."
       
-      expect { find("input[type='submit']").click }.to change(RecipeCategory, :count).by(1)
+      expect { 
+        # find("input[type='submit']").click 
+        first("input[type='submit']").click 
+        }.to change(RecipeCategory, :count).by(1)
     end
 
     scenario 'edit' do
@@ -47,7 +50,8 @@ RSpec.feature "Recipe categories feature spec >", :type => :feature do
       click_link "edit_list_item_#{rc.id}"
 
       fill_in "recipe_category_title", with: "Shitty Dizzy"
-      find("input[type='submit']").click
+      # find("input[type='submit']").click
+      first("input[type='submit']").click 
       visit admin_recipe_categories_path
 
       expect(page).to have_content("Shitty Dizzy")

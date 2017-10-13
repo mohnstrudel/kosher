@@ -20,7 +20,8 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
       select 'Dooge', from: 'recipe_recipe_ingredients_attributes_0_ingredient_id'
       fill_in 'recipe_recipe_ingredients_attributes_0_amount', with: '500ml'
 
-      find("input[type='submit']").click
+      # find("input[type='submit']").click
+      first("input[type='submit']").click 
 
       expect(recipe.ingredients.count).to eq(1)
     end
@@ -42,7 +43,10 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
       select "Awesome Cat", from: 'recipe_recipe_category_id'
       fill_in 'recipe_title', with: "Grizzly Bears Ltd."
       
-      expect { find("input[type='submit']").click }.to change(Recipe, :count).by(1)
+      expect { 
+        # find("input[type='submit']").click 
+        first("input[type='submit']").click 
+        }.to change(Recipe, :count).by(1)
     end
 
     scenario 'edit' do
@@ -53,7 +57,8 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
       click_link "edit_list_item_#{recipe.id}"
 
       fill_in "recipe_title", with: "Shitty Dizzy"
-      find("input[type='submit']").click
+      # find("input[type='submit']").click
+      first("input[type='submit']").click 
       visit admin_recipes_path
 
       expect(page).to have_content("Shitty Dizzy")

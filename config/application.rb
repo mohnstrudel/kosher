@@ -39,6 +39,8 @@ module Ycms
 
   config.hashids = Hashids.new("this is my salt")
 
+  config.exceptions_app = self.routes
+
 
   end
 end

@@ -38,7 +38,7 @@ class Admin::CategoriesController < AdminController
   private
 
   def find_category
-    @category = Category.find(params[:id])
+    @category = Category.friendly.find(params[:id])
   end
 
   def category_params
