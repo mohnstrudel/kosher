@@ -19,6 +19,7 @@ require 'rollbar/capistrano3'
 require 'capistrano/yarn'
 
 require "whenever/capistrano"
+require 'capistrano/sitemap_generator'
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
