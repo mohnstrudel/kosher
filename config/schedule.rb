@@ -1,4 +1,4 @@
-env :PATH, ENV['PATH']
+env :GEM_PATH, ENV['GEM_PATH']
 
 every 1.day, at: '5:00 am' do
   rake "-s sitemap:refresh"
