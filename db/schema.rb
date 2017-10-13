@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013104630) do
+ActiveRecord::Schema.define(version: 20171013152005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20171013104630) do
     t.datetime "updated_at", null: false
     t.string "url"
     t.string "slug"
+    t.boolean "active"
     t.index ["slug"], name: "index_manufacturers_on_slug", unique: true
   end
 
@@ -243,6 +244,7 @@ ActiveRecord::Schema.define(version: 20171013104630) do
     t.string "slug"
     t.string "logo"
     t.datetime "published_at"
+    t.boolean "active"
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
@@ -267,6 +269,7 @@ ActiveRecord::Schema.define(version: 20171013104630) do
     t.datetime "updated_at", null: false
     t.bigint "barcode"
     t.string "slug"
+    t.boolean "active"
     t.index "lower((description)::text) varchar_pattern_ops", name: "products_lower_description"
     t.index "lower((title)::text) varchar_pattern_ops", name: "products_lower_title"
     t.index ["category_id"], name: "index_products_on_category_id"

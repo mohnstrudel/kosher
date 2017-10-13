@@ -3,11 +3,11 @@ class Front::PostsController < FrontController
   before_action :find_post, only: [:show]
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   def index
-    post_amount = Post.all.count
+    post_amount = Post.active.count
     page_size = Rails.application.config.page_size
     @page = (params[:page] || 1).to_i
     @pages_total = post_amount / page_size
@@ -16,9 +16,9 @@ class Front::PostsController < FrontController
     end
 
     begin
-      @posts = Post.order(published_at: :desc).paginate(page: params[:page], per_page: page_size)
+      @posts = Post.active.order(published_at: :desc).paginate(page: params[:page], per_page: page_size)
     rescue RangeError => e
-      @posts = Post.order(published_at: :desc).paginate(page: 1, per_page: page_size)
+      @posts = Post.active.order(published_at: :desc).paginate(page: 1, per_page: page_size)
       logger.debug e.message
     end
     

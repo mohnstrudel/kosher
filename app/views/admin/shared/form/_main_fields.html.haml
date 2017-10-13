@@ -31,6 +31,16 @@
     =render partial: "admin/shared/form/newsletters/newsletter_fields", locals: { f: f, object: object }
 
 
+    -if object.respond_to?(:active)
+      .form-group
+        %label.col-sm-2.control-label
+          =t('admin.form.model.active')
+        .col-sm-10
+          =f.check_box :active, class: 'form-control', checked: "checked"
+          %span.help-block.m-b-none=t('admin.form.hints.active')
+      .hr-line-dashed
+    / Fields for general settings start (only unique fields)
+
     -if object.respond_to?(:title)
       .form-group
         %label.col-sm-2.control-label

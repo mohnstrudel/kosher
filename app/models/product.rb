@@ -23,6 +23,8 @@ class Product < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
+  scope :active, -> { where(active: true) }
+
   def slug_candidates
     [
       :title,

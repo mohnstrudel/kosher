@@ -12,15 +12,15 @@ class Front::ProductsController < FrontController
     page_size = Rails.application.config.page_size
     
   
-    @products = Product.includes(:category).includes(:manufacturer).manufacturer_scope(manu_id).category_scope(cat_id).paginate(:page => params[:page], :per_page => page_size)
+    @products = Product.active.includes(:category).includes(:manufacturer).manufacturer_scope(manu_id).category_scope(cat_id).paginate(:page => params[:page], :per_page => page_size)
   end
 
   def show
     begin
-      @product = Manufacturer.includes(:products).find(params[:supplier_id]).products.find(params[:id])
+      @product = Manufacturer.includes(:products).find(params[:supplier_id]).products.active.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound => error
       logger.debug "Error: can't process Manufacturers products. Error message: #{error.message}"
-      @product = Product.find(params[:id])
+      @product = Product.active.friendly.find(params[:id])
     end
   end
 end

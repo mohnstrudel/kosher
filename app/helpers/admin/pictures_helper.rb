@@ -7,8 +7,8 @@ module Admin::PicturesHelper
       return placeholdit_image_tag "50x50", text: 'Нет картинки', class: options[:class]
     else
       begin
-        tag = image_tag(object.send(image_field_title).url.send(version), class: options[:class])
-      rescue NoMethodError
+        tag = image_tag(object.send(image_field_title).send(version).url, class: options[:class])
+      rescue NoMethodError, ArgumentError
         tag = image_tag(object.send(image_field_title).url, class: options[:class])
       end
 

@@ -10,6 +10,7 @@ class Manufacturer < ApplicationRecord
   scope :top_level, -> { where(parent_id: nil) }
   # scope :subs, lambda { where("parent_id NOT NULL").include :products }
   scope :subs, lambda { where("parent_id IS NOT NULL") }
+  scope :active, -> { where(active: true) }
 
   validates :title, presence: true
 

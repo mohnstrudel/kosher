@@ -22,6 +22,8 @@ class Post < ApplicationRecord
   translates :title, :body
   globalize_accessors :locales => [:en, :ru], :attributes => [:title, :body]
 
+  scope :active, -> { where(active: true) }
+
   def seo_title
     self.seo.try(:title)
   end

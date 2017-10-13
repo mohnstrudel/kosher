@@ -1,7 +1,7 @@
 class Front::StaticPagesController < FrontController
   def home
   	@page_categories = PageCategory.all
-    @posts = Post.includes(:translations).order(published_at: :desc).first(9)
+    @posts = Post.active.includes(:translations).order(published_at: :desc).first(9)
   end
 
   def about

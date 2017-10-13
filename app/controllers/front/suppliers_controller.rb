@@ -14,13 +14,13 @@ class Front::SuppliersController < FrontController
       params_array << Category.friendly.find(subcategory_id).title
     end
     if manufacturer_id.present? && manufacturer_id != 'any'
-      params_array << Manufacturer.find(manufacturer_id).title
+      params_array << Manufacturer.active.friendly.find(manufacturer_id).title
     end
     if sign_id.present?
       params_array << Label.find(sign_id).title
     end
 
-    @suppliers = Manufacturer.by_filter(@category_id, subcategory_id, manufacturer_id, sign_id).uniq.compact
+    @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_id).uniq.compact
     # populate filter items
     params_array.each do |pa|
       if pa.present?
