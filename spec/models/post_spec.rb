@@ -33,4 +33,27 @@ RSpec.describe Post, type: :model do
       expect(post.slug).to eq("testikochevskiy")
     end
   end
+
+  describe "SEO parameters" do
+    it "saves them when creating new post" do
+      post = FactoryGirl.build(:post)
+      post.build_seo
+      post.seo.title = "My SEO title"
+      post.seo.keywords = ["hello", "dolly"]
+
+      post.save
+
+      expect(post.seo.title).to eq("My SEO title")
+      expect(post.seo.keywords).to eq(["hello", "dolly"])
+    end
+
+    it "saves them when editing post" do
+      post = FactoryGirl.create(:post)
+
+      post.update(seo_attributes: {title: "Some other title", keywords: ["tag 1", "tag 2"]})
+
+      expect(post.seo.title).to eq("Some other title")
+      expect(post.seo.keywords).to eq(["tag 1", "tag 2"])
+    end
+  end
 end

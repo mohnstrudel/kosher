@@ -20,7 +20,10 @@ RSpec.feature "Shops feature spec >", :type => :feature do
       # select "Awesome Cat", from: 'recipe_recipe_category_id'
       fill_in 'shop_title', with: "Grizzly Bears Ltd."
       
-      expect { find("input[type='submit']").click }.to change(Shop, :count).by(1)
+      expect { 
+        first("input[type='submit']").click
+        # find("input[type='submit']").click 
+        }.to change(Shop, :count).by(1)
     end
   end
 

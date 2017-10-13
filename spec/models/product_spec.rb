@@ -44,10 +44,33 @@ RSpec.describe Product, type: :model do
 
   context "slug" do
     it "saves a proper slug" do
-      product = FactoryGirl.build(:product, title: "Морошка Сладкая")
+      product = FactoryGirl.build(:product, title: "Морошка Сладкая Уникальная")
       product.save
 
-      expect(product.slug).to eq("moroshka-sladkaya")
+      expect(product.slug).to eq("moroshka-sladkaya-unikalnaya")
+    end
+  end
+
+  describe "SEO parameters" do
+    it "saves them when creating new product" do
+      product = FactoryGirl.build(:product)
+      product.build_seo
+      product.seo.title = "My SEO title"
+      product.seo.keywords = ["hello", "dolly"]
+
+      product.save
+
+      expect(product.seo.title).to eq("My SEO title")
+      expect(product.seo.keywords).to eq(["hello", "dolly"])
+    end
+
+    it "saves them when editing product" do
+      product = FactoryGirl.create(:product)
+
+      product.update(seo_attributes: {title: "Some other title", keywords: ["tag 1", "tag 2"]})
+
+      expect(product.seo.title).to eq("Some other title")
+      expect(product.seo.keywords).to eq(["tag 1", "tag 2"])
     end
   end
 end

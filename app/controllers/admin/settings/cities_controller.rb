@@ -9,9 +9,13 @@ class Admin::Settings::CitiesController < AdminController
 
   def new
     @city = City.new
+    @city.build_seo
   end
 
   def edit
+    if @city.seo.blank?
+      @city.build_seo
+    end
   end
 
   def create
@@ -33,11 +37,11 @@ class Admin::Settings::CitiesController < AdminController
   private
 
   def find_city
-    @city = City.find(params[:id])
+    @city = City.friendly.find(params[:id])
   end
 
   def city_params
-    params.require(:city).permit(:front_image, :back_image, :name)
+    params.require(:city).permit(:front_image, :back_image, :name, seo_attributes: [:id, :title, :description, :image, keywords: [] ])
   end
 
 end

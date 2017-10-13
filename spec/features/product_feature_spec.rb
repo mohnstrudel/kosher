@@ -25,7 +25,8 @@ RSpec.feature "Products controller", :type => :feature do
 
       find('.barcode_field').set '88889999'
       
-      find("input[type='submit']").click
+      # find("input[type='submit']").click
+      first("input[type='submit']").click
 
       # expect(Product.last.barcodes.count).to eq(2)
       # Я не уверен на данный момент, в чем именно ошибка - либо capybara
@@ -58,7 +59,8 @@ RSpec.feature "Products controller", :type => :feature do
       visit edit_admin_product_path(product)
       fill_in 'product_title', with: "Sonya Blade"
       # save_and_open_page
-      find("input[type='submit']").click
+      # find("input[type='submit']").click
+      first("input[type='submit']").click
 
       visit admin_products_path
       expect(page).not_to have_content("Kenshi")  

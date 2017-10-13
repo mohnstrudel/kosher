@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171011161232) do
+ActiveRecord::Schema.define(version: 20171013104630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -328,7 +328,9 @@ ActiveRecord::Schema.define(version: 20171011161232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "city_id"
+    t.string "slug"
     t.index ["city_id"], name: "index_restaurants_on_city_id"
+    t.index ["slug"], name: "index_restaurants_on_slug", unique: true
   end
 
   create_table "seos", force: :cascade do |t|
@@ -343,9 +345,15 @@ ActiveRecord::Schema.define(version: 20171011161232) do
     t.bigint "product_id"
     t.bigint "restaurant_id"
     t.bigint "shop_id"
+    t.bigint "city_id"
+    t.bigint "recipe_id"
+    t.bigint "recipe_category_id"
+    t.index ["city_id"], name: "index_seos_on_city_id"
     t.index ["manufacturer_id"], name: "index_seos_on_manufacturer_id"
     t.index ["post_id"], name: "index_seos_on_post_id"
     t.index ["product_id"], name: "index_seos_on_product_id"
+    t.index ["recipe_category_id"], name: "index_seos_on_recipe_category_id"
+    t.index ["recipe_id"], name: "index_seos_on_recipe_id"
     t.index ["restaurant_id"], name: "index_seos_on_restaurant_id"
     t.index ["shop_id"], name: "index_seos_on_shop_id"
   end
@@ -359,7 +367,9 @@ ActiveRecord::Schema.define(version: 20171011161232) do
     t.datetime "updated_at", null: false
     t.text "address"
     t.integer "city_id"
+    t.string "slug"
     t.index ["city_id"], name: "index_shops_on_city_id"
+    t.index ["slug"], name: "index_shops_on_slug", unique: true
   end
 
   create_table "subscribers", force: :cascade do |t|
@@ -407,9 +417,12 @@ ActiveRecord::Schema.define(version: 20171011161232) do
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "recipe_categories"
   add_foreign_key "restaurants", "cities"
+  add_foreign_key "seos", "cities"
   add_foreign_key "seos", "manufacturers"
   add_foreign_key "seos", "posts"
   add_foreign_key "seos", "products"
+  add_foreign_key "seos", "recipe_categories"
+  add_foreign_key "seos", "recipes"
   add_foreign_key "seos", "restaurants"
   add_foreign_key "seos", "shops"
   add_foreign_key "shops", "cities"

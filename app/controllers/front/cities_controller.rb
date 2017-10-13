@@ -2,12 +2,12 @@ class Front::CitiesController < FrontController
   def index
 
     if params[:shop_id].present?
-      city = City.includes(:shops).friendly.find(params[:shop_id])
-      @objects = city.shops
+      @city = City.includes(:shops).friendly.find(params[:shop_id])
+      @objects = @city.shops
       @type = "магазины"
     elsif params[:restaurant_id].present?
-      city = City.includes(:restaurants).friendly.find(params[:restaurant_id])
-      @objects = city.restaurants
+      @city = City.includes(:restaurants).friendly.find(params[:restaurant_id])
+      @objects = @city.restaurants
       @type = "рестораны"
     end
 

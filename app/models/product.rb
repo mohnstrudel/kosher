@@ -17,6 +17,9 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :barcodes, allow_destroy: true
 
+  has_one :seo
+  accepts_nested_attributes_for :seo, allow_destroy: true
+
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
@@ -31,6 +34,28 @@ class Product < ApplicationRecord
 
   # scope :incomplete, -> { where(manufacturer: nil).or(where(label: nil)).or(where(category: nil)).or(where(title: nil)) }
   
+  def seo_title
+    self.seo.try(:title)
+  end
+
+  def seo_image(request)
+    image = seo.try(:image)
+    if image
+      return "#{request.protocol}#{request.host_with_port}#{image}"
+    end
+  end
+
+  def seo_description
+    self.seo.try(:description)
+  end
+
+  def seo_keywords
+    keywords = self.seo.try(:keywords)
+    if keywords
+      keywords.reject(&:empty?).join(",")
+    end
+  end
+
   def self.incomplete(show)
     if show
       
@@ -108,14 +133,19 @@ class Product < ApplicationRecord
 
   def set_slug
     unless self.nil?
-      if self.slug.blank?
-        begin
-          slugged = self.title.parameterize
+      begin
+        slugged = self.title.parameterize
+        begin 
+          Product.friendly.find(slugged)
+          hash = Rails.application.config.hashids.encode(self.id)
+          slugged = "#{slugged}-#{hash}"
           self.slug = slugged
-        rescue => e
-          logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
-          self.slug = nil
+        rescue ActiveRecord::RecordNotFound
+          self.slug = slugged  
         end
+      rescue => e
+        logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
+        self.slug = nil
       end
     end
   end

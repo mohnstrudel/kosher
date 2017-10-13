@@ -22,6 +22,28 @@ class Post < ApplicationRecord
   translates :title, :body
   globalize_accessors :locales => [:en, :ru], :attributes => [:title, :body]
 
+  def seo_title
+    self.seo.try(:title)
+  end
+
+  def seo_image(request)
+    image = seo.try(:image)
+    if image
+      return "#{request.protocol}#{request.host_with_port}#{image}"
+    end
+  end
+
+  def seo_description
+    self.seo.try(:description)
+  end
+
+  def seo_keywords
+    keywords = self.seo.try(:keywords)
+    if keywords
+      keywords.reject(&:empty?).join(",")
+    end
+  end
+
   private
 
   def set_published_date

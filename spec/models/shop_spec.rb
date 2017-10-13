@@ -35,4 +35,27 @@ RSpec.describe Shop, type: :model do
       }.not_to change(Shop, :count)
     end
   end
+
+  describe "SEO parameters" do
+    it "saves them when creating new shop" do
+      shop = FactoryGirl.build(:shop)
+      shop.build_seo
+      shop.seo.title = "My SEO title"
+      shop.seo.keywords = ["hello", "dolly"]
+
+      shop.save
+
+      expect(shop.seo.title).to eq("My SEO title")
+      expect(shop.seo.keywords).to eq(["hello", "dolly"])
+    end
+
+    it "saves them when editing shop" do
+      shop = FactoryGirl.create(:shop)
+
+      shop.update(seo_attributes: {title: "Some other title", keywords: ["tag 1", "tag 2"]})
+
+      expect(shop.seo.title).to eq("Some other title")
+      expect(shop.seo.keywords).to eq(["tag 1", "tag 2"])
+    end
+  end
 end

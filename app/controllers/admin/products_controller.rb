@@ -12,6 +12,7 @@ class Admin::ProductsController < AdminController
   def new
     @product = Product.new
     @product.barcodes.build
+    @product.build_seo
   end
 
   def create
@@ -27,6 +28,9 @@ class Admin::ProductsController < AdminController
     if @product.barcodes.blank?
       @product.barcodes.build
     end
+    if @product.seo.blank?
+      @product.build_seo
+    end
   end
 
   def destroy
@@ -36,12 +40,11 @@ class Admin::ProductsController < AdminController
   private
 
   def find_product
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(Product.attribute_names.map(&:to_sym).push(
-      barcodes_attributes: [:id, :value, :_destroy, :product_id]) )
+    params.require(:product).permit(Product.attribute_names.map(&:to_sym).push(barcodes_attributes: [:id, :value, :_destroy, :product_id]).push(seo_attributes: [:id, :title, :description, :image, keywords: []]))
   end
 
 end

@@ -13,6 +13,7 @@ class Admin::RecipesController < AdminController
   def new
     @recipe = Recipe.new
     @recipe.recipe_ingredients.build
+    @recipe.build_seo
   end
 
   def create
@@ -28,6 +29,10 @@ class Admin::RecipesController < AdminController
     if @recipe.recipe_ingredients.blank?
       @recipe.recipe_ingredients.build
     end
+
+    if @recipe.seo.blank?
+      @recipe.build_seo
+    end
   end
 
   def destroy
@@ -42,7 +47,8 @@ class Admin::RecipesController < AdminController
 
   def recipe_params
     params.require(:recipe).permit(Recipe.attribute_names.map(&:to_sym).push(
-      recipe_ingredients_attributes: [:id, :amount, :recipe_id, :ingredient_id, :_destroy]))
+      recipe_ingredients_attributes: [:id, :amount, :recipe_id, :ingredient_id, :_destroy]).push(
+      seo_attributes: [:id, :title, :description, :image, keywords: [] ]))
   end
 
 end

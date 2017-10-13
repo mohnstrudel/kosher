@@ -58,7 +58,7 @@
         %label.col-lg-2.control-label
           =t('admin.form.model.seo.keywords')
         .col-lg-10
-          =seo_builder.select :keywords, @tags.map {|i| [i, i]}, {}, {class: 'form-control custom-bootstrap-tagsinput', data: {role: "tagsinput"}, multiple: true}
+          =seo_builder.select :keywords, object.seo.keywords.map {|i| [i, i]}, {}, {id: 'object_keywords', class: 'form-control custom-bootstrap-tagsinput', data: {role: "tagsinput"}, multiple: true}
           %span.help-block.m-b-none=t('admin.form.hints.seo.keywords')
       .hr-line-dashed
     .hr-line-dashed

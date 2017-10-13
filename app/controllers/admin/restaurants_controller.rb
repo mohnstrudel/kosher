@@ -11,10 +11,15 @@ class Admin::RestaurantsController < AdminController
 
   def new
     @restaurant = Restaurant.new
+    if @restaurant.seo.blank?
+      @restaurant.build_seo
+    end
+    get_tags
   end
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    get_tags
     create_helper(@restaurant, "edit_admin_restaurant_path")
   end
 
@@ -23,6 +28,10 @@ class Admin::RestaurantsController < AdminController
   end
 
   def edit
+    if @restaurant.seo.blank?
+      @restaurant.build_seo
+    end
+    get_tags
   end
 
   def destroy
@@ -31,6 +40,10 @@ class Admin::RestaurantsController < AdminController
 
   private
 
+  def get_tags
+    @tags = @restaurant.seo.keywords || ""
+  end
+
   def find_restaurant
     @restaurant = Restaurant.find(params[:id])
   end
@@ -38,7 +51,8 @@ class Admin::RestaurantsController < AdminController
   def restaurant_params
     params.require(:restaurant).permit(Restaurant.attribute_names.map(&:to_sym).push(
       phones_attributes: [:id, :value, :_destroy, :restaurant_id ]).push(
-      opening_hours_attributes: [:id, :title, :value, :_destroy, :restaurant_id]) )
+      opening_hours_attributes: [:id, :title, :value, :_destroy, :restaurant_id]).push(
+      seo_attributes: [:id, :title, :description, :image, keywords: [] ]) )
   end
 
 end

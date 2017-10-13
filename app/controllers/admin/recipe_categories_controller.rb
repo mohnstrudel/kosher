@@ -11,6 +11,7 @@ class Admin::RecipeCategoriesController < AdminController
 
   def new
     @recipe_category = RecipeCategory.new
+    @recipe_category.build_seo
   end
 
   def create
@@ -23,6 +24,9 @@ class Admin::RecipeCategoriesController < AdminController
   end
 
   def edit
+    if @recipe_category.seo.blank?
+      @recipe_category.build_seo
+    end
   end
 
   def destroy
@@ -36,7 +40,8 @@ class Admin::RecipeCategoriesController < AdminController
   end
 
   def recipe_category_params
-    params.require(:recipe_category).permit(RecipeCategory.attribute_names.map(&:to_sym))
+    params.require(:recipe_category).permit(RecipeCategory.attribute_names.map(&:to_sym).push(
+      seo_attributes: [:id, :title, :description, :image, keywords: [] ]))
   end
 
 end

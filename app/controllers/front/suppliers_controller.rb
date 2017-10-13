@@ -31,7 +31,7 @@ class Front::SuppliersController < FrontController
   end
 
   def show
-    @supplier = Manufacturer.find(params[:id])
+    @supplier = Manufacturer.friendly.find(params[:id])
   end
 
 
