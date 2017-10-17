@@ -95,8 +95,10 @@ class FrontController < ApplicationController
             breadcrumbs << { title: "404", url: "/"}
           when '500'
             breadcrumbs << { title: "500", url: "/"}
+          when 'trade-networks'
+            breadcrumbs << { title: 'Торговым сетям', url: url }
           else
-            lobber.debug "Wrong constant name for element: >#{element}<. Full error message: #{e.message}."
+            logger.debug "Wrong constant name for element: >#{element}<. Full error message: #{e.message}."
           end
         else
           logger.debug "Error for element: #{element}. Error message: #{e.message}"

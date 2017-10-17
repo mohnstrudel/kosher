@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'kosher';
-  src: font-url('kosher.eot?cncltt');
-  src: font-url('kosher.eot?cncltt#iefix') format("embedded-opentype"), font-url('kosher.ttf?cncltt') format("truetype"), font-url('kosher.woff?cncltt') format("woff"), font-url('kosher.svg?cncltt#icomoon') format("svg");
+  src: font-url("kosher.eot?cncltt");
+  src: font-url("kosher.eot?cncltt#iefix") format("embedded-opentype"), font-url("kosher.ttf?cncltt") format("truetype"), font-url("kosher.woff?cncltt") format("woff"), font-url("kosher.svg?cncltt#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -310,24 +310,11 @@ textarea {
     text-transform: uppercase;
     font-weight: 300;
     transition: background-color 250ms linear, color 250ms linear;
-    letter-spacing: 0.01em; 
-  }
-    .upper-current {
+    letter-spacing: 0.01em; }
+    .g-menu__item:hover {
       background-color: rgba(255, 255, 255, 0.05);
       cursor: pointer;
-      color: #fff;
-    }
-    .lower-current {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    .footer-current {
-      background-color: transparent;
-      color: #ffe47b;
-    }
-  .g-menu__item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-    color: #fff; }
+      color: #fff; }
   .g-menu_lower {
     padding-right: 0;
     padding-left: 2.1rem; }
@@ -366,10 +353,13 @@ textarea {
   font-size: 0;
   position: relative;
   width: 29%;
-  text-decoration: none; }
+  text-decoration: none;
+  color: rgba(65, 76, 82, 0.7); }
   .g-text-icon:hover {
     cursor: pointer;
     text-decoration: none; }
+  .g-text-icon:visited {
+    color: rgba(65, 76, 82, 0.7); }
   .g-text-icon__img {
     display: inline-block;
     width: 5rem;
@@ -390,14 +380,14 @@ textarea {
       top: 50%;
       transform: translate(-50%, -50%); }
     .g-text-icon__img_members:after {
-      background-image: url( <%= asset_path 'icons/members.svg' %>);
+      background-image: url(<%= asset_path 'icons/members.svg' %>);
       background-size: 3rem;
       margin-top: -0.3rem; }
     .g-text-icon__img_trade:after {
-      background-image: url( <%= asset_path 'icons/trade-networks.svg' %>);
+      background-image: url(<%= asset_path 'icons/trade-networks.svg' %>);
       background-size: 3.5rem; }
     .g-text-icon__img_manufacturers:after {
-      background-image: url( <%= asset_path 'icons/manufactures.svg' %>);
+      background-image: url(<%= asset_path 'icons/manufactures.svg' %>);
       background-size: 4.1rem;
       margin-top: -0.2rem; }
     .g-text-icon__img:before {
@@ -796,7 +786,20 @@ textarea {
 
 .g-photos {
   width: calc(100% + 6px);
-  margin-left: -3px; }
+  margin-left: -3px;
+  font-size: 0; }
+  .g-photos__item {
+    display: inline-block;
+    width: calc(100%/7);
+    padding-top: calc(76.195%/7);
+    background-size: cover;
+    background-clip: padding-box;
+    background-position: center;
+    transition: border-color 250ms linear;
+    border: 4px solid transparent;
+    box-sizing: border-box; }
+    .g-photos__item:hover {
+      border-color: rgba(0, 180, 180, 0.8); }
 
 .g-partners {
   white-space: nowrap;
@@ -897,37 +900,33 @@ textarea {
     .g-subscribe__input:focus {
       outline: none; }
   .g-subscribe__submit {
-    background-color: #20bbbb;
+    background-color: #4bc8c8;
     border: none;
     vertical-align: top;
-    transition: background-color 250ms linear, color 250ms linear;
+    opacity: 0.3;
+    font-size: 0;
+    transition: opacity 250ms linear, background-color 250ms linear;
     position: relative;
     height: 4.167rem;
     width: 6.1rem;
     font-family: 'kosher';
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: transparent;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 14px;
-    text-align: center; }
-    .g-subscribe__submit:after {
-      content: "\e902";
-      display: block;
-      vertical-align: middle;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%); }
+    text-align: center;
+    background-image: url(<%= asset_path 'icons/plus.svg' %>);
+    background-repeat: no-repeat;
+    background-position: center; }
     .g-subscribe__submit:hover {
       cursor: pointer;
-      background-color: #4bc8c8;
-      color: #fff; }
+      opacity: 1; }
     .g-subscribe__submit:active {
-      background-color: #20bbbb;
-      color: #1a9696; }
+      background-color: #20bbbb; }
     .g-subscribe__submit:focus {
-      outline: none; }
+      outline: none;
+      color: transparent; }
 
 .g-social-link {
   text-align: center;
@@ -2063,6 +2062,12 @@ textarea {
     width: calc(100% - 25rem);
     box-sizing: border-box;
     padding-top: 0.1rem; }
+  .g-tm-products__button {
+    color: #fff; }
+    .g-tm-products__button:hover {
+      border-color: transparent; }
+  .g-tm-products__gallery {
+    display: none; }
   .g-tm__desc {
     padding: 0;
     font-size: 1.25rem;
@@ -2093,7 +2098,16 @@ textarea {
       padding-bottom: 1.6rem;
       position: relative;
       padding-left: 2.6rem;
-      letter-spacing: -0.005em; }
+      letter-spacing: -0.005em;
+      display: block;
+      text-decoration: none;
+      color: #333; }
+      .g-tm-products__item:hover {
+        cursor: pointer;
+        color: #333;
+        text-decoration: none; }
+      .g-tm-products__item:visited {
+        color: #333; }
       .g-tm-products__item:before {
         display: block;
         width: 10px;
@@ -2630,7 +2644,10 @@ textarea {
   .g-product-types__title {
     font-size: 1.2rem; }
   .g-filters__item {
-    margin-top: 0.5rem; } }
+    margin-top: 0.5rem; }
+  .g-photos__item {
+    width: calc(100%/5);
+    padding-top: calc(76.195%/5); } }
 
 @media screen and (max-width: 900px) {
   .g-blog-wrapper__item {
@@ -2920,7 +2937,10 @@ textarea {
       .g-recipes-category__item:nth-child(6n) {
         margin-right: 1.333%; }
       .g-recipes-category__item:nth-child(4n) {
-        margin-right: 0; } }
+        margin-right: 0; }
+  .g-photos__item {
+    width: calc(100%/3);
+    padding-top: calc(76.195%/3); } }
 
 @media screen and (max-width: 650px) {
   html {
@@ -3039,6 +3059,8 @@ textarea {
     padding-bottom: 3rem;
     margin-top: 0.4rem;
     padding-top: 1.5rem; }
+  .g-photos__item {
+    border: 2px solid transparent; }
   .g-signs {
     margin-top: -0.1rem; }
     .g-signs__item {
@@ -3689,3 +3711,5 @@ textarea {
     width: 100% !important;
     height: auto !important;
     transform: translate(-50%, -33%); } }
+
+/*# sourceMappingURL=style.css.map */

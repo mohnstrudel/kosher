@@ -3,5 +3,5 @@
   .g-wrapper.g-breadcrumbs
     =link_to 'Главная', root_path, class: 'g-breadcrumbs__item'
     -@breadcrumbs.each do |crumb|
-      =link_to crumb[:url] do
+      =link_to crumb[:url], class: "no-text-decoration" do
         %span.g-breadcrumbs__item{class: "#{@breadcrumbs.last == crumb ? 'g-breadcrumbs__item_current' : ''}"}=crumb[:title]

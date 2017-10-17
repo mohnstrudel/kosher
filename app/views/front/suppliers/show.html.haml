@@ -16,9 +16,12 @@
           %h2.g-tm__products-title Продукция:
           %ul.g-tm__products-list.g-tm-products
             -@supplier.products.each do |product|
-              %li.g-tm-products__item
-                / =link_to product.title, category_supplier_product_path(params[:category_id], @supplier, product)
-                =link_to product.title, supplier_product_path(@supplier, product)
-          %a.g-btn.g-btn_blue.g-tm-products__button Смотреть галерею
+              %li
+                %a.g-tm-products__item{:href => supplier_product_path(@supplier, product)}
+                  =product.title
+          %a.g-btn.g-btn_blue.g-btn_gray.g-tm-products__button{"data-lightbox" => "tm_products", "data-title" => "Галерея товаров от #{@supplier.title}", :href => -@supplier.products.first.logo.try(:url)} Смотреть галерею
+          .g-tm-products__gallery
+            -@supplier.products.each do |product|
+              %a{"data-lightbox" => "tm_products", "data-title" => "Галерея товаров от #{@supplier.title}", :href => product.logo.try(:url)}
         .g-product-alert.g-product-alert_tm
           Наличие знака кашрута на упаковках обязательно!

@@ -9,6 +9,8 @@
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no", :name => "viewport"}/
+    %meta{:content => "5274a14eb11a8eac", :name => "yandex-verification"}/
+
     %link{:href => "https://fonts.googleapis.com/css?family=Rubik:300,400,500,900&subset=cyrillic", :rel => "stylesheet"}/
     %link{:href => "/favicon.ico", :media => "screen", :rel => "shortcut icon", :type => "image/x-icon"}/
     %link{:href => "/favicon.ico", :rel => "icon", :type => "image/x-icon"}/
@@ -29,6 +31,7 @@
       =render partial: 'front/shared/partners'
       =render partial: 'front/navigation/footer'
       =render partial: 'front/navigation/footer_popups'
+    =render partial: 'layouts/social'
 
   = javascript_include_tag "https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js", 'data-turbolinks-track' => true
   

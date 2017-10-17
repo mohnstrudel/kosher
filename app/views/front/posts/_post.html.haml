@@ -4,6 +4,6 @@
     / =logo_tag_or_default(post, thumb: "news_thumb", class: "g-news__img")
   .g-news__text-block
     %h2.g-news__title=post.title
-    %p.g-news__meta=truncate(post.body, length: 300)
+    %p.g-news__meta=truncate(post.body.try(:html_safe), length: 300)
     %p.g-news__date=published_date(post)
     =link_to "Подробнее", post_path(post), class: "g-btn g-btn_gray"

@@ -8,56 +8,31 @@
       Кошерные продукты
     #products-wrapper.g-products
       %a#filter-toggle.g-products__filter-btn{:href => "javascript:void(0)"} Фильтры
-      
-      =form_for :supplier, method: :get, html: { class: "g-products__sidebar g-products__filters-block", id: "filters" } do |f|
+      =form_for :supplier, method: :get, html: { class: "g-products__sidebar g-products__filters-block g-form", id: "filters" } do |f|
         %a#filters-hide.g-btn.g-btn_gray.g-filters__hide.g-filters-mobile{:href => "javascript:void(0)"} Назад
         .g-input.g-input_select
           %label.g-input__label Категория
           .g-input__field.g-input__field_select-wrapper
-            
             %select#category-select.g-input__field.g-input__field_select.js-input{:name => "category"}
-              %option{:value => "any"} Любая категория
-              -Category.top_level.each_with_index do |category, index|
-                %option{:value => category.friendly_id}=category.title
-        .g-input.g-input_select
+        #subcategories-block.g-input.g-input_select
           %label.g-input__label Подкатегория
           .g-input__field.g-input__field_select-wrapper
-            %select#select-subcategory.g-input__field.g-input__field_select.js-input{:name => "subcategory"}
-              -Category.includes(:sub_categories).top_level.each_with_index do |category, category_index|
-                %optgroup{"data-id" => category.friendly_id, :label => category.title}
-                  -category.sub_categories.each do |subcategory|
-                    %option{:value => subcategory.friendly_id}=subcategory.title
-
+            %select#subcategory-select.g-input__field.g-input__field_select.js-input{:name => "subcategory"}
         .g-input.g-input_select
           %label.g-input__label Производитель
           .g-input__field.g-input__field_select-wrapper
-            %select#select-manufacturer.g-input__field.g-input__field_select.js-input{:name => "manufacturer"}
-              %option{:value => ""} Любой
-              -Manufacturer.top_level.each_with_index do |manufacturer, index|
-                %option{:value => manufacturer.friendly_id}=manufacturer.title
-              
+            %select#manufacturer-select.g-input__field.g-input__field_select.js-input{:name => "trademark"}
         .g-input.g-input_check-list
           %label.g-input__label Знак кошерности
-          .g-check-list
-            .g-check-list__wrapper
-              -Label.subs.each_with_index do |sublabel, index|
-                %input.g-check-list__check{:name => "sign", :type => "checkbox", :value => sublabel.id, id: "id#{index+1}"}
-                  %label.g-check-list__label{:for => "id#{index+1}"}=sublabel.title
-        %a.g-btn.g-btn_gray.g-filters__clear.g-filters-mobile{:href => "#"} Сбросить
+          #labels-block.g-check-list
+
+        %a#clear_filters.g-btn.g-btn_gray.g-filters__clear.g-filters-mobile{:href => "#"} Сбросить
         =f.submit "Отфильтровать", class: "g-btn g-btn_blue g-filters-mobile-hide g-form__submit g-filters__submit"
         =submit_tag "Применить", class: "g-btn g-filters__submit g-btn_blue g-filters-mobile g-form__submit g-filters__submit"
-
-
+          
       .g-products__content
         .g-products__filters.g-filters
           -@filter_items.each do |item|
             %a.g-filters__item{:href => "javascript:void(0)"}=item
-          
         #listing_products_partial
           =render partial: 'front/suppliers/listing_suppliers'
-        .g-pagination
-          %a.g-pagination__item.g-pagination__item_left{:href => "#"}
-          %a.g-pagination__item.g-pagination__item_active{:href => "#"} 1
-          %a.g-pagination__item{:href => "#"} 2
-          %a.g-pagination__item{:href => "#"} 3
-          %a.g-pagination__item.g-pagination__item_right{:href => "#"}

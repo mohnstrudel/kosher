@@ -14,7 +14,7 @@
 //= require front/second/jquery.history
 //= require front/second/js-url.min
 //= require front/second/jquerypp.custom
-//= require front/third/gamma
+//= require front/second/lightbox.min
 
 
 //= require select2/dist/js/select2
