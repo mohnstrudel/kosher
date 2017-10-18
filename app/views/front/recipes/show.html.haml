@@ -11,5 +11,5 @@
           -@recipe.recipe_ingredients.includes(:ingredient).each do |recipe_ingredient|
             %li.g-text-block__li="#{recipe_ingredient.ingredient.title} - #{recipe_ingredient.amount}"
         %h3.g-recipe__title Способ приготовления:
-        %p.g-recipe__text
-          =@recipe.description.html_safe
+        .g-recipe__text
+          =markdown(@recipe.description)

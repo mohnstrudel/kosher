@@ -14,7 +14,7 @@
               =image_tag object.logo, class: "g-restaurants__logo"
             .g-restaurants__right
               %h2.g-restaurants__title=object.title
-              %p.g-restaurants__description=object.description
+              .g-restaurants__description=markdown(object.description)
               %p.g-restaurants__adress
                 =object.address
                 %br/

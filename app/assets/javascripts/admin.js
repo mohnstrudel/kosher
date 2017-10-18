@@ -51,6 +51,9 @@
 
 //= require bootstrap-tagsinput
 
+//= require markdown/lib/markdown
+//= require bootstrap-markdown
+
 // iCHECKBOX
 //= require admin/plugins/icheck/icheck.min
 

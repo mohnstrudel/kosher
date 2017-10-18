@@ -39,7 +39,7 @@
           .g-blog__item
             =image_tag post.logo, class: 'g-blog__img'
             %h3.g-blog__title=post.title
-            %p.g-blog__more=truncate(post.body.try(:html_safe), length: 200)
+            .g-blog__more=truncate(markdown(post.body), length: 200)
             %p.g-blog__date=published_date(post)
     .g-blog-read
       %a.g-btn.g-btn_gray.g-mobile{:href => "#"} загрузить еще

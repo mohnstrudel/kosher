@@ -11,7 +11,7 @@
           =image_tag @supplier.logo, class: 'g-tm__logo-img'
       .g-tm__right
         .g-tm__desc
-          =@supplier.description.html_safe
+          =markdown(@supplier.description)
         .g-tm__products
           %h2.g-tm__products-title Продукция:
           %ul.g-tm__products-list.g-tm-products

@@ -70,8 +70,8 @@
             main: "home",
             faq: "faq",
             contact: "contact",
-            photos: "photos",
-            products: "products"
+            photos: "gallery",
+            products: "suppliers"
         };
 
         $(".js-call-btn").on("click", function(e){
@@ -263,26 +263,26 @@
                         var param = elem.split("=");
                         params[param[0]] = param[1];
                     });
-                    if(typeof params.category != "undefiuned"){
-                        if(typeof params.manufacture != "undefiuned")
-                            self.options.$categories.select2({data: self.data.categories_empty.concat(self.getCategoryByManufacture(params.manufacture))});
-                        else
-                            self.options.$categories.select2({data: self.data.categories_empty.concat(self.data.categories)});
+                    if(typeof params.manufacturer != "undefined")
+                        self.options.$categories.select2({data: self.data.categories_empty.concat(self.getCategoryByManufacture(params.manufacturer))});
+                    else
+                        self.options.$categories.select2({data: self.data.categories_empty.concat(self.data.categories)});
+                    if(typeof params.category != "undefined"){
                         self.options.$categories.val(params.category).trigger("change");
                         self.options.$subcategories_block.show();
                         self.options.$subcategories.select2({data: self.data.subcategories_empty.concat(self.data.subcategories["cat_" + params.category])})
-                        if(typeof params.subcategory != "undefiuned"){
+                        if(typeof params.subcategory != "undefined"){
                             self.options.$subcategories.val(params.subcategory).trigger("change");
                         }
                     } else {
                         self.options.$subcategories_block.hide();
                     }
 
-                    if(typeof params.manufacture != "undefiuned"){
-                        if(typeof params.category != "undefiuned")
-                            self.options.$manufacturers.select2({data: self.data.manufacturers_empty.concat(self.getManufactureByCategory(params.category))});
-                        else
-                            self.options.$manufacturers.select2({data: self.data.manufacturers_empty.concat(self.data.manufacturers)});
+                    if(typeof params.category != "undefined")
+                        self.options.$manufacturers.select2({data: self.data.manufacturers_empty.concat(self.getManufactureByCategory(params.category))});
+                    else
+                        self.options.$manufacturers.select2({data: self.data.manufacturers_empty.concat(self.data.manufacturers)});
+                    if(typeof params.manufacture != "undefined"){
                         self.options.$manufacturers.val(params.manufacture).trigger("change");
                     }
 
@@ -290,7 +290,7 @@
                         self.options.$labels.append($("<input>", { type: "checkbox", class: "g-check-list__check", name: "label[]", value: elem.id, id: "label_" + elem.id}));
                         self.options.$labels.append($("<label>", {class: "g-check-list__label", for: "label_" + elem.id, text: elem.text}));
                     });
-                    if(typeof params.labels != "undefiuned"){
+                    if(typeof params.labels != "undefined"){
                         var labels = params.labels.split(",");
                         labels.forEach(function(elem){
                                 self.options.$labels.find("input[value='" + elem + "']").prop("checked", true);
@@ -381,6 +381,7 @@
                 getCategoryByManufacture: function(current_man){
                     var self = this;
                     var current_categories = [];
+
                     self.getManufactureById(current_man).categories.forEach(function(elem){
                         var cat = self.getCategoryById(elem);
                         if($.inArray(cat, current_categories) === -1) current_categories.push(cat);
@@ -516,27 +517,27 @@
         function reset() {
             if(mainSlider){
                 mainSliderSlide = mainSlider.getCurrentSlide();
-				mainSlider.destroySlider();
-			}
+                mainSlider.destroySlider();
+            }
             if(partnersSlider){
                 partnersSliderSlide = partnersSlider.getCurrentSlide();
-				partnersSlider.destroySlider();
-			}
+                partnersSlider.destroySlider();
+            }
         }
         function run() {
             rem = parseFloat(getComputedStyle($("html")[0]).fontSize);
-			if (isMobile.matches) {
-				mobile();
-			} else if (isTablet.matches) {
-				tablet();
-			} else {
-				desktop();
-			}
+            if (isMobile.matches) {
+                mobile();
+            } else if (isTablet.matches) {
+                tablet();
+            } else {
+                desktop();
+            }
         }
         run();
         $(window).on('resize', function () {
-			reset();
-			run();
-		});
+            reset();
+            run();
+        });
     })
 })(jQuery)

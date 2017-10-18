@@ -98,6 +98,8 @@ gem 'metamagic'
 
 gem 'hashids'
 
+gem 'redcarpet'
+
 group :benchmark do
   gem 'rails-perftest'
   gem 'ruby-prof'

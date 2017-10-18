@@ -11,4 +11,4 @@
           =image_tag @post.logo, class: "g-tm__logo-img"
       .g-tm__right
         .g-tm__desc
-          =@post.body.html_safe
+          =markdown(@post.body)
