@@ -41,6 +41,11 @@ module Ycms
 
   config.exceptions_app = self.routes
 
+  config.action_dispatch.default_headers = {
+    'Access-Control-Allow-Origin' => '*',
+    'Access-Control-Request-Method' => "GET"
+  }
+
 
   end
 end

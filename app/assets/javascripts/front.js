@@ -20,5 +20,11 @@
 //= require select2/dist/js/select2
 
 //= require_self
-//= require_tree ../../../app/assets/javascripts/front/.
+
+//= require front/common
+//= require front/faq
+//= require front/suppliers
+//= require front/products
+//= require front/social_scripts
+//= require front/static_pages
 //= require turbolinks
