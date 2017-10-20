@@ -19,7 +19,7 @@ module Front
           @status = 400
         end
 
-        render json: @posts, status: 200
+        render json: @posts, status: @status
       end
 
       def show
