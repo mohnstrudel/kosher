@@ -8,7 +8,7 @@ class Front::ManufacturersController < FrontController
     if item_amount%page_size != 0
       @pages_total += 1
     end
-    @manufacturers = objects
+    @manufacturers = objects.paginate(page: params[:page], per_page: page_size)
   end
 
   def show

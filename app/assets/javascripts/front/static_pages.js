@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function() {
+$(document).ready(function() {
   if($("body").hasClass("contact")){
 
     $(".g-input__field_select").select2();
@@ -11,7 +11,7 @@ $(document).on("turbolinks:load", function() {
         container: 'g-map',
         style: 'mapbox://styles/schnibba/ciw9f6qp500542qmkzdjjqd8o',
         center: [long, lat],
-        zoom: 12,
+        zoom: 12.4,
         hash: false,
         interactive: false
     });

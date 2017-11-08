@@ -1,4 +1,7 @@
 class Manufacturer < ApplicationRecord
+
+  include Utility
+  
   has_many :products
   # This is called a self referential relation. This is where records in a 
   # table may point to other records in the same table.
@@ -27,6 +30,7 @@ class Manufacturer < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
+  
   def slug_candidates
     [
       :name,

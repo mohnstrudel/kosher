@@ -23,7 +23,8 @@
                   %br/
                 %span.g-restaurants__adress_time
                   =object.opening_hours.map { |oh| "#{oh.title}: #{oh.value}"}.join("; ")
-                =link_to object.url, object.url, target: "_blank", class: "g-restaurants__link"
+                -if object.url.present?
+                  =link_to object.pretty_url, object.pretty_url, target: "_blank", class: "g-restaurants__link"
       =render partial: 'front/navigation/pager', locals: {path: "city_#{@objects.model.name.downcase.pluralize}_path", page: @page}
 
 -else

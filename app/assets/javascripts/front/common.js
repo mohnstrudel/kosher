@@ -160,16 +160,17 @@
         });
 
         if($("body").hasClass(pages_array.contact)){
-            mapboxgl.accessToken = 'pk.eyJ1Ijoic2NobmliYmEiLCJhIjoiMWEwYWI4YTA3YTAwYjVhYTY1YWZiZGFiZDk1Zjk5NGUifQ.ueMMb8kMdWxrP5N4iqx67Q';
-            var map = new mapboxgl.Map({
-                container: 'g-map',
-                style: 'mapbox://styles/schnibba/ciw9f6qp500542qmkzdjjqd8o',
-                center: [37.608156, 55.789286],
-                zoom: 7.5,
-                hash: false,
-                interactive: false
-            });
-            $(".g-input__field_select").select2();
+            // ВЫНЕСЕНО В static_pages.js
+            // mapboxgl.accessToken = 'pk.eyJ1Ijoic2NobmliYmEiLCJhIjoiMWEwYWI4YTA3YTAwYjVhYTY1YWZiZGFiZDk1Zjk5NGUifQ.ueMMb8kMdWxrP5N4iqx67Q';
+            // var map = new mapboxgl.Map({
+            //     container: 'g-map',
+            //     style: 'mapbox://styles/schnibba/ciw9f6qp500542qmkzdjjqd8o',
+            //     center: [37.608156, 55.789286],
+            //     zoom: 12,
+            //     hash: false,
+            //     interactive: false
+            // });
+            // $(".g-input__field_select").select2();
         } else if($("body").hasClass(pages_array.main)){
             var $blog = $(".g-blog"),
                 $posts = $blog.find(".g-blog__item"),

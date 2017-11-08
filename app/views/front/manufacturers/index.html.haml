@@ -10,7 +10,8 @@
           .g-partners-wrapper__right
             %h2.g-partners-wrapper__title=manuf.title
             %p.g-partners-wrapper__description=markdown(manuf.description)
-            %p.g-partners-wrapper__adress
-              =link_to manuf.url, manuf.url, class: 'g-partners-wrapper__link', target: "_blank"
+            -if manuf.url.present?
+              %p.g-partners-wrapper__adress
+                =link_to manuf.pretty_url, manuf.pretty_url, class: 'g-partners-wrapper__link', target: "_blank"
       
     =render partial: 'front/navigation/pager', locals: {path: "partners_path", page: @page, class: "g-pagination_partners"}

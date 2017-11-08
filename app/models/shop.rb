@@ -1,5 +1,7 @@
 class Shop < ApplicationRecord
 
+  include Utility
+  
   belongs_to :city
   
 	mount_uploader :logo, LogoUploader

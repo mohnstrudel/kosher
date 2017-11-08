@@ -15,8 +15,8 @@
     %link{:href => "/favicon.ico", :media => "screen", :rel => "shortcut icon", :type => "image/x-icon"}/
     %link{:href => "/favicon.ico", :rel => "icon", :type => "image/x-icon"}/
     = stylesheet_link_tag 'front', media: 'all', 'data-turbolinks-track' => true
-    = stylesheet_link_tag "https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css", :rel => "stylesheet"
-    = javascript_include_tag 'front', 'data-turbolinks-track' => true
+    = stylesheet_link_tag "https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css", :rel => "stylesheet"
+    
 
 
 
@@ -33,5 +33,8 @@
       =render partial: 'front/navigation/footer_popups'
     =render partial: 'layouts/social'
 
-  = javascript_include_tag "https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js", 'data-turbolinks-track' => true
+  
+  = javascript_include_tag 'front'
+  = javascript_include_tag "https://api.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js"
+  
   

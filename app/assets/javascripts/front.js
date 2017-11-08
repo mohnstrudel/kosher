@@ -27,4 +27,4 @@
 //= require front/products
 //= require front/social_scripts
 //= require front/static_pages
-//= require turbolinks
+

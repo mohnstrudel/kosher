@@ -16,17 +16,17 @@
             %span.g-input__error
               Поле заполнено некорректно
           =f.submit "", id: 'subscriber_form_submit', class: 'g-subscribe__submit'
-        %a.g-social__right.g-social-link{:href => @settings.try(:facebook)}
+        %a.g-social__right.g-social-link{:href => @settings.try(:facebook), target: "_blank"}
           %span.g-social-link__text Мы в Facebook
           %i.g-social-link__icon.g-social-link__icon_fb
         %a.g-social__right.g-social-link.g-social-link_construction{:href => "#"}
           %span.g-social-link__text Создание сайта
           %i.g-social-link__icon.g-social-link__icon_ya
-        %a.g-construction{:href => "http://yadadya.com"}
+        %a.g-construction{:href => "http://yadadya.com", target: "_blank"}
           %p.g-construction__title Создание сайта —
           %i.g-icon-logo
       .g-copy
-        ©   «Кошер-Россия»
+        ="© #{Time.now.year} «Кошер-Сертификация»"
     .g-footer__center.g-contacts
       -if @settings.try(:phones).present?
         -@settings.phones.each do |phone|
@@ -37,11 +37,11 @@
         
       %a.g-contacts__email{:href => "mailto:#{@settings.try(:email)}"}=@settings.try(:email)
       .g-app-block
-        %a.g-app-block__link{:href => "#"}
+        %a.g-app-block__link{:href => "https://itunes.apple.com/ru/app/kosher-ru/id973447471?mt=8", target: "_blank"}
           =image_tag 'icons/app-store.svg', class: 'g-app-block__img'
-        %a.g-app-block__link{:href => "#"}
+        %a.g-app-block__link{:href => "https://play.google.com/store/apps/details?id=ru.kosher.app", target: "_blank"}
           =image_tag 'icons/g-play.svg', class: 'g-app-block__img'
     .g-footer__right
-      %a.g-construction{:href => "http://yadadya.com"}
+      %a.g-construction{:href => "http://yadadya.com", target: "_blank"}
         %p.g-construction__title Создание сайта —
         %i.g-icon-logo
