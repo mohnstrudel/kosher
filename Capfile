@@ -20,6 +20,8 @@ require 'capistrano/yarn'
 
 require "whenever/capistrano"
 require 'capistrano/sitemap_generator'
+
+require 'capistrano/delayed_job'
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
