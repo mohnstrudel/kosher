@@ -96,6 +96,10 @@ namespace :deploy do
     end
   end
 
+  if Rake::Task.task_defined?('deploy:published')
+    after 'deploy:published', 'delayed_job:restart'
+  end
+
   desc "Update crontab with whenever"
   task :update_cron do
     on roles(:app) do

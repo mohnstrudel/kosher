@@ -85,6 +85,7 @@ gem 'mini_magick' # Required for image processing
 # Рассылка писем
 gem 'gibbon'
 gem 'delayed_job_active_record'
+gem 'capistrano3-delayed-job'
 
 # что бы юзать yarn
 gem 'webpacker'
