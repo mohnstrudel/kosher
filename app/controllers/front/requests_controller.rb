@@ -10,7 +10,11 @@ class Front::RequestsController < FrontController
         format.js
         
         # @request.send_notifications
-        RequestMailer.delay(queue: "admin", priority: 20).notify_admin(@request)
+        if Rails.env.production?
+          RequestMailer.delay(queue: "admin", priority: 20).notify_admin(@request)
+        elsif Rails.env.development?
+          RequestMailer.notify_admin(@request).deliver_now
+        end
       else
         format.js { render partial: 'fail' }
         
