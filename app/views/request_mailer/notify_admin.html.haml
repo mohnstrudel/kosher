@@ -1,0 +1,17 @@
+%h2 Новый запрос на сайте
+
+%p="Тип запроса: #{@subject}"
+
+%p="Имя: #{@request.name}"
+
+%p="Имя: #{@request.name}"
+
+%p="Телефон: #{@request.phone}"
+
+-if @request.company_name.present?
+  %p="Название компании: #{@request.company_name}"
+
+-if @request.email.present?
+  %p="Email: #{@request.email}"
+
+%p="Текст сообщения: #{@request.message}"

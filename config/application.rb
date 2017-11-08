@@ -37,6 +37,8 @@ module Ycms
   config.time_zone = 'Moscow' 
   config.active_record.default_timezone = :local
 
+  config.active_job.queue_adapter = :delayed_job
+
   config.hashids = Hashids.new("this is my salt")
 
   config.exceptions_app = self.routes

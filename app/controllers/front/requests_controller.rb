@@ -9,6 +9,7 @@ class Front::RequestsController < FrontController
       if @request.save
         format.js
         
+        @request.send_notifications
       else
         format.js { render partial: 'fail' }
         
