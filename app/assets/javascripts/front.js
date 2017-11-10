@@ -23,7 +23,6 @@
 
 //= require front/common
 //= require front/faq
-//= require front/suppliers
 //= require front/products
 //= require front/social_scripts
 //= require front/static_pages
