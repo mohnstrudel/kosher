@@ -8,7 +8,7 @@
       Кошерные продукты
     #products-wrapper.g-products
       %a#filter-toggle.g-products__filter-btn{:href => "javascript:void(0)"} Фильтры
-      =form_for :supplier, method: :get, html: { class: "g-products__sidebar g-products__filters-block g-form", id: "filters" } do |f|
+      =form_for :supplier, method: :get, html: { class: "g-products__sidebar g-products__filters-block", id: "filters" } do |f|
         %a#filters-hide.g-btn.g-btn_gray.g-filters__hide.g-filters-mobile{:href => "javascript:void(0)"} Назад
         .g-input.g-input_select
           %label.g-input__label Категория
@@ -27,6 +27,7 @@
           #labels-block.g-check-list
 
         %a#clear_filters.g-btn.g-btn_gray.g-filters__clear.g-filters-mobile{:href => "#"} Сбросить
+        / %input{type: "submit", value: "Отфильтровать"}
         =f.submit "Отфильтровать", class: "g-btn g-btn_blue g-filters-mobile-hide g-form__submit g-filters__submit"
         =submit_tag "Применить", class: "g-btn g-filters__submit g-btn_blue g-filters-mobile g-form__submit g-filters__submit"
           

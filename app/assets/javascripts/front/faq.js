@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
   if($("body").hasClass('faqs')){
     $(".g-faq__toggle").each(function(){
         $(this).height($(this).innerHeight());

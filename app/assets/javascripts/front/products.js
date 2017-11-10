@@ -17,8 +17,8 @@ $(document).ready(function(){
 					return false;
 			});
 			$("#filters").on("submit", function(e){
-					e.preventDefault();
-					return false;
+					// e.preventDefault();
+					// return false;
 			});
 			var filterObject = {
 					data:{

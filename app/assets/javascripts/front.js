@@ -27,3 +27,9 @@
 //= require front/social_scripts
 //= require front/static_pages
 
+
+$(document).ready(function(){
+  $('.g-filters__submit').on('click', function(){
+    console.log('clicked!');
+  });
+});
