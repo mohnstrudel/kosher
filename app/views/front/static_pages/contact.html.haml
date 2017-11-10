@@ -13,7 +13,7 @@
         .g-dep-info__text-block
           %h4.g-dep-info__text-title Адрес
           %p.g-dep-info__text-par=@settings.try(:address)
-          %a.g-link{:href => "javascript:void(0)"} Департамент кашрута на карте
+          %a.g-link{:href => "https://yandex.ru/maps/?text=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D0%BE%D0%B2%D0%B0%2C%2019%D0%B0&sll=37.608077%2C55.789244&ll=37.608377%2C55.789224&spn=0.010085%2C0.003023&z=17&l=map", target: "_blank"} Департамент кашрута на карте
         .g-dep-info__text-block.g-dep-info__text-block_phones
           -if @settings.try(:phones).present?
             -@settings.phones.each do |phone|

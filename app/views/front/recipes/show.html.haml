@@ -4,12 +4,16 @@
       =@recipe.title
     .g-recipe
       .g-recipe__img-wrapper
-        =image_tag @recipe.logo, class: 'g-recipe__img'
+        -if @recipe.logo.present?
+          =image_tag @recipe.logo, class: 'g-recipe__img'
+        -else 
+          =placeholdit_image_tag "256x256", text: "No image", class: 'g-recipe__img'
       .g-recipe__text-block
-        %h3.g-recipe__title Ингредиенты:
-        %ul.g-text-block__ul.g-text-block__ul_recipe
-          -@recipe.recipe_ingredients.includes(:ingredient).each do |recipe_ingredient|
-            %li.g-text-block__li="#{recipe_ingredient.ingredient.title} - #{recipe_ingredient.amount}"
+        -if @recipe.ingredients.any?
+          %h3.g-recipe__title Ингредиенты:
+          %ul.g-text-block__ul.g-text-block__ul_recipe
+            -@recipe.recipe_ingredients.includes(:ingredient).each do |recipe_ingredient|
+              %li.g-text-block__li="#{recipe_ingredient.ingredient.title} - #{recipe_ingredient.amount}"
         %h3.g-recipe__title Способ приготовления:
         .g-recipe__text
           =markdown(@recipe.description)

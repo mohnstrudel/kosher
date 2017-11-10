@@ -15,6 +15,8 @@ class Recipe < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
+  after_save :set_slug
+
   def slug_candidates
     [
       :title,
@@ -41,6 +43,26 @@ class Recipe < ApplicationRecord
     keywords = self.seo.try(:keywords)
     if keywords
       keywords.reject(&:empty?).join(",")
+    end
+  end
+
+  def set_slug
+    unless self.title.nil?
+      begin
+        slugged = self.title.parameterize
+        begin 
+          Recipe.friendly.find(slugged)
+          hash = Rails.application.config.hashids.encode(self.id)
+          slugged = "#{slugged}-#{hash}"
+          self.slug = slugged
+        rescue ActiveRecord::RecordNotFound
+          self.slug = slugged  
+        end
+        
+      rescue => e
+        logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
+        self.slug = nil
+      end
     end
   end
 end

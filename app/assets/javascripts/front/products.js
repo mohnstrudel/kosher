@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
 	if($("body").hasClass('suppliers')){
 			$("#filter-toggle").on("click", function(e){
 					e.preventDefault();
@@ -40,6 +40,8 @@ $(document).on('turbolinks:load', function(){
 							$clear: $("#clear_filters")
 					},
 					init: function(dataArray){
+						// console.log('initialized! with: ' + dataArray);
+						// console.log('window.productData is: ' + window.productData);
 							var self = this;
 							dataArray = dataArray.data;
 							dataArray.forEach(function(cat, idx){
@@ -109,7 +111,7 @@ $(document).on('turbolinks:load', function(){
 							self.options.$labels.find("input[type='checkbox']").on("change", function(){self.filtersRestruc("labels")});
 							self.options.$manufacturers.on("change", function(){self.filtersRestruc("manufacturers")});
 							self.options.$categories.on("change", function(){self.filtersRestruc("categories")});
-							console.log(this);
+							// console.log(this);
 					},
 					filtersRestruc: function(from){
 							var self = this,
@@ -207,7 +209,30 @@ $(document).on('turbolinks:load', function(){
 							return current_manufacturers;
 					}
 			}
-			filterObject.init(window.productData);
+
+			// Забираем аяксом данные и вызываем при успехе функцию filterObject.init
+			$.ajax({
+				// Tell jQuery you're doing JSON-P
+	      dataType: "json",
+	      // The source URL
+	      url: "http://api.kosher.yadadya.net/v1/filters/categories",
+
+	      
+	      method: 'GET',
+	      // Success callback
+      	
+      	success: function(data) {
+        	// console.log('ajax call is run');
+        	filter_json = data;
+        	window.productData = filter_json;
+        	filterObject.init(window.productData);
+      	},
+
+      	// Error callback      
+      	error: function(jxhr, status, err) {
+        	console.log("Error, status = " + status + ", err = " + err);
+      	}
+    	});
 		}
 		
 });
