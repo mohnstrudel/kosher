@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Cities API" do
   context "displaying only cities" do
     it "lists all cities" do
-      FactoryGirl.create_list(:city, 10)
+      FactoryBot.create_list(:city, 10)
       
       get '/v1/cities'
       json = JSON.parse(response.body)
@@ -16,7 +16,7 @@ describe "Cities API" do
 
     end
     it "shows a city" do
-      city = FactoryGirl.create(:city)
+      city = FactoryBot.create(:city)
 
       get "/v1/cities/#{city.id}"
 
@@ -29,11 +29,11 @@ describe "Cities API" do
 
   context "displaying shops from current city" do
     before(:each) {
-      @city = FactoryGirl.create(:city)
+      @city = FactoryBot.create(:city)
     }
 
     it "lists all shops" do
-      FactoryGirl.create_list(:shop, 10, city_id: @city.id)
+      FactoryBot.create_list(:shop, 10, city_id: @city.id)
 
       get "/v1/cities/#{@city.id}/shops"
 
@@ -44,7 +44,7 @@ describe "Cities API" do
     end
 
     it "shows a shop" do
-      shop = FactoryGirl.create(:shop, city_id: @city.id)
+      shop = FactoryBot.create(:shop, city_id: @city.id)
 
       get "/v1/cities/#{@city.id}/shops/#{shop.id}"
       json = JSON.parse(response.body)

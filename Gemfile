@@ -101,6 +101,9 @@ gem 'hashids'
 
 gem 'redcarpet'
 
+# For searching
+gem 'pg_search'
+
 group :benchmark do
   gem 'rails-perftest'
   gem 'ruby-prof'
@@ -128,7 +131,7 @@ group :development, :test do
   gem 'database_cleaner'
   # To test render_template
   gem 'rails-controller-testing'
-  gem 'factory_girl_rails'
+  gem "factory_bot_rails"
   
   gem 'pry'
 end

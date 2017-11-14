@@ -4,10 +4,10 @@ describe "Products API" do
   context "displaying only products" do
 
     before(:each) do
-      @category = FactoryGirl.create(:category)
+      @category = FactoryBot.create(:category)
     end
     it "lists all products" do
-      FactoryGirl.create_list(:product, 6, category_id: @category.id)
+      FactoryBot.create_list(:product, 6, category_id: @category.id)
 
       get '/v1/products'
 
@@ -21,7 +21,7 @@ describe "Products API" do
     end
 
     it "shows a certain product" do
-      product = FactoryGirl.create(:product, category_id: @category.id)
+      product = FactoryBot.create(:product, category_id: @category.id)
 
       get "/v1/products/#{product.id}"
       json = JSON.parse(response.body)
@@ -34,10 +34,10 @@ describe "Products API" do
     describe "shows specific data for certain product" do
 
       before(:each) do
-        @category = FactoryGirl.create(:category, title: "Symbios")
-        @manufacturer = FactoryGirl.create(:manufacturer, title: "Supersonic")
-        @label = FactoryGirl.create(:label, title: "Ho Sho M")
-        @product = FactoryGirl.create(:product, title: "Rspec Product", description: "Rspec description", category: @category, manufacturer: @manufacturer, label: @label)
+        @category = FactoryBot.create(:category, title: "Symbios")
+        @manufacturer = FactoryBot.create(:manufacturer, title: "Supersonic")
+        @label = FactoryBot.create(:label, title: "Ho Sho M")
+        @product = FactoryBot.create(:product, title: "Rspec Product", description: "Rspec description", category: @category, manufacturer: @manufacturer, label: @label)
       end
       it "has the right title" do
         get "/v1/products/#{@product.id}"
@@ -66,7 +66,7 @@ describe "Products API" do
 
   context "displaying product categories" do
     it "lists all categories" do
-      FactoryGirl.create_list(:category, 9)
+      FactoryBot.create_list(:category, 9)
 
       get '/v1/categories'
 
@@ -76,7 +76,7 @@ describe "Products API" do
     end
 
     it "shows a category" do
-      category = FactoryGirl.create(:category)
+      category = FactoryBot.create(:category)
       get "/v1/categories/#{category.id}"
       json = JSON.parse(response.body)
       expect(json['data']['id'].to_i).to eq(category.id)
@@ -84,7 +84,7 @@ describe "Products API" do
 
     describe "and showing specific data for certain category" do
       before(:each) do
-        @category = FactoryGirl.create(:category, title: "Rspec Title", description: "Rspec Desc")
+        @category = FactoryBot.create(:category, title: "Rspec Title", description: "Rspec Desc")
       end
 
       it "> has the right title" do
@@ -103,8 +103,8 @@ describe "Products API" do
 
     describe "has correct subcategory relationship" do
       before(:each) do
-        @category_1 = FactoryGirl.create(:category)
-        @category_2 = FactoryGirl.create(:category, parent_id: @category_1.id, title: "subcat")
+        @category_1 = FactoryBot.create(:category)
+        @category_2 = FactoryBot.create(:category, parent_id: @category_1.id, title: "subcat")
       end
 
       it " > category has right subcategories" do
@@ -131,8 +131,8 @@ describe "Products API" do
 
   context "find products using filters" do
     it "> finds product for given barcode" do
-      product = FactoryGirl.create(:product, barcode: 555666)
-      FactoryGirl.create_list(:product, 6)
+      product = FactoryBot.create(:product, barcode: 555666)
+      FactoryBot.create_list(:product, 6)
 
       get "/v1/products?barcode=555666"
 
@@ -144,9 +144,9 @@ describe "Products API" do
     end
 
     it "> finds products for given manufacturer" do
-      manufacturer = FactoryGirl.create(:manufacturer)
-      product = FactoryGirl.create(:product, manufacturer_id: manufacturer.id)
-      FactoryGirl.create_list(:product, 3)
+      manufacturer = FactoryBot.create(:manufacturer)
+      product = FactoryBot.create(:product, manufacturer_id: manufacturer.id)
+      FactoryBot.create_list(:product, 3)
 
       get "/v1/products?manufacturer=#{manufacturer.id}"
 
@@ -157,9 +157,9 @@ describe "Products API" do
     end
 
     it "> finds products for given label" do
-      label = FactoryGirl.create(:label)
-      product = FactoryGirl.create(:product, label_id: label.id)
-      FactoryGirl.create_list(:product, 4)
+      label = FactoryBot.create(:label)
+      product = FactoryBot.create(:product, label_id: label.id)
+      FactoryBot.create_list(:product, 4)
 
       get "/v1/products?label=#{label.id}"
 
@@ -170,9 +170,9 @@ describe "Products API" do
     end
 
     it "> finds products for given category" do
-      category = FactoryGirl.create(:category)
-      product = FactoryGirl.create(:product, category_id: category.id)
-      FactoryGirl.create_list(:product, 3)
+      category = FactoryBot.create(:category)
+      product = FactoryBot.create(:product, category_id: category.id)
+      FactoryBot.create_list(:product, 3)
 
       get "/v1/products?category=#{category.id}"
 
@@ -183,13 +183,13 @@ describe "Products API" do
     end
 
     it "> finds products for all three params given" do
-      category = FactoryGirl.create(:category)
-      label = FactoryGirl.create(:label)
-      manufacturer = FactoryGirl.create(:manufacturer)
+      category = FactoryBot.create(:category)
+      label = FactoryBot.create(:label)
+      manufacturer = FactoryBot.create(:manufacturer)
 
-      product = FactoryGirl.create(:product, category_id: category.id, manufacturer_id: manufacturer.id, label_id: label.id)
-      FactoryGirl.create(:product, category_id: category.id, manufacturer_id: manufacturer.id)
-      FactoryGirl.create_list(:product, 2)
+      product = FactoryBot.create(:product, category_id: category.id, manufacturer_id: manufacturer.id, label_id: label.id)
+      FactoryBot.create(:product, category_id: category.id, manufacturer_id: manufacturer.id)
+      FactoryBot.create_list(:product, 2)
       get "/v1/products?category=#{category.id}&manufacturer=#{manufacturer.id}&label=#{label.id}"
 
       json = JSON.parse(response.body)

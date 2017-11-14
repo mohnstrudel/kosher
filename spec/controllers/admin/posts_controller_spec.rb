@@ -5,11 +5,11 @@ RSpec.describe Admin::PostsController, type: :controller do
 	render_views
 	login_superadmin
 
-	let (:valid_post) { FactoryGirl.build(:post) }
-	let (:invalid_post) { FactoryGirl.build(:post, title: nil) }
+	let (:valid_post) { FactoryBot.build(:post) }
+	let (:invalid_post) { FactoryBot.build(:post, title: nil) }
 
 	before(:each) do
-		FactoryGirl.create(:general_setting)
+		FactoryBot.create(:general_setting)
 		# GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
 	end
 	
@@ -23,7 +23,7 @@ RSpec.describe Admin::PostsController, type: :controller do
 
 	context "with valid attributes" do
 		it "redirects to slugged edit path after saving" do
-			# @post = FactoryGirl.create(:post)
+			# @post = FactoryBot.create(:post)
 			post :create, params: { post: { id: 5, title: "Xo-HoE-joook", body: "Xo-Xo" } }
 			expect(response).to redirect_to(edit_admin_post_path("xo-hoe-joook"))
 		end

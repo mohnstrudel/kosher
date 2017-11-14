@@ -9,7 +9,7 @@ describe "About API" do
     end
 
     it "shows correct mail info" do
-      FactoryGirl.create(:general_setting, email: "testmail@test.com")
+      FactoryBot.create(:general_setting, email: "testmail@test.com")
 
       get '/v1/about'
 
@@ -19,7 +19,7 @@ describe "About API" do
     end
 
     it "shows correct opening hours info" do
-      FactoryGirl.create(:general_setting)
+      FactoryBot.create(:general_setting)
 
       get '/v1/about'
 
@@ -30,7 +30,7 @@ describe "About API" do
     end
 
     it "shows correct phones info" do
-      FactoryGirl.create(:general_setting)
+      FactoryBot.create(:general_setting)
 
       get '/v1/about'
 

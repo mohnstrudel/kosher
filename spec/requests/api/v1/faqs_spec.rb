@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "FAQs API" do
   context "displaying only faqs" do
     it "lists all faqs" do
-      FactoryGirl.create_list(:faq, 3)
+      FactoryBot.create_list(:faq, 3)
       
       get '/v1/faqs'
       json = JSON.parse(response.body)

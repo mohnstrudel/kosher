@@ -105,7 +105,7 @@
             setErrorInput($(this), false);
         });
         $(document).on("submit", ".g-form", function(e){
-            e.preventDefault();
+            // e.preventDefault();
             var $inputs = $(this).find(".js-input"),
                 error = false;
             $inputs.each(function(){

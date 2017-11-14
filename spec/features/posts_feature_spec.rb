@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.feature "Posts feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 

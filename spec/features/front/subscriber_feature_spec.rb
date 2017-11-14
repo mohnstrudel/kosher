@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "Subscriber front feature spec >", :type => :feature, js: true do
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
   end
 
   feature 'invalid form' do

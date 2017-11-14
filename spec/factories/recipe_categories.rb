@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :recipe_category do
     title "MyString"
     description "MyString"

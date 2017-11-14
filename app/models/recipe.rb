@@ -9,7 +9,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true
 
-  has_one :seo
+  has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo
 
   extend FriendlyId

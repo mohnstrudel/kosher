@@ -10,10 +10,10 @@ describe "Categories API" do
 
   context "on show page" do
     before(:each) do
-      @category = FactoryGirl.create(:category)
-      @manufacturer = FactoryGirl.create(:manufacturer) 
-      @subcategory = FactoryGirl.create(:category, parent_id: @category.id)
-      @product = FactoryGirl.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id)
+      @category = FactoryBot.create(:category)
+      @manufacturer = FactoryBot.create(:manufacturer) 
+      @subcategory = FactoryBot.create(:category, parent_id: @category.id)
+      @product = FactoryBot.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id)
     end
     it "shows a list of labels belonging to this particular category" do
       get "/v1/categories/#{@category.id}"
@@ -24,9 +24,9 @@ describe "Categories API" do
     end
 
     it "shows the correct fields for a label" do
-      label = FactoryGirl.create(:label, title: "Bash Azam")
+      label = FactoryBot.create(:label, title: "Bash Azam")
 
-      product_2 = FactoryGirl.create(:product, label_id: label.id, category_id: @subcategory.id)
+      product_2 = FactoryBot.create(:product, label_id: label.id, category_id: @subcategory.id)
       # Так как мы создаем выше ещё один продукт, то лейблов будет два
 
       get "/v1/categories/#{@category.id}"
@@ -76,7 +76,7 @@ describe "Categories API" do
     end
 
     it "has no duplicate categories" do
-      product_2 = FactoryGirl.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id)
+      product_2 = FactoryBot.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id)
 
       get "/v1/categories/#{@category.id}"
 
@@ -87,7 +87,7 @@ describe "Categories API" do
 
     it "has manufacturers while being a parent category" do
       # Создаем продукт, который привязан к производителю и к ПОДкатегории
-      product_2 = FactoryGirl.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id)
+      product_2 = FactoryBot.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id)
       # На странице родительской категории производитель должен быть виден
       get "/v1/categories/#{@category.id}"
 
@@ -99,10 +99,10 @@ describe "Categories API" do
     describe "testing for duplicate labels" do
 
       before(:each) do
-        label = FactoryGirl.create(:label)
-        product_2 = FactoryGirl.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: label)
-        product_3 = FactoryGirl.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: FactoryGirl.create(:label))
-        product_4 = FactoryGirl.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: label)
+        label = FactoryBot.create(:label)
+        product_2 = FactoryBot.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: label)
+        product_3 = FactoryBot.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: FactoryBot.create(:label))
+        product_4 = FactoryBot.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: label)
       end
 
       it "as parent" do
@@ -116,7 +116,7 @@ describe "Categories API" do
       end
 
       it "as child" do
-        product = FactoryGirl.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: FactoryGirl.create(:label))
+        product = FactoryBot.create(:product, category_id: @subcategory.id, manufacturer_id: @manufacturer.id, label: FactoryBot.create(:label))
         get "/v1/categories/#{@subcategory.id}"
 
         json = JSON.parse(response.body)

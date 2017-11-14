@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Label, type: :model do
   
-  let(:label) { FactoryGirl.build(:label, id: 1) }
-  let(:sublabel) { FactoryGirl.build(:label, id: 2, parent_id: 1) }
+  let(:label) { FactoryBot.build(:label, id: 1) }
+  let(:sublabel) { FactoryBot.build(:label, id: 2, parent_id: 1) }
 
   it "deletes child with parent" do
     label.save

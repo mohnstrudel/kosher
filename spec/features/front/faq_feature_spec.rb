@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "FAQ front feature spec >", :type => :feature do
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
   end
 
   feature "simple page operations" do
@@ -15,8 +15,8 @@ RSpec.feature "FAQ front feature spec >", :type => :feature do
 
   feature 'viewing the questions' do
     scenario 'assert 2 faqs' do
-      FactoryGirl.create(:faq, answer: 'So long!', question: 'How come?')
-      FactoryGirl.create(:faq, question: 'How many fingers?', answer: 'Six were chopped off')
+      FactoryBot.create(:faq, answer: 'So long!', question: 'How come?')
+      FactoryBot.create(:faq, question: 'How many fingers?', answer: 'Six were chopped off')
 
       visit '/faq'
 

@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe GeneralSetting, type: :model do
   
-  let (:no_phones) { FactoryGirl.build(:general_setting, phones: []) }
-  let (:no_opening_hours) { FactoryGirl.build(:general_setting, opening_hours: []) }
-  let (:regular) { FactoryGirl.build(:general_setting) } 
-  let (:invalid) { FactoryGirl.build(:general_setting, url: nil) } 
+  let (:no_phones) { FactoryBot.build(:general_setting, phones: []) }
+  let (:no_opening_hours) { FactoryBot.build(:general_setting, opening_hours: []) }
+  let (:regular) { FactoryBot.build(:general_setting) } 
+  let (:invalid) { FactoryBot.build(:general_setting, url: nil) } 
 
   describe "saving phones" do
     it "saves a record without phones" do  

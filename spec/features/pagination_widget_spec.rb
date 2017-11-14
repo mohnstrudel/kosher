@@ -4,11 +4,11 @@ RSpec.feature "Widget management", :type => :feature do
   
   before(:each) {  
     amount = Rails.application.config.page_size
-    amount.times { FactoryGirl.create(:shop) }
+    amount.times { FactoryBot.create(:shop) }
   }
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   scenario "with entries == config.page_size" do
@@ -24,13 +24,13 @@ RSpec.feature "Widget management", :type => :feature do
   end
 
   scenario "with entries > config.page_size" do
-    FactoryGirl.create(:shop)
+    FactoryBot.create(:shop)
     visit admin_shops_path
     expect(page).to have_xpath("//*[@class='pagination']//a[text()='2']")
   end
 
   scenario "with entries > config.page_size it correctly redirects to next page" do
-    FactoryGirl.create(:shop)
+    FactoryBot.create(:shop)
     visit admin_shops_path
     find("//*[@class='pagination']//a[text()='2']").click
     expect(page.status_code).to eq(200)

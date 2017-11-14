@@ -6,15 +6,16 @@
       .g-recipes
         -@recipes.each do |recipe|
           .g-recipes__item
-            %a.g-recipes__content{:href => "#{recipe_category_recipe_path(params[:recipe_category_id],recipe)}"}
-              .g-recipes__img-wrapper
+            .g-recipes__content
+              %a.g-recipes__img-wrapper{:href => "#{recipe_category_recipe_path(params[:recipe_category_id],recipe)}"}
                 -if recipe.logo.present?
                   =image_tag recipe.logo, class: 'g-recipes__img'
                 -else 
-                  =placeholdit_image_tag "235x132", text: "No image", class: 'g-recipe__img'
+                  =placeholdit_image_tag "235x132", text: "Kosher.ru", class: 'g-recipe__img'
               .g-recipes__text
-                %h3.g-recipes__name=recipe.title
-                .g-recipes__meta=markdown(recipe.description)
+                %a.g-recipes__name{:href => "#{recipe_category_recipe_path(params[:recipe_category_id],recipe)}"}
+                  %h3.g-recipes__name=recipe.title
+                %p.g-recipes__meta=markdown(recipe.description)
             %a.g-btn.g-btn_gray{:href => "#{recipe_category_recipe_path(params[:recipe_category_id], recipe)}"} Подробнее
        
       =render partial: 'front/navigation/pager', locals: {path: "recipe_category_recipes_path", page: @page}
@@ -25,3 +26,4 @@
         Рецепты
       =image_tag 'icons/recipe.svg', class: "g-empty__icon"
       %h2.g-empty__text Рецепты отсутствуют
+

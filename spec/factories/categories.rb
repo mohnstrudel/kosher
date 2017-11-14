@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :category do
     sequence(:title) {|n| Faker::Lorem.word + " (#{n})"}
     # title { Faker::Lorem.word }

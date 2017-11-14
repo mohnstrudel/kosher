@@ -7,17 +7,17 @@ RSpec.feature "Products controller", :type => :feature do
   }
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
   feature "manipulating multiple barcodes" do
     scenario "creating" do
-      product = FactoryGirl.create(:product)
+      product = FactoryBot.create(:product)
       visit edit_admin_product_path(product)
       # click_on(class: 'add_fields')
       # find(:css, "add_fields").click
@@ -43,7 +43,7 @@ RSpec.feature "Products controller", :type => :feature do
       visit admin_products_path
       expect(page.all('table#listing_table tr').count).to eq(1)
       
-      FactoryGirl.create(:product)
+      FactoryBot.create(:product)
 
       visit admin_products_path
 
@@ -51,7 +51,7 @@ RSpec.feature "Products controller", :type => :feature do
     end
 
     scenario "update" do
-      product = FactoryGirl.create(:product)
+      product = FactoryBot.create(:product)
       product.update(title: "Kenshi")
       visit admin_products_path
       expect(page).to have_content("Kenshi")
@@ -68,15 +68,15 @@ RSpec.feature "Products controller", :type => :feature do
     end
 
     scenario "delete" do
-      product = FactoryGirl.create(:product)
+      product = FactoryBot.create(:product)
       visit admin_products_path
       expect { click_link "delete_list_item_#{product.id}" }.to change(Product, :count).by(-1)
     end
   end
 
   scenario "saves the title right" do
-    category = FactoryGirl.create(:category)
-    product = FactoryGirl.create(:product, title: "Vodka Moroshka", category: category)
+    category = FactoryBot.create(:category)
+    product = FactoryBot.create(:product, title: "Vodka Moroshka", category: category)
     visit admin_products_path
 
     # fill_in "Name", :with => "My Widget"
@@ -88,10 +88,10 @@ RSpec.feature "Products controller", :type => :feature do
   end
 
   scenario "visiting edit path" do
-    FactoryGirl.create(:category, title: "First", id: 45)
-    parent_category = FactoryGirl.create(:category)
-    category = FactoryGirl.create(:category, title: "Death Water", id: 166, parent_id: parent_category.id)
-    product = FactoryGirl.create(:product, description: "Figaro left the house", category_id: category.id)
+    FactoryBot.create(:category, title: "First", id: 45)
+    parent_category = FactoryBot.create(:category)
+    category = FactoryBot.create(:category, title: "Death Water", id: 166, parent_id: parent_category.id)
+    product = FactoryBot.create(:product, description: "Figaro left the house", category_id: category.id)
 
 
     
@@ -106,15 +106,15 @@ RSpec.feature "Products controller", :type => :feature do
   feature "searching and" do
 
     before(:each) {
-      FactoryGirl.create(:product, title: "Scorpion")
-      FactoryGirl.create(:product, description: "Mighty bash scorpion has lauched a hook")
-      FactoryGirl.create(:product, title: "Sub Zero")
+      FactoryBot.create(:product, title: "Scorpion")
+      FactoryBot.create(:product, description: "Mighty bash scorpion has lauched a hook")
+      FactoryBot.create(:product, title: "Sub Zero")
     }
 
     scenario "finding all categories' children's products" do
-      category = FactoryGirl.create(:category, title: "Category")
-      subcategory = FactoryGirl.create(:category, title: "Sub Sub", parent_id: category.id)
-      FactoryGirl.create(:product, title: "Subcategory Product", category_id: subcategory.id)
+      category = FactoryBot.create(:category, title: "Category")
+      subcategory = FactoryBot.create(:category, title: "Sub Sub", parent_id: category.id)
+      FactoryBot.create(:product, title: "Subcategory Product", category_id: subcategory.id)
       
       visit admin_products_path
       # 5 потому что заранее создаем 3, плюс в данном сценарии 1 и дефолтно заголовки 
@@ -131,10 +131,10 @@ RSpec.feature "Products controller", :type => :feature do
 
     scenario "finding all manufacturer children's products" do
       # Setup block begin
-      manufacturer = FactoryGirl.create(:manufacturer, title: "Manufacturer")
-      trademark = FactoryGirl.create(:manufacturer, title: "Trademark", parent_id: manufacturer.id)
-      FactoryGirl.create(:product, title: "TM Product", manufacturer_id: trademark.id)
-      FactoryGirl.create(:product, title: "Random product")
+      manufacturer = FactoryBot.create(:manufacturer, title: "Manufacturer")
+      trademark = FactoryBot.create(:manufacturer, title: "Trademark", parent_id: manufacturer.id)
+      FactoryBot.create(:product, title: "TM Product", manufacturer_id: trademark.id)
+      FactoryBot.create(:product, title: "Random product")
       # Setup block end
       
       visit admin_products_path
@@ -187,8 +187,8 @@ RSpec.feature "Products controller", :type => :feature do
   feature "filtering the" do
 
     scenario "incomplete products" do
-      product_1 = FactoryGirl.create(:product, title: "Mo bi Dabius")
-      product_2 = FactoryGirl.build(:product, title: "Bin Suparman", manufacturer_id: nil)
+      product_1 = FactoryBot.create(:product, title: "Mo bi Dabius")
+      product_2 = FactoryBot.build(:product, title: "Bin Suparman", manufacturer_id: nil)
       product_2.save(validate: false)
 
       visit admin_products_path
@@ -201,8 +201,8 @@ RSpec.feature "Products controller", :type => :feature do
     end
 
     scenario "incomplete products with false checkbox" do
-      product_1 = FactoryGirl.create(:product, title: "Hurra Di Hussa")
-      product_2 = FactoryGirl.build(:product, title: "Bin Suparman", manufacturer_id: nil)
+      product_1 = FactoryBot.create(:product, title: "Hurra Di Hussa")
+      product_2 = FactoryBot.build(:product, title: "Bin Suparman", manufacturer_id: nil)
       product_2.save(validate: false)
 
       visit admin_products_path
@@ -215,9 +215,9 @@ RSpec.feature "Products controller", :type => :feature do
     end
     
     scenario "manufacturers created, one result for right manufacturer" do
-      mf = FactoryGirl.create(:manufacturer, title: "Cringy Meat Ltd.", id: 777)
-      product = FactoryGirl.create(:product, title: "Some serious meat", manufacturer_id: 777)
-      FactoryGirl.create(:product, title: "Not on menu")
+      mf = FactoryBot.create(:manufacturer, title: "Cringy Meat Ltd.", id: 777)
+      product = FactoryBot.create(:product, title: "Some serious meat", manufacturer_id: 777)
+      FactoryBot.create(:product, title: "Not on menu")
 
       visit admin_products_path
 
@@ -232,9 +232,9 @@ RSpec.feature "Products controller", :type => :feature do
     end
 
     scenario "manufacturers created, no results for wrong manufacturer select" do
-      mf_1 = FactoryGirl.create(:manufacturer)
-      mf_2 = FactoryGirl.create(:manufacturer)
-      product = FactoryGirl.create(:product, title: "Scorpion", manufacturer_id: mf_1.id)
+      mf_1 = FactoryBot.create(:manufacturer)
+      mf_2 = FactoryBot.create(:manufacturer)
+      product = FactoryBot.create(:product, title: "Scorpion", manufacturer_id: mf_1.id)
 
       visit admin_products_path
 
@@ -246,9 +246,9 @@ RSpec.feature "Products controller", :type => :feature do
     end
 
     scenario "category is set up right, no results if there are no items" do
-      category_1 = FactoryGirl.create(:category, title: "Right Cat", id: 44)
-      category_2 = FactoryGirl.create(:category, title: "Wrong Cat", id: 55)
-      product = FactoryGirl.create(:product, title: "Scorpion", category_id: category_1.id, id: 912)
+      category_1 = FactoryBot.create(:category, title: "Right Cat", id: 44)
+      category_2 = FactoryBot.create(:category, title: "Wrong Cat", id: 55)
+      product = FactoryBot.create(:product, title: "Scorpion", category_id: category_1.id, id: 912)
       
       visit admin_products_path
 
@@ -259,9 +259,9 @@ RSpec.feature "Products controller", :type => :feature do
     end
 
     scenario "category is set up right, one result for the right category" do
-      category_1 = FactoryGirl.create(:category, title: "Right Cat", id: 44)
-      product = FactoryGirl.create(:product, title: "Scorpion", category_id: category_1.id, id: 912)
-      FactoryGirl.create(:product, title: "Sub Zero")
+      category_1 = FactoryBot.create(:category, title: "Right Cat", id: 44)
+      product = FactoryBot.create(:product, title: "Scorpion", category_id: category_1.id, id: 912)
+      FactoryBot.create(:product, title: "Sub Zero")
       
       visit admin_products_path
 
@@ -276,9 +276,9 @@ RSpec.feature "Products controller", :type => :feature do
 
   feature "bulk delete >" do
     scenario "reduce product amount by 2" do
-      product_1 = FactoryGirl.create(:product, title: "Grizzly Bears Ltd.")
-      product_2 = FactoryGirl.create(:product, title: "Shitty Dizzy")
-      product_3 = FactoryGirl.create(:product)
+      product_1 = FactoryBot.create(:product, title: "Grizzly Bears Ltd.")
+      product_2 = FactoryBot.create(:product, title: "Shitty Dizzy")
+      product_3 = FactoryBot.create(:product)
       visit admin_products_path
       
       find(:css, "input[type=checkbox][value='#{product_2.id}']").set(true)

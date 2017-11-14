@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :partner do
     title "MyString"
     logo "MyString"

@@ -3,19 +3,19 @@ require 'rails_helper'
 RSpec.feature "Labels feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
   before(:each) do
-    @main_label = FactoryGirl.create(:label, title: "My main labelz")
-    @label_1 = FactoryGirl.create(:label, parent_id: @main_label.id, title: "Grizzly Bears Ltd.")
-    @label_2 = FactoryGirl.create(:label, parent_id: @main_label.id, title: "Shitty Dizzy")
-    @label_3 = FactoryGirl.create(:label, parent_id: @main_label.id, title: "Some Leftovers")
+    @main_label = FactoryBot.create(:label, title: "My main labelz")
+    @label_1 = FactoryBot.create(:label, parent_id: @main_label.id, title: "Grizzly Bears Ltd.")
+    @label_2 = FactoryBot.create(:label, parent_id: @main_label.id, title: "Shitty Dizzy")
+    @label_3 = FactoryBot.create(:label, parent_id: @main_label.id, title: "Some Leftovers")
   end
 
   feature "crud methods" do
@@ -35,7 +35,7 @@ RSpec.feature "Labels feature spec >", :type => :feature do
     end
 
     scenario "> regular index show only labels" do
-      FactoryGirl.create(:label)
+      FactoryBot.create(:label)
       visit admin_labels_path
       
       # 3 лейбла, потому что их 2 + заголовок таблицы как один ряд считается
@@ -61,8 +61,8 @@ RSpec.feature "Labels feature spec >", :type => :feature do
     end
 
     scenario "delete level 1 labels" do
-      main_label_2 = FactoryGirl.create(:label, title: "Bin Supraman")
-      main_label_3 = FactoryGirl.create(:label)
+      main_label_2 = FactoryBot.create(:label, title: "Bin Supraman")
+      main_label_3 = FactoryBot.create(:label)
       visit admin_labels_path
       
       find(:css, "input[type=checkbox][value='#{@main_label.id}']").set(true)

@@ -10,8 +10,8 @@
           =upper_nav_link 'Фотогалерея', gallery_path
           =upper_nav_link 'FAQ', faq_path
           =upper_nav_link 'Контакты', contact_path
-        %form.g-header-search.g-mobile-hide
-          %input.g-header-search__input{:name => "search", :placeholder => "Введите фразу для поиска и нажмите клавишу «Enter»", :type => "text"}/
+        =form_for(:main_search, url: search_path, method: :get, html: {class: 'g-header-search g-mobile-hide'}) do |f|
+          =f.text_field :query, class: 'g-header-search__input', placeholder: "Введите фразу для поиска и нажмите клавишу «Enter»"
         %nav.g-menu.g-menu_lower.g-mobile-hide
           %a.g-menu__item{:href => "#"} rus
           %a.g-menu__item{:href => "#"} eng

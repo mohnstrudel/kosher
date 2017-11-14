@@ -88,6 +88,8 @@ class FrontController < ApplicationController
             breadcrumbs << { title: 'Партнеры', url: url }
           when 'contact'
             breadcrumbs << { title: 'Обратная связь', url: url }
+          when 'search'
+            breadcrumbs << { title: 'Поиск', url: url}
           end
         elsif e.message =~ /wrong constant name/
           case element

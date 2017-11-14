@@ -3,19 +3,19 @@ require 'rails_helper'
 RSpec.feature "(Product) Categories feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
   before(:each) do
-    @main_category = FactoryGirl.create(:category, title: "My main categoriez")
-    @category_1 = FactoryGirl.create(:category, parent_id: @main_category.id, title: "Grizzly Bears Ltd.")
-    @category_2 = FactoryGirl.create(:category, parent_id: @main_category.id, title: "Shitty Dizzy")
-    @category_3 = FactoryGirl.create(:category, parent_id: @main_category.id, title: "Some Leftovers")
+    @main_category = FactoryBot.create(:category, title: "My main categoriez")
+    @category_1 = FactoryBot.create(:category, parent_id: @main_category.id, title: "Grizzly Bears Ltd.")
+    @category_2 = FactoryBot.create(:category, parent_id: @main_category.id, title: "Shitty Dizzy")
+    @category_3 = FactoryBot.create(:category, parent_id: @main_category.id, title: "Some Leftovers")
   end
 
   feature "crud methods" do
@@ -44,8 +44,8 @@ RSpec.feature "(Product) Categories feature spec >", :type => :feature do
     end
 
     scenario "delete level 1 categories" do
-      main_category_2 = FactoryGirl.create(:category, title: "Bin Supraman")
-      main_category_3 = FactoryGirl.create(:category)
+      main_category_2 = FactoryBot.create(:category, title: "Bin Supraman")
+      main_category_3 = FactoryBot.create(:category)
       visit admin_categories_path
       
       find(:css, "input[type=checkbox][value='#{@main_category.id}']").set(true)

@@ -3,17 +3,17 @@ require "rails_helper"
 RSpec.feature "Restaurants feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
   feature "crud methods >" do
     scenario "create" do
-      # FactoryGirl.create(:recipe_category, title: 'Awesome Cat')
+      # FactoryBot.create(:recipe_category, title: 'Awesome Cat')
       visit admin_restaurants_path
       click_link('new_entry')
 
@@ -30,9 +30,9 @@ RSpec.feature "Restaurants feature spec >", :type => :feature do
   feature "bulk delete" do
 
     scenario "reduce amount of restaurants by 2" do
-      rest_1 = FactoryGirl.create(:restaurant, title: "Grizzly Bears Ltd.")
-      rest_2 = FactoryGirl.create(:restaurant, title: "Shitty Dizzy")
-      rest_3 = FactoryGirl.create(:restaurant)
+      rest_1 = FactoryBot.create(:restaurant, title: "Grizzly Bears Ltd.")
+      rest_2 = FactoryBot.create(:restaurant, title: "Shitty Dizzy")
+      rest_3 = FactoryBot.create(:restaurant)
       
       visit admin_restaurants_path
       # save_and_open_page

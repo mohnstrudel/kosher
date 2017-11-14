@@ -27,7 +27,7 @@ describe "Manufacturers API" do
     end
 
     it "has proper amount of list items" do
-      FactoryGirl.create_list(:manufacturer, 5)
+      FactoryBot.create_list(:manufacturer, 5)
 
       get '/v1/manufacturers'
 
@@ -39,10 +39,10 @@ describe "Manufacturers API" do
 
   context "shows a manufacturer" do
     before(:each) do
-      @category = FactoryGirl.create(:category)
-      @manufacturer = FactoryGirl.create(:manufacturer)
-      @trademark = FactoryGirl.create(:manufacturer, parent_id: @manufacturer.id)
-      @product = FactoryGirl.create(:product, category: @category, manufacturer: @trademark)
+      @category = FactoryBot.create(:category)
+      @manufacturer = FactoryBot.create(:manufacturer)
+      @trademark = FactoryBot.create(:manufacturer, parent_id: @manufacturer.id)
+      @product = FactoryBot.create(:product, category: @category, manufacturer: @trademark)
     end
 
     describe "parent object" do
@@ -93,7 +93,7 @@ describe "Manufacturers API" do
       end
 
       it "has no duplicate categories" do
-        product_2 = FactoryGirl.create(:product, category_id: @category.id, manufacturer_id: @manufacturer.id)
+        product_2 = FactoryBot.create(:product, category_id: @category.id, manufacturer_id: @manufacturer.id)
 
         get "/v1/manufacturers/#{@manufacturer.id}"
 
@@ -103,9 +103,9 @@ describe "Manufacturers API" do
       end
 
       it "has all categories from its children" do
-        trademark_2 = FactoryGirl.create(:manufacturer, parent_id: @manufacturer.id)
-        product_2 = FactoryGirl.create(:product, category: FactoryGirl.create(:category), manufacturer_id: @trademark.id)
-        product_3 = FactoryGirl.create(:product, category: FactoryGirl.create(:category), manufacturer_id: trademark_2.id)
+        trademark_2 = FactoryBot.create(:manufacturer, parent_id: @manufacturer.id)
+        product_2 = FactoryBot.create(:product, category: FactoryBot.create(:category), manufacturer_id: @trademark.id)
+        product_3 = FactoryBot.create(:product, category: FactoryBot.create(:category), manufacturer_id: trademark_2.id)
 
         get "/v1/manufacturers/#{@manufacturer.id}"
 
@@ -118,8 +118,8 @@ describe "Manufacturers API" do
 
     describe "child object" do
       it "has its own category" do
-        trademark_2 = FactoryGirl.create(:manufacturer, parent_id: @manufacturer.id)
-        product_2 = FactoryGirl.create(:product, category: FactoryGirl.create(:category), manufacturer_id: trademark_2.id)
+        trademark_2 = FactoryBot.create(:manufacturer, parent_id: @manufacturer.id)
+        product_2 = FactoryBot.create(:product, category: FactoryBot.create(:category), manufacturer_id: trademark_2.id)
 
         get "/v1/manufacturers/#{trademark_2.id}"
 
@@ -133,15 +133,15 @@ describe "Manufacturers API" do
   context "labels" do
     describe "parent object" do
       it "has unique labels from its trademarks" do
-        manufacturer = FactoryGirl.create(:manufacturer)
-        trademark_1 = FactoryGirl.create(:manufacturer, parent_id: manufacturer.id)
-        trademark_2 = FactoryGirl.create(:manufacturer, parent_id: manufacturer.id)
+        manufacturer = FactoryBot.create(:manufacturer)
+        trademark_1 = FactoryBot.create(:manufacturer, parent_id: manufacturer.id)
+        trademark_2 = FactoryBot.create(:manufacturer, parent_id: manufacturer.id)
 
-        label = FactoryGirl.create(:label)
-        product_1 = FactoryGirl.create(:product, manufacturer: trademark_1, label: label)
-        product_2 = FactoryGirl.create(:product, manufacturer: trademark_1)
-        product_3 = FactoryGirl.create(:product, manufacturer: trademark_2)
-        product_4 = FactoryGirl.create(:product, manufacturer: trademark_2, label: label)
+        label = FactoryBot.create(:label)
+        product_1 = FactoryBot.create(:product, manufacturer: trademark_1, label: label)
+        product_2 = FactoryBot.create(:product, manufacturer: trademark_1)
+        product_3 = FactoryBot.create(:product, manufacturer: trademark_2)
+        product_4 = FactoryBot.create(:product, manufacturer: trademark_2, label: label)
         # Итого у нас 4 продукта, но только 3 уникальных лейбла
 
         get "/v1/manufacturers/#{manufacturer.id}"
@@ -152,11 +152,11 @@ describe "Manufacturers API" do
 
     describe "child object" do
       it "has labels" do
-        manufacturer = FactoryGirl.create(:manufacturer)
-        trademark = FactoryGirl.create(:manufacturer, parent_id: manufacturer.id)
+        manufacturer = FactoryBot.create(:manufacturer)
+        trademark = FactoryBot.create(:manufacturer, parent_id: manufacturer.id)
 
-        product_1 = FactoryGirl.create(:product, manufacturer: trademark)
-        product_2 = FactoryGirl.create(:product, manufacturer: trademark)
+        product_1 = FactoryBot.create(:product, manufacturer: trademark)
+        product_2 = FactoryBot.create(:product, manufacturer: trademark)
 
         get "/v1/manufacturers/#{trademark.id}"
         json = JSON.parse(response.body)

@@ -3,11 +3,11 @@ require "rails_helper"
 RSpec.feature "Recipe categories feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
@@ -25,7 +25,7 @@ RSpec.feature "Recipe categories feature spec >", :type => :feature do
   feature "crud methods >" do
     
     scenario 'index' do
-      FactoryGirl.create(:recipe_category)
+      FactoryBot.create(:recipe_category)
       visit admin_recipe_categories_path
       expect(page.all('table#listing_table tr').count).to eq(2)
     end
@@ -43,7 +43,7 @@ RSpec.feature "Recipe categories feature spec >", :type => :feature do
     end
 
     scenario 'edit' do
-      rc = FactoryGirl.create(:recipe_category, title: "Holly Molly")
+      rc = FactoryBot.create(:recipe_category, title: "Holly Molly")
       visit admin_recipe_categories_path
       expect(page).to have_content("Holly Molly")
 

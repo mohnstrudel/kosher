@@ -20,7 +20,7 @@ class Manufacturer < ApplicationRecord
   has_many :categories, through: :products
   has_many :labels, through: :products
 
-  has_one :seo
+  has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo, allow_destroy: true
 
   mount_uploader :logo, LogoUploader
@@ -29,6 +29,9 @@ class Manufacturer < ApplicationRecord
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
+
+  include PgSearch
+  multisearchable :against => [:title, :description]
 
   
   def slug_candidates

@@ -6,13 +6,13 @@ RSpec.describe Admin::UsersController, type: :controller do
   login_superadmin
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" } )
   end
 
   context "GET methods" do
-    let(:user) { FactoryGirl.build(:user) } 
-    let(:created_user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryBot.build(:user) } 
+    let(:created_user) { FactoryBot.create(:user) }
 
     # describe "#index" do  
     #   it "populates an array of users" do
@@ -47,7 +47,7 @@ RSpec.describe Admin::UsersController, type: :controller do
       end
 
       it "redirects to the edit page after saving" do
-        post :create, params: { user: FactoryGirl.attributes_for(:user) }
+        post :create, params: { user: FactoryBot.attributes_for(:user) }
         user = User.last
         expect(response).to redirect_to(edit_admin_user_path(user.id))
       end
@@ -67,7 +67,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
   context "PUT methods" do
 
-    let(:existing_user) { FactoryGirl.create(:user, email: "non_updated_user@mail.com", first_name: "Tommy")}
+    let(:existing_user) { FactoryBot.create(:user, email: "non_updated_user@mail.com", first_name: "Tommy")}
     let(:attributes) do
       { email: "updated_user@mail.com", 
         first_name: "UpdatedTommy" }
@@ -77,7 +77,7 @@ RSpec.describe Admin::UsersController, type: :controller do
 
       before(:each) do
         put :update, params: { id: existing_user.id, user: attributes }
-        # put :update, id: existing_user.id, params: { user: FactoryGirl.attributes_for(:user, email: "updated_user@mail.com"), first_name: "UpdatedTommy" }
+        # put :update, id: existing_user.id, params: { user: FactoryBot.attributes_for(:user, email: "updated_user@mail.com"), first_name: "UpdatedTommy" }
         existing_user.reload
       end
 

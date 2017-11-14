@@ -18,7 +18,7 @@ module Front
           @posts = e.message
           @status = 400
         end
-
+        @posts = @posts.order(published_at: :desc)
         render json: @posts, status: @status
       end
 

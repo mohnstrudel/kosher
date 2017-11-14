@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   after_save :set_published_date
   after_save :set_slug
 
-  has_one :seo
+  has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo, allow_destroy: true
 
   include Bootsy::Container
@@ -18,6 +18,9 @@ class Post < ApplicationRecord
 
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]
+
+  include PgSearch
+  multisearchable :against => [:title, :body]
 
   translates :title, :body
   globalize_accessors :locales => [:en, :ru], :attributes => [:title, :body]

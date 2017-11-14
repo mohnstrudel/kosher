@@ -6,8 +6,8 @@ require 'rails_helper'
 
 describe User do 
 
-	let (:valid_user) { FactoryGirl.build(:user) }
-	let (:invalid_user) { FactoryGirl.build(:user, password: "1234567") }
+	let (:valid_user) { FactoryBot.build(:user) }
+	let (:invalid_user) { FactoryBot.build(:user, password: "1234567") }
 
 	it "has a valid factory" do
 		expect(valid_user).to be_valid

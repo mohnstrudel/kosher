@@ -3,17 +3,17 @@ require "rails_helper"
 RSpec.feature "Shops feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
   feature "crud methods >" do
     scenario "create" do
-      # FactoryGirl.create(:recipe_category, title: 'Awesome Cat')
+      # FactoryBot.create(:recipe_category, title: 'Awesome Cat')
       visit admin_shops_path
       click_link('new_entry')
 
@@ -30,9 +30,9 @@ RSpec.feature "Shops feature spec >", :type => :feature do
   feature "bulk delete" do
 
     scenario "reduce amount of shop by 2" do
-      shop_1 = FactoryGirl.create(:shop, title: "Grizzly Bears Ltd.")
-      shop_2 = FactoryGirl.create(:shop, title: "Shitty Dizzy")
-      shop_3 = FactoryGirl.create(:shop)
+      shop_1 = FactoryBot.create(:shop, title: "Grizzly Bears Ltd.")
+      shop_2 = FactoryBot.create(:shop, title: "Shitty Dizzy")
+      shop_3 = FactoryBot.create(:shop)
       
       visit admin_shops_path
       # save_and_open_page

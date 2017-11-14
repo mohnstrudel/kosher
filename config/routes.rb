@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     get '/consumers', to: 'static_pages#for_consumers'
     get '/trade-networks', to: 'static_pages#for_trade_networks'
     get '/partners', to: 'manufacturers#index'
+    get '/search', to: 'main_searches#show'
     # get 'categories', to: 'page_categories#index'
     # resources :pages, only: [:index, :show]
 

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   it "does not save without category/subcategory" do
-    product = FactoryGirl.build(:product, category: nil)
+    product = FactoryBot.build(:product, category: nil)
     # expect{
     #   product.save
     # }.not_to change(Product, :count).by(1)
@@ -10,30 +10,30 @@ RSpec.describe Product, type: :model do
   end
 
   it "does not save without a manufacturer/trademark" do
-    product = FactoryGirl.build(:product, manufacturer: nil)
+    product = FactoryBot.build(:product, manufacturer: nil)
     expect(product).not_to be_valid
   end
 
   it "does not save without a kosher label" do
-    product = FactoryGirl.build(:product, label: nil)
+    product = FactoryBot.build(:product, label: nil)
     expect(product).not_to be_valid
   end
 
   it "does not save without a title" do
-    product = FactoryGirl.build(:product, title: nil)
+    product = FactoryBot.build(:product, title: nil)
     expect(product).not_to be_valid
   end
 
   context "barcodes" do
     it "saves a real barcode (big number)" do
-      product = FactoryGirl.build(:product, barcode: 4605490000217)
+      product = FactoryBot.build(:product, barcode: 4605490000217)
       expect{
         product.save
         }.to change(Product, :count).by(1)
     end
 
     it "saves multiple barcodes" do
-      product = FactoryGirl.build(:product)
+      product = FactoryBot.build(:product)
       product.barcodes.build
       product.barcodes.build
       
@@ -44,16 +44,17 @@ RSpec.describe Product, type: :model do
 
   context "slug" do
     it "saves a proper slug" do
-      product = FactoryGirl.create(:product, title: "Морошка Сладкая Уникальная")
-      # product.save
-
-      expect(product.slug).to eq("moroshka-sladkaya-unikalnaya")
+      
+      product = FactoryBot.create(:product, title: "Морошка Сладкая Уникальная")
+      
+      # expect(product.slug).to eq("moroshka-sladkaya-unikalnaya")
+      expect(Product.last.slug).to eq("moroshka-sladkaya-unikalnaya")
     end
   end
 
   describe "SEO parameters" do
     it "saves them when creating new product" do
-      product = FactoryGirl.build(:product)
+      product = FactoryBot.build(:product)
       product.build_seo
       product.seo.title = "My SEO title"
       product.seo.keywords = ["hello", "dolly"]
@@ -65,7 +66,7 @@ RSpec.describe Product, type: :model do
     end
 
     it "saves them when editing product" do
-      product = FactoryGirl.create(:product)
+      product = FactoryBot.create(:product)
 
       product.update(seo_attributes: {title: "Some other title", keywords: ["tag 1", "tag 2"]})
 

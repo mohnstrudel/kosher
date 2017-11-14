@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Contact front feature spec >", :type => :feature do
   
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
   end
 
   feature "simple page operations" do
@@ -92,9 +92,9 @@ RSpec.feature "Contact front feature spec >", :type => :feature do
   feature "other contact information" do
     scenario "get address, phones and email" do
       GeneralSetting.destroy_all
-      setting = FactoryGirl.create(:general_setting, address: "Kryptonite planet 3", email: 'hello@dolly.com')
-      phone_1 = FactoryGirl.create(:phone, value: "555332266", general_setting_id: setting.id)
-      phone_2 = FactoryGirl.create(:phone, value: "999332211", general_setting_id: setting.id)
+      setting = FactoryBot.create(:general_setting, address: "Kryptonite planet 3", email: 'hello@dolly.com')
+      phone_1 = FactoryBot.create(:phone, value: "555332266", general_setting_id: setting.id)
+      phone_2 = FactoryBot.create(:phone, value: "999332211", general_setting_id: setting.id)
 
       visit '/contact'
       # save_and_open_page
@@ -107,9 +107,9 @@ RSpec.feature "Contact front feature spec >", :type => :feature do
 
     scenario 'get opening hours' do
       GeneralSetting.destroy_all
-      setting = FactoryGirl.create(:general_setting)
-      hour_1 = FactoryGirl.create(:opening_hour, title: 'ponedelnik', value: "10:41-12:95", general_setting_id: setting.id)
-      hour_2 = FactoryGirl.create(:opening_hour, title: 'vtornik', value: "10:15-19:37", general_setting_id: setting.id)
+      setting = FactoryBot.create(:general_setting)
+      hour_1 = FactoryBot.create(:opening_hour, title: 'ponedelnik', value: "10:41-12:95", general_setting_id: setting.id)
+      hour_2 = FactoryBot.create(:opening_hour, title: 'vtornik', value: "10:15-19:37", general_setting_id: setting.id)
 
       visit '/contact'
 

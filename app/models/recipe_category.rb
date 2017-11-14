@@ -1,7 +1,7 @@
 class RecipeCategory < ApplicationRecord
   has_many :recipes
-  has_one :seo
-  accepts_nested_attributes_for :seo
+  has_one :seo, dependent: :destroy
+  accepts_nested_attributes_for :seo, allow_destroy: true
 
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]

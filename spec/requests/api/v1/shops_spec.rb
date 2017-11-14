@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Shops API" do
   context "listing shops" do
     it 'checks the proper amount on index page' do
-      FactoryGirl.create_list(:shop, 10)
+      FactoryBot.create_list(:shop, 10)
 
       get '/v1/shops'
 
@@ -20,7 +20,7 @@ describe "Shops API" do
   end
   context "detailed page" do
     it 'shows the shop page' do
-      shop = FactoryGirl.create(:shop)
+      shop = FactoryBot.create(:shop)
 
       get "/v1/shops/#{shop.id}"
 

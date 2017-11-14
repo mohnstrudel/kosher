@@ -17,11 +17,14 @@ class Product < ApplicationRecord
 
   accepts_nested_attributes_for :barcodes, allow_destroy: true
 
-  has_one :seo
+  has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo, allow_destroy: true
 
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
+
+  include PgSearch
+  multisearchable :against => [:title, :description]
 
   scope :active, -> { where(active: true) }
 

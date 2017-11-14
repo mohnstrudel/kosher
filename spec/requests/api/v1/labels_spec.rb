@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Labels API' do
   context "index page" do
     it "lists all labels" do
-      FactoryGirl.create_list(:label, 3)
+      FactoryBot.create_list(:label, 3)
 
       get '/v1/labels'
 
@@ -17,8 +17,8 @@ describe 'Labels API' do
     end
 
     it "checks for attributes on right places" do
-      label_1 = FactoryGirl.create(:label)
-      # label_2 = FactoryGirl.create(:label, parent_id: label_1.id)
+      label_1 = FactoryBot.create(:label)
+      # label_2 = FactoryBot.create(:label, parent_id: label_1.id)
 
       get '/v1/labels'
 
@@ -30,7 +30,7 @@ describe 'Labels API' do
     end
 
     it "has empty sublabel if none was created" do
-      label_1 = FactoryGirl.create(:label)
+      label_1 = FactoryBot.create(:label)
       get '/v1/labels'
 
       json = JSON.parse(response.body)
@@ -41,8 +41,8 @@ describe 'Labels API' do
     end
 
     it "checks for attribute values" do
-      label_1 = FactoryGirl.create(:label)
-      label_2 = FactoryGirl.create(:label, parent_id: label_1.id)
+      label_1 = FactoryBot.create(:label)
+      label_2 = FactoryBot.create(:label, parent_id: label_1.id)
 
       get '/v1/labels'
 
@@ -58,7 +58,7 @@ describe 'Labels API' do
   context "show page" do
 
     before(:each) do
-      @label = FactoryGirl.create(:label)
+      @label = FactoryBot.create(:label)
     end
 
     it "shows a label" do
@@ -90,7 +90,7 @@ describe 'Labels API' do
     end
 
     it "checks for present products" do
-      product = FactoryGirl.create(:product, label: @label)
+      product = FactoryBot.create(:product, label: @label)
       get "/v1/labels/#{@label.id}"
 
       json = JSON.parse(response.body)
@@ -110,7 +110,7 @@ describe 'Labels API' do
     end
 
     it "checks for present sublabels" do
-      label = FactoryGirl.create(:label, parent_id: @label.id)
+      label = FactoryBot.create(:label, parent_id: @label.id)
       get "/v1/labels/#{@label.id}"
 
       json = JSON.parse(response.body)
@@ -129,7 +129,7 @@ describe 'Labels API' do
     end
 
     it "checks for present sublabels attribute values" do
-      label = FactoryGirl.create(:label, parent_id: @label.id)
+      label = FactoryBot.create(:label, parent_id: @label.id)
       get "/v1/labels/#{@label.id}"
 
       json = JSON.parse(response.body)

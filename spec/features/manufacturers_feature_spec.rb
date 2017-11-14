@@ -3,19 +3,19 @@ require "rails_helper"
 RSpec.feature "Manufacturers feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
   before(:each) do
-    @main_manufacturer = FactoryGirl.create(:manufacturer, title: "My main manufacturerz")
-    @manufacturer_1 = FactoryGirl.create(:manufacturer, parent_id: @main_manufacturer.id, title: "Grizzly Bears Ltd.")
-    @manufacturer_2 = FactoryGirl.create(:manufacturer, parent_id: @main_manufacturer.id, title: "Shitty Dizzy")
-    @manufacturer_3 = FactoryGirl.create(:manufacturer, parent_id: @main_manufacturer.id, title: "Some Leftovers")
+    @main_manufacturer = FactoryBot.create(:manufacturer, title: "My main manufacturerz")
+    @manufacturer_1 = FactoryBot.create(:manufacturer, parent_id: @main_manufacturer.id, title: "Grizzly Bears Ltd.")
+    @manufacturer_2 = FactoryBot.create(:manufacturer, parent_id: @main_manufacturer.id, title: "Shitty Dizzy")
+    @manufacturer_3 = FactoryBot.create(:manufacturer, parent_id: @main_manufacturer.id, title: "Some Leftovers")
   end
 
   feature "crud methods >" do
@@ -62,8 +62,8 @@ RSpec.feature "Manufacturers feature spec >", :type => :feature do
     end
 
     scenario "delete level 1 manufacturers" do
-      main_manufacturer_2 = FactoryGirl.create(:manufacturer, title: "Bin Supraman")
-      main_manufacturer_3 = FactoryGirl.create(:manufacturer)
+      main_manufacturer_2 = FactoryBot.create(:manufacturer, title: "Bin Supraman")
+      main_manufacturer_3 = FactoryBot.create(:manufacturer)
       visit admin_manufacturers_path
       
       find(:css, "input[type=checkbox][value='#{@main_manufacturer.id}']").set(true)

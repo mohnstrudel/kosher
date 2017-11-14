@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Front manufacturers feature spec >", :type => :feature do
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
   end
   
   before(:each) do
@@ -11,9 +11,9 @@ RSpec.feature "Front manufacturers feature spec >", :type => :feature do
   end
 
   before(:each) do
-    @manufacturer = FactoryGirl.create(:manufacturer, title: "Dabby Johnes", description: "Lunatik Ship forwarding")
-    @product_1 = FactoryGirl.create(:product, manufacturer: @manufacturer, title: "Moroshka")
-    @product_2 = FactoryGirl.create(:product, manufacturer: @manufacturer, title: "Green Arrow")
+    @manufacturer = FactoryBot.create(:manufacturer, title: "Dabby Johnes", description: "Lunatik Ship forwarding")
+    @product_1 = FactoryBot.create(:product, manufacturer: @manufacturer, title: "Moroshka")
+    @product_2 = FactoryBot.create(:product, manufacturer: @manufacturer, title: "Green Arrow")
   end
 
   feature "checking content for the trademark" do
@@ -34,7 +34,7 @@ RSpec.feature "Front manufacturers feature spec >", :type => :feature do
 
   feature "friendly id" do
     scenario "chould be correct for supplier_path" do
-      manuf = FactoryGirl.create(:manufacturer, title: "Скорпушечка")
+      manuf = FactoryBot.create(:manufacturer, title: "Скорпушечка")
       visit supplier_path(manuf)
 
       expect(page).to have_current_path('/suppliers/skorpushechka')

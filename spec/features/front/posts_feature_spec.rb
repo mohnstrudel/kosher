@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Front posts feature spec >", :type => :feature do
   
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
   end
 
   before(:each) do
@@ -13,11 +13,15 @@ RSpec.feature "Front posts feature spec >", :type => :feature do
   feature "index page" do
 
     scenario "> should have 5 elements" do
-      FactoryGirl.create_list(:post, 5)
+      # puts "Post count before is: #{Post.count}"
+      result = FactoryBot.create_list(:post, 5)
       visit posts_path
+      # puts "Post count after is: #{Post.count}"
+      # puts "Factory result is: #{result.inspect}"
       # save_and_open_page
 
       if @page_size > 5
+
         expect(find('ul.g-news')).to have_selector('li', count: 5)
       else
         expect(find('ul.g-news')).to have_selector('li', count: @page_size)
@@ -25,14 +29,14 @@ RSpec.feature "Front posts feature spec >", :type => :feature do
     end
 
     scenario "> pagination with a lot of posts" do
-      FactoryGirl.create_list(:post, @page_size+2)
+      FactoryBot.create_list(:post, @page_size+2)
 
       visit posts_path
       expect(page).to have_css "a[href~='/news?page=2']"
     end
 
     scenario "> pagination with few posts" do
-      FactoryGirl.create_list(:post, @page_size-2)
+      FactoryBot.create_list(:post, @page_size-2)
 
       visit posts_path
       
@@ -42,8 +46,8 @@ RSpec.feature "Front posts feature spec >", :type => :feature do
     end
 
     scenario "> should have appropriate content" do
-      FactoryGirl.create(:post, title: "Супер")
-      FactoryGirl.create(:post, body: "Some creative badass news")
+      FactoryBot.create(:post, title: "Супер")
+      FactoryBot.create(:post, body: "Some creative badass news")
 
       visit posts_path
       # save_and_open_page
@@ -59,7 +63,7 @@ RSpec.feature "Front posts feature spec >", :type => :feature do
 
   feature "show page" do
     scenario "> should have appropriate content" do
-      post = FactoryGirl.create(:post, title: "В бобруйске все спокойно")
+      post = FactoryBot.create(:post, title: "В бобруйске все спокойно")
 
       visit posts_path
 

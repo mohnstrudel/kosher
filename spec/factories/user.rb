@@ -1,7 +1,7 @@
 # spec/factories/user.rb
 require 'faker'
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do |f|
     f.first_name { Faker::Name.first_name }
     f.second_name { Faker::Name.last_name }

@@ -2,7 +2,7 @@ class City < ApplicationRecord
   has_many :shops
   has_many :restaurants
 
-  has_one :seo
+  has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo, allow_destroy: true
 
   extend FriendlyId

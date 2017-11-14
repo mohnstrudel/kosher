@@ -3,18 +3,18 @@ require "rails_helper"
 RSpec.feature "Recipes feature spec >", :type => :feature do
 
   before(:each) {
-    login_as(FactoryGirl.create(:user, superadmin: true), :scope => :user)
+    login_as(FactoryBot.create(:user, superadmin: true), :scope => :user)
   }
 
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
     # GeneralSetting.create(url: "something.com", language: { "ru" => "ru" }, address: "Москва, ул. 2ая Хуторская 38")
   end
 
   feature "recipe ingredients >" do
     scenario 'when editing' do
-      recipe = FactoryGirl.create(:recipe)
-      FactoryGirl.create(:ingredient, title: 'Dooge')
+      recipe = FactoryBot.create(:recipe)
+      FactoryBot.create(:ingredient, title: 'Dooge')
       visit edit_admin_recipe_path(recipe)
 
       select 'Dooge', from: 'recipe_recipe_ingredients_attributes_0_ingredient_id'
@@ -30,13 +30,13 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
   feature "crud methods >" do
     
     scenario 'index' do
-      FactoryGirl.create(:recipe)
+      FactoryBot.create(:recipe)
       visit admin_recipes_path
       expect(page.all('table#listing_table tr').count).to eq(2)
     end
     
     scenario 'create' do
-      FactoryGirl.create(:recipe_category, title: 'Awesome Cat')
+      FactoryBot.create(:recipe_category, title: 'Awesome Cat')
       visit admin_recipes_path
       click_link('new_entry')
 
@@ -50,7 +50,7 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
     end
 
     scenario 'edit' do
-      recipe = FactoryGirl.create(:recipe, title: "Holly Molly")
+      recipe = FactoryBot.create(:recipe, title: "Holly Molly")
       visit admin_recipes_path
       expect(page).to have_content("Holly Molly")
 
@@ -68,9 +68,9 @@ RSpec.feature "Recipes feature spec >", :type => :feature do
 
   feature "bulk delete >" do
     scenario "reduce recipe amount by 2" do
-      recipe_1 = FactoryGirl.create(:recipe, title: "Grizzly Bears Ltd.")
-      recipe_2 = FactoryGirl.create(:recipe, title: "Shitty Dizzy")
-      recipe_3 = FactoryGirl.create(:recipe)
+      recipe_1 = FactoryBot.create(:recipe, title: "Grizzly Bears Ltd.")
+      recipe_2 = FactoryBot.create(:recipe, title: "Shitty Dizzy")
+      recipe_3 = FactoryBot.create(:recipe)
       visit admin_recipes_path
       
       find(:css, "input[type=checkbox][value='#{recipe_2.id}']").set(true)

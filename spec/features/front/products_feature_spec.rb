@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Front products feature spec >", :type => :feature do
   
   before(:each) do
-    FactoryGirl.create(:general_setting)
+    FactoryBot.create(:general_setting)
   end
 
   before(:each) do
@@ -11,9 +11,9 @@ RSpec.feature "Front products feature spec >", :type => :feature do
   end
 
   before(:each) do
-    category = FactoryGirl.create(:category)
-    @manufacturer = FactoryGirl.create(:manufacturer)
-    @product = FactoryGirl.create(:product, manufacturer: @manufacturer, category: category, title: "Moroshka")
+    category = FactoryBot.create(:category)
+    @manufacturer = FactoryBot.create(:manufacturer)
+    @product = FactoryBot.create(:product, manufacturer: @manufacturer, category: category, title: "Moroshka")
   end
 
   feature "visit from categories (navigation)" do
@@ -51,15 +51,15 @@ RSpec.feature "Front products feature spec >", :type => :feature do
 
   feature "friendly id" do
     scenario "should be correct for product" do
-      product = FactoryGirl.create(:product, title: "Мороша сладкая")
+      product = FactoryBot.create(:product, title: "Мороша сладкая")
 
       visit product_path(product)
       expect(page).to have_current_path('/products/morosha-sladkaya')
     end
 
     scenario "should be correct for manufacturer and product" do
-      manuf = FactoryGirl.create(:manufacturer, title: "Саб Зиро")
-      product = FactoryGirl.create(:product, title: "Мороша горькая", manufacturer: manuf)
+      manuf = FactoryBot.create(:manufacturer, title: "Саб Зиро")
+      product = FactoryBot.create(:product, title: "Мороша горькая", manufacturer: manuf)
 
       visit supplier_product_path(manuf, product)
 

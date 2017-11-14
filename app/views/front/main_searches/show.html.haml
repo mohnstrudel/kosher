@@ -1,0 +1,15 @@
+%section.g-section
+  .g-wrapper.g-wrapper_search
+    =form_for(:main_search, url: search_path, method: :get, html: {class: 'g-form_search'}) do |f|
+      .g-input
+        =f.text_field :query, class: 'g-input__field js-input', placeholder: 'Поиск', value: params[:main_search][:query]
+      =f.submit "Искать", class: 'g-btn g-btn_blue g-form__submit'
+      
+    .g-search-count
+      ="По вашему запросу найдено: #{@results.count} результатов"
+    %ul.g-search-result
+      -@results.each do |result|
+        %li.g-search-result__item
+          %h3.g-search-result__title=search_title_helper(result).capitalize
+          %a.g-link.g-search-result__link{:href => search_link_helper(result)}=request.protocol + request.host  + search_link_helper(result)
+          %p.g-search-result__text=search_content_helper(result)

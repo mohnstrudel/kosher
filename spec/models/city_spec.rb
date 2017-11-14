@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe City, type: :model do
-  let (:valid_city) { FactoryGirl.build(:city) }
-  let (:city_no_images) { FactoryGirl.build(:city, front_image: nil, back_image: nil, name: "Something") }
-  let (:city_nothing) { FactoryGirl.build(:city, front_image: nil, back_image: nil, name: nil) }
+  let (:valid_city) { FactoryBot.build(:city) }
+  let (:city_no_images) { FactoryBot.build(:city, front_image: nil, back_image: nil, name: "Something") }
+  let (:city_nothing) { FactoryBot.build(:city, front_image: nil, back_image: nil, name: nil) }
 
   it "has valid factory" do
     expect(valid_city).to be_valid

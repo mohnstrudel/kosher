@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Shop, type: :model do
-	let (:regular) { FactoryGirl.build(:shop) } 
-  let (:created) { FactoryGirl.create(:shop) }
-  let (:invalid) { FactoryGirl.build(:shop, title: nil) }
+	let (:regular) { FactoryBot.build(:shop) } 
+  let (:created) { FactoryBot.create(:shop) }
+  let (:invalid) { FactoryBot.build(:shop, title: nil) }
   
   context "saving phones" do
   	it "saves 6 phones" do
@@ -38,7 +38,7 @@ RSpec.describe Shop, type: :model do
 
   describe "SEO parameters" do
     it "saves them when creating new shop" do
-      shop = FactoryGirl.build(:shop)
+      shop = FactoryBot.build(:shop)
       shop.build_seo
       shop.seo.title = "My SEO title"
       shop.seo.keywords = ["hello", "dolly"]
@@ -50,7 +50,7 @@ RSpec.describe Shop, type: :model do
     end
 
     it "saves them when editing shop" do
-      shop = FactoryGirl.create(:shop)
+      shop = FactoryBot.create(:shop)
 
       shop.update(seo_attributes: {title: "Some other title", keywords: ["tag 1", "tag 2"]})
 

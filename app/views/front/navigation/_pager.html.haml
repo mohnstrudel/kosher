@@ -1,7 +1,8 @@
 -if @pages_total > 1
   .g-pagination
 
-    =link_to "", send(path, keywords: keywords, page: page - 1), class: "g-pagination__item g-pagination__item_left #{page==1 ? 'disabled' : ''}", method: :get
+    -unless page == 1
+      =link_to "", send(path, keywords: keywords, page: page - 1), class: "g-pagination__item g-pagination__item_left #{page==1 ? 'disabled' : ''}", method: :get
 
     -if @pages_total >= 7
       / Ссылка на первую страницу
@@ -56,4 +57,5 @@
       -@pages_total.times do |page|
         =link_to page+1, send(path, keywords: keywords, page: page+1), class: "g-pagination__item #{(page+1)==params[:page].to_i ? 'g-pagination__item_active' : ''}", method: :get
     
-    =link_to "", send(path, keywords: keywords, page: page + 1), class: "g-pagination__item g-pagination__item_right #{page==@pages_total ? 'disabled' : ''}", method: :get
+    -unless page == @pages_total
+      =link_to "", send(path, keywords: keywords, page: page + 1), class: "g-pagination__item g-pagination__item_right #{page==@pages_total ? 'disabled' : ''}", method: :get

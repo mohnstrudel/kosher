@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  let (:valid_cat) { FactoryGirl.build(:category) }
-  let (:level_two) { FactoryGirl.build(:category, id: 2, parent_id: 1) }
-  let (:invalid_cat) { FactoryGirl.build(:category, title: nil) }
+  let (:valid_cat) { FactoryBot.build(:category) }
+  let (:level_two) { FactoryBot.build(:category, id: 2, parent_id: 1) }
+  let (:invalid_cat) { FactoryBot.build(:category, title: nil) }
 
   it "has valid factory" do
     expect(valid_cat).to be_valid
@@ -27,13 +27,13 @@ RSpec.describe Category, type: :model do
 
   it "does not include subcategory within categories" do
     valid_cat.save
-    @subcat = FactoryGirl.create(:category, id: 2, parent_id: 1)
+    @subcat = FactoryBot.create(:category, id: 2, parent_id: 1)
     # @user = Factory(:user, :active => false)
     expect(Category.top_level).not_to include(@subcat)
   end
 
   it "does not include category within subcategories" do
-    @cat = FactoryGirl.create(:category)
+    @cat = FactoryBot.create(:category)
     level_two.save
 
     expect(Category.subs).not_to include(@cat)

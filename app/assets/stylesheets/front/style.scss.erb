@@ -52,6 +52,10 @@ textarea {
   box-sizing: border-box;
   position: relative; }
 
+.g-wrapper_search {
+    max-width: 1000px; 
+  }
+
 .g-products__filter-btn {
   display: none;
   width: 100%;
@@ -1360,6 +1364,61 @@ textarea {
     display: inline-block;
     margin-top: 1.9rem; }
 
+// Search form begin
+.g-form_search {
+    display: flex;
+    justify-content: space-between;
+    padding-top: calc(80rem / 12);
+    margin-bottom: calc(55rem / 12); }
+    .g-form_search .g-input {
+      margin: 0;
+      flex-grow: 1; }
+    .g-form_search .g-input__field {
+      border-radius: 22px;
+      padding-left: calc(24rem / 12); }
+    .g-form_search .g-form__submit {
+      margin-top: 0;
+      margin-left: calc(20rem / 12);
+      padding: 0 4.2rem; }
+
+.g-search-count {
+  line-height: calc(24rem / 13);
+  font-size: calc(18rem / 13);
+  color: #b2b2b2;
+  text-align: left;
+  font-weight: 400;
+  padding-left: calc(5rem / 12);
+  padding-bottom: calc(40rem / 12); }
+
+.g-search-result {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: -0.16rem; }
+  .g-search-result__item {
+    margin-bottom: 1rem;
+    border-top: 1px solid #f0f1f1;
+    padding: calc(24rem / 12) calc(5rem / 12) calc(17rem / 12); }
+  .g-search-result__title {
+    margin: 0;
+    font-size: calc(24rem / 12);
+    line-height: calc(32rem / 12);
+    color: #333;
+    font-weight: 400;
+    margin-bottom: calc(11rem / 12); }
+  .g-search-result__link {
+    font-size: calc(15rem / 12);
+    line-height: calc(24rem / 12);
+    margin-bottom: calc(6rem / 12);
+    display: inline-block; }
+  .g-search-result__text {
+    color: #333;
+    margin: 0;
+    font-size: calc(15rem / 12);
+  
+    line-height: calc(24rem / 12); }
+// Search form end
+
 .g-icon-logo {
   display: block; }
   .g-icon-logo:before {
@@ -2558,7 +2617,8 @@ textarea {
     width: 100%;
     display: block; }
     .g-recipes__img-wrapper {
-      width: 30.4%; }
+      width: 30.4%;
+      text-decoration: none; }
   .g-recipes__text {
     width: 62.4%; }
   .g-recipes__name {
@@ -2566,7 +2626,12 @@ textarea {
     font-weight: 400;
     font-size: 1.5rem;
     padding-bottom: 1.25rem;
-    padding-top: 0.75rem; }
+    padding-top: 0.75rem;
+    display: block;
+    text-decoration: none;
+    color: #333; }
+    .g-recipes__name:visited {
+      color: #333; }
   .g-recipes__meta {
     margin: 0;
     font-size: 1.2rem;
@@ -3012,6 +3077,24 @@ textarea {
       font-size: 1.25rem; }
     .g-social-link__icon {
       font-size: 3.2rem; }
+
+// Search form begin
+  .g-search-count {
+    padding-bottom: calc(10rem / 12); }
+  .g-form_search {
+    display: block;
+    padding-top: calc(20rem / 12);
+    margin-bottom: calc(30rem / 12); }
+    .g-form_search .g-input {
+      display: block;
+      margin-bottom: calc(20rem / 12); }
+    .g-form_search .g-form__submit {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0 2rem;
+      margin: 0; }
+// Search form end
   .g-blog-read {
     text-align: justify; }
     .g-blog-read .g-btn {
