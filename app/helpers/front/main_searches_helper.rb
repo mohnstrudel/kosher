@@ -9,6 +9,7 @@ module Front::MainSearchesHelper
       return send("supplier_path", supplier.slug)
     elsif result.searchable_type == 'Product'
       product = Product.find(result.searchable_id)
+      logger.debug "Product is: #{product.inspect}"
       supplier = product.manufacturer
       begin
         return send("supplier_product_path", supplier.slug, product.slug)
@@ -32,7 +33,8 @@ module Front::MainSearchesHelper
     else
       value = result.content
     end
-
-    return value.capitalize
+    value = strip_tags(value.capitalize)
+    value = truncate(value, 200)
+    return value
   end
 end
