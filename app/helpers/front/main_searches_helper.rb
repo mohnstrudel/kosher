@@ -34,7 +34,7 @@ module Front::MainSearchesHelper
       value = result.content
     end
     value = strip_tags(value.capitalize)
-    value = truncate(value, 200)
+    value = truncate(value, length: 200)
     return value
   end
 end
