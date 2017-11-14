@@ -12,7 +12,11 @@ module Front::MainSearchesHelper
       logger.debug "Product is: #{product.inspect}"
       supplier = product.manufacturer
       begin
-        return send("supplier_product_path", supplier.slug, product.slug)
+        if product.slug.present? && supplier.slug.present?
+          return send("supplier_product_path", supplier.slug, product.slug)
+        else
+          return send("supplier_product_path", supplier.id, product.id)
+        end
       rescue NoMethodError => e
         return send("#{result.searchable_type.downcase}_path", result.searchable_id)
         logger.debug "Error in search_link_helper: #{e.message}"
