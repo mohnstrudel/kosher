@@ -6,5 +6,6 @@
       -@labels.each do |label|
         %li.g-signs__item
           .g-signs__img-wrapper
-            =image_tag label.logo, class: 'g-signs__img'
-            %p.g-signs__text=label.description
+            %img.g-signs__img{:src => asset_path(label.logo)}
+          %p.g-signs__text
+            =label.description

@@ -5,7 +5,7 @@ class Front::SuppliersController < FrontController
     @category_id = params[:category]
     subcategory_id = params[:subcategory]
     manufacturer_id = params[:manufacturer]
-    sign_id = params[:sign]
+    sign_id = params[:label]
 
     if @category_id.present? && @category_id != 'any'
       params_array << Category.friendly.find(@category_id).title
@@ -21,6 +21,7 @@ class Front::SuppliersController < FrontController
     end
 
     @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_id).uniq.compact
+    logger.debug("Calling filter with params: category - #{@category_id}, subcategory - #{subcategory_id} and manufacturer - #{manufacturer_id}")
     # populate filter items
     params_array.each do |pa|
       if pa.present?

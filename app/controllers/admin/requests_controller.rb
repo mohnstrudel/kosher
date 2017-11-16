@@ -7,7 +7,7 @@ class Admin::RequestsController < AdminController
 
   def index
     # @requests = Request.all
-    @requests = index_helper("Request")
+    @requests = index_helper("Request").order(created_at: :desc)
   end
 
   def new

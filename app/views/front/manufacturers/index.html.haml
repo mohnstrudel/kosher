@@ -9,7 +9,8 @@
             =image_tag manuf.logo, class: 'g-partners-wrapper__logo'
           .g-partners-wrapper__right
             %h2.g-partners-wrapper__title=manuf.title
-            %p.g-partners-wrapper__description=markdown(manuf.description)
+            .g-partners-wrapper__description
+              =markdown(manuf.description)
             -if manuf.url.present?
               %p.g-partners-wrapper__adress
                 =link_to manuf.pretty_url, manuf.pretty_url, class: 'g-partners-wrapper__link', target: "_blank"

@@ -40,8 +40,8 @@ $(document).ready(function(){
 							$clear: $("#clear_filters")
 					},
 					init: function(dataArray){
-						console.log('initialized! with: ' + dataArray);
-						console.log('window.productData is: ' + window.productData);
+						// console.log('initialized! with: ' + dataArray);
+						// console.log('window.productData is: ' + window.productData);
 							var self = this;
 							dataArray = dataArray.data;
 							dataArray.forEach(function(cat, idx){
