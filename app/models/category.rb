@@ -29,7 +29,7 @@ class Category < ApplicationRecord
     return nil if self.parent_id != nil
     manufacturers = Array.new
     
-    Category.find(self.id).sub_categories.includes(:manufacturers).map { |subcategory| manufacturers << subcategory.manufacturers.to_a  }
+    Category.find(self.id).sub_categories.includes(:manufacturers).map { |subcategory| manufacturers << subcategory.manufacturers.top_level.to_a  }
 
     return manufacturers.flatten.uniq
   end

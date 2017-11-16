@@ -34,6 +34,8 @@
       .g-products__content
         .g-products__filters.g-filters
           -@filter_items.each do |item|
-            %a.g-filters__item{:href => "javascript:void(0)"}=item
+            -if item.is_a? String
+              %a.g-filters__item{:href => "javascript:void(0)"}=item
+            
         #listing_products_partial
           =render partial: 'front/suppliers/listing_suppliers'
