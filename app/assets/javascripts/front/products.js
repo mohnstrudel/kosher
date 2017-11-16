@@ -74,31 +74,31 @@ $(document).ready(function(){
 									var param = elem.split("=");
 									params[param[0]] = param[1];
 							});
-							if(typeof params.manufacturer != "undefined")
+							if(typeof self.getManufactureById(params.manufacture) != "undefined" )
 									self.options.$categories.select2({data: self.data.categories_empty.concat(self.getCategoryByManufacture(params.manufacturer))});
 							else
 									self.options.$categories.select2({data: self.data.categories_empty.concat(self.data.categories)});
-							if(typeof params.category != "undefined"){
+							if(typeof self.getCategoryById(params.category) != "undefined"){
 									self.options.$categories.val(params.category).trigger("change");
 									self.options.$subcategories_block.show();
 									self.options.$subcategories.select2({data: self.data.subcategories_empty.concat(self.data.subcategories["cat_" + params.category])})
-									if(typeof params.subcategory != "undefined"){
+									if(typeof params.subcategory != "undefined" && self.options.$subcategories.find("[value='" + params.subcategory + "']").length){
 											self.options.$subcategories.val(params.subcategory).trigger("change");
 									}
 							} else {
 									self.options.$subcategories_block.hide();
 							}
 
-							if(typeof params.category != "undefined")
+							if(typeof self.getCategoryById(params.category) != "undefined")
 									self.options.$manufacturers.select2({data: self.data.manufacturers_empty.concat(self.getManufactureByCategory(params.category))});
 							else
 									self.options.$manufacturers.select2({data: self.data.manufacturers_empty.concat(self.data.manufacturers)});
-							if(typeof params.manufacture != "undefined"){
+							if(typeof self.getManufactureById(params.manufacture) != "undefined"){
 									self.options.$manufacturers.val(params.manufacture).trigger("change");
 							}
 
 							self.data.labels.forEach(function(elem){
-									self.options.$labels.append($("<input>", { type: "checkbox", class: "g-check-list__check", name: "label[]", value: elem.id, id: "label_" + elem.id}));
+									self.options.$labels.append($("<input>", { type: "checkbox", class: "g-check-list__check", name: "label_ids[]", value: elem.id, id: "label_" + elem.id}));
 									self.options.$labels.append($("<label>", {class: "g-check-list__label", for: "label_" + elem.id, text: elem.text}));
 							});
 							if(typeof params.labels != "undefined"){
@@ -136,6 +136,7 @@ $(document).ready(function(){
 													self.options.flag = false;
 											} else {
 													self.options.flag = true;
+													console.log('current_mane is ' + current_man);
 													if(current_man == "any"){
 															self.options.$categories.select2("destroy").html("");
 															self.options.$categories.select2({data: self.data.categories_empty.concat(self.data.categories)}).val(current_cat).trigger("change");

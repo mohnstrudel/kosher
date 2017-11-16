@@ -132,6 +132,8 @@ class Manufacturer < ApplicationRecord
   def self.return_collection(id)
     # Мы получаем айди родителя
     # возвращаем в массиве айди всех детей
+    return all if id == 'any'
+
     parent = find(id)
 
     children_ids = parent.trademarks.map { |item| item.id }
