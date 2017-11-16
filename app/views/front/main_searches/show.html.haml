@@ -11,5 +11,5 @@
       -@results.each do |result|
         %li.g-search-result__item
           %h3.g-search-result__title=search_title_helper(result).capitalize
-          %a.g-link.g-search-result__link{:href => search_link_helper(result)}=request.protocol + request.host  + search_link_helper(result)
+          %a.g-link.g-search-result__link{:href => search_link_helper(result)}="Подробнее..."
           %p.g-search-result__text=search_content_helper(result)
