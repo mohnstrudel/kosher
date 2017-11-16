@@ -1,7 +1,8 @@
 #search-popup.g-popup
-  %form.g-popup__content.g-popup__content_search
-    %input.g-popup__search-input{:name => "search", :type => "text"}/
-    %button.g-popup__search-submit{:type => "submit"}
+  =form_for(:main_search, url: search_path, method: :get, html: {class: 'g-popup__content g-popup__content_search'}) do |f|
+    =f.text_field :query, class: 'g-popup__search-input'
+    =button_tag '', type: 'submit', class: 'g-popup__search-submit'
+  
 #subscribe-popup.g-popup
   .g-popup__content.g-popup__content_small
     %a.g-popup__close.js-close-popup
