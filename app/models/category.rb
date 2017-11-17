@@ -27,11 +27,21 @@ class Category < ApplicationRecord
 
   def parent_manufacturers
     return nil if self.parent_id != nil
+    trademarks = Array.new
     manufacturers = Array.new
     
-    Category.find(self.id).sub_categories.includes(:manufacturers).map { |subcategory| manufacturers << subcategory.manufacturers.top_level.to_a  }
+    Category.find(self.id).sub_categories.includes(:manufacturers).map { |subcategory| trademarks << subcategory.manufacturers.to_a  }
 
-    return manufacturers.flatten.uniq
+    # return manufacturers.flatten.uniq
+    # Тут у нас в массиве только торговые марки. Ищем их производителей
+    puts "Inspecting trademarks: #{trademarks.inspect}"
+    trademarks.flatten.uniq.each do |trademark|
+      manufacturers << trademark.parent
+    end
+
+    puts "Inspecting manufacturers: #{manufacturers.inspect}"
+
+    return manufacturers.compact.uniq
   end
 
   def parent_labels

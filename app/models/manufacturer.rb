@@ -92,7 +92,9 @@ class Manufacturer < ApplicationRecord
   end
 
   def parent
-    Manufacturer.find(self.parent_id)
+    if self.parent_id
+      Manufacturer.find(self.parent_id)
+    end
   end
 
   def self.by_filter(category = nil, subcategory = nil, manufacturer = nil, sign = nil)
