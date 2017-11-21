@@ -39,5 +39,5 @@
             .g-blog__more=markdown(post.body, 200)
             %p.g-blog__date=published_date(post)
     .g-blog-read
-      %a.g-btn.g-btn_gray.g-mobile{:href => "#"} загрузить еще
+      / %a.g-btn.g-btn_gray.g-mobile{:href => "#"} загрузить еще
       =link_to "все новости", posts_path, class: "g-btn g-btn_gray"
