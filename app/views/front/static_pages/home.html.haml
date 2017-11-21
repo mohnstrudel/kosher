@@ -1,29 +1,29 @@
 %section.g-section.g-slider
-  #main-slider
-    .g-slider__item{:style => "background-image: url(#{image_url('static/slider/slide_1.jpg')})"}
-      .g-slider__item-wrapper
-        .g-wrapper.g-slider__content
-          %h2.g-slider__title
-            Кошер
-            %br.g-mobile Сертификация-КР
-          %p.g-slider__text Система добровольной сертификации продуктов питания
-          %a.g-btn.g-btn_yelow.g-slider__btn{href: about_path} Что это такое?
-    .g-slider__item{:style => "background-image: url(#{image_url('static/slider/slide_1.jpg')})"}
-      .g-slider__item-wrapper
-        .g-wrapper.g-slider__content
-          %h2.g-slider__title
-            Кошер
-            %br.g-mobile Сертификация-КР
-          %p.g-slider__text Система добровольной сертификации продуктов питания
-          %a.g-btn.g-btn_yelow.g-slider__btn{href: about_path} Что это такое?
-    .g-slider__item{:style => "background-image: url(#{image_url('static/slider/slide_1.jpg')})"}
-      .g-slider__item-wrapper
-        .g-wrapper.g-slider__content
-          %h2.g-slider__title
-            Кошер
-            %br.g-mobile Сертификация-КР
-          %p.g-slider__text Система добровольной сертификации продуктов питания
-          %a.g-btn.g-btn_yelow.g-slider__btn{href: about_path} Что это такое?
+  / #main-slider
+  .g-slider__item{:style => "background-image: url(#{image_url('static/slider/slide_1.jpg')})"}
+    .g-slider__item-wrapper
+      .g-wrapper.g-slider__content
+        %h2.g-slider__title
+          Кошер
+          %br.g-mobile Сертификация-КР
+        %p.g-slider__text Система добровольной сертификации продуктов питания
+        %a.g-btn.g-btn_yelow.g-slider__btn{href: about_path} Что это такое?
+    / .g-slider__item{:style => "background-image: url(#{image_url('static/slider/slide_1.jpg')})"}
+    /   .g-slider__item-wrapper
+    /     .g-wrapper.g-slider__content
+    /       %h2.g-slider__title
+    /         Кошер
+    /         %br.g-mobile Сертификация-КР
+    /       %p.g-slider__text Система добровольной сертификации продуктов питания
+    /       %a.g-btn.g-btn_yelow.g-slider__btn{href: about_path} Что это такое?
+    / .g-slider__item{:style => "background-image: url(#{image_url('static/slider/slide_1.jpg')})"}
+    /   .g-slider__item-wrapper
+    /     .g-wrapper.g-slider__content
+    /       %h2.g-slider__title
+    /         Кошер
+    /         %br.g-mobile Сертификация-КР
+    /       %p.g-slider__text Система добровольной сертификации продуктов питания
+    /       %a.g-btn.g-btn_yelow.g-slider__btn{href: about_path} Что это такое?
 
 %section.g-section.g-section_news
   .g-wrapper
@@ -32,11 +32,11 @@
       Новости
     .g-blog
       -@posts.each do |post|
-        =link_to post_path(post) do
-          .g-blog__item
+        .g-blog__item
+          =link_to post_path(post), class: 'no-styling' do
             =image_tag post.logo, class: 'g-blog__img'
             %h3.g-blog__title=post.title
-            .g-blog__more=truncate(markdown(post.body), length: 200)
+            .g-blog__more=markdown(post.body, 200)
             %p.g-blog__date=published_date(post)
     .g-blog-read
       %a.g-btn.g-btn_gray.g-mobile{:href => "#"} загрузить еще

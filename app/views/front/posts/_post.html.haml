@@ -4,6 +4,6 @@
     / =logo_tag_or_default(post, thumb: "news_thumb", class: "g-news__img")
   .g-news__text-block
     %h2.g-news__title=post.title
-    .g-news__meta=markdown(post.body)
+    .g-news__meta=markdown(post.body, 230)
     %p.g-news__date=published_date(post)
     =link_to "Подробнее", post_path(post), class: "g-btn g-btn_gray"

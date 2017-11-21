@@ -19,6 +19,7 @@
               %li
                 %a.g-tm-products__item{:href => supplier_product_path(@supplier, product)}
                   =product.title
+                  =image_tag 'icons/disclosure_arrow.svg', style: 'width: 0.8rem; height: 0.8rem;'
           / %a.g-btn.g-btn_blue.g-btn_gray.g-tm-products__button{"data-lightbox" => "tm_products", "data-title" => "Галерея товаров от #{@supplier.title}", :href => @supplier.products.first.logo.try(:url)} Смотреть галерею
           / .g-tm-products__gallery
           /   -@supplier.products.each do |product|

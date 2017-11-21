@@ -2,7 +2,7 @@ module Front::MarkdownHelper
 
   require 'redcarpet/render_strip'
 
-  def markdown(text)
+  def markdown(text, length = nil)
     return "" if text.nil?
     options = {
       filter_html:     true,
@@ -17,6 +17,15 @@ module Front::MarkdownHelper
       superscript:        true,
       disable_indented_code_blocks: true
     }
+
+    if length.present?
+      text = text[0,length]
+      if text.last == " "
+        text << "..."
+      else
+        text << " ..."
+      end
+    end
 
     # renderer = Redcarpet::Render::StripDown
     renderer = Redcarpet::Render::HTML.new(options)
