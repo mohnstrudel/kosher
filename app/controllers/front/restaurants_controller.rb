@@ -8,7 +8,8 @@ class Front::RestaurantsController < FrontController
     if post_amount%page_size != 0
       @pages_total += 1
     end
-    @cities = City.all
+    # @cities = City.active_restaurants
+    @cities = City.joins(:restaurants).uniq
     begin  
       @restaurants = Restaurant.all.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)
       # @restaurants = City.includes(:restaurants).find(params[:city_id]).restaurants.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)

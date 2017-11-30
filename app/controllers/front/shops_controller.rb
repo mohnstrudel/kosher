@@ -9,7 +9,8 @@ class Front::ShopsController < FrontController
       @pages_total += 1
     end
 
-    @cities = City.all
+    # @cities = City.all
+    @cities = City.joins(:shops).uniq
     begin
       @shops = Shop.all.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)
       # @shops = City.includes(:shops).find(params[:city_id]).shops.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)

@@ -5,6 +5,8 @@ class City < ApplicationRecord
   has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo, allow_destroy: true
 
+  # scope :active_restaurants, lambda { where(self.restaurants.exists?) }
+
   extend FriendlyId
   friendly_id :name, use: [:finders, :slugged]
 
@@ -13,6 +15,7 @@ class City < ApplicationRecord
 
 	validates :front_image, presence: true
 	validates :back_image, presence: true
+
 
   def seo_title
     self.seo.try(:title)
