@@ -103,6 +103,7 @@ en:
           tab_title: This values will override the standard values of given object. I.e. field 'description' on this tab will override field 'description' from first tab.
           keywords: Hit either comma or enter after you finished one keyword to proceed with the next.
         active: Only active entries will be displayed. This option is on by default.
+        sortable: The lesser the number, the more left and top the item will be displayed. I.e. number 1 will mean the item will always be on top on the page.
       model:
         title: "Title (*)"
         body: "Text body"
@@ -150,6 +151,7 @@ en:
           image: SEO Image
           keywords: SEO Keywords
         active: Is this entry active?
+        sortable: Sorting
       tab_translation: "Other languages"
       actions:
         main: "Actions"

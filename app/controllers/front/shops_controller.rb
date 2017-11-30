@@ -12,10 +12,10 @@ class Front::ShopsController < FrontController
     # @cities = City.all
     @cities = City.joins(:shops).uniq
     begin
-      @shops = Shop.all.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)
+      @shops = Shop.all.order(sortable: :desc).paginate(page: params[:page], per_page: page_size)
       # @shops = City.includes(:shops).find(params[:city_id]).shops.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)
     rescue RangeError => e
-      @shops = Shop.all.order(created_at: :desc).paginate(page: 1, per_page: page_size)
+      @shops = Shop.all.order(sortable: :desc).paginate(page: 1, per_page: page_size)
       # @shops = City.includes(:shops).find(params[:city_id]).shops.order(created_at: :desc).paginate(page: 1, per_page: page_size)
       logger.debug "Error occured on shops_controller. Error message: #{e.message}"
     end

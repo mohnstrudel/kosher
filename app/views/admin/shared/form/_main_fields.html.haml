@@ -76,6 +76,16 @@
         .col-sm-10
           =f.text_field :slug, class: 'form-control'
       .hr-line-dashed
+
+    -if object.respond_to?(:sortable)
+      .form-group
+        %label.col-sm-2.control-label
+          =t('admin.form.model.sortable')
+        .col-sm-10
+          =f.number_field :sortable, class: 'form-control'
+          %span.help-block.m-b-none=t('admin.form.hints.sortable')
+      .hr-line-dashed
+
     -if object.respond_to?(:page_category_id)
       .form-group
         %label.col-lg-2.control-label

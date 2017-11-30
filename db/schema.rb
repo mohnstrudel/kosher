@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110160552) do
+ActiveRecord::Schema.define(version: 20171130180721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -341,6 +341,7 @@ ActiveRecord::Schema.define(version: 20171110160552) do
     t.datetime "updated_at", null: false
     t.integer "city_id"
     t.string "slug"
+    t.integer "sortable"
     t.index ["city_id"], name: "index_restaurants_on_city_id"
     t.index ["slug"], name: "index_restaurants_on_slug", unique: true
   end
@@ -380,6 +381,7 @@ ActiveRecord::Schema.define(version: 20171110160552) do
     t.text "address"
     t.integer "city_id"
     t.string "slug"
+    t.integer "sortable"
     t.index ["city_id"], name: "index_shops_on_city_id"
     t.index ["slug"], name: "index_shops_on_slug", unique: true
   end

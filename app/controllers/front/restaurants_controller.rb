@@ -11,10 +11,10 @@ class Front::RestaurantsController < FrontController
     # @cities = City.active_restaurants
     @cities = City.joins(:restaurants).uniq
     begin  
-      @restaurants = Restaurant.all.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)
+      @restaurants = Restaurant.all.order(sortable: :desc).paginate(page: params[:page], per_page: page_size)
       # @restaurants = City.includes(:restaurants).find(params[:city_id]).restaurants.order(created_at: :desc).paginate(page: params[:page], per_page: page_size)
     rescue RangeError => e
-      @restaurants = Restaurant.all.order(created_at: :desc).paginate(page: 1, per_page: page_size)
+      @restaurants = Restaurant.all.order(sortable: :desc).paginate(page: 1, per_page: page_size)
       logger.debug "Error occured on restaurants_controller. Error message: #{e.message}"
     end
   end
