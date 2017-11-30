@@ -28,8 +28,25 @@ class Front::SuppliersController < FrontController
       end
     end
 
-    @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_ids).uniq.compact
-    logger.debug("Calling filter with params: category - #{@category_id}, subcategory - #{subcategory_id} and manufacturer - #{manufacturer_id}")
+    empty_params = true
+    case 
+    when params[:category].present?
+      empty_params = false
+    when params[:subcategory].present?
+      empty_params = false
+    when params[:manufacturer].present?
+      empty_params = false
+    when params[:label_ids].present?
+      empty_params = false
+    end
+
+    if empty_params
+      @suppliers = Manufacturer.top_level.active
+    else
+      @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_ids).uniq.compact
+      logger.debug("Calling filter with params: category - #{@category_id}, subcategory - #{subcategory_id} and manufacturer - #{manufacturer_id}")
+    end
+    
     # populate filter items
     params_array.each do |pa|
       if pa.present?

@@ -13,13 +13,23 @@
         .g-tm__desc
           =markdown(@supplier.description)
         .g-tm__products
-          %h2.g-tm__products-title Продукция:
-          %ul.g-tm__products-list.g-tm-products
-            -@supplier.products.each do |product|
-              %li
-                %a.g-tm-products__item{:href => supplier_product_path(@supplier, product)}
-                  =product.title
-                  =image_tag 'icons/disclosure_arrow.svg', style: 'width: 0.8rem; height: 0.8rem;'
+          -if @supplier.parent_id.present?
+            %h2.g-tm__products-title Продукция:
+            %ul.g-tm__products-list.g-tm-products
+              -@supplier.products.each do |product|
+                %li
+                  %a.g-tm-products__item{:href => supplier_product_path(@supplier, product)}
+                    =product.title
+                    =image_tag 'icons/disclosure_arrow.svg', style: 'width: 0.8rem; height: 0.8rem;'
+          -else
+            %h2.g-tm__products-title Торговые марки:
+            %ul.g-tm__products-list.g-tm-products
+              -@supplier.trademarks.each do |trademark|
+                %li
+                  %a.g-tm-products__item{:href => supplier_path(trademark)}
+                    =trademark.title
+                    =image_tag 'icons/disclosure_arrow.svg', style: 'width: 0.8rem; height: 0.8rem;'
+
           / %a.g-btn.g-btn_blue.g-btn_gray.g-tm-products__button{"data-lightbox" => "tm_products", "data-title" => "Галерея товаров от #{@supplier.title}", :href => @supplier.products.first.logo.try(:url)} Смотреть галерею
           / .g-tm-products__gallery
           /   -@supplier.products.each do |product|
