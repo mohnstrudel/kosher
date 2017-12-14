@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	if($("body").hasClass('suppliers')){
 			$("#filter-toggle").on("click", function(e){
+					console.log('filter toggle clicked!');
 					e.preventDefault();
 					var $filters = $("#filters"),
 							$wrapper = $("#products-wrapper");

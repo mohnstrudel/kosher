@@ -101,6 +101,7 @@ class Manufacturer < ApplicationRecord
 
     subcategory = nil if subcategory == 'any'
     category = nil if category == 'any'
+    manufacturer = nil if manufacturer == 'any'
     if category && subcategory
       category = subcategory
     elsif !category && subcategory
@@ -111,7 +112,7 @@ class Manufacturer < ApplicationRecord
       return all
     end
 
-    return Manufacturer.find(manufacturer).trademarks if !category && !subcategory && manufacturer.present? && !sign
+    return Manufacturer.find(manufacturer).trademarks if !category && !subcategory && !manufacturer && !sign
     
     if category.present?
       category = Category.return_collection(category)
