@@ -15,6 +15,8 @@ class Label < ApplicationRecord
   # scope :subs, lambda { where("parent_id NOT NULL").include :products }
   scope :subs, lambda { where("parent_id IS NOT NULL") }
 
+  scope :active, lambda { where(active: true) }
+
   validates :title, presence: true
 
   mount_uploader :logo, LogoUploader

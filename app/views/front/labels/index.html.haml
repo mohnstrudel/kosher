@@ -1,11 +1,19 @@
-%section.g-section
-  .g-wrapper
-    %h2.g-title.g-title_big
-      Знаки кошерности
-    %ul.g-signs
-      -@labels.each do |label|
-        %li.g-signs__item
-          .g-signs__img-wrapper
-            %img.g-signs__img{:src => asset_path(label.logo)}
-          %p.g-signs__text
-            =label.title
+-if @labels.any?
+  %section.g-section
+    .g-wrapper
+      %h2.g-title.g-title_big
+        Знаки кошерности
+      %ul.g-signs
+        -@labels.each do |label|
+          %li.g-signs__item
+            .g-signs__img-wrapper
+              %img.g-signs__img{:src => asset_path(label.logo)}
+            %p.g-signs__text
+              =label.title
+-else
+  %section.g-section.g-empty
+    .g-wrapper
+      %h2.g-title.g-title_big
+        ="Знаки кошерности"
+      =image_tag 'icons/shop.svg', class: "g-empty__icon"
+      %h2.g-empty__text="Аткивные знаки отсутствуют"
