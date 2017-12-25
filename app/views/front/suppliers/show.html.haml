@@ -16,7 +16,7 @@
           -if @supplier.parent_id.present?
             %h2.g-tm__products-title Продукция:
             %ul.g-tm__products-list.g-tm-products
-              -@supplier.products.each do |product|
+              -@supplier.products.by_alphabet.each do |product|
                 %li
                   %a.g-tm-products__item{:href => supplier_product_path(@supplier, product)}
                     =product.title

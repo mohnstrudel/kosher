@@ -28,6 +28,8 @@ class Product < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
+  scope :by_alphabet, -> { order(title: :desc) }
+
   def slug_candidates
     [
       :title,
