@@ -41,7 +41,7 @@ class Admin::Settings::CitiesController < AdminController
   end
 
   def city_params
-    params.require(:city).permit(:front_image, :back_image, :name, seo_attributes: [:id, :title, :description, :image, keywords: [] ])
+    params.require(:city).permit(:front_image, :sortable, :back_image, :name, seo_attributes: [:id, :title, :description, :image, keywords: [] ])
   end
 
 end
