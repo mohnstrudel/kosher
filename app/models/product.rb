@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  require "ffi-icu"
+
   belongs_to :category
   belongs_to :label
   belongs_to :manufacturer
@@ -28,7 +30,15 @@ class Product < ApplicationRecord
 
   scope :active, -> { where(active: true) }
 
-  scope :by_alphabet, -> { order(title: :desc) }
+  
+  # scope :by_alphabet, -> (argument) {  }
+
+  def self.sort_by_alphabet(array)
+    collator = ICU::Collation::Collator.new("ru")
+    # ary = array.pluck(i:title)
+    array.sort { |a, b| collator.compare(a.title, b.title) }
+  end
+
 
   def slug_candidates
     [

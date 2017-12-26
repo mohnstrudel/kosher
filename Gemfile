@@ -104,6 +104,9 @@ gem 'redcarpet'
 # For searching
 gem 'pg_search'
 
+# For sorting cyrillic
+gem 'ffi-icu'
+
 group :benchmark do
   gem 'rails-perftest'
   gem 'ruby-prof'

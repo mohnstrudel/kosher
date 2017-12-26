@@ -15,6 +15,8 @@ class Manufacturer < ApplicationRecord
   scope :subs, lambda { where("parent_id IS NOT NULL") }
   scope :active, -> { where(active: true) }
 
+
+
   validates :title, presence: true
 
   has_many :categories, through: :products
@@ -33,7 +35,6 @@ class Manufacturer < ApplicationRecord
   include PgSearch
   multisearchable :against => [:title, :description]
 
-  
   def slug_candidates
     [
       :name,
