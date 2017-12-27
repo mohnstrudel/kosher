@@ -217,7 +217,7 @@ $(document).ready(function(){
 				// Tell jQuery you're doing JSON-P
 	      dataType: "json",
 	      // The source URL
-	      url: "http://api.kosher.yadadya.net/v1/filters/categories",
+	      url: "https://api.kosher.yadadya.net/v1/filters/categories",
 
 	      
 	      method: 'GET',
