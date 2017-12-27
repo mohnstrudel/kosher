@@ -18,8 +18,12 @@
     .g-header__row.g-header__row_center
       .g-wrapper
         .g-header__logo-block.g-mobile-hide
-          =link_to root_path, class: 'g-logo' do
-            =image_tag 'logo/logo.svg', class: 'g-logo__img'
+          -if current_page?(root_path)
+            .g-logo
+              =image_tag 'logo/logo.svg', class: 'g-logo__img'
+          -else
+            =link_to root_path, class: 'g-logo' do
+              =image_tag 'logo/logo.svg', class: 'g-logo__img'
         .g-header__description.g-mobile-hide
           %span.g-header__description-text
             Департамент кашрута
