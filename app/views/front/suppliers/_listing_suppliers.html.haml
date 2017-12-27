@@ -12,6 +12,15 @@
           %h2.g-products-wrapper__title=link_to supplier.title, supplier_path(supplier), style: 'text-decoration: none; color: inherit;'
           .g-products-wrapper__description
             =markdown(supplier.description)
+          -if session[:filter_category].present? && session[:filter_category] != 'any'
+            .g-tm__supplier_products
+              %h2.g-tm__products-title Продукция:
+              %ul.g-tm__products-list.g-tm-products
+                -supplier.products.filtered_by_category(session[:filter_category]).each do |product|
+                  %li
+                    %a.g-tm-products__item{:href => supplier_product_path(supplier, product)}
+                      =product.title
+                      =image_tag 'icons/disclosure_arrow.svg', style: 'width: 0.8rem; height: 0.8rem;'
           / =link_to 'Подробнее', category_supplier_path(params[:category_id], supplier), class: 'g-btn g-btn_gray'
           =link_to 'Подробнее', supplier_path(supplier), class: 'g-btn g-btn_gray'
 -else

@@ -44,7 +44,12 @@ class Front::SuppliersController < FrontController
       @suppliers = Manufacturer.top_level.active
     else
       @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_ids).uniq.compact
+      # Сохраняем выбор пользователя из фильтра в сессию, что бы
+      # на странице торговой марки показывать только те товары, которые выбрал пользователь
+      # в фильтре категорий
+      session[:filter_category] = subcategory_id
       logger.debug("Calling filter with params: category - #{@category_id}, subcategory - #{subcategory_id} and manufacturer - #{manufacturer_id}")
+      logger.debug("Storing category in session variable: #{session[:filter_category]}")
     end
     
     # populate filter items

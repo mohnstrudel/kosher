@@ -31,7 +31,15 @@ class Product < ApplicationRecord
   scope :active, -> { where(active: true) }
 
   
-  # scope :by_alphabet, -> (argument) {  }
+  def self.filtered_by_category(session_category)
+    category = session_category
+    query = where(category_id: category)
+    if query.any?
+      return query
+    else
+      return all
+    end
+  end
 
   def self.sort_by_alphabet(array)
     collator = ICU::Collation::Collator.new("ru")
