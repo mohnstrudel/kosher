@@ -1,6 +1,6 @@
--meta og: {title: "", image: "", description: "", keywords: ""}
--meta keywords: ""
--meta description: ""
+/ -meta og: {title: "Новости", description: ""}
+/ -meta keywords: ""
+/ -meta description: ""
 
 -if @posts.present?
   %section.g-section
@@ -8,7 +8,7 @@
       %h2.g-title.g-title_big
         Новости
       %ul.g-news#posts
-        =render @posts
+        =render @posts, cached: true
         
       
       =render partial: 'front/navigation/pager', locals: {path: "posts_path", page: @page, class: "g-pagination_posts"}

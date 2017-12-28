@@ -3,9 +3,9 @@
   %head
     -unless Rails.env.test? 
       -if current_page?(root_path)
-        = metamagic site: @settings.title, title: [:site, :title, get_meta_from_breadcrumbs(@breadcrumbs).join(" — ")], separator: "", description: [:description, @settings.description], keywords: [:keywords, "kosher", "кошерная еда", "кашрут"], og: {image: "#{request.protocol}#{request.host_with_port}#{@settings.logo}", title: @settings.title, description: @settings.description, url: "#{request.protocol}#{request.host_with_port}", type: "website"}
+        = metamagic site: @settings.title, title: [:site, :title, get_meta_from_breadcrumbs(@breadcrumbs).join(" — ")], separator: "", description: [:description, @settings.description], keywords: [:keywords, "kosher", "кошерная еда", "кашрут"], og: {image: "#{request.protocol}#{request.host_with_port}"+asset_path('static/kosher.png'), title: @settings.title, description: @settings.description, url: "#{request.protocol}#{request.host_with_port}", type: "website", locale: 'ru_RU', site_name: 'kosher.ru'}
       -else
-        = metamagic site: @settings.title, title: [:site, :title, get_meta_from_breadcrumbs(@breadcrumbs).join(" — ")], separator: " — ", description: [:description, @settings.description], keywords: [:keywords, "kosher", "кошерная еда", "кашрут"], og: {image: "#{request.protocol}#{request.host_with_port}#{@settings.logo}", title: @settings.title, description: @settings.description, url: "#{request.protocol}#{request.host_with_port}", type: "website"}
+        = metamagic site: @settings.title, title: [get_meta_from_breadcrumbs(@breadcrumbs).join(" — "), :title, :site], separator: " — ", description: [:description, @settings.description], keywords: [:keywords, "kosher", "кошерная еда", "кашрут"], og: {title: @settings.title, description: [:description, @settings.description], url: "#{request.protocol}#{request.host_with_port}", type: "website", image: "#{request.protocol}#{request.host_with_port}"+asset_path('static/kosher.png'), locale: 'ru_RU', site_name: 'kosher.ru'}
     = csrf_meta_tags
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/

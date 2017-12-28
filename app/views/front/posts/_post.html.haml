@@ -1,6 +1,6 @@
 %li.g-news__item
   .g-news__img-wrapper
-    =image_tag post.logo, class: "g-news__img"
+    =image_tag post.logo.news_thumb, class: "g-news__img"
     / =logo_tag_or_default(post, thumb: "news_thumb", class: "g-news__img")
   .g-news__text-block
     %h2.g-news__title=post.title

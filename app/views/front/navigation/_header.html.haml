@@ -13,8 +13,8 @@
         =form_for(:main_search, url: search_path, method: :get, html: {class: 'g-header-search g-mobile-hide'}) do |f|
           =f.text_field :query, class: 'g-header-search__input', placeholder: "Введите фразу для поиска и нажмите клавишу «Enter»"
         %nav.g-menu.g-menu_lower.g-mobile-hide
-          %a.g-menu__item{:href => "#"} rus
-          %a.g-menu__item{:href => "#"} eng
+          %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} rus
+          %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} eng
     .g-header__row.g-header__row_center
       .g-wrapper
         .g-header__logo-block.g-mobile-hide

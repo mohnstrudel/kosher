@@ -25,7 +25,7 @@
     /       %p.g-slider__text Система добровольной сертификации продуктов питания
     /       %a.g-btn.g-btn_yelow.g-slider__btn{href: about_path} Что это такое?
 
-%section.g-section.g-section_news
+%section.g-section.g-section_news.g-section_news_mobile
   .g-wrapper
     =link_to "все новости", posts_path, class: "g-btn g-btn_gray g-news-top-btn"
     %h2.g-title
@@ -34,7 +34,7 @@
       -@posts.each do |post|
         .g-blog__item
           =link_to post_path(post), class: 'no-styling' do
-            =image_tag post.logo, class: 'g-blog__img'
+            =image_tag post.logo.news_thumb, class: 'g-blog__img'
             %h3.g-blog__title=post.title
             .g-blog__more=markdown(post.body, 200)
             %p.g-blog__date=published_date(post)

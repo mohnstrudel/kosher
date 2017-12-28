@@ -14,3 +14,11 @@
   background-color: transparent;
   color: #ffe47b;
 }
+
+.text-cursor:hover {
+  cursor: text;
+}
+
+.not-allowed-cursor:hover {
+  cursor: not-allowed;
+}

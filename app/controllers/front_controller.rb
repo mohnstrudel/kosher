@@ -15,6 +15,7 @@ class FrontController < ApplicationController
   def load_settings
     @settings = GeneralSetting.first
     @breadcrumbs = get_breadcrumbs
+    logger.debug "Settings were loaded. Settings are: #{@settings.inspect}"
   end
 
   def force_blank_request_format_to_html
