@@ -22,3 +22,27 @@
 .not-allowed-cursor:hover {
   cursor: not-allowed;
 }
+
+#viewport {
+    position: relative;
+}
+
+#viewport a {
+  display: inline-block;
+}
+
+#viewport img {
+    display: block;
+}
+
+#viewport i,
+#viewport span {
+    display:table-cell;
+    vertical-align:middle;
+}
+
+/* Using padding to add gutter
+between the image and the text*/
+#viewport span {
+    padding-left: 15px;
+}
