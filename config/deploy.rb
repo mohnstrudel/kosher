@@ -109,19 +109,14 @@ namespace :deploy do
     end
   end
 
-  desc "Refresh sitemap and ping search engines"
-  task :refresh_sitemap do
-    on roles(:app) do
-      sitemap:refresh
-    end
-  end
+
 
   before :starting,     :check_revision
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
   after  :finishing,    :update_cron
-  after  :finishing,    :refresh_sitemap
+  # after  :finishing,    :refresh_sitemap
 end
 
 # ps aux | grep puma    # Get puma pid
