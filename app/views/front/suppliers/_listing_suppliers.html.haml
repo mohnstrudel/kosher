@@ -12,7 +12,7 @@
           %h2.g-products-wrapper__title=link_to supplier.title, supplier_path(supplier), style: 'text-decoration: none; color: inherit;'
           .g-products-wrapper__description
             =markdown(supplier.description)
-          -if session[:filter_category].present? && session[:filter_category] != 'any'
+          -if session[:filter_category].present? && session[:filter_category] != 'any' && !browser.device.mobile?
             .g-tm__supplier_products
               %h2.g-tm__products-title Продукция:
               %ul.g-tm__products-list.g-tm-products
