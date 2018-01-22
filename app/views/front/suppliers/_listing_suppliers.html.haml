@@ -1,7 +1,7 @@
 -if @suppliers.present?
   %ul.g-products-wrapper
     -@suppliers.each do |supplier|
-      %li.g-products-wrapper__item
+      %li.g-products-wrapper__item{ class: "#{'g-products-wrapper__border' if @subcategory_present}"}
         .g-products-wrapper__left
           =link_to supplier_path(supplier) do
             -if supplier.logo.present?

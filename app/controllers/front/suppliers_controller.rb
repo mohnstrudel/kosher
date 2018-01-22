@@ -59,6 +59,8 @@ class Front::SuppliersController < FrontController
       end
     end
 
+    @subcategory_present = session[:filter_category].present? && session[:filter_category] != 'any' 
+
   end
 
   def show
