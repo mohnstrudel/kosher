@@ -11,6 +11,6 @@ class RequestMailer < ApplicationMailer
       @subject = 'Заполнена форма обратной связи.'
     end
 
-    mail to: "a.kostin.09@gmail.com", subject: @subject
+    mail to: GeneralSetting.first.email, subject: @subject
   end
 end
