@@ -86,7 +86,7 @@
                   -if object.has_attribute? :category_id
                     %th
                       =t('admin.form.model.category')
-                  -if object.has_attribute? :manufacturer_id
+                  -if object.has_attribute? :manufacturer_id && object.model_name.name != 'Post'
                     %th
                       =t('admin.form.model.manufacturer')
                   -if object.has_attribute? :question
@@ -137,7 +137,7 @@
                     -if obj.respond_to?(:category_id)
                       %td
                         =obj.category.try(:title)
-                    -if obj.respond_to?(:manufacturer_id)
+                    -if obj.respond_to?(:manufacturer) && obj.model_name.name != 'Post'
                       %td
                         =obj.manufacturer.try(:title)
                     -if obj.respond_to?(:question)

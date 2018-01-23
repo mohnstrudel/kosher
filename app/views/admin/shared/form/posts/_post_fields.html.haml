@@ -10,3 +10,11 @@
           =f.text_field :published_at, class: 'form-control'    
       %span.help-block.m-b-none=t('admin.form.hints.published_at')
   .hr-line-dashed
+
+-if object.respond_to?(:manufacturer_id) && object.model_name.name == 'Post'
+  .form-group
+    %label.col-lg-2.control-label
+      =t('admin.form.model.manufacturer_only')
+    .col-lg-10
+      =f.collection_select :manufacturer_id, Manufacturer.all, :id, :title, { include_blank: t('admin.form.actions.choose_manufacturer') }, { class: 'form-control select2_manufacturers'}
+  .hr-line-dashed

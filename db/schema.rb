@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226220316) do
+ActiveRecord::Schema.define(version: 20180123153019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -256,6 +256,8 @@ ActiveRecord::Schema.define(version: 20171226220316) do
     t.string "logo"
     t.datetime "published_at"
     t.boolean "active"
+    t.bigint "manufacturer_id"
+    t.index ["manufacturer_id"], name: "index_posts_on_manufacturer_id"
     t.index ["post_category_id"], name: "index_posts_on_post_category_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
   end
@@ -423,6 +425,7 @@ ActiveRecord::Schema.define(version: 20171226220316) do
   add_foreign_key "phones", "general_settings"
   add_foreign_key "phones", "restaurants"
   add_foreign_key "phones", "shops"
+  add_foreign_key "posts", "manufacturers"
   add_foreign_key "posts", "post_categories"
   add_foreign_key "product_barcodes", "barcodes"
   add_foreign_key "product_barcodes", "products"

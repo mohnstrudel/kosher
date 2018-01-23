@@ -6,7 +6,7 @@
       =f.grouped_collection_select :category_id, Category.top_level, :sub_categories, :title, :id, :title, { include_blank: t('admin.form.actions.choose_category') }, class: 'form-control select2_categories'
   .hr-line-dashed
 
--if object.respond_to?(:manufacturer_id)
+-if object.respond_to?(:manufacturer_id) && object.model_name.name != 'Post'
   .form-group
     %label.col-lg-2.control-label
       =t('admin.form.model.manufacturer_id')

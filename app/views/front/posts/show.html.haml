@@ -12,3 +12,5 @@
       .g-tm__right
         .g-tm__desc
           =markdown(@post.body)
+          -if @post.manufacturer_id.present?
+            ="Подробная информация представлена на странице компании #{link_to @manufacturer.title, supplier_path(@manufacturer.slug)}.".html_safe

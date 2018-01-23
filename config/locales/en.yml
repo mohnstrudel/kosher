@@ -130,6 +130,7 @@ en:
         parent_id: "Choose parent entity"
         category_id: "Choose sub/category (*)"
         manufacturer_id: "Manufacturer/TM (*)"
+        manufacturer_only: Manufacturer
         label_id: "Kosher label (*)"
         question: "Question"
         answer: "Answer"
