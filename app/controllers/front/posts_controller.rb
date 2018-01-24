@@ -4,7 +4,9 @@ class Front::PostsController < FrontController
 
   def show
     @post = Post.friendly.find(params[:id])
-    @manufacturer = Manufacturer.find(@post.manufacturer_id)
+    if @post.manufacturer_id.present?
+      @manufacturer = Manufacturer.find(@post.manufacturer_id)
+    end
   end
 
   def index
