@@ -9,7 +9,7 @@ class CategoryDetailedSerializer < ActiveModel::Serializer
         attributes: {
           title: subcategory.title,
           description: subcategory.description,
-          logo: subcategory.logo.path
+          logo: subcategory.logo
         }
         
       }
