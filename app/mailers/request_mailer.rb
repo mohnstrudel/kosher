@@ -1,5 +1,5 @@
 class RequestMailer < ApplicationMailer
-  default from: 'Оповещения kosher.ru <info@yadadya.com>'
+  default from: 'Оповещения kosher.ru <form@kosher.ru>'
 
   layout 'mailer'
 

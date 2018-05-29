@@ -71,9 +71,9 @@ Rails.application.configure do
     user_name: Figaro.env.mailer_user,
     password: Figaro.env.mailer_password,
     domain: Figaro.env.hostname,
-    address: 'smtp.mandrillapp.com"',
+    address: Figaro.env.mailer_address,
     port: 587,
     authentication: :plain,
-    tls: true
+    enable_starttls_auto: true
   }
 end

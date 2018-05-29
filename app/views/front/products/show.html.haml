@@ -8,7 +8,7 @@
       =@product.title
     .g-product-desc
       .g-product-pic
-        =image_tag @product.logo, class: 'g-product-pic__img'
+        =image_tag_or_default @product, 'logo', class: 'g-product-pic__img'
       %ul.g-product-list
         -if @product.manufacturer.parent_id.present?
           %li.g-product-list__item
@@ -16,7 +16,7 @@
             %p.g-product-list__text#viewport
               %a
                 %i
-                  =image_tag @product.manufacturer.parent.logo, class: 'g-product-list__icon'
+                  =image_tag_or_default @product.manufacturer.parent, 'logo', class: 'g-product-list__icon'
                 %span
                   =link_to @product.manufacturer.parent.title, suppliers_path(category: @product.category.parent_id, manufacturer: @product.manufacturer.parent.id) , style: 'text-decoration: none; color: #00b2b2; vertical-align: -webkit-baseline-middle;'
           %li.g-product-list__item
@@ -24,7 +24,7 @@
             %p.g-product-list__text#viewport
               %a
                 %i
-                  =image_tag @product.manufacturer.logo, class: 'g-product-list__icon'
+                  =image_tag_or_default @product.manufacturer, 'logo', class: 'g-product-list__icon'
                 %span
                   =link_to @product.manufacturer.title, supplier_path(@product.manufacturer), style: 'text-decoration: none; color: #00b2b2; vertical-align: -webkit-baseline-middle;'
         -else
@@ -33,7 +33,7 @@
             %p.g-product-list__text#viewport
               %a
                 %i
-                  =image_tag @product.manufacturer.logo, class: 'g-product-list__icon'
+                  =image_tag_or_default @product.manufacturer, 'logo', class: 'g-product-list__icon'
                 %span
                   =link_to @product.manufacturer.title, '#', style: 'text-decoration: none; color: #00b2b2; vertical-align: -webkit-baseline-middle;'
         %li.g-product-list__item
@@ -41,7 +41,7 @@
           %p.g-product-list__text#viewport
             %a
               %i
-                =image_tag @product.label.logo, class: 'g-product-list__icon'
+                =image_tag_or_default @product.label, 'logo', class: 'g-product-list__icon'
               %span
                 =link_to @product.label.title, labels_path, style: 'text-decoration: none; color: #00b2b2; vertical-align: -webkit-baseline-middle;'
       .g-product-alert

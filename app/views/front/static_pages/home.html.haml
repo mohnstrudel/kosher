@@ -34,7 +34,10 @@
       -@posts.each do |post|
         .g-blog__item
           =link_to post_path(post), class: 'no-styling' do
-            =image_tag post.logo.news_thumb, class: 'g-blog__img'
+            / -if post.logo.url.present?
+            =image_tag_or_default post, 'logo', version: 'news_thumb', size: '94x94', class: 'g-blog__img'
+            / -else
+            / =placeholdit_image_tag "94x94", text: "Kosher.ru", class: 'g-blog__img'
             %h3.g-blog__title=post.title
             .g-blog__more=markdown(post.body, 200)
             %p.g-blog__date=published_date(post)

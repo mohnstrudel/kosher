@@ -4,10 +4,10 @@
       =@recipe.title
     .g-recipe
       .g-recipe__img-wrapper
-        -if @recipe.logo.present?
-          =image_tag @recipe.logo, class: 'g-recipe__img'
-        -else 
-          =placeholdit_image_tag "256x256", text: "Kosher.ru", class: 'g-recipe__img'
+        / -if @recipe.logo.present?
+        =image_tag_or_default @recipe, 'logo', size: '256x256', class: 'g-recipe__img'
+        / -else 
+        / =placeholdit_image_tag "256x256", text: "Kosher.ru", class: 'g-recipe__img'
       .g-recipe__text-block
         -if @recipe.ingredients.any?
           %h3.g-recipe__title Ингредиенты:

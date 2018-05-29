@@ -8,7 +8,7 @@
     .g-tm
       .g-tm__left
         .g-tm__logo.js-sticky
-          =image_tag @post.logo, class: "g-tm__logo-img"
+          =image_tag_or_default @post, 'logo', class: "g-tm__logo-img"
       .g-tm__right
         .g-tm__desc
           =markdown(@post.body)

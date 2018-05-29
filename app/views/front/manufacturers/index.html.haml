@@ -6,7 +6,7 @@
       -@manufacturers.each do |manuf|
         %li.g-partners-wrapper__item
           .g-partners-wrapper__left
-            =image_tag manuf.logo, class: 'g-partners-wrapper__logo'
+            =image_tag_or_default manuf, 'logo', class: 'g-partners-wrapper__logo'
           .g-partners-wrapper__right
             %h2.g-partners-wrapper__title=manuf.title
             .g-partners-wrapper__description

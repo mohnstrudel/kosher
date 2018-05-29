@@ -8,10 +8,10 @@
           .g-recipes__item
             .g-recipes__content
               %a.g-recipes__img-wrapper{:href => "#{recipe_category_recipe_path(params[:recipe_category_id],recipe)}"}
-                -if recipe.logo.present?
-                  =image_tag recipe.logo, class: 'g-recipes__img'
-                -else 
-                  =placeholdit_image_tag "235x132", text: "Kosher.ru", class: 'g-recipe__img'
+                / -if recipe.logo.present?
+                =image_tag_or_default recipe, 'logo', size: '235x132', class: 'g-recipes__img'
+                / -else 
+                / =placeholdit_image_tag "235x132", text: "Kosher.ru", class: 'g-recipe__img'
               .g-recipes__text
                 %a.g-recipes__name{:href => "#{recipe_category_recipe_path(params[:recipe_category_id],recipe)}"}
                   %h3.g-recipes__name=recipe.title

@@ -7,5 +7,5 @@
         %li.g-product-types__item
           =link_to suppliers_path(category: category.id), class: "g-product-types__link" do
             -if category.logo.present?
-              =image_tag category.logo.url, class: 'g-product-types__img g-product-types__img_big'
+              =image_tag_or_default category, 'logo', class: 'g-product-types__img g-product-types__img_big'
             %span.g-product-types__title=category.title
