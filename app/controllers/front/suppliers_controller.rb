@@ -41,9 +41,11 @@ class Front::SuppliersController < FrontController
     end
 
     if empty_params
-      @suppliers = Manufacturer.top_level.active.order(created_at: :desc)
+      @suppliers = Manufacturer.top_level.active
+      @suppliers.sort_by! {|e| e[:created_at]}
     else
-      @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_ids).uniq.compact.order(created_at: :desc)
+      @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_ids).uniq.compact
+      @suppliers.sort_by! { |i| i[:created_at]}
       # Сохраняем выбор пользователя из фильтра в сессию, что бы
       # на странице торговой марки показывать только те товары, которые выбрал пользователь
       # в фильтре категорий
