@@ -7,7 +7,7 @@ class Front::CitiesController < FrontController
       @type = "магазины"
     elsif params[:restaurant_id].present?
       @city = City.includes(:restaurants).friendly.find(params[:restaurant_id])
-      @objects = @city.restaurants(sortable: :asc)
+      @objects = @city.restaurants.order(sortable: :asc)
       @type = "рестораны"
     end
 
