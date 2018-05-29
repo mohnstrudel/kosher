@@ -37,7 +37,7 @@ gem 'jbuilder'
 # gem 'capistrano-rails', group: :development
 
 # Let's get the errors
-gem 'rollbar', '~> 2.15.5'
+gem 'rollbar', '2.15.5'
 
 # Nifty gem for placeholder images
 gem 'placeholdit'
