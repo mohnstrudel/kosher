@@ -37,7 +37,11 @@ class FrontController < ApplicationController
   def get_breadcrumbs
     breadcrumbs = Array.new
     path = url_for.split("/")
-    path.shift(3)
+    puts 'url splitted at:'
+    puts path.inspect
+    path.shift(4)
+    puts 'shifted path is:'
+    puts path.inspect
     path.each_with_index do |element, index|
       begin
         url = path.first(index+1).join("/")
