@@ -20,6 +20,29 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  static_pages:
+    about:
+      title: About department
+    contacts:
+      title: Contact us
+      department: Kosher department
+      address: Address
+      on_the_map: Find us on the map
+      opening_hours: Opening hours
+      form:
+        name: Your name
+        firm_name: Your company
+        phone: Your phone
+        body: Your message
+        error: Field filled in incorrectly
+        select:
+          general: General question
+          partnership: Partnership
+          commercial: Commercial offer
+          feedback: Feedback 
+        email: Your e-mail
+        theme: Message title
+        submit: Submit
   errors:
     messages:
       mini_magick_processing_error: "%{e}" # <= e contains the exception.

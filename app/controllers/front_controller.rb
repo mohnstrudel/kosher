@@ -2,6 +2,7 @@ class FrontController < ApplicationController
   layout 'front' 
   before_action :load_settings
   before_action :force_blank_request_format_to_html
+  before_action :set_locale
 
   rescue_from ActionView::MissingTemplate do |exception|
     logger.debug "Missing template detected for path:"
@@ -11,6 +12,15 @@ class FrontController < ApplicationController
   end
 
   private
+
+  def set_locale
+    I18n.locale =  params[:locale] || session[:locale] || I18n.default_locale
+    # session[:locale] = I18n.locale
+  end
+
+  def default_url_options(options = {})
+    {locale: I18n.locale}
+  end
 
   def load_settings
     @settings = GeneralSetting.first

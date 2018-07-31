@@ -13,8 +13,11 @@
         =form_for(:main_search, url: search_path, method: :get, html: {class: 'g-header-search g-mobile-hide'}) do |f|
           =f.text_field :query, class: 'g-header-search__input', placeholder: "Введите фразу для поиска и нажмите клавишу «Enter»"
         %nav.g-menu.g-menu_lower.g-mobile-hide
-          %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} rus
-          %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} eng
+          / %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} rus
+          / %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} eng
+          / =link_to "ENG  ", { locale: 'en' }, { class: "#{'activeLanguage' if I18n.locale == :en }" }
+          =link_to "rus", { locale: :ru }, { class: 'g-menu__item' }
+          =link_to "eng", { locale: :en }, { class: 'g-menu__item' }
     .g-header__row.g-header__row_center
       .g-wrapper
         .g-header__logo-block.g-mobile-hide

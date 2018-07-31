@@ -36,7 +36,7 @@ class Admin::FaqsController < AdminController
   end
 
   def faq_params
-    params.require(:faq).permit(Faq.attribute_names.map(&:to_sym))
+    params.require(:faq).permit(Faq.attribute_names.map(&:to_sym).push(Faq.globalize_attribute_names))
   end
 
 end

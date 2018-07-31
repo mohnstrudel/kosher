@@ -6,20 +6,20 @@
 %section.g-section
   .g-wrapper
     %h2.g-title.g-title_big
-      Контакты
+      =t('static_pages.contacts.title')
     .g-contact
       .g-contact__sidebar-left.g-dep-info
-        %h3.g-dep-info__title Департамент кашрута
+        %h3.g-dep-info__title=t('static_pages.contacts.department')
         .g-dep-info__text-block
-          %h4.g-dep-info__text-title Адрес
+          %h4.g-dep-info__text-title=t('static_pages.contacts.address')
           %p.g-dep-info__text-par=@settings.try(:address)
-          %a.g-link{:href => "https://yandex.ru/maps/?text=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D0%BE%D0%B2%D0%B0%2C%2019%D0%B0&sll=37.608077%2C55.789244&ll=37.608377%2C55.789224&spn=0.010085%2C0.003023&z=17&l=map", target: "_blank"} Департамент кашрута на карте
+          %a.g-link{:href => "https://yandex.ru/maps/?text=%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%9E%D0%B1%D1%80%D0%B0%D0%B7%D1%86%D0%BE%D0%B2%D0%B0%2C%2019%D0%B0&sll=37.608077%2C55.789244&ll=37.608377%2C55.789224&spn=0.010085%2C0.003023&z=17&l=map", target: "_blank"}=t('static_pages.contacts.on_the_map') 
         .g-dep-info__text-block.g-dep-info__text-block_phones
           -if @settings.try(:phones).present?
             -@settings.phones.each do |phone|
               %p.g-dep-info__text-par=phone.value
         .g-dep-info__text-block.g-dep-info__text-block_schedule
-          %h4.g-dep-info__text-title График работы
+          %h4.g-dep-info__text-title=t('static_pages.contacts.opening_hours')
           -if @settings.try(:opening_hours).present?
             -@settings.opening_hours.each do |op_hour|
               %p.g-dep-info__text-par.g-dep-info__time
@@ -32,37 +32,37 @@
       =form_for ContactRequest.new, format: 'js', html: {class: 'g-contact__sidebar-right g-form'}, remote: true do |f|
         =f.hidden_field :type, value: "ContactRequest"
         .g-input
-          %label.g-input__label.g-input__label_required Ваше имя
+          %label.g-input__label.g-input__label_required=t('static_pages.contacts.form.name')
           =f.text_field :name, class: 'g-input__field js-input'
           %span.g-input__error
-            Поле заполнено некорректно
+            =t('static_pages.contacts.form.error')
         .g-input
-          %label.g-input__label.g-input__label_required Название организации
+          %label.g-input__label.g-input__label_required=t('static_pages.contacts.form.firm_name')
           =f.text_field :company_name, class: 'g-input__field js-input'
           %span.g-input__error
-            Поле заполнено некорректно
+            =t('static_pages.contacts.form.error')
         .g-input
-          %label.g-input__label.g-input__label_required Контактный телефон
+          %label.g-input__label.g-input__label_required=t('static_pages.contacts.form.phone')
           =f.text_field :phone, class: 'g-input__field js-input js-input-phone'
           %span.g-input__error
-            Поле заполнено некорректно
+            =t('static_pages.contacts.form.error')
         .g-input.g-input_select
-          %label.g-input__label Тема письма
+          %label.g-input__label=t('static_pages.contacts.form.theme')
           .g-input__field.g-input__field_select-wrapper
             %select.g-input__field.g-input__field_select.js-input{:name => "contact_request[subject]"}
-              %option Общие вопросы
-              %option Сотрудничество
-              %option Коммерческое предложение
-              %option Замечания/пожелания
+              %option=t('static_pages.contacts.form.select.general')
+              %option=t('static_pages.contacts.form.select.partnership')
+              %option=t('static_pages.contacts.form.select.commercial')
+              %option=t('static_pages.contacts.form.feedback')
         .g-input
-          %label.g-input__label.g-input__label_required Ваш E-mail
+          %label.g-input__label.g-input__label_required=t('static_pages.contacts.form.email')
           =f.text_field :email, class: 'g-input__field js-input'
           %span.g-input__error
-            Поле заполнено некорректно 
+            =t('static_pages.contacts.form.error')
         .g-input
-          %label.g-input__label Сообщение
+          %label.g-input__label=t('static_pages.contacts.form.body')
           =f.text_area :message, class: 'g-input__field g-input__field_textarea js-input', data: {"input-type" => "message"}
 
-        =f.submit "Отправить", id: 'contact_form_submit', class: 'g-btn g-btn_blue g-form__submit'
+        =f.submit t('static_pages.contacts.form.submit'), id: 'contact_form_submit', class: 'g-btn g-btn_blue g-form__submit'
         #request-errors
       #g-map.g-map

@@ -7,7 +7,9 @@ class Front::FaqsController < FrontController
   end
 
   def index
-    @faqs = Faq.all
+    # Выбираем только те факи, где есть соответствующий перевод, 
+    # иначе получаем пустые записи
+    @faqs = Faq.with_translations(I18n.locale)
 
   end
 

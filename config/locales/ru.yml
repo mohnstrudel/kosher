@@ -1,4 +1,27 @@
 ru:
+  static_pages:
+    about:
+      title: О департаменте
+    contacts:
+      title: Контакты
+      department: Департамент кашрута
+      address: Адрес
+      on_the_map: Департамент кашрута на карте
+      opening_hours: График работы
+      form:
+        name: Ваше имя
+        firm_name: Название организации
+        phone: Контактный телефон
+        body: Тема письма
+        error: Поле заполнено некорректно
+        select:
+          general: Общие вопросы
+          partnership: Сотрудничество
+          commercial: Коммерческое предложение
+          feedback: Замечания/пожелания
+        email: Ваш E-mail
+        theme: Тема письма
+        submit: Отправить
   activerecord:
     models:
       user: 

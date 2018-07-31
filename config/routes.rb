@@ -54,126 +54,134 @@ Rails.application.routes.draw do
     end
   # end
 
-  scope module: :front do
-    root "static_pages#home"
+  scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
 
-    get '/robots.:format' => 'errors#robots'
+    scope module: :front do
 
-    match "/404", :to => "errors#not_found", :via => :all
-    match "/500", :to => "errors#internal_server_error", :via => :all
+      # match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: [:get]
+      # match '', to: redirect("/#{I18n.default_locale}"), via: [:get]
 
-    get '/about', to: 'static_pages#about'
-    get '/gallery', to: 'pictures#index'
-    get '/faq', to: 'faqs#index'
-    get '/contact', to: 'static_pages#contact'
-    get '/manufacturers', to: 'static_pages#for_manufacturers'
-    get '/consumers', to: 'static_pages#for_consumers'
-    get '/trade-networks', to: 'static_pages#for_trade_networks'
-    get '/partners', to: 'manufacturers#index'
-    get '/search', to: 'main_searches#show'
-    # get 'categories', to: 'page_categories#index'
-    # resources :pages, only: [:index, :show]
+      root "static_pages#home"
 
-    resources :subscribers, only: [:create]
-    resources :requests, only: [:create]
-    # Тут крутой неймспейсинг запросов
-    resources :contact_requests, only: [:new, :create], controller: 'requests', type: 'ContactRequest'
-    resources :call_me_back_requests, only: [:new, :create], controller: 'requests', type: 'CallMeBackRequest'
-    # Неймспейсинг закрыт
+      get '/robots.:format' => 'errors#robots'
+
+      match "/404", :to => "errors#not_found", :via => :all
+      match "/500", :to => "errors#internal_server_error", :via => :all
+
+      get '/about', to: 'static_pages#about'
+      get '/gallery', to: 'pictures#index'
+      get '/faq', to: 'faqs#index'
+      get '/contact', to: 'static_pages#contact'
+      get '/manufacturers', to: 'static_pages#for_manufacturers'
+      get '/consumers', to: 'static_pages#for_consumers'
+      get '/trade-networks', to: 'static_pages#for_trade_networks'
+      get '/partners', to: 'manufacturers#index'
+      get '/search', to: 'main_searches#show'
+      # get 'categories', to: 'page_categories#index'
+      # resources :pages, only: [:index, :show]
+
+      resources :subscribers, only: [:create]
+      resources :requests, only: [:create]
+      # Тут крутой неймспейсинг запросов
+      resources :contact_requests, only: [:new, :create], controller: 'requests', type: 'ContactRequest'
+      resources :call_me_back_requests, only: [:new, :create], controller: 'requests', type: 'CallMeBackRequest'
+      # Неймспейсинг закрыт
 
 
-    resources :page_categories, only: [:index, :show] do
-      resources :pages, only: [:index, :show]
-    	# Page.where.not(slug: nil).all.each do |page|
-    	# 	get "/#{page.slug}", controller: "pages", action: "show", id: page.id
-    	# end
-    end
+      resources :page_categories, only: [:index, :show] do
+        resources :pages, only: [:index, :show]
+      	# Page.where.not(slug: nil).all.each do |page|
+      	# 	get "/#{page.slug}", controller: "pages", action: "show", id: page.id
+      	# end
+      end
 
-    resources :posts, only: [:index, :show], path: '/news'
-    resources :post_categories, only: [:index, :show] do
-      resources :posts, only: [:index, :show]
-      # Page.where.not(slug: nil).all.each do |page|
-      #   get "/#{page.slug}", controller: "pages", action: "show", id: page.id
+      resources :posts, only: [:index, :show], path: '/news'
+      resources :post_categories, only: [:index, :show] do
+        resources :posts, only: [:index, :show]
+        # Page.where.not(slug: nil).all.each do |page|
+        #   get "/#{page.slug}", controller: "pages", action: "show", id: page.id
+        # end
+      end
+
+      resources :labels, only: [:index, :show]
+
+      resources :products, only: [:index, :show]
+      # Данный блок для очень крутых урлов
+      # resources :categories, only: [:index, :show] do
+      #   resources :suppliers, only: [:index, :show], path: "" do
+      #     resources :products, only: :show, path: ""
+      #   end
       # end
-    end
+      resources :categories, only: [:index, :show]
+      resources :suppliers, only: [:index, :show] do
+        resources :products, only: :show, path: ""
+      end
 
-    resources :labels, only: [:index, :show]
+      # Old!
+      # resources :cities, only: [:index, :show] do
+      #   resources :shops, only: [:index, :show]
+      #   resources :restaurants, only: [:index, :show]
+      # end
 
-    resources :products, only: [:index, :show]
-    # Данный блок для очень крутых урлов
-    # resources :categories, only: [:index, :show] do
-    #   resources :suppliers, only: [:index, :show], path: "" do
-    #     resources :products, only: :show, path: ""
-    #   end
-    # end
-    resources :categories, only: [:index, :show]
-    resources :suppliers, only: [:index, :show] do
-      resources :products, only: :show, path: ""
-    end
+      resources :shops, only: [:index, :show] do
+        resources :cities, only: [:index, :show], path: "/"
+      end
 
-    # Old!
-    # resources :cities, only: [:index, :show] do
-    #   resources :shops, only: [:index, :show]
-    #   resources :restaurants, only: [:index, :show]
-    # end
+      resources :restaurants, only: [:index, :show] do
+        resources :cities, only: [:index, :show], path: "/"
+      end
 
-    resources :shops, only: [:index, :show] do
-      resources :cities, only: [:index, :show], path: "/"
-    end
-
-    resources :restaurants, only: [:index, :show] do
-      resources :cities, only: [:index, :show], path: "/"
-    end
-
-    resources :recipes, only: [:index, :show]
-    resources :recipe_categories, only: [:index, :show] do
-      resources :recipes, only: [:index, :show], path: "/"
-    end
+      resources :recipes, only: [:index, :show]
+      resources :recipe_categories, only: [:index, :show] do
+        resources :recipes, only: [:index, :show], path: "/"
+      end
 
 
 
-    # constraints subdomain: :api do
-      scope module: :api do
-        namespace :v1, defaults: { format: :json } do
-          resources :shops, only: [:index, :show]
-          resources :restaurants, only: [:index, :show]
-          resources :cities, only: [:index, :show] do
+      # constraints subdomain: :api do
+        scope module: :api do
+          namespace :v1, defaults: { format: :json } do
             resources :shops, only: [:index, :show]
             resources :restaurants, only: [:index, :show]
-          end
+            resources :cities, only: [:index, :show] do
+              resources :shops, only: [:index, :show]
+              resources :restaurants, only: [:index, :show]
+            end
 
-          resources :posts, only: [:index, :show]
-          resources :post_categories, only: [:index, :show] do
             resources :posts, only: [:index, :show]
-          end
+            resources :post_categories, only: [:index, :show] do
+              resources :posts, only: [:index, :show]
+            end
 
-          resources :labels, only: [:index, :show]
+            resources :labels, only: [:index, :show]
 
-          resources :recipes, only: [:index, :show]
-          resources :recipe_categories, only: [:index, :show] do
             resources :recipes, only: [:index, :show]
-          end
+            resources :recipe_categories, only: [:index, :show] do
+              resources :recipes, only: [:index, :show]
+            end
 
-          resources :faqs, only: [:index]
+            resources :faqs, only: [:index]
 
-          get '/about', to: 'general_settings#list'
+            get '/about', to: 'general_settings#list'
 
-          resources :products, only: [:index, :show]
-          resources :categories, only: [:index, :show] do
             resources :products, only: [:index, :show]
+            resources :categories, only: [:index, :show] do
+              resources :products, only: [:index, :show]
+            end
+
+            resources :manufacturers, only: [:index, :show]
+
+            resources :subscribers, only: [:index, :create, :show]
+
+            get 'filters/categories', to: 'filters#categories'
+            get 'filters/manufacturers', to: 'filters#manufacturers'
           end
-
-          resources :manufacturers, only: [:index, :show]
-
-          resources :subscribers, only: [:index, :create, :show]
-
-          get 'filters/categories', to: 'filters#categories'
-          get 'filters/manufacturers', to: 'filters#manufacturers'
         end
-      end
-    # end
-  end
+      # end
 
+      
+    end
+  end
   # match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: [:get]
   # match '', to: redirect("/#{I18n.default_locale}"), via: [:get]
 
