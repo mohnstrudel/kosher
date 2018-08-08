@@ -46,7 +46,11 @@ class Front::SuppliersController < FrontController
     else
       @suppliers = Manufacturer.active.by_filter(@category_id, subcategory_id, manufacturer_id, sign_ids).uniq.compact
       # @suppliers = @suppliers.sort_by { |i| i[:created_at]}.reverse.group_by { |i| i.parent_id }
-      @suppliers = @suppliers.sort_by { |i| [i[:created_at], i[:parent_id]]}.reverse
+      begin
+        @suppliers = @suppliers.sort_by { |i| [i[:parent_id], i[:created_at]] }.reverse
+      rescue
+        @suppliers = @suppliers.sort_by { |i| i[:created_at] }.reverse
+      end
       # Сохраняем выбор пользователя из фильтра в сессию, чтобы
       # на странице торговой марки показывать только те товары, которые выбрал пользователь
       # в фильтре категорий
