@@ -217,7 +217,7 @@ $(document).ready(function(){
 				// Tell jQuery you're doing JSON-P
 	      dataType: "json",
 	      // The source URL
-	      url: "https://api.kosher.ru/ru/v1/filters/categories",
+	      url: "https://api.kosher.ru/v1/filters/categories",
 
 	      
 	      method: 'GET',

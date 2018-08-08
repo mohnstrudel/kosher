@@ -18,10 +18,6 @@ class FrontController < ApplicationController
     # session[:locale] = I18n.locale
   end
 
-  def default_url_options(options = {})
-    {locale: I18n.locale}
-  end
-
   def load_settings
     @settings = GeneralSetting.first
     @breadcrumbs = get_breadcrumbs

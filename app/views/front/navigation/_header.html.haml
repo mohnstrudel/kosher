@@ -16,8 +16,9 @@
           / %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} rus
           / %a.g-menu__item{:href => "#", class: 'not-allowed-cursor'} eng
           / =link_to "ENG  ", { locale: 'en' }, { class: "#{'activeLanguage' if I18n.locale == :en }" }
-          =link_to "rus", { locale: :ru }, { class: 'g-menu__item' }
-          =link_to "eng", { locale: :en }, { class: 'g-menu__item' }
+          / =link_to "rus", { locale: :ru }, { class: 'g-menu__item' }
+          =link_to 'rus', localize_path(locale: :ru, path: request.url), { class: 'g-menu__item' }
+          =link_to "eng", localize_path(locale: :en, path: request.url), { class: 'g-menu__item' }
     .g-header__row.g-header__row_center
       .g-wrapper
         .g-header__logo-block.g-mobile-hide
