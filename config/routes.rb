@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # scope path: ':locale', locale: /#{I18n.available_locales.join("|")}/ do
+  scope path: ':locale', locale: /#{I18n.available_locales.join("|")}/ do
     namespace :admin do
     	get '', to: 'dashboard#index', as: '/'
       get 'localize', to: 'locale#localize'
@@ -177,12 +177,12 @@ Rails.application.routes.draw do
             get 'filters/manufacturers', to: 'filters#manufacturers'
           end
         end
-      # end
+      end
 
       
     end
   end
-  # match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: [:get]
-  match '', to: redirect("/#{I18n.default_locale}"), via: [:get]
+  match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: [:get]
+  # match '', to: redirect("/#{I18n.default_locale}"), via: [:get]
 
 end
