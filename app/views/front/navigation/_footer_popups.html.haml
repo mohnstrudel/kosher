@@ -41,6 +41,13 @@
           %span.g-input__error
             Поле некорректно заполнено
         .g-input
-          %label.g-input__label Комментарий
+          %label.g-input__label.g-input__label_required Ваша организация
+          =f.text_field :company_name, class: "g-input__field js-input", placeholder: "Введите название компании"
+          %span.g-input__error
+            Поле некорректно заполнено
+        .g-input
+          %label.g-input__label.g-input__label_required Комментарий
           =f.text_area :message, class: "g-input__field g-input__field_textarea js-input", data: {"input-type" => "message"}
+          %span.g-input__error
+            Поле некорректно заполнено
         =f.submit "Отправить", class: "g-btn g-btn_blue g-form__submit"

@@ -43,7 +43,7 @@ module CrudConcern
       @remaining_locales = Language.get_remaining_locales
     rescue => e
       flash[:danger] = e.message
-      render :new
+      # render :new
     end
   end
 

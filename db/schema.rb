@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 2018_07_31_142338) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "post_translations", id: :serial, force: :cascade do |t|
+  create_table "post_translations", force: :cascade do |t|
     t.integer "post_id", null: false
     t.string "locale", null: false
     t.datetime "created_at", null: false

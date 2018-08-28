@@ -1,7 +1,7 @@
 %section.g-section.g-section_partners
   .g-wrapper.g-slider.g-slider_partners
     #partners-slider.g-partners
-      -Partner.all.each do |partner|
+      -@partners.each do |partner|
         .g-partners__item
           =image_tag_or_default(partner, 'logo', class: 'g-partners__img')
           =image_tag_or_default(partner, 'logo_grey', class: 'g-partners__img g-partners__img_gray')

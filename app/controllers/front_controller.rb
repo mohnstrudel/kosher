@@ -1,6 +1,7 @@
 class FrontController < ApplicationController
   layout 'front' 
   before_action :load_settings
+  before_action :load_partners
   before_action :force_blank_request_format_to_html
   before_action :set_locale
 
@@ -16,6 +17,10 @@ class FrontController < ApplicationController
   def set_locale
     I18n.locale =  params[:locale] || session[:locale] || I18n.default_locale
     # session[:locale] = I18n.locale
+  end
+
+  def load_partners
+    @partners = Partner.all.order(created_at: :desc)
   end
 
   def load_settings
