@@ -1,6 +1,6 @@
 class Front::ManufacturersController < FrontController
   def index
-    objects = Manufacturer.top_level
+    objects = Manufacturer.top_level.order(created_at: :desc)
     item_amount = objects.count
     page_size = Rails.application.config.page_size
     @page = (params[:page] || 1).to_i
