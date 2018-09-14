@@ -20,8 +20,8 @@ class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:finders, :slugged]
 
-  include PgSearch
-  multisearchable :against => [:title, :body]
+  # include PgSearch
+  # multisearchable :against => [:title, :body]
 
   translates :title, :body
   globalize_accessors :locales => [:en, :ru], :attributes => [:title, :body]

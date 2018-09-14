@@ -32,8 +32,8 @@ class Manufacturer < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
-  include PgSearch
-  multisearchable :against => [:title, :description]
+  # include PgSearch
+  # multisearchable :against => [:title, :description]
 
   def slug_candidates
     [
