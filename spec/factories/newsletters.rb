@@ -1,7 +1,9 @@
 FactoryBot.define do
   factory :newsletter do
-    title "MyString"
-    body "MyText"
-    status "MyString"
+    title { Faker::Lorem.word }
+    body do
+      Faker::Lorem.paragraph(10)
+    end
+    status { Faker::Lorem.word }
   end
 end
