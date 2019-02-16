@@ -1,18 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :users, 
+  devise_for :users,
         controllers: {
           sessions: 'front/users/sessions',
           registrations: 'front/users/registrations'
-        }, 
-        path: '', 
-        path_names: { 
-          sign_in: 'login', 
-          sign_out: 'logout', 
-          sign_up: 'register', 
-          edit: 'profile' 
+        },
+        path: '',
+        path_names: {
+          sign_in: 'login',
+          sign_out: 'logout',
+          sign_up: 'register',
+          edit: 'profile'
         }
-  
+
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -47,8 +47,8 @@ Rails.application.routes.draw do
       resources :ingredients, except: :show
       resources :newsletters, except: :show
       resources :partners, except: :show
-      
-      
+
+
 
       post 'bulk_delete', to: 'bulk_actions#bulk_delete'
     end
@@ -82,7 +82,14 @@ Rails.application.routes.draw do
       # get 'categories', to: 'page_categories#index'
       # resources :pages, only: [:index, :show]
 
-      resources :subscribers, only: [:create]
+      resources :subscribers, only: [:create]do
+        member do
+          get :confirm_email
+        end
+      end
+
+      # get '/:token/confirm_email/', :to => "subscribers#confirm_email", as: 'confirm_email'
+
       resources :requests, only: [:create]
       # Тут крутой неймспейсинг запросов
       resources :contact_requests, only: [:new, :create], controller: 'requests', type: 'ContactRequest'
@@ -181,7 +188,7 @@ Rails.application.routes.draw do
         end
       # end
 
-      
+
     end
   # end
   # match '*path', to: redirect("/#{I18n.default_locale}/%{path}"), via: [:get]
