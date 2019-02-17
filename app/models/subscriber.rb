@@ -7,9 +7,10 @@ class Subscriber < ApplicationRecord
   validates :email, presence: true, uniqueness: true,
                 format: { with: VALID_EMAIL_REGEX }
 
-  def email_activate
+  def email_activate(params)
     self.email_confirmed = true
     self.confirm_token = nil
+    self.email = params[:email]
     save!(:validate => false)
   end
 

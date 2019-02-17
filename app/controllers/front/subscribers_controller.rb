@@ -13,19 +13,17 @@ class Front::SubscribersController < FrontController
   end
 
   def confirm_email
-    subscriber = Subscriber.find_by(confirm_token: params[:id])
+    subscriber = Subscriber.find_or_create_by(confirm_token: params[:id])
 
-    respond_to do |format|
-      if subscriber
-        # Внутри email_activate и происходит сохранение записи
-        subscriber.email_activate
-        # Передать параметры после подтверждения
-        # chimp = Mailchimp.new(subscriber)
-        # chimp.delay.subscribe
-        format.js
-      else
-        format.js { render partial: 'fail' }
-      end
+    if subscriber
+      # Внутри email_activate и происходит сохранение записи
+      subscriber.email_activate(params)
+      # Передать параметры после подтверждения
+      # chimp = Mailchimp.new(subscriber)
+      # chimp.delay.subscribe
+      redirect_to root_path(email_confirmed: true)
+    else
+      # render partial: 'subscribers/fail', formats: [:js]
     end
   end
 

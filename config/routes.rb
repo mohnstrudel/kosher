@@ -82,7 +82,7 @@ Rails.application.routes.draw do
       # get 'categories', to: 'page_categories#index'
       # resources :pages, only: [:index, :show]
 
-      resources :subscribers, only: [:create]do
+      resources :subscribers, only: [:create] do
         member do
           get :confirm_email
         end

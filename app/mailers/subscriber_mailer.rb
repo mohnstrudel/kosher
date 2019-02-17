@@ -1,5 +1,6 @@
 class SubscriberMailer < ApplicationMailer
-  default from: 'Оповещения kosher.ru <form@kosher.ru>'
+  # default from: 'Оповещения kosher.ru <form@kosher.ru>'
+  default from: 'Оповещения kosher.ru <mohnstrudel@yandex.ru>'
 
   layout 'mailer'
 
