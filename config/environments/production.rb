@@ -100,7 +100,7 @@ Rails.application.configure do
     user_name: Figaro.env.mailer_user,
     password: Figaro.env.mailer_password,
     domain: Figaro.env.hostname,
-    address: Figaro.env.mailer_address
+    address: Figaro.env.mailer_address,
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
