@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :subscriber do
-    email "MyString"
+    email { Faker::Lorem.word }
   end
 end

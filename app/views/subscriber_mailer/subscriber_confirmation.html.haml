@@ -1,0 +1,9 @@
+%h2 Подтвердите адрес электронной почты для рассылки
+
+%p
+  Добрый день! Для получения рассылки просим подтвердить адрес вашей электронной почты. Нажмите на ссылку ниже.
+%p=link_to 'Подтвердить', confirm_email_subscriber_url(id: @subscriber.confirm_token, email: @subscriber.email)
+%p
+  Если у вас не получается нажать на ссылку, скопируйте данный адрес и вставьте его в адресную строку браузера и нажмите 'ввод'.
+%p
+  =confirm_email_subscriber_url(id: @subscriber.confirm_token, email: @subscriber.email)

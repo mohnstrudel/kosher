@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :request do
-    name "MyString"
-    company_name "MyString"
-    email "MyString"
-    phone "MyString"
-    message "MyString"
-    type ""
-    subject "MyString"
+    name { Faker::Lorem.word }
+    company_name { Faker::Lorem.word }
+    email { Faker::Lorem.word }
+    phone { Faker::Lorem.word }
+    message { Faker::Lorem.word }
+    type { "" }
+    subject { Faker::Lorem.word }
   end
 end

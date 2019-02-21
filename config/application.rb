@@ -13,7 +13,7 @@ module Ycms
     # -- all .rb files in that directory are automatically loaded.
 
     config.middleware.use Rack::Attack
-    
+
     config.generators do |g|
 	  g.test_framework :rspec,
 	    :fixtures => true,
@@ -34,7 +34,7 @@ module Ycms
 	# Include files from lib path
   config.autoload_paths += %W(#{config.root}/lib)
 
-  config.time_zone = 'Moscow' 
+  config.time_zone = 'Moscow'
   config.active_record.default_timezone = :local
 
   config.active_job.queue_adapter = :delayed_job
@@ -47,6 +47,8 @@ module Ycms
     'Access-Control-Allow-Origin' => '*',
     'Access-Control-Request-Method' => "GET"
   }
+
+  config.action_mailer.preview_path = "#{Rails.root}/spec/mailers"
 
 
   end

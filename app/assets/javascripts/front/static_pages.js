@@ -1,10 +1,17 @@
 $(document).ready(function() {
-  if($("body").hasClass("contact")){
+  if($("body").hasClass("home")){
+    let urlParams = new URLSearchParams(window.location.search);
+    let param = urlParams.get('email_confirmed');
+    if(param == "true"){
+      $('#subscribe-confirm').fadeIn(300);
+    }
+  }
+  else if($("body").hasClass("contact")){
 
     $(".g-input__field_select").select2();
 
     mapboxgl.accessToken = 'pk.eyJ1Ijoic2NobmliYmEiLCJhIjoiMWEwYWI4YTA3YTAwYjVhYTY1YWZiZGFiZDk1Zjk5NGUifQ.ueMMb8kMdWxrP5N4iqx67Q';
-    var long = $('#long_id').val(); 
+    var long = $('#long_id').val();
     var lat = $('#lat_id').val();
     var name = $('#name_id').val();
     var map = new mapboxgl.Map({
@@ -17,7 +24,7 @@ $(document).ready(function() {
     });
 
     // var nav = new mapboxgl.NavigationControl();
-    
+
     map.on('load', function () {
       // map.addControl(nav, 'top-left');
       map.dragPan.enable();
@@ -56,5 +63,5 @@ $(document).ready(function() {
           }
       });
     });
-  } 
+  }
 });

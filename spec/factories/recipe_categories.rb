@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :recipe_category do
-    title "MyString"
-    description "MyString"
-    logo "MyString"
+    title { Faker::Lorem.word }
+    description { Faker::Lorem.paragraph(10) }
+    logo { Faker::Lorem.word }
   end
 end

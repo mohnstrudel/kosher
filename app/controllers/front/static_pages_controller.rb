@@ -1,4 +1,6 @@
 class Front::StaticPagesController < FrontController
+  protect_from_forgery except: :home
+
   def home
   	@page_categories = PageCategory.all
     @posts = Post.active.includes(:translations).order(published_at: :desc).first(9)
