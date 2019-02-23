@@ -1,5 +1,5 @@
 class Admin::SubscribersController < AdminController
-  
+
   include CrudConcern
 
   before_action :find_subscriber, only: [:edit, :update, :destroy]
@@ -16,7 +16,7 @@ class Admin::SubscribersController < AdminController
   def create
     @subscriber = Subscriber.new(subscriber_params)
     chimp = Mailchimp.new(@subscriber)
-    chimp.delay.subscribe
+    chimp.subscribe
     create_helper(@subscriber, "edit_admin_subscriber_path")
   end
 

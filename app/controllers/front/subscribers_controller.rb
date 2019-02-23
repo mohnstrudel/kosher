@@ -19,8 +19,8 @@ class Front::SubscribersController < FrontController
       # Внутри email_activate и происходит сохранение записи
       subscriber.email_activate(params)
       # Передать параметры после подтверждения
-      # chimp = Mailchimp.new(subscriber)
-      # chimp.delay.subscribe
+      chimp = Mailchimp.new(subscriber)
+      chimp.subscribe
       redirect_to root_path(email_confirmed: true)
     else
       # render partial: 'subscribers/fail', formats: [:js]
