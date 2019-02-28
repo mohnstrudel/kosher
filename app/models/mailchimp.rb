@@ -23,7 +23,12 @@ class Mailchimp
     begin
       puts "Subscribing user using params: #{@email}"
       gibbon = Gibbon::Request.new(api_key: Figaro.env.mailchimp_api_key)
-      gibbon.lists(Figaro.env.mailchimp_list_id).members.create(body: {email_address: @email, status: "subscribed", merge_fields: {FNAME: "Kosher.ru", LNAME: "User"}})
+      result = gibbon.lists(Figaro.env.mailchimp_list_id).members.create(body: {email_address: @email, status: "subscribed", merge_fields: {FNAME: "Kosher.ru", LNAME: "User"}})
+      if result
+        puts "User added successfully"
+      else
+        puts "Subscribing error"
+      end
     rescue Gibbon::MailChimpError => e
       puts "Houston, we have a problem: #{e.message} - #{e.raw_body}"
     end

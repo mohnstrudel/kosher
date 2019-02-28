@@ -4,11 +4,11 @@ class Category < ApplicationRecord
 
   has_many :products
   # has_one :label
-  # This is called a self referential relation. This is where records in a 
+  # This is called a self referential relation. This is where records in a
   # table may point to other records in the same table.
   has_many :sub_categories, class_name: "Category", foreign_key: :parent_id, dependent: :destroy
 
-  # This is a scope to load the top level categories and eager-load their 
+  # This is a scope to load the top level categories and eager-load their
   # lawyers, subcategories, and the subcategories' lawyers too.
   # scope :top_level, -> { where(parent_id: nil).include :products, sub_categories: :products }
   scope :top_level, -> { where(parent_id: nil) }
@@ -29,17 +29,17 @@ class Category < ApplicationRecord
     return nil if self.parent_id != nil
     trademarks = Array.new
     manufacturers = Array.new
-    
+
     Category.find(self.id).sub_categories.includes(:manufacturers).map { |subcategory| trademarks << subcategory.manufacturers.to_a  }
 
     # return manufacturers.flatten.uniq
     # Тут у нас в массиве только торговые марки. Ищем их производителей
-    puts "Inspecting trademarks: #{trademarks.inspect}"
+    # puts "Inspecting trademarks: #{trademarks.inspect}"
     trademarks.flatten.uniq.each do |trademark|
       manufacturers << trademark.parent
     end
 
-    puts "Inspecting manufacturers: #{manufacturers.inspect}"
+    # puts "Inspecting manufacturers: #{manufacturers.inspect}"
 
     return manufacturers.compact.uniq
   end
