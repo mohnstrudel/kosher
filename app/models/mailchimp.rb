@@ -26,6 +26,7 @@ class Mailchimp
       result = gibbon.lists(Figaro.env.mailchimp_list_id).members.create(body: {email_address: @email, status: "subscribed", merge_fields: {FNAME: "Kosher.ru", LNAME: "User"}})
       if result
         puts "User added successfully"
+        puts "Result is: #{result.inspect}"
       else
         puts "Subscribing error"
       end
