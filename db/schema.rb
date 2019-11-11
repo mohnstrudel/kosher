@@ -10,11 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_16_124106) do
+ActiveRecord::Schema.define(version: 2019_11_11_012512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
+
+  create_table "banquet_halls", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "url"
+    t.string "logo"
+    t.text "address"
+    t.string "slug"
+    t.integer "sortable"
+    t.bigint "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_banquet_halls_on_city_id"
+    t.index ["slug"], name: "index_banquet_halls_on_slug", unique: true
+  end
 
   create_table "barcodes", force: :cascade do |t|
     t.string "value"
@@ -179,6 +194,8 @@ ActiveRecord::Schema.define(version: 2019_02_16_124106) do
     t.datetime "updated_at", null: false
     t.integer "shop_id"
     t.integer "restaurant_id"
+    t.bigint "banquet_hall_id"
+    t.index ["banquet_hall_id"], name: "index_opening_hours_on_banquet_hall_id"
     t.index ["general_setting_id"], name: "index_opening_hours_on_general_setting_id"
     t.index ["restaurant_id"], name: "index_opening_hours_on_restaurant_id"
     t.index ["shop_id"], name: "index_opening_hours_on_shop_id"
@@ -227,6 +244,8 @@ ActiveRecord::Schema.define(version: 2019_02_16_124106) do
     t.datetime "updated_at", null: false
     t.integer "shop_id"
     t.integer "restaurant_id"
+    t.bigint "banquet_hall_id"
+    t.index ["banquet_hall_id"], name: "index_phones_on_banquet_hall_id"
     t.index ["general_setting_id"], name: "index_phones_on_general_setting_id"
     t.index ["restaurant_id"], name: "index_phones_on_restaurant_id"
     t.index ["shop_id"], name: "index_phones_on_shop_id"
@@ -374,6 +393,8 @@ ActiveRecord::Schema.define(version: 2019_02_16_124106) do
     t.bigint "city_id"
     t.bigint "recipe_id"
     t.bigint "recipe_category_id"
+    t.bigint "banquet_hall_id"
+    t.index ["banquet_hall_id"], name: "index_seos_on_banquet_hall_id"
     t.index ["city_id"], name: "index_seos_on_city_id"
     t.index ["manufacturer_id"], name: "index_seos_on_manufacturer_id"
     t.index ["post_id"], name: "index_seos_on_post_id"
@@ -427,12 +448,15 @@ ActiveRecord::Schema.define(version: 2019_02_16_124106) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "banquet_halls", "cities"
   add_foreign_key "categories", "labels"
   add_foreign_key "ingredients", "recipes"
+  add_foreign_key "opening_hours", "banquet_halls"
   add_foreign_key "opening_hours", "general_settings"
   add_foreign_key "opening_hours", "restaurants"
   add_foreign_key "opening_hours", "shops"
   add_foreign_key "pages", "page_categories"
+  add_foreign_key "phones", "banquet_halls"
   add_foreign_key "phones", "general_settings"
   add_foreign_key "phones", "restaurants"
   add_foreign_key "phones", "shops"
@@ -447,6 +471,7 @@ ActiveRecord::Schema.define(version: 2019_02_16_124106) do
   add_foreign_key "recipe_ingredients", "recipes"
   add_foreign_key "recipes", "recipe_categories"
   add_foreign_key "restaurants", "cities"
+  add_foreign_key "seos", "banquet_halls"
   add_foreign_key "seos", "cities"
   add_foreign_key "seos", "manufacturers"
   add_foreign_key "seos", "posts"

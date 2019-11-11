@@ -39,7 +39,7 @@ en:
           general: General question
           partnership: Partnership
           commercial: Commercial offer
-          feedback: Feedback 
+          feedback: Feedback
         email: Your e-mail
         theme: Message title
         submit: Submit
@@ -51,46 +51,46 @@ en:
       user:
         one: User
         other: Users
-      shop: 
+      shop:
         one: Shop
         other: Shops
-      post: 
+      post:
         one: Post
         other: Posts
       page:
         one: Page
         other: Pages
-      faq: 
+      faq:
         one: FAQ
         other: FAQs
-      picture: 
+      picture:
         one: Picture
         other: Pictures
-      general_setting: 
+      general_setting:
         one: General Setting
         other: General Settings
-      city: 
+      city:
         one: City
         other: Cities
-      restaurant: 
+      restaurant:
         one: Restaurant
         other: Restaurants
-      label: 
+      label:
         one: Label
         other: Labels
-      category: 
+      category:
         one: Category
         other: Categories
-      manufacturer: 
+      manufacturer:
         one: Manufacturer
         other: Manufacturers
-      product: 
+      product:
         one: Product
         other: Products
-      post_category: 
+      post_category:
         one: Category
         other: Categories
-      page_category: 
+      page_category:
         one: Category
         other: Categories
       recipe:
@@ -117,12 +117,12 @@ en:
       placeholders:
         ingredients:
           amount: Amount, i.e. 'two cups' or '500 grams'
-      tab_main: 
+      tab_main:
         title: "General"
         seo: SEO Settings
       hints:
         published_at: If no value provided will be the same as date of creating the record.
-        seo: 
+        seo:
           tab_title: This values will override the standard values of given object. I.e. field 'description' on this tab will override field 'description' from first tab.
           keywords: Hit either comma or enter after you finished one keyword to proceed with the next.
         active: Only active entries will be displayed. This option is on by default.
@@ -181,7 +181,7 @@ en:
         main: "Actions"
         save: "Save"
         back: "Back"
-        edit: 
+        edit:
           verb: Edit
           noun: Editing
         new:
@@ -205,7 +205,7 @@ en:
         search: Search
         only_incomplete: Find only incomplete products
         without_barcode: Find products without barcode(s)
-      confirm: 
+      confirm:
         main: Are you sure?
         bulk_delete: This will delete all selected items. Proceed? Please note, that if you delete a parent item (for example a category), all child elements will be deleted as well (for example, all subcategories).
       created_ago: "ago"
@@ -220,6 +220,10 @@ en:
     profile: "Edit profile"
 
     navigation:
+      banquet_halls:
+        main: "Banquet halls"
+        all_banquet_halls: "All banquet halls"
+        new_banquet_hall: "Create new banquet hall"
       dashboard: "Dashboard"
       posts:
         main: "Posts"
@@ -298,7 +302,7 @@ en:
           description: "Please select language"
           english: "English"
           russian: "Russian"
-  
+
   controllers:
     admin:
       post:

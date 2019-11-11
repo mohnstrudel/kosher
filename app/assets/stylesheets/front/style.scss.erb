@@ -54,6 +54,52 @@ textarea {
   .g-wrapper_search {
     max-width: 1000px; }
 
+.g-switch-wrapper {
+  max-width: 800px;
+  padding: 0 15px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  margin-top: 2rem;
+  display: flex;
+  cursor: pointer;
+  }
+
+.g-restaurant__switch-btn {
+  width: 45%;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  color: #b2b2b2;
+  line-height: 3.6rem;
+  padding: 0 3.2rem;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 3rem;
+  font-size: 1.083333rem;
+  padding: 0 3.6rem;
+  border-radius: 2.5rem;
+  float: left;
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  &:hover, &.active {
+    border-color: $kosher-green-color;
+    color: $kosher-green-color;
+  }
+}
+
+
+  .g-products__filter-btn:after {
+    content: "\e913";
+    display: inline-block;
+    position: absolute;
+    font-family: "kosher";
+    left: 1.16rem;
+    top: 50%;
+    transform: translateY(-50%); }
+
 .g-products__filter-btn {
   display: none;
   width: 100%;
@@ -3046,6 +3092,30 @@ textarea {
     margin-top: 3rem;
 
   }
+
+.g-switch-wrapper {
+  display: block;
+  padding-right: 3rem;
+  min-height: 95px;
+}
+
+.g-restaurant__switch-btn {
+  width: 100%;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+  color: #b2b2b2;
+  line-height: 3.6rem;
+  padding: 0 3.2rem;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 3rem;
+  font-size: 1.083333rem;
+  padding: 0 3.6rem;
+  border-radius: 2.5rem;
+  margin-bottom: 1.5rem;
+}
 
   .g-signs__img {
     padding-top: 0;

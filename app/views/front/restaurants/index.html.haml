@@ -1,4 +1,7 @@
 %section.g-section
+  .g-switch-wrapper
+    %a.g-restaurant__switch-btn.active{:href => restaurants_path } Кошерные рестораны
+    %a.g-restaurant__switch-btn{:href => banquet_halls_path } Кошерные банкетные залы
   .g-wrapper
     %h2.g-title.g-title_big
       Кошерные рестораны
@@ -7,4 +10,3 @@
         %li.g-cities__item
           =link_to restaurant_cities_path(city), class: "g-cities__link", style: "background-image: url(#{asset_path(city.front_image)})" do
             %span.g-cities__title=city.name
-      

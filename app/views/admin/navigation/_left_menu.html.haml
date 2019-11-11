@@ -112,6 +112,18 @@
             =t('admin.navigation.restaurants.all_restaurants')
           =nav_link new_admin_restaurant_path do
             =t('admin.navigation.restaurants.new_restaurant')
+
+      =nav_link admin_banquet_halls_path do
+        %i.fa.fa-university
+        %span.nav-label
+          =t('admin.navigation.banquet_halls.main')
+        %span.fa.arrow
+        %ul.nav.nav-second-level.collapse
+          =nav_link admin_banquet_halls_path do
+            =t('admin.navigation.banquet_halls.all_banquet_halls')
+          =nav_link new_admin_banquet_hall_path do
+            =t('admin.navigation.banquet_halls.new_banquet_hall')
+
       =nav_link "" do
         %i.fa.fa-star
         %span.nav-label

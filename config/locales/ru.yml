@@ -24,31 +24,31 @@ ru:
         submit: Отправить
   activerecord:
     models:
-      user: 
+      user:
         one: Пользователь
         other: Пользователи
       shop:
         one: Магазин
         other: Магазины
-      post: 
+      post:
         one: Запись
         other: Записи
-      page: 
+      page:
         one: Страница
         other: Страницы
-      faq: 
+      faq:
         one: Вопрос-Ответ
         other: Частые вопросы
-      picture: 
+      picture:
         one: Изображение
         other: Изображения
       general_setting:
         one: Настройка
         other: Настройки
-      city: 
+      city:
         one: Город
         other: Города
-      restaurant: 
+      restaurant:
         one: Ресторан
         other: Рестораны
       label:
@@ -96,12 +96,12 @@ ru:
       placeholders:
         ingredients:
           amount: Кол-во, например 'две чайные ложки' или '500 грамм'
-      tab_main: 
+      tab_main:
         title: "Основное"
         seo: SEO Настройки
       hints:
         published_at: Если не будет указана дата, то данное значение станет равно дате создания записи.
-        seo: 
+        seo:
           tab_title: Данные значения перезапишут стандартные значения объекта. Т.е. поле "описание" в данном табе перезапишет поле "описание" из первого таба.
           keywords: После внесения ключевого слова или ключевой фразы, нажмите запяту или клавишу "ввод" для продолжения ввода.
         active: Только активные записи отображаются на сайте. Опция по умолчанию включена.
@@ -153,14 +153,14 @@ ru:
           description: SEO Описание
           image: SEO Картинка
           keywords: SEO Ключевые слова
-        active: Запись активна? 
+        active: Запись активна?
         sortable: Сортировка
       tab_translation: "Переводы"
       actions:
         main: "Действия"
         save: "Сохранить"
         back: "Назад"
-        edit: 
+        edit:
           verb: "Редактировать"
           noun: Редактирование
         new:
@@ -184,7 +184,7 @@ ru:
         search: Поиск
         only_incomplete: Найти только незаполненные товары
         without_barcode: Найти товары без штрихкода
-      confirm: 
+      confirm:
         main: Вы уверены?
         bulk_delete: Данное действие удалит все отмеченные записи. Продолжить? Пожалуйста, учтите, что при удалении родительских элементов (например, категории) будут также удалены все дочерние элементы (например, подкатегории).
       created_ago: "назад"
@@ -199,6 +199,10 @@ ru:
     profile: "Профиль"
 
     navigation:
+      banquet_halls:
+        main: "Банкетные залы"
+        all_banquet_halls: "Все банкетные залы"
+        new_banquet_hall: "Создать зал"
       dashboard: "Дашборд"
       posts:
         main: "Новости"
