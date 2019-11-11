@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       resources :users, except: :show
       resources :shops, except: :show
       resources :restaurants, except: :show
+      resources :banquet_halls, except: :show
       resources :labels, except: :show
       resources :sublabels, except: :show
       resources :categories, except: :show
@@ -137,6 +138,10 @@ Rails.application.routes.draw do
       end
 
       resources :restaurants, only: [:index, :show] do
+        resources :cities, only: [:index, :show], path: "/"
+      end
+
+      resources :banquet_halls, only: [:index, :show] do
         resources :cities, only: [:index, :show], path: "/"
       end
 

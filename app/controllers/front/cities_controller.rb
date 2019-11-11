@@ -9,6 +9,10 @@ class Front::CitiesController < FrontController
       @city = City.includes(:restaurants).friendly.find(params[:restaurant_id])
       @objects = @city.restaurants.order(sortable: :asc)
       @type = "рестораны"
+    elsif params[:banquet_hall_id].present?
+      @city = City.includes(:banquet_halls).friendly.find(params[:banquet_hall_id])
+      @objects = @city.banquet_halls.order(sortable: :asc)
+      @type = "банкетные залы"
     end
 
     post_amount = @objects.count
@@ -22,8 +26,8 @@ class Front::CitiesController < FrontController
     respond_to do |format|
       format.html
     end
-    
-    
+
+
   end
 
   # def show

@@ -1,6 +1,7 @@
 class City < ApplicationRecord
   has_many :shops
   has_many :restaurants
+  has_many :banquet_halls
 
   has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo, allow_destroy: true
