@@ -20,10 +20,12 @@ class Category < ApplicationRecord
   has_many :manufacturers, through: :products
   has_many :labels, through: :products
 
+  before_save :set_slug
+
   mount_uploader :logo, LogoUploader
 
   extend FriendlyId
-  friendly_id :slug_candidates, use: :slugged
+  friendly_id :slug_candidates, use: [:finders, :slugged]
 
   def parent_manufacturers
     return nil if self.parent_id != nil
@@ -82,5 +84,23 @@ class Category < ApplicationRecord
     # На первом месте всегда айди родителя, потом идут айди детей
     # Пример - [1, 4, 7, 10]
     return [parent.id, children_ids].flatten!
+  end
+
+  def set_slug
+    unless self.nil?
+      slugged = self.title.parameterize
+      begin
+        Category.friendly.find(slugged)
+        hash = Rails.application.config.hashids.encode(rand(99999))
+        slugged = "#{slugged}-#{hash}"
+        self.slug = slugged
+      rescue ActiveRecord::RecordNotFound
+        logger.debug "Object is new, setting default slug"
+        self.slug = slugged
+      rescue => e
+        logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
+        self.slug = nil
+      end
+    end
   end
 end

@@ -15,7 +15,7 @@ class Recipe < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: [:finders, :slugged]
 
-  after_save :set_slug
+  before_save :set_slug
 
   def slug_candidates
     [
@@ -47,18 +47,16 @@ class Recipe < ApplicationRecord
   end
 
   def set_slug
-    unless self.title.nil?
+    unless self.nil?
+      slugged = self.title.parameterize
       begin
-        slugged = self.title.parameterize
-        begin 
-          Recipe.friendly.find(slugged)
-          hash = Rails.application.config.hashids.encode(self.id)
-          slugged = "#{slugged}-#{hash}"
-          self.slug = slugged
-        rescue ActiveRecord::RecordNotFound
-          self.slug = slugged  
-        end
-        
+        Recipe.friendly.find(slugged)
+        hash = Rails.application.config.hashids.encode(rand(99999))
+        slugged = "#{slugged}-#{hash}"
+        self.slug = slugged
+      rescue ActiveRecord::RecordNotFound
+        logger.debug "Object is new, setting default slug"
+        self.slug = slugged
       rescue => e
         logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
         self.slug = nil

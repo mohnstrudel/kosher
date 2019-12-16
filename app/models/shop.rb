@@ -15,7 +15,7 @@ class Shop < ApplicationRecord
   has_one :seo, dependent: :destroy
   accepts_nested_attributes_for :seo, allow_destroy: true
 
-  after_save :set_slug
+  before_save :set_slug
 
 	validates :title, presence: true
 
@@ -31,16 +31,15 @@ class Shop < ApplicationRecord
 
   def set_slug
     unless self.nil?
+      slugged = self.title.parameterize
       begin
-        slugged = self.title.parameterize
-        begin 
-          Shop.friendly.find(slugged)
-          hash = Rails.application.config.hashids.encode(self.id)
-          slugged = "#{slugged}-#{hash}"
-          self.slug = slugged
-        rescue ActiveRecord::RecordNotFound
-          self.slug = slugged  
-        end
+        Shop.friendly.find(slugged)
+        hash = Rails.application.config.hashids.encode(rand(99999))
+        slugged = "#{slugged}-#{hash}"
+        self.slug = slugged
+      rescue ActiveRecord::RecordNotFound
+        logger.debug "Object is new, setting default slug"
+        self.slug = slugged
       rescue => e
         logger.debug "Error while saving slug for #{self.inspect}. Error message: #{e.message}"
         self.slug = nil

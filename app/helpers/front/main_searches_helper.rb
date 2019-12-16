@@ -1,6 +1,6 @@
 module Front::MainSearchesHelper
   def search_title_helper(result)
-    result.searchable_type.constantize.find(result.searchable_id).title
+    result.searchable_type.constantize.friendly.find(result.searchable_id).title
   end
 
   def search_link_helper(result)
@@ -8,7 +8,7 @@ module Front::MainSearchesHelper
       supplier = Manufacturer.friendly.find(result.searchable_id)
       return send("supplier_path", supplier.slug)
     elsif result.searchable_type == 'Product'
-      product = Product.find(result.searchable_id)
+      product = Product.friendly.find(result.searchable_id)
       logger.debug "Product is: #{product.inspect}"
       supplier = product.manufacturer
       begin
@@ -27,7 +27,7 @@ module Front::MainSearchesHelper
   end
 
   def search_content_helper(result)
-    object = result.searchable_type.constantize.find(result.searchable_id)
+    object = result.searchable_type.constantize.friendly.find(result.searchable_id)
     value = ""
     # puts "Object is: #{object.inspect}"
     if object.try(:description).present?
