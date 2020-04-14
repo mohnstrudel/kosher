@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :seo, allow_destroy: true
 
 
-  include Bootsy::Container
+  # include Bootsy::Container
   belongs_to :post_category
 
   validates :title, presence: true

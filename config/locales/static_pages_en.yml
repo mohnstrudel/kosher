@@ -1,0 +1,31 @@
+en:
+  static_pages:
+    about:
+      quote_text_html: |
+        Voluntary food products Certification System "Kosher certification" operates with the support of the Chief Rabbinate of Russia under the leadership of the Chief Rabbi of Russia, Rabbi Berl Lazar.
+        </br>
+        </br>
+        We are the only officially registered Agency in the Russian Federation that provides services for kosher certification of food products in accordance with international standards.
+        (Certificate of registration in the Unified State Register of Legal Entities of 05.12.2003, primary state registration number 1037715055850).
+        </br>
+        </br>
+        Primary goal of the Department of Kashrut of the Chief Rabbinate of Russia is to assist in improving marketability of Russian manufacturers in the domestic and international food markets
+      description:
+        title: 'Certification Agency performs the following functions :'
+        function_1: 'Organizes and carries out products certification;'
+        function_2: 'Issues Certificate of conformity and permission to use the mark of conformity;'
+        function_3_html: |
+          Provides consulting
+          </br>services;
+      principles:
+        title_html: |
+          Agency functions are carried out in accordance
+          </br>with the following principles:
+      principles_list:
+        principle_1: 'Voluntary participation;'
+        principle_2: 'Prohibition against compelling to implement voluntary certification;'
+        principle_3: 'Objectivity and validity of the certification is ensured by experts appointed by the Independent Nonprofit Organization "Kosher -R";'
+        principle_4: 'Independence of Certification Agency experts from manufacturers, consumers and other stakeholders;'
+        principle_5: 'Transparency of  information about Agency performance for federal authorities and public organizations;'
+        principle_6: 'Protection of applicants property interests , commercial confidentiality guarantees regarding the information obtained in the process of kosher certification;'
+        principle_7: 'Non-discrimination policy for kosher certification applicants;'
