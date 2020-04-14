@@ -2,6 +2,7 @@ class Admin::Settings::GeneralSettingsController < AdminController
   include CrudConcern
 
   before_action :find_general_setting, only: [:edit, :destroy, :update]
+  before_action :get_locales, only: [:edit, :create, :new]
   after_action :find_hooker
 
   def index
@@ -57,7 +58,8 @@ class Admin::Settings::GeneralSettingsController < AdminController
   def general_setting_params
     params.require(:general_setting).permit(GeneralSetting.attribute_names.map(&:to_sym).push(
       phones_attributes: [:id, :value, :_destroy, :general_setting_id ]).push(
-      opening_hours_attributes: [:id, :title, :value, :_destroy, :general_setting_id]) )
+      opening_hours_attributes: [:id, :title, :value, :_destroy, :general_setting_id]).push(
+        GeneralSetting.globalize_attribute_names))
   end
 
   def create_hash(params)

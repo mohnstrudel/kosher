@@ -12,6 +12,9 @@ class GeneralSetting < ApplicationRecord
   accepts_nested_attributes_for :phones, :allow_destroy => true
   accepts_nested_attributes_for :opening_hours, :allow_destroy => true
 
+  translates :address
+  globalize_accessors :locales => [:en, :ru], :attributes => [:address]
+
   validates :url, presence: true
 
   private

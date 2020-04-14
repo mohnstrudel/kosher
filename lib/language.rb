@@ -36,7 +36,7 @@ module Language
     when :integer
       return "number_field"
     when :text
-      return "bootsy_area"
+      return "text_area"
     when :string
       return "text_field"
     end

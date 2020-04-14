@@ -46,8 +46,6 @@
 //= require_tree ../../../vendor/assets/javascripts/admin/plugins/datapicker/.
 
 // REMOVED turbolinks
-//= require bootsy
-
 
 //= require bootstrap-tagsinput
 

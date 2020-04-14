@@ -166,8 +166,9 @@
                       %td
                         =obj.subject
                     %td
-                      =time_ago_in_words(obj.created_at)
-                      =t('admin.form.created_ago')
+                      =obj.created_at.strftime('%d.%m.%Y')
+                      -#=time_ago_in_words(obj.created_at)
+                      -#=t('admin.form.created_ago')
                     %td.text-right
                       .btn-group
                         =link_to t('admin.form.actions.edit.verb'), send("edit_admin_#{local_assigns[:namespace]}#{object_name(object)}_path", obj), class: "btn-white btn btn-xs", id: "edit_list_item_#{obj.id}"

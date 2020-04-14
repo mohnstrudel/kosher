@@ -1,7 +1,8 @@
 %h1
-	=@page.title
+  =@page.title
 %p
-	%em
-		=time_ago_in_words @page.created_at
+  %em
+    -#=time_ago_in_words @page.created_at
+    =obj.created_at.strftime('%d.%m.%Y')
 
 =simple_format @page.body

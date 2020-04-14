@@ -7,38 +7,28 @@
         =image_tag 'static/department.png', class: 'g-department__img'
         .g-department__text
           %p.g-department__par
-            Система добровольной сертификации продуктов питания Кошер Россия  «КОШЕР СЕРТИФИКАЦИЯ-КР» действует при поддержке главного раввината России под руководством главного раввина России Берл Лазара.
-          %p.g-department__par
-            Единственная официально зарегистрированная организация в Российской Федерации оказывающая услуги по кошер-сертификации продуктов питания в соответствии с международными стандартами.
-          %p.g-department__par
-            Основная цель Департамента кашрута при Главном раввинате России: содействие в повышение конкурентной способности российских производителей на мировом и внутреннем рынке продуктов питания.
+            =t('static_pages.about.quote_text_html')
       .g-text-block__content.g-text-block__content_department
         %h3.g-text-block__title
-          Орган по сертификации выполняет следующие функции
+          =t('static_pages.about.description.title')
         %ul.g-functions
           %li.g-functions__item
             =image_tag 'icons/microscope.svg', class: 'g-functions__img g-functions__img_big'
-            %span.g-functions__text Организует и проводит сертификацию продукции;
+            %span.g-functions__text
+              =t('static_pages.about.description.function_1')
           %li.g-functions__item
             =image_tag 'icons/certificate.svg', class: 'g-functions__img g-functions__img_middle'
-            %span.g-functions__text Выдает сертификаты соответствия и разрешения на применение знака соответствия;
+            %span.g-functions__text
+              =t('static_pages.about.description.function_2')
           %li.g-functions__item
             =image_tag 'icons/dialog.svg', class: 'g-functions__img'
             %span.g-functions__text
-              Проводит консультационные
-              %br>/
-              услуги.
+              =t('static_pages.about.description.function_3_html')
         %h3.g-text-block__title
           %span.g-mobile-hide
-            Деятельность осуществляется в соответствии
-            %br со следующими основными принципами:
+            =t('static_pages.about.principles.title_html')
           %span.g-mobile Продукция:
         %ul.g-text-block__ul.g-text-block__ul_wide
-          %li.g-text-block__li Недопустимости принуждения к осуществлению добровольной сертификации;
-          %li.g-text-block__li Объективности и достоверности результатов сертификации, что обеспечивается участием в работахпо сертификации экспертов, назначенных организацией Кошер Россия «КОШЕР СЕРТИФИКАЦИЯ-КР»;
-          %li.g-text-block__li Независимости участников сертификации от производителей и пользователей продукции и других заинтересованных сторон;
-          %li.g-text-block__li Добровольности;
-          %li.g-text-block__li Открытости информации о результатах деятельности системы для федеральных органов исполнительной власти и общественных организаций;
-          %li.g-text-block__li Отсутствия дискриминации в отношении заявителей на проведение кошер-сертификации.
-
- 
+          - I18n.t(".")[:static_pages][:about][:principles_list].each do |_key, principle|
+            %li.g-text-block__li
+              =principle

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_012512) do
+ActiveRecord::Schema.define(version: 2020_04_15_165006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -128,6 +128,16 @@ ActiveRecord::Schema.define(version: 2019_11_11_012512) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "general_setting_translations", force: :cascade do |t|
+    t.integer "general_setting_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "address"
+    t.index ["general_setting_id"], name: "index_general_setting_translations_on_general_setting_id"
+    t.index ["locale"], name: "index_general_setting_translations_on_locale"
   end
 
   create_table "general_settings", id: :serial, force: :cascade do |t|

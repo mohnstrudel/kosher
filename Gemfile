@@ -5,9 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+ruby "2.5.5"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
+gem 'rails', '~> 5'
 
 # Use postgresql as the database for Active Record
 
@@ -56,6 +56,7 @@ gem 'globalize', github: 'globalize/globalize'
 gem 'activemodel-serializers-xml'
 gem 'globalize-accessors'
 
+gem 'sprockets'
 
 # Switching back to custom jQuery again after failing builds
 # gem 'jquery-rails'
@@ -81,7 +82,7 @@ gem 'curb'
 gem 'will_paginate'
 
 # Use CKEditor for html formatting
-gem 'bootsy' # Screw CKEditor, it's not working on production! 
+# gem 'bootsy' # Screw CKEditor, it's not working on production!
 gem 'carrierwave' # Required for images upload using ckeditor and in general
 gem 'mini_magick' # Required for image processing
 
