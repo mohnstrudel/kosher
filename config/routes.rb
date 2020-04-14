@@ -13,7 +13,7 @@ Rails.application.routes.draw do
           edit: 'profile'
         }
 
-  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+  # mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # scope path: ':locale', locale: /#{I18n.available_locales.join("|")}/ do

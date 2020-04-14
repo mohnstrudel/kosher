@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
-	include Bootsy::Container
+	# include Bootsy::Container
 	
 	belongs_to :page_category
 
