@@ -6,7 +6,10 @@ module Front::MainSearchesHelper
   def search_link_helper(result)
     if result.searchable_type == "Manufacturer"
       supplier = Manufacturer.friendly.find(result.searchable_id)
-      return send("supplier_path", supplier.slug)
+
+      return send("supplier_path", supplier.slug) if supplier.slug.present?
+
+      return send('supplier_path', supplier.id)
     elsif result.searchable_type == 'Product'
       product = Product.friendly.find(result.searchable_id)
       logger.debug "Product is: #{product.inspect}"
