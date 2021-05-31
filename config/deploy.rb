@@ -90,14 +90,9 @@ namespace :deploy do
   end
 
   namespace :puma do
-    Rake::Task[:restart].clear_actions
-
-    desc "Overwritten puma:restart task"
+    desc "Regular puma:restart task"
     task :restart do
-      puts "Overwriting puma:restart to ensure that puma is running. Effectively, we are just starting Puma."
-      puts "A solution to this should be found."
-      invoke "puma:stop"
-      invoke "puma:start"
+      invoke "puma:restart"
     end
   end
 
