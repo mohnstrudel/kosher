@@ -61,9 +61,9 @@
           .col-sm-12.m-b-xs
             .pull-right
               -if params[:sublevel]
-                =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path",sublevel: true), class: "btn btn-w-m btn-primary", id: "new_entry"
+                =link_to t('admin.form.actions.create.object'), send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path",sublevel: true), class: "btn btn-w-m btn-primary", id: "new_entry"
               -else
-                =link_to "#{create_link_text_helper(object)}", send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary", id: "new_entry"
+                =link_to t('admin.form.actions.create.object'), send("new_admin_#{local_assigns[:namespace]}#{object_name(object)}_path"), class: "btn btn-w-m btn-primary", id: "new_entry"
         =form_tag admin_bulk_delete_path(sublevel: params[:sublevel], :id => "bulk-edit-form") do
           =hidden_field_tag :object, object_name(object)
           .table-responsive          

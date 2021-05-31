@@ -166,6 +166,8 @@ ru:
         new:
           verb: "Создать"
           noun: "Создание"
+        create:
+          object: Создать новую запись
         delete: "Удалить"
         select_file: "Выбрать файл"
         change: "Изменить"

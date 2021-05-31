@@ -1,31 +1,4 @@
 module AdminHelper
-  
-  def create_link_text_helper(object)
-    model = object.model.model_name.human
-    if I18n.locale == :en
-      text = "Create new #{model.downcase}"
-      return text
-    elsif I18n.locale == :ru
-      begin
-        try_gender = Morpher.new("#{model}")
-        gender = try_gender.singular('род')
-        if gender == "Мужской"
-          new_text = "Новый"
-        elsif gender == "Женский"
-          new_text = "Новая"
-        else
-          new_text = "Новое"
-        end
-        text = Morpher.new("#{new_text} #{model}")
-        # p = Petrovich(lastname: new_text, firstname:  model)
-        create_text = "Создать #{text.singular("в").downcase}"
-        return create_text
-      rescue => e
-        logger.info "Error while translating text: #{e.message}"
-        return "Создать новую запись"
-      end
-    end
-  end
 
   def object_name(object)
     return object.model.name.underscore if object.is_a?(ActiveRecord::Relation)

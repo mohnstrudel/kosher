@@ -187,6 +187,8 @@ en:
         new:
           verb: New
           noun: New
+        create:
+          object: Create new entry
         delete: "Delete"
         select_file: "Select file"
         change: "Change"
