@@ -28,20 +28,25 @@ module AdminHelper
   end
 
   def object_name(object)
-    if object.is_a?(ActiveRecord::Relation)
-      return object.model.name.underscore
-    else
-      return object.class.name.underscore
-    end
+    return object.model.name.underscore if object.is_a?(ActiveRecord::Relation)
+
+    object = check_sti_class(object)
+    object.class.name.underscore
+  end
+
+  def check_sti_class(object)
+    return object if object.class == object.class.base_class
+
+    object.becomes(object.class.base_class)
   end
 
   def admin_form_arguments_builder(object, namespace=nil)
-    if namespace
-      namespace = namespace.tr('_','')
-      return [:admin, namespace.to_sym, object]
-    else
-      return [:admin, object]
-    end
+    object = check_sti_class(object)
+
+    return [:admin, object] unless namespace
+
+    namespace = namespace.tr('_','')
+    [:admin, namespace.to_sym, object]
   end
 
   def nav_link(link_path, options={}, &block)
