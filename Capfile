@@ -13,6 +13,7 @@ require 'capistrano/rvm'
 require 'capistrano/puma'
 
 install_plugin Capistrano::Puma
+install_plugin Capistrano::Puma::Systemd
 require 'capistrano/figaro_yml'
 require 'capistrano/delayed_job'
 
@@ -21,6 +22,8 @@ require 'capistrano/yarn'
 
 require "whenever/capistrano"
 require 'capistrano/sitemap_generator'
+
+require 'sshkit/sudo'
 
 
 # Include tasks from other gems included in your Gemfile

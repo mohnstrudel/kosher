@@ -109,7 +109,7 @@ gem 'redcarpet'
 gem 'pg_search'
 
 # For sorting cyrillic
-# gem 'ffi-icu'
+gem 'ffi-icu'
 
 gem 'listen', '~> 3.1.5'
 
@@ -125,6 +125,7 @@ gem 'memory_profiler'
 
 gem 'sitemap_generator'
 gem 'whenever', :require => false
+gem 'sshkit-sudo'
 
 # Проверяем, какой браузер у пользователя
 gem 'browser'
