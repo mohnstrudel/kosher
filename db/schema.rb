@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_111857) do
+ActiveRecord::Schema.define(version: 2020_04_20_112235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -194,6 +194,17 @@ ActiveRecord::Schema.define(version: 2020_04_20_111857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "template_id"
+  end
+
+  create_table "opening_hour_translations", force: :cascade do |t|
+    t.integer "opening_hour_id", null: false
+    t.string "locale", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "value"
+    t.index ["locale"], name: "index_opening_hour_translations_on_locale"
+    t.index ["opening_hour_id"], name: "index_opening_hour_translations_on_opening_hour_id"
   end
 
   create_table "opening_hours", id: :serial, force: :cascade do |t|

@@ -109,7 +109,7 @@ gem 'redcarpet'
 gem 'pg_search'
 
 # For sorting cyrillic
-gem 'ffi-icu'
+# gem 'ffi-icu'
 
 gem 'listen', '~> 3.1.5'
 
